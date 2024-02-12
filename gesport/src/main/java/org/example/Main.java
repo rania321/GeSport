@@ -1,18 +1,25 @@
 package org.example;
 
 import entities.Activite;
+import entities.Reservation;
 import service.ActiviteService;
+import service.ReservationService;
 import utils.DataSource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
         //*************** Test Activite **************/
         Activite a1=new Activite("Natation1", "piscine","oui","faire la natation");
@@ -36,6 +43,35 @@ public class Main {
        // as.readAll().forEach(System.out::println);
 
         ///////////AFFICHE PAR ID///////////
-        System.out.println(as.readById(2));
+        /*System.out.println(as.readById(2));*/
+
+        //**************** Test Reservation ******************/
+        Date dateDebut1 = sdf.parse("11/02/2024 09:00");
+        Date dateFin1 = sdf.parse("11/02/2024 12:00");
+        Reservation r1=new Reservation(2, 2,dateDebut1,dateFin1,"en attente");
+        Reservation r2=new Reservation(2, 3,sdf.parse("12/02/2024 08:00"),sdf.parse("12/02/2024 09:30"),"en attente");
+        Reservation r3=new Reservation(2, 2,sdf.parse("03/03/2024 08:00"),sdf.parse("03/03/2024 09:30"),"en attente");
+        ReservationService rs=new ReservationService();
+        //////////////AJOUT////////
+        //rs.add(r1);
+        //rs.add(r2);
+        //rs.add(r3);
+        //rs.readAll().forEach(System.out::println);
+
+        //////////////SUPRESSION//////////
+        //rs.delete(r1); //matemchich
+        /*int idrsupprimer=6;
+        rs.deleteById(idrsupprimer);*/
+
+        //////////////UPDATE//////////
+        /*Reservation r4updated=new Reservation(4,2, 3,sdf.parse("26/06/2024 08:00"),sdf.parse("26/06/2024 09:30"),"en attente");
+        rs.update(r4updated);*/
+
+        rs.readAll().forEach(System.out::println);
+        /////////////AFFICHER PAR ID////////////
+        System.out.println(rs.readById(4));
+
+
+
     }
 }

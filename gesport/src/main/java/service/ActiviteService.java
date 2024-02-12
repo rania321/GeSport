@@ -34,6 +34,7 @@ public class ActiviteService implements IService<Activite>{
 
     }
 
+    ////////////////CRUD Suppression ACTIVITE////////////////////////
     @Override
     public void delete(Activite a) {
         String requete="DELETE FROM activite WHERE idA=?";
