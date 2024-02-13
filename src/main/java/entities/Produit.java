@@ -42,18 +42,18 @@ public class Produit {
     }
 
     public Float getPrixP() {
-        return PrixP;
+        return this.PrixP;
     }
 
     public int getStockP() {
         return StockP;
     }
 
-    public Date getDateAjoutP() {
-        return DateAjoutP;
+    public java.sql.Date getDateAjoutP() {
+        return (java.sql.Date) DateAjoutP;
     }
 
-    public void setProduitId(int idP) {
+    public void setIdP(int idP) {
         idP = idP;
     }
 
@@ -88,4 +88,6 @@ public class Produit {
                 ", DateAjout=" + DateAjoutP +
                 '}';
     }
+
+
 }

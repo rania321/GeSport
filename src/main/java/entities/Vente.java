@@ -44,12 +44,16 @@ public class Vente {
         return QuantitéV;
     }
 
-    public Date getDateV() {
-        return DateV;
+    public java.sql.Date getDateV() {
+        return (java.sql.Date) DateV;
     }
 
     public Float getMontantV() {
         return MontantV;
+    }
+
+    public void setIdV(int idV) {
+        this.idV = idV;
     }
 
     public void setIdU(int idU) {
