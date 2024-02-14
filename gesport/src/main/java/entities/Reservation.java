@@ -5,16 +5,19 @@ import java.util.Date;
 
 public class Reservation {
 
-    private int idR, idU, idA;
+    private int idR;
+    private User user;
+    private Activite activite;
+
     private Date DateDebutR, DateFinR;
     private String statutR;
 
     public Reservation() {
     }
 
-    public Reservation(int idU, int idA, Date dateDebutR, Date dateFinR, String statutR)  {
-        this.idU = idU;
-        this.idA = idA;
+    public Reservation(User user, Activite activite, Date dateDebutR, Date dateFinR, String statutR)  {
+        this.user = user;
+        this.activite = activite;
        /* SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date parsedDateDebut = dateFormat.parse(String.valueOf(dateDebutR));
         Date parsedDateFin = dateFormat.parse(String.valueOf(dateFinR));
@@ -25,10 +28,25 @@ public class Reservation {
         this.statutR = statutR;
     }
 
-    public Reservation(int idR, int idU, int idA, Date dateDebutR, Date dateFinR, String statutR) {
+    public Reservation(Activite activite, Date dateDebutR, Date dateFinR, String statutR) {
+        this.activite = activite;
+        DateDebutR = dateDebutR;
+        DateFinR = dateFinR;
+        this.statutR = statutR;
+    }
+
+    public Reservation(int idR, User user, Activite activite, Date dateDebutR, Date dateFinR, String statutR) {
         this.idR = idR;
-        this.idU = idU;
-        this.idA = idA;
+        this.user = user;
+        this.activite = activite;
+        DateDebutR = dateDebutR;
+        DateFinR = dateFinR;
+        this.statutR = statutR;
+    }
+
+    public Reservation(int idR, Activite activite, Date dateDebutR, Date dateFinR, String statutR) {
+        this.idR = idR;
+        this.activite = activite;
         DateDebutR = dateDebutR;
         DateFinR = dateFinR;
         this.statutR = statutR;
@@ -42,20 +60,20 @@ public class Reservation {
         this.idR = idR;
     }
 
-    public int getIdU() {
-        return idU;
+    public Activite getActivite() {
+        return activite;
     }
 
-    public void setIdU(int idU) {
-        this.idU = idU;
+    public void setActivite(Activite activite) {
+        this.activite = activite;
     }
 
-    public int getIdA() {
-        return idA;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdA(int idA) {
-        this.idA = idA;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDateDebutR() {
@@ -86,8 +104,8 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "idR=" + idR +
-                ", idU=" + idU +
-                ", idA=" + idA +
+                ", PrénomU=" + user.getPrenomU() +
+                ", activite=" + activite.getNomA() +
                 ", DateDebutR=" + DateDebutR +
                 ", DateFinR=" + DateFinR +
                 ", statutR='" + statutR + '\'' +
