@@ -1,8 +1,9 @@
 package entities;
 
 public class dossiermedical {
+    private User use;
     private int idDM;
-    private  int idU;
+
     private String poidsDM;
     private  String tailleDM;
     private  int ageDM;
@@ -10,16 +11,16 @@ public class dossiermedical {
     public dossiermedical() {
     }
 
-    public dossiermedical(int idDM, int idU, String poidsDM, String tailleDM, int ageDM) {
+    public dossiermedical(int idDM, User use, String poidsDM, String tailleDM, int ageDM) {
         this.idDM = idDM;
-        this.idU = idU;
+        this.use = use;
         this.poidsDM = poidsDM;
         this.tailleDM = tailleDM;
         this.ageDM = ageDM;
     }
 
-    public dossiermedical(int idU, String poidsDM, String tailleDM, int ageDM) {
-        this.idU = idU;
+    public dossiermedical(User use, String poidsDM, String tailleDM, int ageDM) {
+        this.use = use;
         this.poidsDM = poidsDM;
         this.tailleDM = tailleDM;
         this.ageDM = ageDM;
@@ -33,12 +34,12 @@ public class dossiermedical {
         this.idDM = idDM;
     }
 
-    public int getIdU() {
-        return idU;
+    public User getUse() {
+        return use;
     }
 
-    public void setIdU(int idU) {
-        this.idU = idU;
+    public void setuse(User use) {
+        this.use= use;
     }
 
     public String getPoidsDM() {
@@ -67,11 +68,11 @@ public class dossiermedical {
 
     @Override
     public String toString() {
-        return "dossiermedical{" +
+        return "DossierMedical{" +
                 "idDM=" + idDM +
-                ", idU=" + idU +
-                ", poidsDM=" + poidsDM +
-                ", tailleDM=" + tailleDM +
+                ", use=" + use +
+                ", poidsDM='" + poidsDM + '\'' +
+                ", tailleDM='" + tailleDM + '\'' +
                 ", ageDM=" + ageDM +
                 '}';
     }

@@ -3,18 +3,17 @@ package Services;
 import Utils.DataSource;
 import entities.User;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class userservice implements Iservice<User> {
+public class UserService implements Iservice<User> {
     private Connection conn;
     private Statement ste;
     private PreparedStatement pst;
 
 
-    public userservice() {
+    public UserService() {
         conn= DataSource.getInstance().getCnx();
     }
 
@@ -36,12 +35,12 @@ public class userservice implements Iservice<User> {
     }
 
     @Override
-    public void delete(int idU){
+    public void delete(User u){
         try {
             String requet="delete from user where idU=?";
             pst=conn.prepareStatement(requet);
 
-            pst.setInt(1,idU);
+            pst.setInt(1,u.getIdU());
             pst.executeUpdate();
             System.out.println("user supprimé");
 
@@ -56,9 +55,23 @@ public class userservice implements Iservice<User> {
 
 
     }
+    public void deleteById(int idU ) {
+        try {
+            String requete = "DELETE  FROM user WHERE idU=?";
+            PreparedStatement pst = conn.prepareStatement(requete);
+            pst.setInt(1, idU);
+
+            pst.executeUpdate();
+            System.out.println("Activité supprimée!");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            System.out.println("Activité non supprimée!");
+        }
+    }
 
     @Override
-    public void update(User u,int idU) {
+    public void update(User u) {
         String req="update user SET NomU=?,PrenomU=?,EmailU=?,mdpU=?,RoleU=? where idU=?";
         try {
             pst=conn.prepareStatement(req);
@@ -67,7 +80,7 @@ public class userservice implements Iservice<User> {
             pst.setString(3,u.getEmailU());
             pst.setString(4,u.getMdpU());
             pst.setString(5,u.getRoleU());
-            pst.setString(6, String.valueOf(idU)); // Setting the value for idU
+            pst.setInt(6,u.getIdU()); // Setting the value for idU
             pst.executeUpdate();
         } catch (SQLException e) {
 System.out.println(e.getMessage());
@@ -95,29 +108,30 @@ System.out.println(e.getMessage());
     }
 
     @Override
-    public User readByid(int idU) {
-        User user = null;
+
+
+
+
+    public User readById(int idU) {
+        User user = new User();
         String req = "SELECT * FROM user WHERE idU = ?";
         try {
-            pst = conn.prepareStatement(req);
+            PreparedStatement pst= conn.prepareStatement(req);
             pst.setInt(1, idU);
             ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
+                user.setIdU(rs.getInt("idU"));
+                user.setNomU(rs.getString("NomU"));
+                user.setPrenomU(rs.getString("PrenomU"));
+                user.setEmailU(rs.getString("EmailU"));
+                user.setMdpU(rs.getString("mdpU"));
+                user.setRoleU(rs.getString("RoleU"));
 
-                String nomU = rs.getString("NomU");
-                String prenomU = rs.getString("PrenomU");
-                String emailU = rs.getString("EmailU");
-                String mdpU = rs.getString("mdpU");
-                String roleU = rs.getString("RoleU");
 
-                user = new User(nomU, prenomU, emailU, mdpU, roleU);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return user;
-
-
-
     }
 }

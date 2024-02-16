@@ -1,73 +1,60 @@
 package org.example;
 
-import Services.userservice;
+import Services.UserService;
 import Services.dmservices;
-import Utils.DataSource;
 import entities.User;
 import entities.dossiermedical;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class Main {
 
     public static void main(String[] args){
 
         User u1=new User("Ghzel","dawser","dawser.ghzel@esprit.tn","123456","admin");
-        userservice us=new userservice();
+        User u2=new User("Ghzel","slim","slim.ghzel@esprit.tn","1234567","guest");
+        User u3=new User("Ghzel","lamis","lamis.ghzel@esprit.tn","123456","user");
+        UserService us=new UserService();
         ///////////////addddddddddd//////////////////
         //us.add(u1);
+        //us.add(u2);
         ////////////reaaaaaaaaaaaaad////////////////////
         //us.readall().forEach(System.out::println);
         ////////////////dellllllletttte/////////
-        //int idrsupprimer=1;
-       //us.delete(idrsupprimer);
+        //int idrsupprimer=4;
+       //us.deleteById(idrsupprimer);
         //***********Upppdate**********
-        User updatedUser = new User("gharbi", "slim", "slim.gharb@gmail.com", "789456", "user");
+        User updatedUser = new User(5,"gharbi", "slim", "slim.gharb@gmail.com", "789456", "user");
 
-        // ID of the user you want to update
-        int userIdToUpdate = 2; // Assuming the ID of the user you want to update is 1
 
         // Creating an instance of userservice
-        //userservice us2 = new userservice();
+        UserService us2 = new UserService();
 
         // Executing the update method
-       // us2.update(updatedUser, userIdToUpdate);
+        us2.update(updatedUser);
+        us2.readall().forEach(System.out::println);
        /* userservice us3 = new userservice();
 
-        // Reading user information by ID
-        int userIdToRead = 3; // Specify the ID of the user you want to retrieve
-        User user = us.readByid(userIdToRead);
+        */
+        User u9=us.readById(5);
 
-        if (user != null) {
-            // If user information is retrieved successfully, print it
-            System.out.println("User information:");
-            System.out.println("ID: " + userIdToRead);
-            System.out.println("NomU: " + user.getNomU());
-            System.out.println("PrenomU: " + user.getPrenomU());
-            System.out.println("EmailU: " + user.getEmailU());
-            System.out.println("mdpU: " + user.getMdpU());
-            System.out.println("RoleU: " + user.getRoleU());
 
-        } else {
-            // If user information is not found
-            System.out.println("User not found with ID: " + userIdToRead);
-        }*/
         /////////////adddddddddddddd////////////
-        dossiermedical d1=new dossiermedical(2,"aaa","aaaa",12);
+       /* dossiermedical d1 = new dossiermedical(u9, "aaa", "aaaa", 12);
         dmservices dm=new dmservices();
-        //dm.add(d1);
+        dm.add(d1);*/
         ////////////delllllettte/////////
-       /* int iddr=2;
-        dm.delete(iddr);*/
+       /*int iddr=3;
+        dm.deleteById(iddr);*/
         ///////updae dossier////////////
-        /*dossiermedical update=new dossiermedical(3,"bbbbb","cccccc",13);
-        int dossierid=3;
+        /*dossiermedical update=new dossiermedical(21,u9,"bbbbccb","cccccc",13);
+
+
         dmservices d2=new dmservices();
-        d2.update(update,dossierid);*/
+        d2.update(update);
+
         //////read alll////////
-        dm.readall().forEach(System.out::println);
+        d2.readall().forEach(System.out::println);*/
+
+
 
 
 
