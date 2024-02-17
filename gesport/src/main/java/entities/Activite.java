@@ -2,24 +2,26 @@ package entities;
 
 public class Activite {
     private int idA;
-    private String NomA,TypeA,DispoA,DescriA;
+    private String NomA,TypeA,DispoA,DescriA,ImageA;
 
     public Activite() {
     }
 
-    public Activite(int idA, String nomA, String typeA, String dispoA, String descriA) {
+    public Activite(int idA, String nomA, String typeA, String dispoA, String descriA, String imageA) {
         this.idA = idA;
         NomA = nomA;
         TypeA = typeA;
         DispoA = dispoA;
         DescriA = descriA;
+        ImageA= imageA;
     }
 
-    public Activite(String nomA, String typeA, String dispoA, String descriA) {
+    public Activite(String nomA, String typeA, String dispoA, String descriA, String imageA) {
         NomA = nomA;
         TypeA = typeA;
         DispoA = dispoA;
         DescriA = descriA;
+        ImageA= imageA;
     }
 
     public int getIdA() {
@@ -62,6 +64,14 @@ public class Activite {
         DescriA = descriA;
     }
 
+    public String getImageA() {
+        return ImageA;
+    }
+
+    public void setImageA(String imageA) {
+        ImageA = imageA;
+    }
+
     @Override
     public String toString() {
         return "Activite{" +
@@ -70,6 +80,7 @@ public class Activite {
                 ", TypeA='" + TypeA + '\'' +
                 ", DispoA='" + DispoA + '\'' +
                 ", DescriA='" + DescriA + '\'' +
+                ", ImageA='" + ImageA + '\'' +
                 '}';
     }
 }

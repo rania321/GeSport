@@ -19,13 +19,14 @@ public class ActiviteService implements IService<Activite>{
     ////////////////CRUD AJOUT ACTIVITE////////////////////////
     @Override
     public void add(Activite a){
-        String requete="insert into Activite (NomA,TypeA,DispoA,DescriA) values (?,?,?,?)";
+        String requete="insert into Activite (NomA,TypeA,DispoA,DescriA,imageA) values (?,?,?,?,?)";
         try {
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1, a.getNomA());
             pst.setString(2, a.getTypeA());
             pst.setString(3, a.getDispoA());
             pst.setString(4, a.getDescriA());
+            pst.setString(5, a.getImageA());
             pst.executeUpdate();
             System.out.println("Activite ajouté!");
         } catch (SQLException e) {
@@ -67,14 +68,15 @@ public class ActiviteService implements IService<Activite>{
     ////////////////////CRUD MODIFIER ACTIVITE/////////////////
     @Override
     public void update(Activite a) {
-        String req = "UPDATE `activite` SET NomA=?, TypeA=?, DispoA = ?,DescriA=? WHERE idA = ?";
+        String req = "UPDATE `activite` SET NomA=?, TypeA=?, DispoA = ?,DescriA=?, imageA=? WHERE idA = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, a.getNomA());
             ps.setString(2, a.getTypeA());
             ps.setString(3, a.getDispoA());
             ps.setString(4, a.getDescriA());
-            ps.setInt(5,a.getIdA());
+            ps.setString(5, a.getImageA());
+            ps.setInt(6,a.getIdA());
             ps.executeUpdate();
             System.out.println("Acivité modifiée !");
         } catch (SQLException e) {
@@ -92,7 +94,7 @@ public class ActiviteService implements IService<Activite>{
             Statement ste=conn.createStatement();
            ResultSet rs= ste.executeQuery(requete);
            while(rs.next()){
-               Activite a= new Activite(rs.getInt("idA"),rs.getString("NomA"),rs.getString("TypeA"),rs.getString("DispoA"),rs.getString("DescriA"));
+               Activite a= new Activite(rs.getInt("idA"),rs.getString("NomA"),rs.getString("TypeA"),rs.getString("DispoA"),rs.getString("DescriA"),rs.getString("imageA"));
                list.add(a);
            }
         } catch (SQLException e) {
@@ -117,6 +119,7 @@ public class ActiviteService implements IService<Activite>{
                 a.setTypeA(rst.getString("TypeA"));
                 a.setDispoA(rst.getString("DispoA"));
                 a.setDescriA(rst.getString("DescriA"));
+                a.setDescriA(rst.getString("imageA"));
 
                /*String nom = rst.getString("nom");
                 Time horaire = rst.getTime("horaire");

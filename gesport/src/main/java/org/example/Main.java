@@ -29,13 +29,13 @@ public class Main {
         Activite a=new Activite();
 
         //*************** Test Activite **************/
-        Activite a1=new Activite("Natation1", "piscine","oui","faire la natation");
-        Activite a2=new Activite("Equitation1", "equitation","oui","tout ce qui concerne le cheval");
-        Activite a3=new Activite("FootBall1", "football","oui","terrain de football");
+      //  Activite a1=new Activite("Natation1", "piscine","oui","../../../../resources/imgs/boxe.jpg");
+        Activite a2=new Activite("Equitation1", "equitation","oui","tout ce qui concerne le cheval","");
+        //Activite a3=new Activite("FootBall1", "football","oui","terrain de football");
         ActiviteService as=new ActiviteService();
         /////////////AJOUT//////////
         //as.add(a1);
-        //as.add(a2);
+        as.add(a2);
         //as.add(a3);
        // as.readAll().forEach(System.out::println);
 
@@ -78,8 +78,8 @@ public class Main {
         //////////////UPDATE//////////
         Reservation r2updated=new Reservation(16, userAddReserv,actAddReserv,sdf.parse("26/06/2024 08:00"),sdf.parse("26/06/2024 09:30"),"en attente");
         Reservation r22=new Reservation(21,userAddReserv,actAddReserv,sdf.parse("13/02/2024 08:00"),sdf.parse("13/02/2024 09:30"),"confirmé");
-        r22.setStatutR("annulée");
-        rs.update(r22);
+       // r22.setStatutR("annulée");
+     //   rs.update(r22);
 
         rs.readAll().forEach(System.out::println);
         /////////////AFFICHER PAR ID////////////

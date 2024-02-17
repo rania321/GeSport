@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.add_activiteController">
+   <children>
+      <Button fx:id="btnAddA" layoutX="420.0" layoutY="446.0" mnemonicParsing="false" onAction="#add_activite" prefHeight="25.0" prefWidth="51.0" text="add" />
+      <TextField fx:id="nomA" layoutX="324.0" layoutY="179.0" />
+      <TextField fx:id="typeA" layoutX="324.0" layoutY="216.0" />
+      <TextField fx:id="DescriA" layoutX="324.0" layoutY="297.0" prefHeight="74.0" prefWidth="149.0" />
+      <Button fx:id="btnAddImgA" layoutX="339.0" layoutY="446.0" mnemonicParsing="false" onAction="#btnAddImgA_clicked" text="browse" />
+      <TextField fx:id="pathimgA" layoutX="320.0" layoutY="411.0" promptText="Path Image" />
+      <ImageView fx:id="imageViewA" fitHeight="150.0" fitWidth="200.0" layoutX="320.0" layoutY="555.0" pickOnBounds="true" preserveRatio="true" />
+      <ComboBox fx:id="CBdispoA" layoutX="324.0" layoutY="260.0" prefWidth="150.0" />
+      <Pane prefHeight="800.0" prefWidth="300.0">
+         <children>
+            <Button layoutX="126.0" layoutY="192.0" mnemonicParsing="false" text="Home" />
+         </children>
+      </Pane>
+      <Pane layoutX="550.0" prefHeight="800.0" prefWidth="750.0">
+         <children>
+            <TableView fx:id="TableViewA" layoutX="29.0" layoutY="200.0" prefHeight="318.0" prefWidth="703.0">
+              <columns>
+                <TableColumn fx:id="CVNomA" prefWidth="116.0" text="Nom" />
+                <TableColumn fx:id="CVTypeA" prefWidth="101.0" text="Type" />
+                  <TableColumn fx:id="CVDispoA" prefWidth="149.0" text="Disponibilité" />
+                  <TableColumn fx:id="CVDescriA" prefWidth="183.0" text="Description" />
+                  <TableColumn fx:id="CVImgA" prefWidth="153.0" text="Image" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Button fx:id="btnUpdateA" layoutX="341.0" layoutY="499.0" mnemonicParsing="false" onAction="#update_activite" text="Update" />
+      <Button fx:id="btnDeleteA" layoutX="420.0" layoutY="499.0" mnemonicParsing="false" onAction="#delete_activite" text="Delete" />
+   </children>
+</AnchorPane>
