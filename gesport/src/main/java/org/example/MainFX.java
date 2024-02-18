@@ -16,7 +16,7 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/add_activite.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_activite.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setTitle("Ajout activité");
