@@ -10,7 +10,8 @@ import java.util.List;
 public class ProduitService implements IService <Produit>{
 
     private Connection con;
-    private Statement ste;
+
+    //private Statement ste;
     public ProduitService() {
         con= DataSource.getInstance().getCnx();
     }
@@ -19,6 +20,7 @@ public class ProduitService implements IService <Produit>{
         String requete= "insert into produit (nomP, descriP, PrixP, StockP, DateAjoutP) values (?,?,?,?,?)";
         try {
             PreparedStatement pst = con.prepareStatement(requete);
+
             pst.setString(1, p.getNomP());
             pst.setString(2, p.getDescriP());
             pst.setFloat(3, p.getPrixP());
@@ -36,12 +38,15 @@ public class ProduitService implements IService <Produit>{
     public void delete(Produit p) {
         String requete="DELETE FROM produit WHERE idP=?";
         try {
+            con.setAutoCommit(true);
             PreparedStatement pst= con.prepareStatement(requete);
-            pst.setInt(1,p.getIdP());
+            pst.setInt(1, p.getIdP());
             pst.executeUpdate();
             System.out.println("Produit supprimé avec succes");
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getMessage());
+            System.out.println("Produit non supprimé!");
         }
     }
 
@@ -50,12 +55,13 @@ public class ProduitService implements IService <Produit>{
         String req = "UPDATE `produit` SET nomP=?, descriP=?, PrixP=?, StockP=?, DateAjoutP=? WHERE idP = ?";
         try {
             PreparedStatement ps = con.prepareStatement(req);
+
             ps.setString(1,   p.getNomP());
             ps.setString(2,   p.getDescriP());
-            ps.setFloat(3,   p.getPrixP());
-            ps.setInt(4,  p.getStockP());
-            ps.setDate(5, p.getDateAjoutP());
-            ps.setInt(6,   p.getIdP());
+            ps.setFloat( 3,   p.getPrixP());
+            ps.setInt(   4,   p.getStockP());
+            ps.setDate(  5,   p.getDateAjoutP());
+            ps.setInt(   6,   p.getIdP());
 
             ps.executeUpdate();
             System.out.println("Produit modifié avec succes");
@@ -79,6 +85,7 @@ public class ProduitService implements IService <Produit>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(list.toString());
         return list;
     }
 

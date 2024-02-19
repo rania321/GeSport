@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class VenteService implements IService<Vente> {
     private Connection con;
-    private Statement ste;
+    //private Statement ste;
 
     public VenteService() {
         con = DataSource.getInstance().getCnx();
@@ -29,7 +29,7 @@ public class VenteService implements IService<Vente> {
             pst.setFloat(5, v.getMontantV());
 
             pst.executeUpdate();
-            System.out.println("Vente effectuée!");
+            System.out.println("Vente effectuée avec succes");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -48,6 +48,8 @@ public class VenteService implements IService<Vente> {
     }
 
     public void update(Vente v) {
+        //int idV = getIdVFromDatabase(v);
+
         String req = "UPDATE `vente` SET idU=?, idP=?, QuantitéV=?, DateV=?, MontantV=? WHERE idV = ?";
         try {
             PreparedStatement ps = con.prepareStatement(req);
@@ -80,6 +82,7 @@ public class VenteService implements IService<Vente> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(list.toString());
         return list;
     }
 
@@ -105,4 +108,27 @@ public class VenteService implements IService<Vente> {
         }
         return v;
     }
+
+    /*public int getIdVFromDatabase(Vente v) {
+
+        String requete = "SELECT idV FROM vente WHERE idU = ? AND idP = ? AND quantitéV = ? AND dateV = ? AND montantV = ?";
+        try {
+            PreparedStatement pst = con.prepareStatement(requete);
+            pst.setInt(  1, v.getIdU());
+            pst.setInt(  2, v.getIdP());
+            pst.setInt(  3, v.getQuantitéV());
+            pst.setDate( 4, v.getDateV());
+            pst.setFloat(5, v.getMontantV());
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                System.out.println(rs.getInt("idV"));
+                return rs.getInt("idV");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("ID NULL !");
+        return -1;
+    }*/
 }

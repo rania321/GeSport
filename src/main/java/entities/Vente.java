@@ -1,17 +1,16 @@
 package entities;
-
-import java.util.Date;
+import java.sql.Date;
+//import java.util.Date;
 
 public class Vente {
-
-    int idV, idU, idP, QuantitéV;
-    Date DateV;
-    Float MontantV;
+    private int idV, idU, idP, QuantitéV;
+    private Date DateV;
+    private float MontantV;
 
     public Vente() {
     }
 
-    public Vente(int idV, int idU, int idP, int quantitéV, Date dateV, Float montantV) {
+    public Vente(int idV, int idU, int idP, int quantitéV, Date dateV, float montantV) {
         this.idV = idV;
         this.idU = idU;
         this.idP = idP;
@@ -20,7 +19,7 @@ public class Vente {
         MontantV = montantV;
     }
 
-    public Vente(int idU, int idP, int quantitéV, Date dateV, Float montantV) {
+    public Vente(int idU, int idP, int quantitéV, Date dateV, float montantV) {
         this.idU = idU;
         this.idP = idP;
         QuantitéV = quantitéV;
@@ -48,29 +47,25 @@ public class Vente {
         return (java.sql.Date) DateV;
     }
 
-    public Float getMontantV() {
+    public float getMontantV() {
         return MontantV;
     }
 
-    public void setIdV(int idV) {
-        this.idV = idV;
+    public void setIdV(int IdV) {
+        this.idV = IdV;
     }
 
     public void setIdU(int idU) {
         this.idU = idU;
     }
 
-    public void setIdP(int idP) {
-        this.idP = idP;
-    }
+    public void setIdP(int idP) {this.idP = idP;}
 
     public void setQuantitéV(int quantitéV) {
         QuantitéV = quantitéV;
     }
 
-    public void setDateV(Date dateV) {
-        DateV = dateV;
-    }
+    public void setDateV(Date dateV) {DateV = dateV;}
 
     public void setMontantV(Float montantV) {
         MontantV = montantV;

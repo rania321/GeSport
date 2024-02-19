@@ -3,9 +3,9 @@ package org.example.Service;
 import java.util.List;
 
 public interface IService <T>{
-    void add (T t);
-    void delete (T t);
-    void update (T t);
+    void add (T a);
+    void delete (T a);
+    void update (T a);
     List<T> readAll();
      T readById(int id);
 }

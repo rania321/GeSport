@@ -1,0 +1,51 @@
+.search-box{
+    -fx-background-color: #FFFFFF ;
+    -fx-background-radius: 100;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.search-button{
+    -fx-background-color: #17447a;
+    -fx-background-radius: 30;
+}
+.right-bar{
+    -fx-background-color: #1b75bb;
+}
+
+.case_dash{
+    -fx-background-color: #17447a;
+}
+
+.shadow {
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 8.0 , 0.0 , 0.0 ,8.0);
+}
+
+.chosen-fruit-card{
+    -fx-background-color: #5d62e8;
+    -fx-background-radius: 30;
+}
+
+.generation-menu{
+    -fx-background-color: #17447a;
+    -fx-background-radius: 30;
+}
+
+.generation-panier{
+    -fx-background-color: #17447a;
+}
+
+.generation-panier2{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5;
+}
+
+.generation-panier3{
+    -fx-background-color: #5d62e8;
+    -fx-background-radius: 5;
+}
+
+.search-button2{
+    -fx-background-color: #f9b13d;
+    -fx-background-radius: 30;
+}

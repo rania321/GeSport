@@ -1,0 +1,16 @@
+.side_ankerpane{
+    -fx-background-color:#1b75bb;
+    -fx-border-color: #17447a;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-style: solid;
+}
+
+.side_ankerpane_blanc{
+    -fx-background-color:#ffffff;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-style: solid;
+}

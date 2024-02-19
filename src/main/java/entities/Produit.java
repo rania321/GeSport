@@ -1,31 +1,29 @@
 package entities;
-
-import java.util.Date;
+import java.lang.String;
+import java.sql.Date;
 
 public class Produit {
-    private int idP;
-    private String nomP;
-    private String descriP;
-    private Float PrixP;
-    private int StockP;
+    private int idP,StockP;
+    private String nomP, descriP;
+    private float PrixP;
     private Date DateAjoutP;
 
     public Produit() {
     }
-    public Produit(int idP, String nomP, String descriP, Float PrixP, int StockP, Date DateAjoutP) {
-        idP = idP;
-        nomP = nomP;
-        descriP = descriP;
-        PrixP = PrixP;
-        StockP = StockP;
-        DateAjoutP = DateAjoutP;
+    public Produit(int idP, String nomP, String descriP, float PrixP, int StockP, Date DateAjoutP) {
+        this.idP = idP;
+        this.nomP = nomP;
+        this.descriP = descriP;
+        this.PrixP = PrixP;
+        this.StockP = StockP;
+        this.DateAjoutP = DateAjoutP;
     }
 
-    public Produit(String nomP, String descriP, Float PrixP, int StockP, Date dateAjoutP) {
-        nomP = nomP;
-        descriP = descriP;
-        PrixP = PrixP;
-        StockP = StockP;
+    public Produit(String NomP, String DescriP, float prixP, int stockP, Date dateAjoutP) {
+        nomP = NomP;
+        descriP = DescriP;
+        PrixP = prixP;
+        StockP = stockP;
         DateAjoutP = dateAjoutP;
     }
 
@@ -41,7 +39,7 @@ public class Produit {
         return descriP;
     }
 
-    public Float getPrixP() {
+    public float getPrixP() {
         return this.PrixP;
     }
 
@@ -53,24 +51,24 @@ public class Produit {
         return (java.sql.Date) DateAjoutP;
     }
 
-    public void setIdP(int idP) {
-        idP = idP;
+    public void setIdP(int IdP) {
+        idP = IdP;
     }
 
-    public void setNomP(String nomP) {
-        nomP = nomP;
+    public void setNomP(String NomP) {
+        nomP = NomP;
     }
 
-    public void setDescriP(String descriP) {
-        descriP = descriP;
+    public void setDescriP(String DescriP) {
+        descriP = DescriP;
     }
 
-    public void setPrixP(Float PrixP) {
-        PrixP = PrixP;
+    public void setPrixP(float prixP) {
+        PrixP = prixP;
     }
 
-    public void setStockP(int StockP) {
-        StockP = StockP;
+    public void setStockP(int stockP) {
+        StockP = stockP;
     }
 
     public void setDateAjoutP(Date dateAjoutP) {
