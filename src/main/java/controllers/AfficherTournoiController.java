@@ -8,8 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-import org.w3c.dom.events.MouseEvent;
 import service.TournoiService;
 
 import java.io.IOException;
@@ -131,7 +131,7 @@ public class AfficherTournoiController {
     }
 
 
-    public void selection(javafx.scene.input.MouseEvent mouseEvent) {
+    public void selection(MouseEvent mouseEvent) {
         Tournoi selectedTournoi = tournoiTable.getSelectionModel().getSelectedItem();
         if (selectedTournoi != null) {
             // Remplir les champs avec les informations du tournoi sélectionné
@@ -184,6 +184,7 @@ public class AfficherTournoiController {
             ts.update(tournoiSelectionne);
 
             // Réinitialiser les champs de texte après la modification
+            idT.clear();
             nomT.clear();
             DescriT.clear();
             StatutT.clear();

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.EquipeClientController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <TableView fx:id="equipeTable" layoutX="262.0" layoutY="45.0"  prefHeight="200.0" prefWidth="448.0">
+        <columns>
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID Equipe " />
+                <TableColumn fx:id="nomColumn" prefWidth="75.0" text="Nom" />
+                <TableColumn fx:id="idTColumn" prefWidth="75.0" text="ID Tournoi" />
+                <TableColumn fx:id="idUColumn" prefWidth="99.99993896484375" text="ID Utilisateur" />
+                <TableColumn fx:id="statutColumn" prefWidth="120.7999267578125" text="Statut" />
+            </columns>
+        </TableView>
+        <TextField fx:id="idE" layoutX="63.0" layoutY="62.0" />
+        <TextField fx:id="nomE" layoutX="63.0" layoutY="106.0" />
+        <TextField fx:id="idTE" layoutX="63.0" layoutY="155.0" />
+        <TextField fx:id="statutE" layoutX="63.0" layoutY="254.0" />
+        <Label layoutX="63.0" layoutY="41.0" text="ID Equipe" />
+        <Label layoutX="63.0" layoutY="88.0" text="Nom" />
+        <Label layoutX="63.0" layoutY="137.0" text="ID Tournoi" />
+        <Label layoutX="63.0" layoutY="236.0" text="Statut" />
+        <TextField fx:id="idUE" layoutX="64.0" layoutY="204.0" />
+        <Label layoutX="65.0" layoutY="187.0" text="ID Utilisateur" />
+        <Button layoutX="93.0" layoutY="312.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+
+    </children>
+
+</AnchorPane>
