@@ -9,10 +9,12 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReservationService implements IService<Reservation> {
 
-    private Connection conn;
+    private static Connection conn;
 
     public ReservationService() {
         conn= DataSource.getInstance().getCnx();
@@ -23,16 +25,15 @@ public class ReservationService implements IService<Reservation> {
     public void add(Reservation r) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateDebutStr = sdf.format(r.getDateDebutR());
-        String dateFinStr = sdf.format(r.getDateFinR());
 
         System.out.println("id user dans ajouter"+r.getUser().getIdU());
-        String requete="insert into ReservationActivite (idU,idA,DateDebutR,DateFinR,statutR) values (?,?,?,?,?)";
+        String requete="insert into ReservationActivite (idU,idA,DateDebutR,HeureR,statutR) values (?,?,?,?,?)";
         try {
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setInt(1, r.getUser().getIdU());
             pst.setInt(2, r.getActivite().getIdA());
             pst.setString(3, dateDebutStr);
-            pst.setString(4, dateFinStr);
+            pst.setString(4, r.getHeureR());
             pst.setString(5, r.getStatutR());
             pst.executeUpdate();
             System.out.println("Reservation ajoutée!");
@@ -77,14 +78,13 @@ public class ReservationService implements IService<Reservation> {
         System.out.println("id activite dans modifier"+r.getActivite().getIdA());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String dateDebutStr = sdf.format(r.getDateDebutR());
-        String dateFinStr = sdf.format(r.getDateFinR());
-        String req = "UPDATE ReservationActivite SET idU=?, idA=?, DateDebutR = ?, DateFinR=?, statutR=? WHERE idR = ?";
+        String req = "UPDATE ReservationActivite SET idU=?, idA=?, DateDebutR = ?, HeureR=?, statutR=? WHERE idR = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, r.getUser().getIdU());
             ps.setInt(2, r.getActivite().getIdA());
             ps.setString(3, dateDebutStr);
-            ps.setString(4, dateFinStr);
+            ps.setString(4, r.getHeureR());
             ps.setString(5,r.getStatutR());
             ps.setInt(6,r.getIdR());
             ps.executeUpdate();
@@ -111,7 +111,7 @@ public class ReservationService implements IService<Reservation> {
                 //User u= us.readById(rs.getInt("idU"));
 
                 Reservation r= new Reservation(rs.getInt("idR"),u,a, rs.getDate("DateDebutR"),
-                        rs.getDate("DateFinR"),rs.getString("statutR"));
+                        rs.getString("HeureR"),rs.getString("statutR"));
 
 
                 list.add(r);
@@ -141,7 +141,7 @@ public class ReservationService implements IService<Reservation> {
                 a=as.readById(rst.getInt("idA"));
                 r.setActivite(a);
                 r.setDateDebutR(rst.getDate("DateDebutR"));
-                r.setDateFinR(rst.getDate("DateFinR"));
+                r.setHeureR(rst.getString("HeureR"));
                 r.setStatutR(rst.getString("statutR"));
 
 
@@ -151,5 +151,83 @@ public class ReservationService implements IService<Reservation> {
         }
         return r;
     }
+
+    public static List<String> find_nameActivite() {
+        List<String> list = new ArrayList<>();
+        String req= "SELECT nomA FROM Activite";
+        try {
+            Statement ste=conn.createStatement();
+            ResultSet rs= ste.executeQuery(req);
+
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    public static String find_nameActivite(int id) {
+        String list=null ;
+
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery("SELECT nomA FROM activite where idA="+id+"");
+
+            while (resultSet.next()) {
+                list=(resultSet.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+   /* public static ArrayList<Integer> find_idroom() {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery("SELECT id_room FROM room");
+
+            while (resultSet.next()) {
+                list.add(resultSet.getInt(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Auction_Services.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    public static Integer find_idroom(String ID_artwork) {
+        Integer result = null;
+
+        PreparedStatement statement;
+        ResultSet resultSet;
+        try {
+
+            String sql = "SELECT id_room FROM room WHERE name_room like  ? ";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, ID_artwork);
+//        resultSet = statement.executeQuery("SELECT id_room FROM room WHERE name_room like " + ID_artwork);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                result = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Auction_Services.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return result;
+    }*/
+
 
 }

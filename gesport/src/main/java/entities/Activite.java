@@ -24,6 +24,10 @@ public class Activite {
         ImageA= imageA;
     }
 
+    public Activite(String nomA) {
+        NomA = nomA;
+    }
+
     public int getIdA() {
         return idA;
     }
@@ -72,7 +76,7 @@ public class Activite {
         ImageA = imageA;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Activite{" +
                 "idA=" + idA +
@@ -82,5 +86,9 @@ public class Activite {
                 ", DescriA='" + DescriA + '\'' +
                 ", ImageA='" + ImageA + '\'' +
                 '}';
+    }*/
+    @Override
+    public String toString() {
+        return NomA;
     }
 }

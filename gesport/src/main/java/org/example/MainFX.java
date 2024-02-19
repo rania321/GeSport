@@ -1,5 +1,8 @@
 package org.example;
 
+import controller.add_reservationController;
+import controller.show_activiteController;
+import entities.Activite;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,11 +19,16 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_activite.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_reservationBack.fxml"));
         Parent root = loader.load();
+
+
+
         Scene scene = new Scene(root);
         stage.setTitle("Ajout activité");
         stage.setScene(scene);
         stage.show();
+
+
     }
 }

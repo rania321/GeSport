@@ -35,7 +35,7 @@ public class Main {
         ActiviteService as=new ActiviteService();
         /////////////AJOUT//////////
         //as.add(a1);
-        as.add(a2);
+        //as.add(a2);
         //as.add(a3);
        // as.readAll().forEach(System.out::println);
 
@@ -55,13 +55,13 @@ public class Main {
         //**************** Test Reservation ******************/
         int numA=2;
 
-        Activite actAddReserv=as.readById(numA);
+        Activite actAddReserv=as.readById(5);
         User userAddReserv=us.readById(2);
 
         Date dateDebut1 = sdf.parse("11/02/2024 09:00");
         Date dateFin1 = sdf.parse("11/02/2024 12:00");
         //Reservation r1=new Reservation(2, 2,dateDebut1,dateFin1,"en attente");
-        Reservation r2=new Reservation(userAddReserv,actAddReserv,sdf.parse("13/02/2024 08:00"),sdf.parse("13/02/2024 09:30"),"confirmé");
+        Reservation r2=new Reservation(userAddReserv,actAddReserv,sdf.parse("13/02/2024 08:00"),"12:00","confirmé");
        // Reservation r3=new Reservation(2, 2,sdf.parse("03/03/2024 08:00"),sdf.parse("03/03/2024 09:30"),"en attente");
         ReservationService rs=new ReservationService();
         //////////////AJOUT////////
@@ -76,14 +76,14 @@ public class Main {
         rs.deleteById(idrsupprimer);*/
 
         //////////////UPDATE//////////
-        Reservation r2updated=new Reservation(16, userAddReserv,actAddReserv,sdf.parse("26/06/2024 08:00"),sdf.parse("26/06/2024 09:30"),"en attente");
-        Reservation r22=new Reservation(21,userAddReserv,actAddReserv,sdf.parse("13/02/2024 08:00"),sdf.parse("13/02/2024 09:30"),"confirmé");
+        Reservation r2updated=new Reservation(16, userAddReserv,actAddReserv,sdf.parse("26/06/2024 08:00"),"10:30","en attente");
+        Reservation r22=new Reservation(21,userAddReserv,actAddReserv,sdf.parse("13/02/2024 08:00"),"09:30","confirmé");
        // r22.setStatutR("annulée");
      //   rs.update(r22);
 
         rs.readAll().forEach(System.out::println);
         /////////////AFFICHER PAR ID////////////
-        System.out.println(rs.readById(16));
+        System.out.println(rs.readById(30));
 
 
 

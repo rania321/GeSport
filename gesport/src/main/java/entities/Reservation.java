@@ -1,6 +1,9 @@
 package entities;
 
-import java.text.ParseException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Reservation {
@@ -9,47 +12,45 @@ public class Reservation {
     private User user;
     private Activite activite;
 
-    private Date DateDebutR, DateFinR;
-    private String statutR;
+    private Date DateDebutR;
+    private String HeureR, statutR;
 
     public Reservation() {
     }
 
-    public Reservation(User user, Activite activite, Date dateDebutR, Date dateFinR, String statutR)  {
+    public Reservation(User user, Activite activite, Date dateDebutR, String heureR, String statutR)  {
         this.user = user;
         this.activite = activite;
-       /* SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Date parsedDateDebut = dateFormat.parse(String.valueOf(dateDebutR));
-        Date parsedDateFin = dateFormat.parse(String.valueOf(dateFinR));
-        this.DateDebutR = new Timestamp(parsedDateDebut.getTime());
-        this.DateFinR = new Timestamp(parsedDateFin.getTime());*/
         DateDebutR = dateDebutR;
-        DateFinR = dateFinR;
+        HeureR = heureR;
         this.statutR = statutR;
     }
 
-    public Reservation(Activite activite, Date dateDebutR, Date dateFinR, String statutR) {
+    public Reservation(Activite activite, Date dateDebutR, String heureR, String statutR) {
         this.activite = activite;
         DateDebutR = dateDebutR;
-        DateFinR = dateFinR;
+        HeureR = heureR;
         this.statutR = statutR;
     }
 
-    public Reservation(int idR, User user, Activite activite, Date dateDebutR, Date dateFinR, String statutR) {
+    public Reservation(int idR, User user, Activite activite, Date dateDebutR, String heureR, String statutR) {
         this.idR = idR;
         this.user = user;
         this.activite = activite;
         DateDebutR = dateDebutR;
-        DateFinR = dateFinR;
+        HeureR = heureR;
         this.statutR = statutR;
     }
 
-    public Reservation(int idR, Activite activite, Date dateDebutR, Date dateFinR, String statutR) {
+    public Reservation(int idR, Activite activite, Date dateDebutR, String heureR, String statutR) {
         this.idR = idR;
         this.activite = activite;
         DateDebutR = dateDebutR;
-        DateFinR = dateFinR;
+        HeureR = heureR;
         this.statutR = statutR;
+    }
+
+    public Reservation(User u, Activite activite, LocalDate date, String heure, String enCours) {
     }
 
     public int getIdR() {
@@ -84,12 +85,12 @@ public class Reservation {
         DateDebutR = dateDebutR;
     }
 
-    public Date getDateFinR() {
-        return DateFinR;
+    public String getHeureR() {
+        return HeureR;
     }
 
-    public void setDateFinR(Date dateFinR) {
-        DateFinR = dateFinR;
+    public void setHeureR(String heureR) {
+        HeureR = heureR;
     }
 
     public String getStatutR() {
@@ -107,8 +108,26 @@ public class Reservation {
                 ", PrénomU=" + user.getPrenomU() +
                 ", activite=" + activite.getNomA() +
                 ", DateDebutR=" + DateDebutR +
-                ", DateFinR=" + DateFinR +
+                ", HeureR=" + HeureR +
                 ", statutR='" + statutR + '\'' +
                 '}';
+    }
+
+    public String getActiviteNom() {
+        return activite != null ? activite.getNomA() : null;
+    }
+
+    // Ajoutez un accesseur pour la propriété activiteNom
+    public StringProperty activiteNomProperty() {
+        return new SimpleStringProperty(getActiviteNom());
+    }
+
+    public String getUserNom() {
+        return user != null ? user.getNomU() : null;
+    }
+
+    // Ajoutez un accesseur pour la propriété activiteNom
+    public StringProperty userNomProperty() {
+        return new SimpleStringProperty(getUserNom());
     }
 }

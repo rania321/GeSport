@@ -85,6 +85,8 @@ public class add_activiteController {
     @FXML
     private ComboBox<String> CBdispoA;
 
+
+
     public void initialize() throws IOException {
         // Initialiser le ComboBox avec des données
         ObservableList<String> options = FXCollections.observableArrayList(
@@ -302,5 +304,6 @@ public class add_activiteController {
             alert.showAndWait();
         }
     }
+
 
 }
