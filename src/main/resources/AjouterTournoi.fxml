@@ -6,19 +6,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterTournoiController">
+<AnchorPane prefHeight="470.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterTournoiController">
    <children>
-      <TextField fx:id="nomT" layoutX="225.0" layoutY="43.0" />
-      <DatePicker fx:id="DdebutT" layoutX="72.0" layoutY="105.0" />
-      <DatePicker fx:id="DfinT" layoutX="72.0" layoutY="156.0" />
-      <TextField fx:id="DescriT" layoutX="340.0" layoutY="105.0" />
-      <TextField fx:id="StatutT" layoutX="340.0" layoutY="156.0" />
-      <Button layoutX="346.0" layoutY="257.0" mnemonicParsing="false" onAction="#ajouter" text="AJOUTER " />
-      <Label layoutX="225.0" layoutY="25.0" text="Nom tournoi " />
-      <Label layoutX="72.0" layoutY="87.0" text="Date Debut" />
-      <Label layoutX="72.0" layoutY="138.0" prefHeight="18.0" prefWidth="61.0" text="Date Fin" />
-      <Label layoutX="340.0" layoutY="87.0" text="Description " />
-      <Label layoutX="340.0" layoutY="139.0" prefHeight="18.0" prefWidth="61.0" text="Statut" />
-      <Button layoutX="470.0" layoutY="349.0" mnemonicParsing="false" onAction="#gerer" text="gerer Tournoi " />
+      <TextField fx:id="nomT" layoutX="277.0" layoutY="100.0" />
+      <DatePicker fx:id="DdebutT" layoutX="124.0" layoutY="162.0" />
+      <DatePicker fx:id="DfinT" layoutX="124.0" layoutY="213.0" />
+      <TextField fx:id="DescriT" layoutX="392.0" layoutY="162.0" />
+      <TextField fx:id="StatutT" layoutX="392.0" layoutY="213.0" />
+      <Button layoutX="385.0" layoutY="275.0" mnemonicParsing="false" onAction="#ajouter" text="AJOUTER " />
+      <Label layoutX="277.0" layoutY="82.0" text="Nom tournoi " />
+      <Label layoutX="124.0" layoutY="144.0" text="Date Debut" />
+      <Label layoutX="124.0" layoutY="195.0" prefHeight="18.0" prefWidth="61.0" text="Date Fin" />
+      <Label layoutX="392.0" layoutY="144.0" text="Description " />
+      <Label layoutX="392.0" layoutY="196.0" prefHeight="18.0" prefWidth="61.0" text="Statut" />
+      <Button layoutX="496.0" layoutY="392.0" mnemonicParsing="false" onAction="#gerer" prefHeight="26.0" prefWidth="91.0" text="gestion" />
    </children>
 </AnchorPane>

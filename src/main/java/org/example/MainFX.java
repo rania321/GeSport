@@ -1,5 +1,6 @@
 package org.example;
 
+import controllers.TournoiClientController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,14 +15,39 @@ public class MainFX extends Application {
         launch(args);
     }
 
-    @Override
+
+
+  /*  @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterTournoi.fxml"));
         Parent root = loader.load();
-        Scene scene =new Scene(root);
+        Scene scene =new Scene(root,700,500);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Ajouter Tournoi");
+        primaryStage.setTitle("Tournoi");
+        primaryStage.show();
+
+    }*/
+
+
+
+
+
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TournoiClient.fxml"));
+        Parent root = loader.load();
+
+        // Appel de showTournoi() après le chargement du fichier FXML
+        TournoiClientController controller = loader.getController();
+        controller.showTournoi();
+
+
+        Scene scene =new Scene(root,700,400);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Tournoi");
         primaryStage.show();
 
     }
+
 }

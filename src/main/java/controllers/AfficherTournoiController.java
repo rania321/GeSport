@@ -12,6 +12,7 @@ import javafx.util.Callback;
 import org.w3c.dom.events.MouseEvent;
 import service.TournoiService;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -59,7 +60,7 @@ public class AfficherTournoiController {
     @FXML
     private TableColumn<Tournoi, String> statutColumn;
 
-    public void showTournoi() {
+    public void showTournoi() throws IOException {
         Tlist = ts.readAll();
         idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIdT()).asObject());
         nomColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, String>("nomT"));
