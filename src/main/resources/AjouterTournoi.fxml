@@ -2,17 +2,23 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterTournoiController">
    <children>
-      <TextField fx:id="nomT" layoutX="72.0" layoutY="43.0" />
-      <DatePicker fx:id="DdebutT" layoutX="72.0" layoutY="92.0" />
-      <DatePicker fx:id="DfinT" layoutX="72.0" layoutY="143.0" />
-      <TextField fx:id="DescriT" layoutX="72.0" layoutY="200.0" />
-      <TextField fx:id="StatutT" layoutX="72.0" layoutY="258.0" />
-      <Button layoutX="368.0" layoutY="311.0" mnemonicParsing="false" onAction="#ajouter" text="Button" />
+      <TextField fx:id="nomT" layoutX="225.0" layoutY="43.0" />
+      <DatePicker fx:id="DdebutT" layoutX="72.0" layoutY="105.0" />
+      <DatePicker fx:id="DfinT" layoutX="72.0" layoutY="156.0" />
+      <TextField fx:id="DescriT" layoutX="340.0" layoutY="105.0" />
+      <TextField fx:id="StatutT" layoutX="340.0" layoutY="156.0" />
+      <Button layoutX="346.0" layoutY="257.0" mnemonicParsing="false" onAction="#ajouter" text="AJOUTER " />
+      <Label layoutX="225.0" layoutY="25.0" text="Nom tournoi " />
+      <Label layoutX="72.0" layoutY="87.0" text="Date Debut" />
+      <Label layoutX="72.0" layoutY="138.0" prefHeight="18.0" prefWidth="61.0" text="Date Fin" />
+      <Label layoutX="340.0" layoutY="87.0" text="Description " />
+      <Label layoutX="340.0" layoutY="139.0" prefHeight="18.0" prefWidth="61.0" text="Statut" />
+      <Button layoutX="470.0" layoutY="349.0" mnemonicParsing="false" onAction="#gerer" text="gerer Tournoi " />
    </children>
 </AnchorPane>

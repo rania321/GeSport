@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherTournoiController">
+<AnchorPane onMouseClicked="#selection" prefHeight="635.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherTournoiController">
    <children>
-      <TableView fx:id="tournoiTable" layoutX="65.0" layoutY="63.0" prefHeight="200.0" prefWidth="482.0">
+      <TableView fx:id="tournoiTable" layoutX="110.0" layoutY="67.0" onMouseClicked="#selection" prefHeight="220.0" prefWidth="580.0">
         <columns>
            <TableColumn fx:id="idColumn" text="ID tournoi" />
            <TableColumn fx:id="nomColumn" text="Nom" />
@@ -16,5 +20,22 @@
            <TableColumn fx:id="statutColumn" text="Statut" />
         </columns>
       </TableView>
+      <Button layoutX="675.0" layoutY="466.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+      <TextField fx:id="nomT" layoutX="163.0" layoutY="399.0" />
+      <DatePicker fx:id="DdebutT" layoutX="165.0" layoutY="448.0" />
+      <DatePicker fx:id="DfinT" layoutX="165.0" layoutY="493.0" />
+      <TextField fx:id="DescriT" layoutX="400.0" layoutY="351.0" />
+      <TextField fx:id="StatutT" layoutX="400.0" layoutY="408.0" />
+      <Label layoutX="170.0" layoutY="381.0" text="Nom Tournoi " />
+      <Label layoutX="166.0" layoutY="428.0" text="Date debut" />
+      <Label layoutX="167.0" layoutY="474.0" text="Date Fin" />
+      <Label layoutX="406.0" layoutY="333.0" text="Description" />
+      <Label layoutX="406.0" layoutY="385.0" prefHeight="18.0" prefWidth="60.0" text="Statut" />
+      <Button layoutX="581.0" layoutY="466.0" mnemonicParsing="false" onAction="#modifier" text="modifier" />
+      <Button layoutX="499.0" layoutY="466.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+      <TextField fx:id="idT" layoutX="163.0" layoutY="351.0" />
+      <Label layoutX="168.0" layoutY="333.0" text="ID Tournoi" />
+      <TextField fx:id="recherche" layoutX="181.0" layoutY="28.0" />
+      <Label layoutX="118.0" layoutY="32.0" text="recherche" />
    </children>
 </AnchorPane>

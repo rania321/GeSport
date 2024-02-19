@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,6 +41,9 @@ public class AjouterTournoiController {
 
     @FXML
     private TextField nomT;
+
+
+
 
     @FXML
     void ajouter(ActionEvent event) {
@@ -78,6 +82,22 @@ public class AjouterTournoiController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
+
+    }
+
+    @FXML
+    void gerer(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherTournoi.fxml"));
+        try {
+            Parent root = loader.load();
+            AfficherTournoiController ac = loader.getController();
+            ac.showTournoi();
+            nomT.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
 
 
     }
