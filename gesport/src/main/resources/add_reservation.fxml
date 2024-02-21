@@ -32,18 +32,18 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dateR" layoutX="103.0" layoutY="152.0" prefHeight="27.0" prefWidth="196.0" />
+            <DatePicker fx:id="dateR" layoutX="103.0" layoutY="152.0" onAction="#checkDate" prefHeight="27.0" prefWidth="196.0" />
             <Label layoutX="103.0" layoutY="118.0" text="Choisissez la date">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="103.0" layoutY="202.0" prefHeight="17.0" prefWidth="130.0" text="Choisissez l'heure">
+            <Label fx:id="choisirHeure" layoutX="103.0" layoutY="202.0" prefHeight="17.0" prefWidth="130.0" text="Choisissez l'heure" visible="false">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="heureR" layoutX="103.0" layoutY="231.0" prefHeight="27.0" prefWidth="196.0" stylesheets="@style.css" />
+            <ComboBox fx:id="heureR" layoutX="103.0" layoutY="231.0" prefHeight="27.0" prefWidth="196.0" stylesheets="@style.css" visible="false" />
             <Button fx:id="ajouterR" layoutX="233.0" layoutY="296.0" mnemonicParsing="false" onAction="#add_reservation" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Confirmer" />
             <Label layoutX="99.0" layoutY="64.0" text="Réserver Maintenant !" textFill="#17447a">
                <font>

@@ -65,6 +65,8 @@ public class add_reservationController {
     private ComboBox<String> heureR;
 
     @FXML
+    private Label choisirHeure;
+    @FXML
     private Button updateR;
 
     @FXML
@@ -142,6 +144,23 @@ public class add_reservationController {
     }
 
     @FXML
+    void checkDate() {
+        if (dateR.getValue() != null) {
+
+            // Charger les horaires disponibles pour l'activité et la date sélectionnée
+            List<String> horairesDisponibles = rs.getAvailableHoursForActivityAndDate(activite, dateR.getValue());
+
+            // Mettre à jour le ComboBox avec les horaires disponibles
+            heureR.setItems(FXCollections.observableArrayList(horairesDisponibles));
+
+            // Rendre le ComboBox visible
+            heureR.setVisible(true);
+            choisirHeure.setVisible(true);
+
+        }
+    }
+
+    @FXML
     void add_reservation(ActionEvent event) throws IOException {
 
         //String nom = activiteR.getText();
@@ -175,7 +194,7 @@ public class add_reservationController {
 
         User user = new User(); // Récupérer l'utilisateur connecté à partir de votre système d'authentification
         UserService us = new UserService();
-        User u = us.readById(1);
+        User u = us.readById(2);
 
         List<Reservation> existingReservations = rs.getReservationsByUserAndActivity(u, activite);
 
@@ -229,7 +248,7 @@ public class add_reservationController {
         List<Reservation> filtredResList= new ArrayList<>();
         User user = new User(); // Récupérer l'utilisateur connecté à partir de votre système d'authentification
         UserService us = new UserService();
-        User u = us.readById(1);
+        User u = us.readById(2);
 
 
 
@@ -252,75 +271,6 @@ public class add_reservationController {
 
     }
 
-    /*@FXML
-    void delete_reservation(ActionEvent event) throws IOException {
-        // Récupérer l'activité sélectionnée dans la TableView
-        Reservation selectedReservation = TableViewR.getSelectionModel().getSelectedItem();
-
-        // Vérifier si une activité est sélectionnée
-        if (selectedReservation != null) {
-            // Demander une confirmation à l'utilisateur (vous pouvez personnaliser cela selon vos besoins)
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation de suppression");
-            alert.setHeaderText("Supprimer la réservation");
-            alert.setContentText("Êtes-vous sûr de vouloir supprimer la réservation sélectionnée ?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-
-            // Si l'utilisateur confirme la suppression, procéder
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Supprimer l'activité de la base de données
-                rs.delete(selectedReservation);
-
-                // Rafraîchir l'affichage des activités dans la TableView
-                ShowReservation();
-            }
-        } else {
-            // Afficher un message si aucune activité n'est sélectionnée
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aucune réservation sélectionnée");
-            alert.setHeaderText("Aucune réservation sélectionnée");
-            alert.setContentText("Veuillez sélectionner une réservation à supprimer.");
-            alert.showAndWait();
-        }
-    }*/
-
-    /*@FXML
-    void update_reservation(ActionEvent event) throws IOException {
-        // Récupérer les informations modifiées depuis le formulaire
-
-        Date date = java.sql.Date.valueOf(dateR.getValue());
-        String heure = heureR.getSelectionModel().getSelectedItem();
-
-        // Mettre à jour la séance dans la base de données
-        Reservation selectedReservation = TableViewR.getSelectionModel().getSelectedItem();
-        if (selectedReservation != null) {
-            selectedReservation.setDateDebutR(date);
-            selectedReservation.setHeureR(heure);
-            // Demander une confirmation à l'utilisateur (vous pouvez personnaliser cela selon vos besoins)
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation de modification");
-            alert.setHeaderText("Modifier la réservation");
-            alert.setContentText("Êtes-vous sûr de vouloir modifier la réservation sélectionnée ?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            // Si l'utilisateur confirme la suppression, procéder
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Mettre à jour la séance dans la base de données
-                rs.update(selectedReservation);
-                // Rafraîchir l'affichage des séances dans la TableView
-                ShowReservation();
-            }
-        }
-        else {
-            // Afficher un message si aucune activité n'est sélectionnée
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aucune Réservation sélectionnée");
-            alert.setHeaderText("Aucune Réservation sélectionnée");
-            alert.setContentText("Veuillez sélectionner une réservation à modifier.");
-            alert.showAndWait();
-        }
-    }*/
     @FXML
     void accueil(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));

@@ -64,6 +64,10 @@ public class show_reservationController {
 
     @FXML
     private Label activiteR1;
+
+    @FXML
+    private Label choisirHeure;
+
     ReservationService rs = new ReservationService();
     Reservation reservation = new Reservation();
 
@@ -85,6 +89,22 @@ public class show_reservationController {
             }
         });
         ShowReservation();
+    }
+
+    @FXML
+    void checkDate() {
+       if (dateR.getValue() != null) {
+            // Charger les horaires disponibles pour la date sélectionnée
+           Reservation selectedReservation = (Reservation) TableViewR.getSelectionModel().getSelectedItem();
+           List<String> horairesDisponibles = rs.getAvailableHoursForActivityAndDate(selectedReservation.getActivite(), dateR.getValue());
+
+           // Mettre à jour le ComboBox avec les horaires disponibles
+           heureR.setItems(FXCollections.observableArrayList(horairesDisponibles));
+
+           // Rendre le ComboBox visible
+           heureR.setVisible(true);
+           choisirHeure.setVisible(true);
+        }
     }
 
     List<Reservation> resList;
@@ -150,6 +170,8 @@ public class show_reservationController {
         }
     }
 
+
+
     @FXML
     void update_reservation(ActionEvent event) throws IOException {
 // Récupérer les informations modifiées depuis le formulaire
@@ -174,6 +196,7 @@ public class show_reservationController {
             }
             selectedReservation.setDateDebutR(date);
             selectedReservation.setHeureR(heure);
+            selectedReservation.setStatutR("En cours");
             // Demander une confirmation à l'utilisateur (vous pouvez personnaliser cela selon vos besoins)
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation de modification");
@@ -208,8 +231,8 @@ public class show_reservationController {
         activiteR1.setText(r.getActivite().getNomA());
         // Afficher les informations de réservation dans les champs de formulaire
         //activiteR.setText(r.getActiviteNom());
-        dateR.setValue(localDate);
-        heureR.setValue(r.getHeureR());
+      /*  dateR.setValue(localDate);
+        heureR.setValue(r.getHeureR());*/
 
         //nomid.setValue(a.getNom());
     }

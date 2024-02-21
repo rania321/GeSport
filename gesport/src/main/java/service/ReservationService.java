@@ -9,9 +9,11 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class ReservationService implements IService<Reservation> {
 
@@ -250,5 +252,24 @@ public class ReservationService implements IService<Reservation> {
 
         return reservations;
     }
+    public List<String> getAvailableHoursForActivityAndDate(Activite activite, LocalDate selectedDate) {
+        List<String> allHours = Arrays.asList("08:00", "09:30", "11:00", "12:30", "14:00", "15:30", "17:00");
+
+        // Récupérer les réservations existantes pour l'activité et la date sélectionnée
+        List<Reservation> reservations = getReservationsByActivityAndDate(activite, selectedDate);
+
+        // Extraire les heures réservées de ces réservations
+        List<String> reservedHours = reservations.stream()
+                .map(Reservation::getHeureR)
+                .collect(Collectors.toList());
+
+        // Filtrer les heures disponibles en excluant les heures réservées
+        List<String> availableHours = allHours.stream()
+                .filter(hour -> !reservedHours.contains(hour))
+                .collect(Collectors.toList());
+
+        return availableHours;
+    }
+
 
 }
