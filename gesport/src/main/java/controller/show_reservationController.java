@@ -92,8 +92,6 @@ public class show_reservationController {
         UserService us = new UserService();
         User u = us.readById(2);
 
-
-
         for (Reservation r:resList) {
             if (r.getUser().equals(u)) {
                 filtredResList.add(r);

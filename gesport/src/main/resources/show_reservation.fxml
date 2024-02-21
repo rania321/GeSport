@@ -78,7 +78,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label fx:id="activiteR1" layoutX="76.0" layoutY="209.0" prefHeight="34.0" prefWidth="217.0">
+                  <Label fx:id="activiteR1" layoutX="76.0" layoutY="209.0" prefHeight="34.0" prefWidth="217.0" text="03">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>

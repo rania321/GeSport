@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -22,9 +23,9 @@
          </styleClass>
          <children>
             <ImageView fx:id="imageViewA" fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="603.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="94.0" layoutY="70.0" text="Add Activity" textFill="#1e77bc">
+            <Label layoutX="67.0" layoutY="65.0" prefHeight="37.0" prefWidth="200.0" text="Ajouter une Activite" textFill="#1e77bc">
                <font>
-                  <Font name="Arial Black" size="24.0" />
+                  <Font name="Arial Black" size="18.0" />
                </font>
             </Label>
             <Button fx:id="btnDeleteA" layoutX="192.0" layoutY="619.0" mnemonicParsing="false" onAction="#delete_activite" text="Delete" />
@@ -65,14 +66,36 @@
       <TextField fx:id="nomA" layoutX="293.0" layoutY="179.0" prefHeight="25.0" prefWidth="238.0" />
       <Pane prefHeight="800.0" prefWidth="220.0">
          <children>
-            <AnchorPane layoutX="10.0" layoutY="27.0" prefHeight="759.0" prefWidth="200.0" stylesheets="@style.css">
+            <AnchorPane layoutX="10.0" layoutY="21.0" prefHeight="765.0" prefWidth="200.0" stylesheets="@style.css">
                <styleClass>
                   <String fx:value="radius" />
                   <String fx:value="shadow" />
-                  <String fx:value="white-bg" />
+                  <String fx:value="menu-bar" />
                </styleClass>
+               <children>
+                  <Button alignment="CENTER" layoutX="35.0" layoutY="59.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="91.0" prefWidth="89.0" styleClass="transparent" stylesheets="@style.css">
+                     <graphic>
+                        <ImageView fitHeight="117.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/logo1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="11.0" layoutY="288.0" mnemonicParsing="false" onAction="#toReservation" prefHeight="37.0" prefWidth="168.0" styleClass="transparent" stylesheets="@style.css" text="Réservations">
+                     <font>
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/reservation%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
             </AnchorPane>
-            <Button layoutX="92.0" layoutY="188.0" mnemonicParsing="false" text="Home" />
          </children>
       </Pane>
       <Pane layoutX="575.0" prefHeight="800.0" prefWidth="725.0">
@@ -84,14 +107,14 @@
                   <String fx:value="shadow" />
                </styleClass>
                <children>
-                  <Label layoutX="264.0" layoutY="65.0" text="All Activities" textFill="#1e77bc">
+                  <Label layoutX="22.0" layoutY="80.0" text="Trouvez toutes les activités ici :" textFill="#1e77bc">
                      <font>
-                        <Font name="Arial Black" size="24.0" />
+                        <Font name="Arial Black" size="18.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <TableView fx:id="TableViewA" layoutX="27.0" layoutY="206.0" prefHeight="312.0" prefWidth="668.0" stylesheets="@style.css">
+            <TableView fx:id="TableViewA" layoutX="27.0" layoutY="154.0" prefHeight="513.0" prefWidth="668.0" stylesheets="@style.css">
               <columns>
                 <TableColumn fx:id="CVNomA" prefWidth="116.0" text="Nom" />
                 <TableColumn fx:id="CVTypeA" prefWidth="101.0" text="Type" />

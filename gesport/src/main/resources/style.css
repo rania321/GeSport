@@ -77,3 +77,58 @@
     -fx-background-color: transparent;
     -fx-cell-size: 40px;
 }
+
+/* Couleurs principales */
+.root {
+    -fx-background-color: #ffffff; /* Fond blanc */
+}
+
+.menu-bar {
+    -fx-background-color: #17447a; /* Bleu roi pour la barre de menu */
+}
+
+.menu-bar .button {
+    -fx-text-fill: #ffffff; /* Texte blanc pour les boutons du menu */
+}
+
+/* Couleurs secondaires */
+.menu-bar .button:hover {
+    -fx-background-color: #1b75bb; /* Bleu au survol */
+}
+
+.menu-bar .button:pressed {
+    -fx-background-color: #80d3f7; /* Bleu clair enfoncé */
+}
+
+.round-button {
+    -fx-background-radius: 50;
+    -fx-min-width: 230px;
+    -fx-min-height: 60px;
+    -fx-max-width: 230px;
+    -fx-max-height: 60px;
+    -fx-background-color: #17447a; /* Jaune */
+
+}
+.menu-bar .button {
+    -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
+}
+/* Couleurs secondaires */
+.round-button .button:hover {
+    -fx-background-color: #1b75bb; /* Bleu au survol */
+}
+
+.round-button .button:pressed {
+    -fx-background-color: #80d3f7; /* Bleu clair enfoncé */
+}
+
+.round-buttonMenu {
+        -fx-background-radius: 30;
+        -fx-min-width: 100px;
+        -fx-min-height: 30px;
+        -fx-max-width: 100px;
+        -fx-max-height: 30px;
+        -fx-background-color: #17447a; /* Jaune */
+        -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
+}
+
+
