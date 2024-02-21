@@ -12,101 +12,97 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.add_reservationController">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" styleClass="bg" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.add_reservationController">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="1300.0" stylesheets="@style.css">
+      <ImageView fitHeight="801.0" fitWidth="1308.0" layoutY="13.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/activitétaswira.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="413.0" layoutY="184.0" prefHeight="40.0" prefWidth="483.0" styleClass="white-bg" stylesheets="@style.css" />
+      <AnchorPane layoutX="215.0" layoutY="184.0" prefHeight="545.0" prefWidth="415.0" stylesheets="@style.css">
          <styleClass>
             <String fx:value="white-bg" />
             <String fx:value="shadow" />
             <String fx:value="radius" />
          </styleClass>
          <children>
-            <ImageView fitHeight="74.0" fitWidth="121.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/logo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="31.0" layoutY="164.0" prefHeight="592.0" prefWidth="755.0" stylesheets="@style.css">
-         <styleClass>
-            <String fx:value="white-bg" />
-            <String fx:value="shadow" />
-            <String fx:value="radius" />
-         </styleClass>
-         <children>
-            <Label fx:id="activiteR" layoutX="377.0" layoutY="145.0" prefHeight="40.0" prefWidth="265.0">
+            <Label fx:id="activiteR" layoutX="44.0" layoutY="465.0" prefHeight="40.0" prefWidth="265.0">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dateR" layoutX="378.0" layoutY="224.0" prefHeight="27.0" prefWidth="196.0" />
-            <Label layoutX="378.0" layoutY="193.0" text="Choisissez la date">
+            <DatePicker fx:id="dateR" layoutX="103.0" layoutY="152.0" prefHeight="27.0" prefWidth="196.0" />
+            <Label layoutX="103.0" layoutY="118.0" text="Choisissez la date">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="378.0" layoutY="267.0" prefHeight="17.0" prefWidth="130.0" text="Choisissez l'heure">
+            <Label layoutX="103.0" layoutY="202.0" prefHeight="17.0" prefWidth="130.0" text="Choisissez l'heure">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="heureR" layoutX="378.0" layoutY="296.0" prefHeight="27.0" prefWidth="196.0" stylesheets="@style.css" />
-            <Label layoutX="379.0" layoutY="119.0" prefHeight="17.0" prefWidth="130.0" text="L'activité choisie :">
+            <ComboBox fx:id="heureR" layoutX="103.0" layoutY="231.0" prefHeight="27.0" prefWidth="196.0" stylesheets="@style.css" />
+            <Button fx:id="ajouterR" layoutX="233.0" layoutY="296.0" mnemonicParsing="false" onAction="#add_reservation" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Confirmer" />
+            <Label layoutX="99.0" layoutY="64.0" text="Réserver Maintenant !" textFill="#17447a">
                <font>
-                  <Font name="Arial Black" size="12.0" />
+                  <Font name="Walkway Oblique UltraBold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="ImageActiviteR" fitHeight="206.0" fitWidth="233.0" layoutX="90.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="ajouterR" layoutX="508.0" layoutY="355.0" mnemonicParsing="false" onAction="#add_reservation" text="Confirmer" />
-            <Label layoutX="90.0" layoutY="56.0" text="Ajouter Réservation" textFill="#17447a">
-               <font>
-                  <Font name="Arial Black" size="18.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="CBactiviteR" layoutX="378.0" layoutY="62.0" prefHeight="27.0" prefWidth="196.0" stylesheets="@style.css" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="834.0" layoutY="164.0" prefHeight="592.0" prefWidth="439.0" stylesheets="@style.css">
+      <AnchorPane layoutX="674.0" layoutY="184.0" prefHeight="545.0" prefWidth="445.0" stylesheets="@style.css">
          <styleClass>
             <String fx:value="white-bg" />
             <String fx:value="shadow" />
             <String fx:value="radius" />
          </styleClass>
          <children>
-            <Label layoutX="132.0" layoutY="39.0" text="Mes Réservations" textFill="#17447a">
-               <font>
-                  <Font name="Arial Black" size="18.0" />
-               </font>
-            </Label>
             <TableView fx:id="TableViewR" layoutX="28.0" layoutY="97.0" prefHeight="398.0" prefWidth="384.0">
               <columns>
                 <TableColumn fx:id="CVActiviteR" prefWidth="107.0" text="Activité" />
                 <TableColumn fx:id="CVDateR" prefWidth="72.0" text="Date" />
                   <TableColumn fx:id="CVHeureR" prefWidth="95.0" text="Heure" />
-                  <TableColumn fx:id="CVStatutR" prefWidth="108.0" text="Statut" />
+                  <TableColumn fx:id="CVStatutR" prefWidth="103.0" text="Statut" />
               </columns>
             </TableView>
-            <Button fx:id="annulerR" layoutX="167.0" layoutY="513.0" mnemonicParsing="false" onAction="#delete_reservation" styleClass="white-bg" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fx:id="IVBtnDelete" fitHeight="39.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@img/btn-delete.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="updateR" layoutX="220.0" layoutY="507.0" mnemonicParsing="false" onAction="#update_reservation" prefHeight="60.0" prefWidth="59.0" styleClass="white-bg" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fx:id="IVBtnUpdate" fitHeight="39.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@img/btn-update.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <Label layoutX="151.0" layoutY="53.0" text="Mes Réservations" textFill="#17447a">
+               <font>
+                  <Font name="Walkway Oblique UltraBold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
+      <Button layoutX="282.0" layoutY="56.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="386.0" layoutY="56.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="609.0" layoutY="56.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="735.0" layoutY="56.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="857.0" layoutY="56.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="108.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="505.0" layoutY="56.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

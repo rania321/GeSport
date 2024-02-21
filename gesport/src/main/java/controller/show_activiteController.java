@@ -66,7 +66,7 @@ public class show_activiteController {
             currentHBox.getChildren().add(vbox);
 
             // Créer une nouvelle ligne après chaque 3 activités
-            if (currentHBox.getChildren().size() == 4) {
+            if (currentHBox.getChildren().size() == 3) {
                 mainVBox.getChildren().add(currentHBox);
                 currentHBox = new HBox(20);
             }
@@ -124,7 +124,10 @@ public class show_activiteController {
 
                     // Passer des données à votre contrôleur de réservation si nécessaire
                     System.out.println("Passage de l'activité au contrôleur add_reservationController : " + activite.getNomA());
+                    addReservationController.initializeWithActivite(activite);
+
                     addReservationController.setActivite(activite);
+
 
                     // Créer une nouvelle scène
                     Scene scene = new Scene(root);
@@ -144,6 +147,7 @@ public class show_activiteController {
 
 
             });
+            reservationButton.getStyleClass().add("round-buttonMenu1");
 
             vbox.getChildren().add(reservationButton);
         }
@@ -166,6 +170,43 @@ public class show_activiteController {
 
         // Afficher la nouvelle fenêtre
         stage.show();
+    }
+
+    @FXML
+    void accueil(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Réservations");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void compte(ActionEvent event) {
+
+    }
+
+    @FXML
+    void reclamation(ActionEvent event) {
+
+    }
+
+    @FXML
+    void restaurant(ActionEvent event) {
+
+    }
+
+    @FXML
+    void tournois(ActionEvent event) {
+
     }
 
 }

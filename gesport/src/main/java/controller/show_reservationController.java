@@ -6,14 +6,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import service.ReservationService;
 import service.UserService;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -116,6 +122,7 @@ public class show_reservationController {
 
         // Vérifier si une activité est sélectionnée
         if (selectedReservation != null) {
+
             // Demander une confirmation à l'utilisateur (vous pouvez personnaliser cela selon vos besoins)
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation de suppression");
@@ -126,6 +133,7 @@ public class show_reservationController {
 
             // Si l'utilisateur confirme la suppression, procéder
             if (result.isPresent() && result.get() == ButtonType.OK) {
+
                 // Supprimer l'activité de la base de données
                 rs.delete(selectedReservation);
 
@@ -152,6 +160,18 @@ public class show_reservationController {
         // Mettre à jour la séance dans la base de données
         Reservation selectedReservation = TableViewR.getSelectionModel().getSelectedItem();
         if (selectedReservation != null) {
+            LocalDate selectedDate = dateR.getValue();
+            LocalDate currentDate = LocalDate.now();
+
+            if (selectedDate == null || selectedDate.isBefore(currentDate)) {
+                // Afficher un message d'erreur si la date n'est pas valide
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur de date");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez sélectionner une date ultérieure à la date actuelle.");
+                alert.showAndWait();
+                return; // Ne pas poursuivre si la date n'est pas valide
+            }
             selectedReservation.setDateDebutR(date);
             selectedReservation.setHeureR(heure);
             // Demander une confirmation à l'utilisateur (vous pouvez personnaliser cela selon vos besoins)
@@ -193,7 +213,59 @@ public class show_reservationController {
 
         //nomid.setValue(a.getNom());
     }
+    @FXML
+    void accueil(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Accueil");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void activite(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_activite.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Activités");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void compte(ActionEvent event) {
+
+    }
+
+    @FXML
+    void reclamation(ActionEvent event) {
+
+    }
+
+    @FXML
+    void restaurant(ActionEvent event) {
+
+    }
+
+    @FXML
+    void tournois(ActionEvent event) {
+
+    }
 
 }
 

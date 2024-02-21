@@ -1,66 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.show_activiteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.show_activiteController">
    <children>
-      <BorderPane fx:id="BorderPaneA" layoutX="-2.0" prefHeight="800.0" prefWidth="1300.0">
-         <center>
-            <VBox fx:id="VBoxA2" alignment="CENTER" prefHeight="803.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="800.0" fitWidth="1300.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/activitétaswira.png" />
+         </image>
+      </ImageView>
+      <ScrollPane fx:id="ScrollPaneA" layoutX="158.0" layoutY="249.0" prefHeight="445.0" prefWidth="984.0" styleClass="white-bg" stylesheets="@style.css">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnreserverA" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Réserver en ligne" />
-                  <Label text="Choisissez l'activité qui vous correspond" textFill="#17447a">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="610.0" prefWidth="1300.0">
-                     <children>
-                        <ScrollPane fx:id="ScrollPaneA" fitToHeight="true" fitToWidth="true" prefHeight="524.0" prefWidth="1285.0" stylesheets="@style.css">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="1298.0">
-                                 <children>
-                                    <GridPane fx:id="ActivityListContainer" alignment="CENTER" layoutX="201.0" layoutY="26.0" prefHeight="490.0" prefWidth="896.0">
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                    </GridPane>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                     </children>
-                  </HBox>
+                  <GridPane fx:id="ActivityListContainer" layoutY="7.0" prefHeight="414.0" prefWidth="964.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                </children>
-            </VBox>
-         </center>
-         <top>
-            <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="1300.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
-               <styleClass>
-                  <String fx:value="white-bg" />
-                  <String fx:value="shadow" />
-                  <String fx:value="radius" />
-               </styleClass>
-               <children>
-                  <Button fx:id="btnMesReserv" mnemonicParsing="false" onAction="#mesreservations" text="Mes Réservations">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="25.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-         </top>
-      </BorderPane>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button layoutX="382.0" layoutY="56.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="279.0" layoutY="56.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="599.0" layoutY="56.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="730.0" layoutY="56.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="848.0" layoutY="56.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="108.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="1022.0" layoutY="182.0" maxWidth="139.0" mnemonicParsing="false" onAction="#mesreservations" prefHeight="30.0" prefWidth="139.0" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Mes Réservations" />
    </children>
 </AnchorPane>

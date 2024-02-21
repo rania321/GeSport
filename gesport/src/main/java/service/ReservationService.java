@@ -7,6 +7,7 @@ import utils.DataSource;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -188,46 +189,66 @@ public class ReservationService implements IService<Reservation> {
         return list;
     }
 
-   /* public static ArrayList<Integer> find_idroom() {
-        ArrayList<Integer> list = new ArrayList<>();
-
-        Statement statement;
-        ResultSet resultSet;
+    public List<Reservation> getReservationsByUserAndActivity(User user, Activite activite) {
+        List<Reservation> reservations = new ArrayList<>();
+        String requete = "SELECT * FROM ReservationActivite WHERE idU = ? AND idA = ?";
         try {
-            statement = conn.createStatement();
-            resultSet = statement.executeQuery("SELECT id_room FROM room");
+            PreparedStatement pst = conn.prepareStatement(requete);
+            pst.setInt(1, user.getIdU());
+            pst.setInt(2, activite.getIdA());
+            ResultSet rs = pst.executeQuery();
 
-            while (resultSet.next()) {
-                list.add(resultSet.getInt(1));
+            while (rs.next()) {
+                Reservation r = new Reservation();
+                r.setIdR(rs.getInt("idR"));
+                r.setUser(user);
+                r.setActivite(activite);
+                r.setDateDebutR(rs.getDate("DateDebutR"));
+                r.setHeureR(rs.getString("HeureR"));
+                r.setStatutR(rs.getString("statutR"));
+
+                reservations.add(r);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Auction_Services.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while fetching reservations by user and activity: " + e.getMessage());
         }
 
-        return list;
+        return reservations;
     }
+    public List<Reservation> getReservationsByActivityAndDate(Activite activite, LocalDate date) {
+        List<Reservation> reservations = new ArrayList<>();
+        String requete = "SELECT * FROM ReservationActivite r1 WHERE idA = ? AND DateDebutR = ? AND NOT EXISTS (SELECT 1 FROM ReservationActivite r2 WHERE r2.idA = r1.idA AND r2.DateDebutR = r1.DateDebutR AND r2.HeureR = r1.HeureR AND r2.idR <> r1.idR)";
 
-    public static Integer find_idroom(String ID_artwork) {
-        Integer result = null;
-
-        PreparedStatement statement;
-        ResultSet resultSet;
         try {
+            PreparedStatement ps = conn.prepareStatement(requete);
+            ps.setInt(1, activite.getIdA());
+            ps.setDate(2, Date.valueOf(date));
 
-            String sql = "SELECT id_room FROM room WHERE name_room like  ? ";
-            statement = conn.prepareStatement(sql);
-            statement.setString(1, ID_artwork);
-//        resultSet = statement.executeQuery("SELECT id_room FROM room WHERE name_room like " + ID_artwork);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                result = resultSet.getInt(1);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                User user = new UserService().readById(rs.getInt("idU"));
+                Activite activity = new ActiviteService().readById(rs.getInt("idA"));
+
+                Reservation reservation = new Reservation(
+                        rs.getInt("idR"),
+                        user,
+                        activity,
+                        rs.getDate("DateDebutR"),
+                        rs.getString("HeureR"),
+                        rs.getString("statutR")
+                );
+
+                reservations.add(reservation);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Auction_Services.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while fetching reservations: " + e.getMessage());
         }
 
-        return result;
-    }*/
-
+        return reservations;
+    }
 
 }
