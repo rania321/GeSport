@@ -64,8 +64,7 @@ public class add_reservationController {
     @FXML
     private ComboBox<String> heureR;
 
-    @FXML
-    private Label choisirHeure;
+
     @FXML
     private Button updateR;
 
@@ -155,7 +154,6 @@ public class add_reservationController {
 
             // Rendre le ComboBox visible
             heureR.setVisible(true);
-            choisirHeure.setVisible(true);
 
         }
     }

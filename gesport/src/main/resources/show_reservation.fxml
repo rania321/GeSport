@@ -87,13 +87,17 @@
                         <Font name="Arial Black" size="18.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="TableViewR" layoutX="28.0" layoutY="97.0" prefHeight="398.0" prefWidth="746.0">
+                  <TableView fx:id="TableViewR" layoutX="28.0" layoutY="97.0" prefHeight="398.0" prefWidth="746.0" stylesheets="@style.css">
                      <columns>
                         <TableColumn fx:id="CVActiviteR" prefWidth="176.0" text="Activité" />
                         <TableColumn fx:id="CVDateR" minWidth="3.0" prefWidth="185.0" text="Date" />
                         <TableColumn fx:id="CVHeureR" minWidth="0.0" prefWidth="199.0" text="Heure" />
                         <TableColumn fx:id="CVStatutR" prefWidth="182.0" text="Statut" />
                      </columns>
+                     <styleClass>
+                        <String fx:value="table-row-cell" />
+                        <String fx:value="table-view" />
+                     </styleClass>
                   </TableView>
                </children>
             </AnchorPane>
