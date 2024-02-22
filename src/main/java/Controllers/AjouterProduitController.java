@@ -1,16 +1,18 @@
 package Controllers;
 import entities.Produit;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.example.Service.ProduitService;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Date;
 
 public class AjouterProduitController {
@@ -40,8 +42,42 @@ public class AjouterProduitController {
 
     Date utilDate = new Date();
     java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
     @FXML
-    void ajouterp(ActionEvent event)  throws IOException {
+    public void Home(javafx.event.ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Dashboard");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    public void ajP(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterProduit.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Dashboard");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+    @FXML
+    public void ajouterp(javafx.event.ActionEvent actionEvent) throws IOException {
         String nomt = nomtf.getText();
         String descri = desctf.getText();
         float prix = Float.parseFloat(prixtf.getText());
@@ -61,5 +97,39 @@ public class AjouterProduitController {
         ps.add(new Produit(nomt,descri,prix, qt, sqlDate, imaget,ref ));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterProduit.fxml") );
         Parent root = loader.load();
-    }}
+    }
+
+    @FXML
+    public void listV(ActionEvent actionEvent) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerVenteBack.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Vente");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+    @FXML
+    public void listP(ActionEvent actionEvent)  throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduitBack.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Produit");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+}
 

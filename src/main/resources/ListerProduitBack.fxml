@@ -15,7 +15,7 @@
    <children>
       <AnchorPane prefHeight="800.0" prefWidth="258.0" styleClass="side_ankerpane" stylesheets="@../java/values/style2.css">
          <children>
-            <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="241.0" mnemonicParsing="false" prefHeight="34.0" onAction="#Home" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
+            <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="241.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
                <styleClass>
                   <String fx:value="transparent" />
                   <String fx:value="shadow2" />
@@ -54,7 +54,7 @@
                   <Image url="@../../../../../../../../Downloads/edit-fill.png" />
                </image>
             </ImageView>
-            <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
+            <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" onAction="#ajP" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
                <styleClass>
                   <String fx:value="transparent" />
                   <String fx:value="shadow2" />
@@ -63,7 +63,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="ButtonListeP" layoutX="70.0" layoutY="288.0" mnemonicParsing="false" prefHeight="34.0" onAction="#listP" prefWidth="124.0" stylesheets="@../java/values/style.css" text="Liste produit" textFill="WHITE">
+            <Button fx:id="ButtonListeP" layoutX="70.0" layoutY="288.0" mnemonicParsing="false" onAction="#listP" prefHeight="34.0" prefWidth="124.0" stylesheets="@../java/values/style.css" text="Liste produit" textFill="WHITE">
                <styleClass>
                   <String fx:value="transparent" />
                   <String fx:value="shadow2" />
@@ -72,7 +72,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="ButtonModifierV" layoutX="57.0" layoutY="482.0" mnemonicParsing="false" prefHeight="34.0"  prefWidth="167.0" stylesheets="@../java/values/style.css" text="Modifier vente" textFill="WHITE">
+            <Button fx:id="ButtonModifierV" layoutX="57.0" layoutY="482.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="167.0" stylesheets="@../java/values/style.css" text="Modifier vente" textFill="WHITE">
                <styleClass>
                   <String fx:value="transparent" />
                   <String fx:value="shadow2" />
@@ -110,8 +110,8 @@
                <TableColumn fx:id="SP" prefWidth="100.0" text="Stock" />
                <TableColumn fx:id="DP" minWidth="0.0" prefWidth="100.0" text="Description" />
                <TableColumn fx:id="IP" prefWidth="100.0" text="Image" />
-            <TableColumn fx:id="SuppressionP" prefWidth="100.0" text="  " />
-
+               <TableColumn fx:id="SuppressionP" prefWidth="100.0" text="  " />
+               <TableColumn fx:id="ModificationP" prefWidth="100.0" text="  " />
         </columns>
        </TableView>
       <ComboBox fx:id="CBStatuteP" layoutX="942.0" layoutY="620.0" prefWidth="150.0" />

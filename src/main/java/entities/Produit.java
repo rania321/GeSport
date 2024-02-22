@@ -4,30 +4,30 @@ import java.sql.Date;
 
 public class Produit {
     private int idP,StockP, referenceP;
-    private String nomP, descriP, image ;
+    private String nomP, descriP, imageP ;
     private float PrixP;
     private Date DateAjoutP;
 
     public Produit() {
     }
-    public Produit(int idP, String nomP, String descriP, float PrixP, int StockP, Date DateAjoutP, String image, int refp) {
+    public Produit(int idP, String nomP, String descriP, float PrixP, int StockP, Date DateAjoutP, String imageP, int refp) {
         this.idP = idP;
         this.nomP = nomP;
         this.descriP = descriP;
         this.PrixP = PrixP;
         this.StockP = StockP;
         this.DateAjoutP = DateAjoutP;
-        this.image= image;
+        this.imageP= imageP;
         this.referenceP= refp;
     }
 
-    public Produit(String NomP, String DescriP, float prixP, int stockP, Date dateAjoutP, String Image, int refp) {
+    public Produit(String NomP, String DescriP, float prixP, int stockP, Date dateAjoutP, String ImageP, int refp) {
         nomP = NomP;
         descriP = DescriP;
         PrixP = prixP;
         StockP = stockP;
         DateAjoutP = dateAjoutP;
-        image= Image;
+        imageP= ImageP;
         referenceP =refp;
     }
 
@@ -59,8 +59,8 @@ public class Produit {
         return StockP;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageP() {
+        return imageP;
     }
 
 
@@ -92,7 +92,7 @@ public class Produit {
         DateAjoutP = dateAjoutP;
     }
 
-    public void setImage(String Image) {image= Image;}
+    public void setImageP(String ImageP) {imageP= ImageP;}
 
     @Override
     public String toString() {
@@ -102,7 +102,7 @@ public class Produit {
                 ", referenceP=" + referenceP +
                 ", nomP='" + nomP + '\'' +
                 ", descriP='" + descriP + '\'' +
-                ", image='" + image + '\'' +
+                ", imageP='" + imageP + '\'' +
                 ", PrixP=" + PrixP +
                 ", DateAjoutP=" + DateAjoutP +
                 '}';

@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.Service.ProduitService;
@@ -54,13 +51,48 @@ public class ListerVenteBackController {
     private TableColumn<?, ?> QV;
 
     @FXML
-    private TableColumn<?, ?> SuppressionV;
+    private TableColumn<Vente, Void> SuppressionV;
 
     @FXML
     private TableColumn<?, ?> nomUser;
 
     @FXML
     private TableColumn<?, ?> refPV;
+
+    @FXML
+    public void Home(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Dashboard");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    public void ajP(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterProduit.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Dashboard");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
 @FXML
     public void listV(ActionEvent actionEvent) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerVenteBack.fxml"));
@@ -105,6 +137,26 @@ public class ListerVenteBackController {
         );
         CBStatuteP.setItems(options);
         ShowVente();
+        configureSuppressionColumn();
+    }
+
+    private void configureSuppressionColumn() {
+        SuppressionV.setCellFactory(param -> new TableCell<>() {
+            private final Button boutonSupprimer = new Button("Supprimer");
+            {
+                boutonSupprimer.setOnAction(event -> {
+                    Vente vente = getTableView().getItems().get(getIndex());
+                    vs.delete(vente);
+                    System.out.println("Supprimer : " + vente.getIdV());
+                    TableVente.refresh();
+                });
+            }
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : boutonSupprimer);
+            }
+        });
     }
 
     public void ShowVente() throws IOException {
@@ -124,20 +176,5 @@ public class ListerVenteBackController {
         }
     }
 
-@FXML
-    public void Home(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml"));
-        Parent root = loader.load();
 
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
-
-        // Configurer la nouvelle scène dans une nouvelle fenêtre
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Dashboard");
-
-        // Afficher la nouvelle fenêtre
-        stage.show();
-    }
 }

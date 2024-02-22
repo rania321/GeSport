@@ -17,7 +17,7 @@
                     <children>
  <!--____________________________________________DASHBOARD__________________________________________________-->
 
-        <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="241.0" mnemonicParsing="false" prefHeight="34.0" onAction="#Home" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
+        <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="241.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
             <styleClass>
                 <String fx:value="transparent" />
                 <String fx:value="shadow2" />
@@ -56,7 +56,7 @@
                 <Image url="@../../../../../../../../Downloads/edit-fill.png" />
             </image>
         </ImageView>
-        <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
+        <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" onAction="#ajP" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
             <styleClass>
                 <String fx:value="transparent" />
                 <String fx:value="shadow2" />
@@ -106,14 +106,14 @@
 
 <!--____________________________________________DASHBOARD__________________________________________________-->
 
-<TableView fx:id="TableVente" layoutX="306.0" layoutY="201.0" prefHeight="398.0" prefWidth="784.0" styleClass="shadow2" stylesheets="@../java/values/style.css">
+<TableView fx:id="TableVente" layoutX="394.0" layoutY="201.0" prefHeight="398.0" prefWidth="631.0" styleClass="shadow2" stylesheets="@../java/values/style.css">
     <columns>
         <TableColumn fx:id="nomUser" prefWidth="100.0" text="User" />
         <TableColumn fx:id="refPV" prefWidth="124.0" text="Reference Produit" />
         <TableColumn fx:id="DateV" minWidth="0.0" prefWidth="101.0" text="Date" />
-        <TableColumn fx:id="QV" minWidth="0.0" prefWidth="100.0" text="Quantité" />
-        <TableColumn fx:id="MV" prefWidth="100.0" text="Montant" />
-        <TableColumn fx:id="SuppressionV" prefWidth="100.0" text="  " />
+        <TableColumn fx:id="QV" minWidth="0.0" prefWidth="100.0" text="Quantié" />
+        <TableColumn fx:id="MV" prefWidth="100.0" text="MontantV" />
+        <TableColumn fx:id="SuppressionV" prefWidth="100.0" />
     </columns>
 </TableView>
 <ComboBox fx:id="CBStatuteP" layoutX="942.0" layoutY="620.0" prefWidth="150.0" />
