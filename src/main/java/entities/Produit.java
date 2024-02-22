@@ -3,28 +3,40 @@ import java.lang.String;
 import java.sql.Date;
 
 public class Produit {
-    private int idP,StockP;
-    private String nomP, descriP;
+    private int idP,StockP, referenceP;
+    private String nomP, descriP, image ;
     private float PrixP;
     private Date DateAjoutP;
 
     public Produit() {
     }
-    public Produit(int idP, String nomP, String descriP, float PrixP, int StockP, Date DateAjoutP) {
+    public Produit(int idP, String nomP, String descriP, float PrixP, int StockP, Date DateAjoutP, String image, int refp) {
         this.idP = idP;
         this.nomP = nomP;
         this.descriP = descriP;
         this.PrixP = PrixP;
         this.StockP = StockP;
         this.DateAjoutP = DateAjoutP;
+        this.image= image;
+        this.referenceP= refp;
     }
 
-    public Produit(String NomP, String DescriP, float prixP, int stockP, Date dateAjoutP) {
+    public Produit(String NomP, String DescriP, float prixP, int stockP, Date dateAjoutP, String Image, int refp) {
         nomP = NomP;
         descriP = DescriP;
         PrixP = prixP;
         StockP = stockP;
         DateAjoutP = dateAjoutP;
+        image= Image;
+        referenceP =refp;
+    }
+
+    public int getReferenceP() {
+        return referenceP;
+    }
+
+    public void setReferenceP(int referenceP) {
+        this.referenceP = referenceP;
     }
 
     public int getIdP() {
@@ -46,6 +58,11 @@ public class Produit {
     public int getStockP() {
         return StockP;
     }
+
+    public String getImage() {
+        return image;
+    }
+
 
     public java.sql.Date getDateAjoutP() {
         return (java.sql.Date) DateAjoutP;
@@ -75,17 +92,19 @@ public class Produit {
         DateAjoutP = dateAjoutP;
     }
 
+    public void setImage(String Image) {image= Image;}
+
     @Override
     public String toString() {
         return "Produit{" +
-                "ProduitId=" + idP +
-                ", NomProduit='" + nomP + '\'' +
-                ", DescriptionProduit='" + descriP + '\'' +
-                ", PrixUnitaire=" + PrixP +
-                ", StockDisponible=" + StockP +
-                ", DateAjout=" + DateAjoutP +
+                "idP=" + idP +
+                ", StockP=" + StockP +
+                ", referenceP=" + referenceP +
+                ", nomP='" + nomP + '\'' +
+                ", descriP='" + descriP + '\'' +
+                ", image='" + image + '\'' +
+                ", PrixP=" + PrixP +
+                ", DateAjoutP=" + DateAjoutP +
                 '}';
     }
-
-
 }

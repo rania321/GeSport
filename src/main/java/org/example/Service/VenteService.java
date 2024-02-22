@@ -36,7 +36,7 @@ public class VenteService implements IService<Vente> {
     }
 
     public void delete(Vente v) {
-        String requete = "DELETE FROM vente WHERE idV=?";
+        String requete = "DELETE FROM vente where idV=?";
         try {
             PreparedStatement pst = con.prepareStatement(requete);
             pst.setInt(1, v.getIdV());
@@ -47,18 +47,23 @@ public class VenteService implements IService<Vente> {
         }
     }
 
+    public void Id(Vente v) {
+        int a=v.getIdV();
+        System.out.println(a);
+    }
+
     public void update(Vente v) {
         //int idV = getIdVFromDatabase(v);
 
         String req = "UPDATE `vente` SET idU=?, idP=?, QuantitéV=?, DateV=?, MontantV=? WHERE idV = ?";
         try {
             PreparedStatement ps = con.prepareStatement(req);
-            ps.setInt(1, v.getIdU());
-            ps.setInt(2, v.getIdP());
-            ps.setInt(3, v.getQuantitéV());
-            ps.setDate(4, v.getDateV());
+            ps.setInt(1,   v.getIdU());
+            ps.setInt(2,   v.getIdP());
+            ps.setInt(3,   v.getQuantitéV());
+            ps.setDate(4,  v.getDateV());
             ps.setFloat(5, v.getMontantV());
-            ps.setInt(6, v.getIdV());
+            ps.setInt(6,   v.getIdV());
 
             ps.executeUpdate();
             System.out.println("Vente modifiée avec succes");
@@ -76,7 +81,7 @@ public class VenteService implements IService<Vente> {
             Statement ste = con.createStatement();
             ResultSet rs = ste.executeQuery(requete);
             while (rs.next()) {
-                Vente v = new Vente(rs.getInt("idV"), rs.getInt("IdU"), rs.getInt("IdP"), rs.getInt("QuantitéV"), rs.getDate("DateV"), rs.getFloat("MontantV"));
+                Vente v = new Vente(rs.getInt("idV"), rs.getInt("idU"), rs.getInt("idP"), rs.getInt("QuantitéV"), rs.getDate("DateV"), rs.getFloat("MontantV"));
                 list.add(v);
             }
         } catch (SQLException e) {
@@ -96,8 +101,8 @@ public class VenteService implements IService<Vente> {
             while (rst.next())
             {
                 v.setIdV(rst.getInt("idV"));
-                v.setIdU(rst.getInt("IdU"));
-                v.setIdP(rst.getInt("IdP"));
+                v.setIdU(rst.getInt("idU"));
+                v.setIdP(rst.getInt("idP"));
                 v.setQuantitéV(rst.getInt("QuantitéV"));
                 v.setDateV(rst.getDate("DateV"));
                 v.setMontantV(rst.getFloat("MontantV"));

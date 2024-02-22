@@ -17,7 +17,7 @@ public class ProduitService implements IService <Produit>{
     }
     public void add (Produit p)
     {
-        String requete= "insert into produit (nomP, descriP, PrixP, StockP, DateAjoutP) values (?,?,?,?,?)";
+        String requete= "insert into produit (nomP, descriP, PrixP, StockP, DateAjoutP, image, referenceP) values (?,?,?,?,?,?,?)";
         try {
             PreparedStatement pst = con.prepareStatement(requete);
 
@@ -26,6 +26,8 @@ public class ProduitService implements IService <Produit>{
             pst.setFloat(3, p.getPrixP());
             pst.setInt(4,p.getStockP());
             pst.setDate(5, p.getDateAjoutP());
+            pst.setString(6, p.getImage());
+            pst.setInt(7, p.getReferenceP());
 
             pst.executeUpdate();
             System.out.println("Produit ajouté avec succes");
@@ -35,16 +37,15 @@ public class ProduitService implements IService <Produit>{
     }
 
     @Override
-    public void delete(Produit p) {
+    public void delete(Produit p)
+    {
         String requete="DELETE FROM produit WHERE idP=?";
         try {
-            con.setAutoCommit(true);
             PreparedStatement pst= con.prepareStatement(requete);
             pst.setInt(1, p.getIdP());
             pst.executeUpdate();
             System.out.println("Produit supprimé avec succes");
-
-        } catch (SQLException e) {
+        } catch (SQLException e){
             System.err.println(e.getMessage());
             System.out.println("Produit non supprimé!");
         }
@@ -52,7 +53,7 @@ public class ProduitService implements IService <Produit>{
 
     @Override
     public void update(Produit p) {
-        String req = "UPDATE `produit` SET nomP=?, descriP=?, PrixP=?, StockP=?, DateAjoutP=? WHERE idP = ?";
+        String req = "UPDATE `produit` SET nomP=?, descriP=?, PrixP=?, StockP=?, DateAjoutP=?, image=?, referenceP=? WHERE idP = ?";
         try {
             PreparedStatement ps = con.prepareStatement(req);
 
@@ -62,6 +63,9 @@ public class ProduitService implements IService <Produit>{
             ps.setInt(   4,   p.getStockP());
             ps.setDate(  5,   p.getDateAjoutP());
             ps.setInt(   6,   p.getIdP());
+            ps.setString(7,   p.getImage());
+            ps.setInt(8,   p.getReferenceP());
+
 
             ps.executeUpdate();
             System.out.println("Produit modifié avec succes");
@@ -79,7 +83,7 @@ public class ProduitService implements IService <Produit>{
             Statement ste = con.createStatement();
             ResultSet rs = ste.executeQuery(requete);
             while (rs.next()) {
-                Produit p = new Produit(rs.getInt("idP"), rs.getString("NomP"), rs.getString("DescriP"), rs.getFloat("PrixP"), rs.getInt("StockP"), rs.getDate("DateAjoutP"));
+                Produit p = new Produit(rs.getInt("idP"), rs.getString("NomP"), rs.getString("DescriP"), rs.getFloat("PrixP"), rs.getInt("StockP"), rs.getDate("DateAjoutP"), rs.getString("image"),rs.getInt("referenceP"));
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -104,6 +108,9 @@ public class ProduitService implements IService <Produit>{
                 p.setPrixP(rst.getFloat("PrixP"));
                 p.setStockP(rst.getInt("StockP"));
                 p.setDateAjoutP(rst.getDate("DateAjoutP"));
+                p.setImage(rst.getString("image"));
+                p.setReferenceP(rst.getInt("referenceP"));
+
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

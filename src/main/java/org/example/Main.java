@@ -18,16 +18,17 @@ public class Main {
         Date utilDate = new Date();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-        Produit p1= new Produit("Riz", "Riz", 100f, 50, sqlDate);
+        Produit p1= new Produit(3,"Riz", "Riz", 100f, 50, sqlDate, "uu", 021);
         ProduitService ps= new ProduitService();
-        //ps.add(p1);
+        ps.add(p1);
         //ps.delete(p1);
 
-        Vente v1= new Vente(2, 1, 70, sqlDate, 77.45f);
+        Vente v1= new Vente(2, 1, 140, sqlDate, 200f);
         VenteService vs= new VenteService();
         //vs.add(v1);
         //vs.delete(v1);
-        //vs.update(v1,7);
+        //vs.Id(v1);
+        //vs.update(v1);
         //vs.getIdVFromDatabase(v1);
         //vs.readAll();
     }
