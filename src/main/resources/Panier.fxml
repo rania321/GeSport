@@ -1,127 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" styleClass="backgroundbleu" stylesheets="@../java/values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="343.0" prefWidth="600.0" styleClass="generation-panier" stylesheets="@../java/values/style.css">
+      <AnchorPane layoutX="-1.0" layoutY="77.0" prefHeight="723.0" prefWidth="1307.0" styleClass="backgroundbleu" stylesheets="@../java/values/style.css">
          <children>
-            <HBox prefHeight="263.0" prefWidth="518.0" stylesheets="@../java/values/style.css">
-               <HBox.margin>
-                  <Insets bottom="40.0" left="40.0" top="40.0" />
-               </HBox.margin>
-               <children>
-                  <HBox prefHeight="263.0" prefWidth="366.0">
-                     <children>
-                        <HBox prefHeight="223.0" prefWidth="299.0">
-                           <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" top="20.0" />
-                           </HBox.margin>
-                           <children>
-                              <VBox prefHeight="168.0" prefWidth="300.0">
-                                 <children>
-                                    <VBox prefHeight="24.0" prefWidth="300.0">
-                                       <children>
-                                          <Label />
-                                          <Label prefHeight="17.0" prefWidth="78.0" text="Panier" textFill="#5d62e8">
-                                             <VBox.margin>
-                                                <Insets top="-15.0" />
-                                             </VBox.margin>
-                                             <font>
-                                                <Font name="Calibri Bold" size="15.0" />
-                                             </font>
-                                          </Label>
-                                          <HBox prefHeight="45.0" prefWidth="300.0" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="200.0" prefWidth="300.0">
-                                       <children>
-                                          <VBox prefHeight="49.0" prefWidth="300.0">
-                                             <children>
-                                                <VBox prefHeight="200.0" prefWidth="100.0">
-                                                   <children>
-                                                      <HBox prefHeight="49.0" prefWidth="204.0">
-                                                         <children>
-                                                            <HBox prefHeight="49.0" prefWidth="68.0">
-                                                               <children>
-                                                                  <ImageView fitHeight="52.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                                                     <image>
-                                                                        <Image url="@../../../../../../../../Downloads/salade-automne-aux-pommes-noix-isole-fond-blancxa.jpg" />
-                                                                     </image>
-                                                                  </ImageView>
-                                                               </children>
-                                                            </HBox>
-                                                            <HBox prefHeight="49.0" prefWidth="175.0">
-                                                               <children>
-                                                                  <HBox prefHeight="27.0" prefWidth="160.0">
-                                                                     <children>
-                                                                        <VBox prefHeight="49.0" prefWidth="160.0">
-                                                                           <children>
-                                                                              <VBox prefHeight="200.0" prefWidth="100.0" />
-                                                                           </children>
-                                                                        </VBox>
-                                                                     </children>
-                                                                  </HBox>
-                                                               </children>
-                                                            </HBox>
-                                                            <Label prefHeight="32.0" prefWidth="68.0" text="13dt " textFill="#5d62e8">
-                                                               <font>
-                                                                  <Font size="20.0" />
-                                                               </font>
-                                                               <HBox.margin>
-                                                                  <Insets left="20.0" top="5.0" />
-                                                               </HBox.margin>
-                                                            </Label>
-                                                         </children>
-                                                      </HBox>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="50.0" prefWidth="300.0">
-                                             <children>
-                                                <ImageView fitHeight="49.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="57.0" prefWidth="300.0">
-                                             <children>
-                                                <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="42.0" prefWidth="300.0" />
-                                          <Label text="Salade Gesport" textFill="#5d62e8">
-                                             <font>
-                                                <Font name="Calibri" size="13.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="263.0" prefWidth="184.0" styleClass="generation-panier3" stylesheets="@../java/values/style.css">
-                     <HBox.margin>
-                        <Insets bottom="20.0" right="20.0" top="20.0" />
-                     </HBox.margin>
-                  </HBox>
-               </children>
+            <AnchorPane layoutX="83.0" layoutY="122.0" prefHeight="538.0" prefWidth="1101.0" stylesheets="@../java/values/style.css">
                <styleClass>
-                  <String fx:value="generation-panier2" />
+                  <String fx:value="white-bg" />
+                  <String fx:value="chosen-fruit-card" />
                   <String fx:value="shadow" />
                </styleClass>
-            </HBox>
+               <children>
+                  <AnchorPane layoutX="689.0" layoutY="54.0" prefHeight="432.0" prefWidth="341.0" stylesheets="@../java/values/style.css">
+                     <styleClass>
+                        <String fx:value="backgroundbleu" />
+                        <String fx:value="shadow2" />
+                     </styleClass>
+                     <children>
+                        <Label layoutX="21.0" layoutY="28.0" text="Détails carte " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="201.0" layoutY="364.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@../java/values/style.css" text="Confirmer" textFill="#17447a">
+                           <styleClass>
+                              <String fx:value="shadow2" />
+                              <String fx:value="add-btn" />
+                              <String fx:value="search-button3" />
+                           </styleClass>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="24.0" layoutY="362.0" prefHeight="26.0" prefWidth="55.0" text="Total :" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="92.0" layoutY="362.0" prefHeight="26.0" prefWidth="45.0" text="xx" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="362.0" prefHeight="26.0" prefWidth="55.0" text="dt" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="42.0" layoutY="28.0" text="Panier" textFill="#17447a">
+                     <font>
+                        <Font name="Calibri" size="21.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="42.0" layoutY="65.0" prefHeight="124.0" prefWidth="609.0" stylesheets="@../java/values/style.css">
+                     <styleClass>
+                        <String fx:value="shadow2" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <children>
+                        <ImageView fitHeight="124.0" fitWidth="171.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="178.0" layoutY="45.0" text="Nom produit" textFill="#17447a">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="178.0" layoutY="66.0" text="Description" textFill="#5d62e8" />
+                        <Label layoutX="478.0" layoutY="54.0" text="Prix ">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="506.0" layoutY="54.0" text="dt" textFill="#5d62e8" />
+                        <Label layoutX="553.0" layoutY="30.0" text="x" textFill="#f9b13d">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="42.0" layoutY="207.0" prefHeight="124.0" prefWidth="609.0" stylesheets="@../java/values/style.css">
+                     <styleClass>
+                        <String fx:value="shadow2" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <children>
+                        <ImageView fitHeight="124.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="182.0" layoutY="48.0" text="Nom produit" textFill="#17447a">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="182.0" layoutY="69.0" text="Description" textFill="#5d62e8" />
+                        <Label layoutX="482.0" layoutY="57.0" text="Prix ">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="510.0" layoutY="57.0" text="dt" textFill="#5d62e8" />
+                        <Label layoutX="557.0" layoutY="33.0" text="x" textFill="#f9b13d">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="42.0" layoutY="349.0" prefHeight="124.0" prefWidth="609.0" stylesheets="@../java/values/style.css">
+                     <styleClass>
+                        <String fx:value="shadow2" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <children>
+                        <ImageView fitHeight="124.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="179.0" layoutY="49.0" text="Nom produit" textFill="#17447a">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="179.0" layoutY="70.0" text="Description" textFill="#5d62e8" />
+                        <Label layoutX="479.0" layoutY="58.0" text="Prix ">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="507.0" layoutY="58.0" text="dt" textFill="#5d62e8" />
+                        <Label layoutX="554.0" layoutY="34.0" text="x" textFill="#f9b13d">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="788.0" layoutY="120.0" prefHeight="200.0" prefWidth="293.0" stylesheets="@../java/values/style.css">
+                     <styleClass>
+                        <String fx:value="chosen-fruit-card2" />
+                        <String fx:value="shadow2" />
+                     </styleClass>
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="74.0" layoutX="196.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/png-clipart-logo-visa-credit-card-wordmark-atm-card-visa-blue-text-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="26.0" layoutY="41.0" text="_ _ _ _" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="92.0" layoutY="41.0" text="_ _ _ _" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="158.0" layoutY="41.0" text="_ _ _ _" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="218.0" layoutY="41.0" text="_ _ _ _" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="31.0" layoutY="113.0" text="_ _ / _ _" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
-      </HBox>
+      </AnchorPane>
    </children>
-</VBox>
+</AnchorPane>

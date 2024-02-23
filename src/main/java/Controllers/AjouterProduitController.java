@@ -31,9 +31,9 @@ public class AjouterProduitController {
 
     @FXML
     private TextField qtf;
+
     @FXML
     private TextField referencetf;
-
 
     @FXML
     private Button boutonajp;

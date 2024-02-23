@@ -29,6 +29,15 @@ public class DashboardFrontController {
         stage.show();
     }
 
+    public void compte(ActionEvent actionEvent) {
+    }
 
+    public void activite(ActionEvent actionEvent) {
+    }
 
+    public void tournois(ActionEvent actionEvent) {
+    }
+
+    public void reclamation(ActionEvent actionEvent) {
+    }
 }

@@ -13,12 +13,12 @@
             <Image url="@img/accueil.png" />
          </image>-->
       </ImageView>
-      <Button layoutX="385.0" layoutY="70.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="#3c3c3c">
+      <Button layoutX="385.0" layoutY="70.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="84.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="489.0" layoutY="70.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="84.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="#3c3c3c">
+      <Button layoutX="489.0" layoutY="70.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="84.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>
@@ -28,12 +28,12 @@
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="727.0" layoutY="70.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="#3c3c3c">
+      <Button layoutX="727.0" layoutY="70.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="848.0" layoutY="70.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="109.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="#3c3c3c">
+      <Button layoutX="848.0" layoutY="70.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="109.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>

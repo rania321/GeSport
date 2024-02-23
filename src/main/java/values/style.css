@@ -60,7 +60,7 @@
 }
 
 .chosen-fruit-card2{
-    -fx-background-color: #F16C31;
+    -fx-background-color: #f9b13d;
     -fx-background-radius: 30;
 }
 
@@ -85,8 +85,14 @@
 }
 
 .shopping-online-card{
-    -fx-background-color: #BAEAC3;
+    -fx-background-color: #17447a;
     -fx-background-radius: 30;
+}
+
+.backgroundbleu{
+    -fx-background-color: #17447a;
+    -fx-background-radius: 5;
+
 }
 
 .fruit-item{

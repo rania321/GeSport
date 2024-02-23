@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="240.0" prefWidth="240.0" styleClass="side_ankerpane" stylesheets="@../java/values/style2.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ItemsController">
+   <children>
+      <Label fx:id="nomp" layoutX="29.0" layoutY="31.0" prefHeight="20.0" prefWidth="80.0" text="Produit" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="prixp" layoutX="167.0" layoutY="33.0" prefHeight="17.0" prefWidth="44.0" text="Prix" textFill="WHITE" />
+      <ImageView fx:id="imagep" fitHeight="150.0" fitWidth="169.0" layoutX="36.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

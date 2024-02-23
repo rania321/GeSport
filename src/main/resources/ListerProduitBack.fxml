@@ -54,7 +54,7 @@
                   <Image url="@../../../../../../../../Downloads/edit-fill.png" />
                </image>
             </ImageView>
-            <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" onAction="#ajP" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
+            <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="336.0" mnemonicParsing="false" onAction="#ajP" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
                <styleClass>
                   <String fx:value="transparent" />
                   <String fx:value="shadow2" />
@@ -81,7 +81,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="ButtonListeV" layoutX="68.0" layoutY="434.0" mnemonicParsing="false" prefHeight="34.0" onAction="#listV" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Lister les ventes" textFill="WHITE">
+            <Button fx:id="ButtonListeV" layoutX="68.0" layoutY="434.0" mnemonicParsing="false" onAction="#listV" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Lister les ventes" textFill="WHITE">
                <styleClass>
                   <String fx:value="transparent" />
                   <String fx:value="shadow2" />
@@ -101,7 +101,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="TableProduit" layoutX="306.0" layoutY="201.0" prefHeight="398.0" prefWidth="784.0" styleClass="shadow2" stylesheets="@../java/values/style.css">
+      <TableView fx:id="TableProduit" layoutX="306.0" layoutY="201.0" prefHeight="398.0" prefWidth="873.0" styleClass="shadow2" stylesheets="@../java/values/style.css">
         <columns>
                <TableColumn fx:id="RP" prefWidth="100.0" text="Réference" />
                <TableColumn fx:id="NP" prefWidth="100.0" text="Nom" />

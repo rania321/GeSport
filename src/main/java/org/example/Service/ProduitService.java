@@ -104,6 +104,24 @@ public class ProduitService implements IService <Produit>{
             while (rst.next()) {
                 p.setIdP(rst.getInt("idP"));
                 p.setNomP(rst.getString("NomP"));
+                p.setPrixP(rst.getFloat("PrixP"));
+                p.setImageP(rst.getString("imageP"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return p;
+    }
+/*public Produit readById(int idP) {
+        Produit p = new Produit();
+        String req = "SELECT * FROM produit WHERE idP = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, idP);
+            ResultSet rst = ps.executeQuery();
+            while (rst.next()) {
+                p.setIdP(rst.getInt("idP"));
+                p.setNomP(rst.getString("NomP"));
                 p.setDescriP(rst.getString("DescriP"));
                 p.setPrixP(rst.getFloat("PrixP"));
                 p.setStockP(rst.getInt("StockP"));
@@ -116,6 +134,6 @@ public class ProduitService implements IService <Produit>{
             System.out.println(e.getMessage());
         }
         return p;
-    }
+    }*/
 
 }

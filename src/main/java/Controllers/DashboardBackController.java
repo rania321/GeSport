@@ -11,8 +11,6 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 public class DashboardBackController {
 
-
-
         @FXML
         private Button activite;
 
