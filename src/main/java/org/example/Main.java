@@ -4,25 +4,28 @@ import Services.UserService;
 import Services.dmservices;
 import entities.User;
 import entities.dossiermedical;
+import entities.role;
 
 public class Main {
 
     public static void main(String[] args){
 
-        User u1=new User("Ghzel","dawser","dawser.ghzel@esprit.tn","123456","admin");
-        User u2=new User("Ghzel","slim","slim.ghzel@esprit.tn","1234567","guest");
-        User u3=new User("Ghzel","lamis","lamis.ghzel@esprit.tn","123456","user");
+        User u1=new User("Ghzel","dawser","dawser.ghzel@esprit.tn","123456");
+        u1.setRoleU(role.utulisateur);
+
+        User u2=new User("Ghzel","slim","slim.ghzel@esprit.tn","1234567");
+        User u3=new User("Ghzel","lamis","lamis.ghzel@esprit.tn","123456",role.visiteur);
         UserService us=new UserService();
         ///////////////addddddddddd//////////////////
-        //us.add(u1);
+
         //us.add(u2);
         ////////////reaaaaaaaaaaaaad////////////////////
         //us.readall().forEach(System.out::println);
         ////////////////dellllllletttte/////////
-        //int idrsupprimer=4;
+        //int idrsupprimer=97;
        //us.deleteById(idrsupprimer);
         //***********Upppdate**********
-        User updatedUser = new User(5,"gharbi", "slim", "slim.gharb@gmail.com", "789456", "user");
+        User updatedUser = new User(5,"gharbi", "slim", "slim.gharb@gmail.com", "789456", role.utulisateur);
 
 
         // Creating an instance of userservice

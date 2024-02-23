@@ -1,31 +1,41 @@
 package entities;
 
+import entities.role;
+
+
 public class User {
     private int idU;
     private String NomU;
     private String PrenomU;
     private String EmailU;
     private String mdpU;
-    private String RoleU;
+    private role roleU; // Utilisation de l'ENUM Role
 
     public User() {
     }
 
-    public User(int idU, String nomU, String prenomU, String emailU, String mdpU, String roleU) {
+    public User(int idU, String nomU, String prenomU, String emailU, String mdpU, role roleU) {
         this.idU = idU;
         NomU = nomU;
         PrenomU = prenomU;
         EmailU = emailU;
         this.mdpU = mdpU;
-        RoleU = roleU;
+        this.roleU = roleU;
     }
 
-    public User(String nomU, String prenomU, String emailU, String mdpU, String roleU) {
+    public User(String nomU, String prenomU, String emailU, String mdpU, role roleU) {
         NomU = nomU;
         PrenomU = prenomU;
         EmailU = emailU;
         this.mdpU = mdpU;
-        RoleU = roleU;
+        this.roleU = roleU;
+    }
+    public User(String nomU, String prenomU, String emailU, String mdpU) {
+        NomU = nomU;
+        PrenomU = prenomU;
+        EmailU = emailU;
+        this.mdpU = mdpU;
+        this.roleU = role.utulisateur; // Définir le rôle par défaut
     }
 
     public int getIdU() {
@@ -68,12 +78,12 @@ public class User {
         this.mdpU = mdpU;
     }
 
-    public String getRoleU() {
-        return RoleU;
+    public role getRoleU() {
+        return roleU;
     }
 
-    public void setRoleU(String roleU) {
-        RoleU = roleU;
+    public void setRoleU(role roleU) {
+        this.roleU = roleU;
     }
 
     @Override
@@ -84,9 +94,7 @@ public class User {
                 ", PrenomU='" + PrenomU + '\'' +
                 ", EmailU='" + EmailU + '\'' +
                 ", mdpU='" + mdpU + '\'' +
-                ", RoleU='" + RoleU + '\'' +
+                ", roleU=" + roleU +
                 '}';
     }
-
-
 }

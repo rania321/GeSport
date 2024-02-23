@@ -1,0 +1,11 @@
+.vbox_background_right{
+    -fx-background-image: url("1.png");
+
+}
+text-field {
+    -fx-prompt-text-fill: white;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
