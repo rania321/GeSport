@@ -287,5 +287,36 @@ import java.util.List;
             }
             return user;
         }
+        public User login(String email, String password) {
+            String query = "SELECT * FROM user WHERE EmailU = ? AND mdpU = ?";
+            try {
+                PreparedStatement pst = conn.prepareStatement(query);
+                pst.setString(1, email);
+                pst.setString(2, password);
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {
+                    return new User(rs.getInt("idU"), rs.getString("NomU"), rs.getString("PrenomU"), rs.getString("EmailU"), rs.getString("mdpU"), role.valueOf(rs.getString("RoleU")));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null; // Si l'utilisateur n'est pas trouvé ou si les informations de connexion sont incorrectes
+        }
+
+        // Méthode pour obtenir le rôle de l'utilisateur
+        public role getRole(int userId) {
+            String query = "SELECT RoleU FROM user WHERE idU = ?";
+            try {
+                PreparedStatement pst = conn.prepareStatement(query);
+                pst.setInt(1, userId);
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {
+                    return role.valueOf(rs.getString("RoleU"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null; // Si l'utilisateur n'est pas trouvé ou s'il n'a pas de rôle défini
+        }
     }
 

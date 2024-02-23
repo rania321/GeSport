@@ -7,17 +7,20 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="655.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherUserController">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherUserController">
    <children>
-      <TextField fx:id="prenomU" layoutX="13.0" layoutY="302.0" promptText="Prenom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TextField fx:id="mdpU" layoutX="13.0" layoutY="371.0" promptText="Mot de passe" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TextField fx:id="emailU" layoutX="13.0" layoutY="336.0" promptText="Email" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TextField fx:id="nomU" layoutX="13.0" layoutY="272.0" promptText="Nom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TextField fx:id="roleU" layoutX="13.0" layoutY="404.0" promptText="Role" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TableView fx:id="tableAdd" layoutY="440.0" prefHeight="214.0" prefWidth="808.0">
+      <ImageView fitHeight="811.0" fitWidth="937.0" layoutX="-4.0" layoutY="-7.0" pickOnBounds="true">
+         <image>
+            <Image url="@userdash.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="prenomU" layoutX="226.0" layoutY="462.0" promptText="Prenom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TextField fx:id="mdpU" layoutX="226.0" layoutY="561.0" promptText="Mot de passe" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TextField fx:id="emailU" layoutX="226.0" layoutY="515.0" promptText="Email" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TextField fx:id="nomU" layoutX="226.0" layoutY="402.0" promptText="Nom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TextField fx:id="roleU" layoutX="226.0" layoutY="609.0" promptText="Role" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TableView fx:id="tableAdd" layoutX="186.0" layoutY="118.0" prefHeight="214.0" prefWidth="731.0">
         <columns>
           <TableColumn fx:id="idU" prefWidth="180.00002747774124" style="-fx-background-color: #2596be;" text="Id_user" />
             <TableColumn fx:id="prenomU1" prefWidth="151.199951171875" style="-fx-background-color: #2596be;" text="PrenomU" />
@@ -27,17 +30,7 @@
             <TableColumn fx:id="EmailU1" prefWidth="120.0" style="-fx-background-color: #2596be;" text="EmailU" />
         </columns>
       </TableView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@2.png" />
-         </image>
-      </ImageView>
-      <Text fill="#2733ae" layoutX="244.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Users" wrappingWidth="290.9366760253906">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
-      <Button fx:id="supprimer" layoutX="700.0" layoutY="374.0" mnemonicParsing="false" onAction="#supprimerUtilisateur" prefHeight="36.0" prefWidth="32.0" style="-fx-background-radius: 200; -fx-background-color: FEFEFE;" stylesheets="@register.css">
+      <Button fx:id="supprimer" layoutX="712.0" layoutY="351.0" mnemonicParsing="false" onAction="#supprimerUtilisateur" prefHeight="36.0" prefWidth="32.0" style="-fx-background-radius: 200; -fx-background-color: FEFEFE;" stylesheets="@register.css">
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -46,7 +39,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="ModifierUtulisateur" layoutX="638.0" layoutY="379.0" mnemonicParsing="false" onAction="#ModifierUtulisateur" style="-fx-background-color: FEFEFE;" textFill="#e7dfdf">
+      <Button fx:id="ModifierUtulisateur" layoutX="637.0" layoutY="356.0" mnemonicParsing="false" onAction="#ModifierUtulisateur" style="-fx-background-color: FEFEFE;" textFill="#e7dfdf">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -55,8 +48,8 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="AjouterAd" layoutX="549.0" layoutY="384.0" mnemonicParsing="false" onAction="#AjouterAd" prefHeight="26.0" prefWidth="44.0" style="-fx-background-color: #fefefe;" />
-      <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="557.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="AjouterAd" layoutX="553.0" layoutY="361.0" mnemonicParsing="false" onAction="#AjouterAd" prefHeight="26.0" prefWidth="44.0" style="-fx-background-color: #fefefe;" />
+      <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="562.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ajout.png" />
          </image>

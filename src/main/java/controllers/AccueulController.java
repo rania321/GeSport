@@ -1,0 +1,14 @@
+package controllers;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+public class AccueulController {
+
+
+    public Button GoCompte;
+
+    public void GoCompte(ActionEvent event) {
+    }
+}

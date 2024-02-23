@@ -3,40 +3,48 @@ package controllers;
 import Services.UserService;
 import entities.User;
 import entities.role;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import javafx.scene.control.Button;
+
+
 import java.io.IOException;
 
 public class LoginUserControllers {
-   /* @FXML
-    private TextField EmailU;
+    public javafx.scene.control.TextField EmailU;
+    public javafx.scene.control.TextField PasswordU;
 
     @FXML
     private Button LoginButton;
 
-    @FXML
-    private TextField PasswordU;
+
     @FXML
     private Button goRegister;
     private UserService userService = new UserService();
 
 
     @FXML
-    void goregister(ActionEvent event) {
+    public void goregister(javafx.event.ActionEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("register_interface.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPersonne.fxml"));
             loader.load();
             // Vous pouvez également obtenir le contrôleur de l'interface d'inscription ici si nécessaire
 
             // Rediriger vers l'interface d'inscription
-            // Parent root = loader.getRoot();
-            // Stage stage = (Stage) goRegister.getScene().getWindow();
-            // stage.setScene(new Scene(root));
-            // stage.show();
+            Parent root=loader.load();
+            Scene scene=new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("AjouterPersonne.fxml");
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,7 +52,74 @@ public class LoginUserControllers {
     }
 
     @FXML
-    void LoginButton(ActionEvent event) {
+
+    /*private void loadAdminInterface(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashbordBack.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadUserInterface(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    private void loadAdminInterface(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashbordBack.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage(); // Créez une nouvelle instance de Stage
+            stage.setScene(new Scene(root));
+            stage.setTitle("Interface d'administration"); // Titre de la fenêtre
+            stage.show();
+
+            // Fermez la fenêtre actuelle si nécessaire
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void loadUserInterface(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage(); // Créez une nouvelle instance de Stage
+            stage.setScene(new Scene(root));
+            stage.setTitle("Interface utilisateur"); // Titre de la fenêtre
+            stage.show();
+
+            // Fermez la fenêtre actuelle si nécessaire
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void alertError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de connexion");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void LoginButton(javafx.event.ActionEvent event) {
         String email = EmailU.getText();
         String password = PasswordU.getText();
 
@@ -52,15 +127,15 @@ public class LoginUserControllers {
         User loggedInUser = userService.login(email, password);
         if (loggedInUser != null) {
             // Connexion réussie
-            role Role = loggedInUser.getRole();
-            switch (role) {
-                case ADMIN:
+            role role1 = loggedInUser.getRoleU();
+            switch (role1) {
+                case Admin:
                     // Rediriger vers l'interface d'administration
-                    loadAdminInterface();
+                    loadAdminInterface(event);
                     break;
-                case USER:
+                case utulisateur:
                     // Rediriger vers l'interface utilisateur
-                    loadUserInterface();
+                    loadUserInterface(event);
                     break;
                 default:
                     // Gérer les autres rôles si nécessaire
@@ -71,43 +146,6 @@ public class LoginUserControllers {
             alertError("Identifiants invalides. Veuillez réessayer.");
         }
     }
-    private void loadAdminInterface() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("admin_interface.fxml"));
-            loader.load();
-            // Vous pouvez également obtenir le contrôleur de l'interface admin ici si nécessaire
 
-            // Rediriger vers l'interface admin
-            // Parent root = loader.getRoot();
-            // Stage stage = (Stage) LoginButton.getScene().getWindow();
-            // stage.setScene(new Scene(root));
-            // stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private void loadUserInterface() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("user_interface.fxml"));
-            loader.load();
-            // Vous pouvez également obtenir le contrôleur de l'interface utilisateur ici si nécessaire
-
-            // Rediriger vers l'interface utilisateur
-            // Parent root = loader.getRoot();
-            // Stage stage = (Stage) LoginButton.getScene().getWindow();
-            // stage.setScene(new Scene(root));
-            // stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void alertError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erreur de connexion");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }*/
 }

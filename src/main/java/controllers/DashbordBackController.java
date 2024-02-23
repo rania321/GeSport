@@ -19,7 +19,7 @@ public class DashbordBackController {
         Scene scene=new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setTitle("Ajouter personne");
+        stage.setTitle("AfficherUser.fxml");
         stage.show();
     }
 
