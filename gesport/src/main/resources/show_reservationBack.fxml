@@ -6,81 +6,61 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.show_reservationBackController">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="18.0" prefHeight="765.0" prefWidth="200.0" stylesheets="@style.css">
-         <styleClass>
-            <String fx:value="radius" />
-            <String fx:value="shadow" />
-            <String fx:value="menu-bar" />
-         </styleClass>
-         <children>
-            <Button fx:id="toActivite" layoutX="25.0" layoutY="278.0" mnemonicParsing="false" onAction="#toActivite" prefHeight="37.0" prefWidth="168.0" styleClass="transparent" stylesheets="@style.css" text="Activités" textFill="WHITE">
-               <font>
-                  <Font name="Arial Black" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/reservation%20(1).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="menu" alignment="CENTER" layoutX="39.0" layoutY="59.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="91.0" prefWidth="89.0" styleClass="transparent" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fitHeight="117.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/logo1.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="242.0" layoutY="18.0" prefHeight="765.0" prefWidth="1026.0" stylesheets="@style.css">
+      <ImageView fitHeight="800.0" fitWidth="1320.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/reservationBack.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="toActivite" layoutX="52.0" layoutY="186.0" mnemonicParsing="false" onAction="#toActivite" prefHeight="37.0" prefWidth="168.0" styleClass="transparent" stylesheets="@style.css" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="menu" alignment="CENTER" layoutX="23.0" layoutY="32.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="54.0" prefWidth="59.0" styleClass="transparent" stylesheets="@style.css" />
+      <AnchorPane layoutX="287.0" layoutY="129.0" prefHeight="610.0" prefWidth="963.0" stylesheets="@style.css">
          <styleClass>
             <String fx:value="white-bg" />
-            <String fx:value="radius" />
             <String fx:value="shadow" />
          </styleClass>
          <children>
-            <Label layoutX="50.0" layoutY="78.0" text="Toutes les Réservations" textFill="#17447a">
+            <Label layoutX="313.0" layoutY="80.0" text="Toutes les Réservations" textFill="#17447a">
                <font>
                   <Font name="Arial Black" size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="TableViewR" layoutX="140.0" layoutY="143.0" prefHeight="398.0" prefWidth="746.0">
+            <TableView fx:id="TableViewR" layoutX="270.0" layoutY="136.0" prefHeight="398.0" prefWidth="671.0">
                <columns>
-                  <TableColumn fx:id="CVClientR" prefWidth="148.0" text="Client" />
-                  <TableColumn fx:id="CVActiviteR" prefWidth="153.0" text="Activité" />
-                  <TableColumn fx:id="CVDateR" minWidth="3.0" prefWidth="136.0" text="Date" />
-                  <TableColumn fx:id="CVHeureR" minWidth="0.0" prefWidth="141.0" text="Heure" />
-                  <TableColumn fx:id="CVStatutR" prefWidth="163.0" text="Statut" />
+                  <TableColumn fx:id="CVClientR" prefWidth="128.0" text="Client" />
+                  <TableColumn fx:id="CVActiviteR" prefWidth="149.0" text="Activité" />
+                  <TableColumn fx:id="CVDateR" minWidth="3.0" prefWidth="115.0" text="Date" />
+                  <TableColumn fx:id="CVHeureR" minWidth="0.0" prefWidth="99.0" text="Heure" />
+                  <TableColumn fx:id="CVStatutR" prefWidth="175.0" text="Statut" />
                </columns>
             </TableView>
-            <ComboBox fx:id="CBStatutR" layoutX="140.0" layoutY="597.0" prefWidth="150.0" />
-            <Label layoutX="140.0" layoutY="569.0" prefHeight="17.0" prefWidth="130.0" text="Statut">
+            <ComboBox fx:id="CBStatutR" layoutX="35.0" layoutY="177.0" prefWidth="150.0" />
+            <Label layoutX="35.0" layoutY="151.0" prefHeight="17.0" prefWidth="130.0" text="Statut">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="annulerR" layoutX="833.0" layoutY="574.0" mnemonicParsing="false" onAction="#delete_reservation" styleClass="white-bg" stylesheets="@style.css">
+            <Button fx:id="annulerR" layoutX="100.0" layoutY="242.0" mnemonicParsing="false" onAction="#delete_reservation" styleClass="white-bg" stylesheets="@style.css">
                <graphic>
-                  <ImageView fx:id="IVBtnDelete" fitHeight="39.0" fitWidth="37.0">
+                  <ImageView fx:id="IVBtnDelete" fitHeight="36.0" fitWidth="32.0">
                      <image>
                         <Image url="@img/btn-delete.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="updateR" layoutX="295.0" layoutY="569.0" mnemonicParsing="false" onAction="#update_reservation" prefHeight="60.0" prefWidth="59.0" styleClass="white-bg" stylesheets="@style.css">
+            <Button fx:id="updateR" layoutX="35.0" layoutY="234.0" mnemonicParsing="false" onAction="#update_reservation" prefHeight="60.0" prefWidth="59.0" styleClass="white-bg" stylesheets="@style.css">
                <graphic>
                   <ImageView fx:id="IVBtnUpdate" fitHeight="39.0" fitWidth="37.0">
                      <image>
@@ -89,6 +69,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <TextField layoutX="725.0" layoutY="86.0" prefHeight="25.0" prefWidth="193.0" promptText="Search" />
          </children>
       </AnchorPane>
    </children>

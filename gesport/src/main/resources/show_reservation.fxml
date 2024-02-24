@@ -14,43 +14,58 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.show_reservationController">
    <children>
-      <ImageView fitHeight="810.0" fitWidth="1310.0" pickOnBounds="true">
+      <ImageView fitHeight="800.0" fitWidth="1300.0" pickOnBounds="true">
          <image>
-            <Image url="@img/activitétaswira.png" />
+            <Image url="@img/réservation.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="5.0" layoutY="28.0" prefHeight="800.0" prefWidth="1300.0">
+      <AnchorPane layoutX="5.0" layoutY="28.0" prefHeight="775.0" prefWidth="1300.0">
          <children>
-            <AnchorPane layoutX="68.0" layoutY="142.0" prefHeight="516.0" prefWidth="321.0" stylesheets="@style.css">
+            <ImageView fx:id="imageviewR" fitHeight="464.0" fitWidth="691.0" layoutX="45.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/photoreserv.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="796.0" layoutY="205.0" prefHeight="413.0" prefWidth="462.0" stylesheets="@style.css">
+               <children>
+                  <TableView fx:id="TableViewR" layoutX="40.0" layoutY="41.0" prefHeight="330.0" prefWidth="407.0" styleClass="transparent" stylesheets="@style.css">
+                     <columns>
+                        <TableColumn fx:id="CVActiviteR" prefWidth="108.0" text="Activité" />
+                        <TableColumn fx:id="CVDateR" minWidth="3.0" prefWidth="94.0" text="Date" />
+                        <TableColumn fx:id="CVHeureR" minWidth="0.0" prefWidth="87.0" text="Heure" />
+                        <TableColumn fx:id="CVStatutR" maxWidth="212.0" prefWidth="114.0" text="Statut" />
+                     </columns>
+                  </TableView>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+               </styleClass>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorpanemodifier" layoutX="72.0" layoutY="203.0" prefHeight="418.0" prefWidth="267.0" stylesheets="@style.css">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
-                  <String fx:value="radius" />
                </styleClass>
                <children>
-                  <DatePicker fx:id="dateR" layoutX="49.0" layoutY="258.0" onAction="#checkDate" prefHeight="27.0" prefWidth="196.0" />
-                  <Label layoutX="49.0" layoutY="220.0" text="Choisissez la date">
+                  <DatePicker fx:id="dateR" layoutX="31.0" layoutY="176.0" onAction="#checkDate" prefHeight="27.0" prefWidth="196.0" />
+                  <Label layoutX="31.0" layoutY="132.0" text="Choisissez la date">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="choisirHeure" layoutX="49.0" layoutY="306.0" prefHeight="17.0" prefWidth="130.0" text="Choisissez l'heure" visible="false">
+                  <Label fx:id="choisirHeure" layoutX="32.0" layoutY="226.0" prefHeight="17.0" prefWidth="130.0" text="Choisissez l'heure" visible="false">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="heureR" layoutX="49.0" layoutY="340.0" prefHeight="27.0" prefWidth="196.0" stylesheets="@style.css" visible="false" />
-                  <Label layoutX="49.0" layoutY="141.0" prefHeight="17.0" prefWidth="130.0" text="L'activité choisie :">
+                  <ComboBox fx:id="heureR" layoutX="31.0" layoutY="261.0" prefHeight="27.0" prefWidth="196.0" stylesheets="@style.css" visible="false" />
+                  <Label layoutX="28.0" layoutY="48.0" prefHeight="17.0" prefWidth="130.0" text="L'activité choisie :">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="49.0" layoutY="49.0" text="Voulez vous modifier?" textFill="#17447a">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="annulerR" layoutX="91.0" layoutY="393.0" mnemonicParsing="false" onAction="#delete_reservation" styleClass="white-bg" stylesheets="@style.css">
+                  <Button fx:id="annulerR" layoutX="76.0" layoutY="319.0" mnemonicParsing="false" onAction="#delete_reservation" styleClass="white-bg" stylesheets="@style.css">
                      <graphic>
                         <ImageView fx:id="IVBtnDelete" fitHeight="39.0" fitWidth="37.0">
                            <image>
@@ -59,7 +74,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="updateR" layoutX="144.0" layoutY="387.0" mnemonicParsing="false" onAction="#update_reservation" prefHeight="60.0" prefWidth="59.0" styleClass="white-bg" stylesheets="@style.css">
+                  <Button fx:id="updateR" layoutX="133.0" layoutY="313.0" mnemonicParsing="false" onAction="#update_reservation" prefHeight="60.0" prefWidth="59.0" styleClass="white-bg" stylesheets="@style.css">
                      <graphic>
                         <ImageView fx:id="IVBtnUpdate" fitHeight="39.0" fitWidth="37.0">
                            <image>
@@ -68,37 +83,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label fx:id="activiteR1" layoutX="49.0" layoutY="171.0" prefHeight="34.0" prefWidth="217.0">
+                  <Label fx:id="activiteR1" layoutX="36.0" layoutY="76.0" prefHeight="34.0" prefWidth="217.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="419.0" layoutY="142.0" prefHeight="516.0" prefWidth="803.0" stylesheets="@style.css">
-               <styleClass>
-                  <String fx:value="white-bg" />
-                  <String fx:value="shadow" />
-                  <String fx:value="radius" />
-               </styleClass>
-               <children>
-                  <Label layoutX="28.0" layoutY="42.0" text="Mes Réservations" textFill="#17447a">
-                     <font>
-                        <Font name="Arial Black" size="18.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="TableViewR" layoutX="28.0" layoutY="97.0" prefHeight="398.0" prefWidth="746.0" stylesheets="@style.css">
-                     <columns>
-                        <TableColumn fx:id="CVActiviteR" prefWidth="176.0" text="Activité" />
-                        <TableColumn fx:id="CVDateR" minWidth="3.0" prefWidth="185.0" text="Date" />
-                        <TableColumn fx:id="CVHeureR" minWidth="0.0" prefWidth="199.0" text="Heure" />
-                        <TableColumn fx:id="CVStatutR" prefWidth="182.0" text="Statut" />
-                     </columns>
-                     <styleClass>
-                        <String fx:value="table-row-cell" />
-                        <String fx:value="table-view" />
-                     </styleClass>
-                  </TableView>
                </children>
             </AnchorPane>
             <Button layoutX="276.0" layoutY="13.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
@@ -131,6 +120,11 @@
                   <Font name="Walkway Bold" size="17.0" />
                </font>
             </Button>
+            <ImageView fx:id="imageviewUpdate" fitHeight="413.0" fitWidth="407.0" layoutX="357.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/photoModifier.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

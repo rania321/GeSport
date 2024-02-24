@@ -19,8 +19,7 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         // Charger le fichier CSS

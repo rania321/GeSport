@@ -146,6 +146,13 @@
     -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
     -fx-font-family: "Walkway Bold", sans-serif;
 }
+
+.round-buttonMenu2 {
+    -fx-background-radius: 30;
+    -fx-background-color: #17447a; /* Jaune */
+    -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
+    -fx-font-family: "Walkway Bold", sans-serif;
+}
 .round-buttonMenu1:hover {
     -fx-background-color: #1b75bb; /* Bleu au survol */
 }

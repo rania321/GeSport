@@ -65,8 +65,7 @@ public class show_reservationBackController {
     public void initialize() throws IOException {
         // Initialiser le ComboBox avec des données
         ObservableList<String> options = FXCollections.observableArrayList(
-                "confirmée",
-                "annulée"
+                "confirmée"
         );
         CBStatutR.setItems(options);
 

@@ -24,9 +24,11 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class add_activiteController {
 
@@ -86,7 +88,7 @@ public class add_activiteController {
     @FXML
     private ComboBox<String> CBdispoA;
 
-
+    String uploadedPhotoName ;
 
     public void initialize() throws IOException {
         // Initialiser le ComboBox avec des données
@@ -96,7 +98,7 @@ public class add_activiteController {
         );
         CBdispoA.setItems(options);
 
-        TableViewA.setOnMouseClicked(event -> {
+       TableViewA.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // Vérifie si c'est un simple clic
                 Activite selectedActivite = TableViewA.getSelectionModel().getSelectedItem();
                 if (selectedActivite != null) {
@@ -118,6 +120,7 @@ public class add_activiteController {
         //nomid.setValue(a.getNom());
     }
 
+    private Activite activite;
     @FXML
     void add_activite(ActionEvent event) throws IOException {
         String nom = nomA.getText();
@@ -134,7 +137,25 @@ public class add_activiteController {
             alert.showAndWait();
             return; // Ne pas poursuivre si les champs obligatoires ne sont pas remplis
         }
-        as.add(new Activite(nom,type,dispo,descri,selectedFile.getName()));
+        if (selectedFile == null) {
+            // Afficher un message d'erreur si aucun fichier image n'est sélectionné
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de fichier image");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner un fichier image.");
+            alert.showAndWait();
+            return;
+        }
+        if (actList.stream().anyMatch(activite -> activite.getNomA().equals(nom))) {
+            // Activité avec le même nom existe déjà, afficher un message d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur d'ajout");
+            alert.setHeaderText(null);
+            alert.setContentText("Une activité avec le même nom existe déjà.");
+            alert.showAndWait();
+            return;
+        }
+        as.add(new Activite(nom,type,dispo,descri,selectedFile.getPath()));
         // Afficher un message de succès
         Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
         successAlert.setTitle("Message d'information");
@@ -143,54 +164,10 @@ public class add_activiteController {
         successAlert.showAndWait();
 
         ShowActivite();
-        if(selectedFile!=null)  {
-
-
-           /* imageUrl="http://localhost/images/"+selectedFile.getName();
-            String phpUrl = "http://localhost/images/upload.php";
-
-
-            // Read the image file data
-            byte[] imageData = Files.readAllBytes(selectedFile.toPath());
-
-            // Create the boundary string for the multipart request
-            String boundary = "---------------------------12345";
-            // Open the connection to the PHP script
-            URL url = new URL(phpUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
-
-            // Write the image file data to the output stream of the connection
-            OutputStream outputStream = connection.getOutputStream();
-            outputStream.write(("--" + boundary + "\r\n").getBytes());
-            outputStream.write(("Content-Disposition: form-data; name=\"file\"; filename=\"" + selectedFile.getName() + "\"\r\n").getBytes());
-            outputStream.write(("Content-Type: image/jpeg\r\n\r\n").getBytes());
-            outputStream.write(imageData);
-            outputStream.write(("\r\n--" + boundary + "--\r\n").getBytes());
-            outputStream.flush();
-            outputStream.close();
-
-            // Read the response from the PHP script
-            InputStream inputStream = connection.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-            reader.close();
-            as.add(new Activite(nomA.getText(),typeA.getText(),DispoA.getText(),DescriA.getText()));
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Successfully Added!");
-            alert.showAndWait();*/
-        }
     }
     @FXML
     void btnAddImgA_clicked(ActionEvent event) {
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       /* Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an image");
         fileChooser.getExtensionFilters().addAll(
@@ -200,13 +177,57 @@ public class add_activiteController {
         selectedFile = fileChooser.showOpenDialog(primaryStage);
         if(selectedFile!=null) {
             // Enregistrez l'URL de l'image dans le champ de texte pathimageid
-            pathimgA.setText(selectedFile.toURI().toString());
+            pathimgA.setText(selectedFile.getPath());
 
             // Chargez l'image depuis le fichier sélectionné
             Image image = new Image(selectedFile.toURI().toString());
 
+
             // Affichez l'image dans l'ImageView
             imageViewA.setImage(image);
+        }*/
+        FileChooser fileChooser = new FileChooser();
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg");
+
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            try {
+                String uniqueFileName = UUID.randomUUID().toString()+ selectedFile.getName();
+
+                File destDir = new File("C:\\xampp\\htdocs\\images");
+
+                File destFile = new File(destDir, uniqueFileName);
+
+                Files.copy(selectedFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                this.imageUrl = uniqueFileName;
+                // Enregistrez l'URL de l'image dans le champ de texte pathimageid
+                pathimgA.setText(selectedFile.getPath());
+
+                // Chargez l'image depuis le fichier sélectionné
+                Image image = new Image(selectedFile.toURI().toString());
+
+
+                // Affichez l'image dans l'ImageView
+                imageViewA.setImage(image);
+
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Upload Successful");
+                alert.setHeaderText(null);
+                alert.setContentText("Activity picture uploaded successfully.");
+                alert.showAndWait();
+
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Could not upload the file: " + e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 
@@ -227,9 +248,8 @@ public class add_activiteController {
             // Cast ticket_tableview to TableView<Ticket> and set its items
             ((TableView<Activite>) TableViewA).setItems(FXCollections.observableArrayList(actList));
         }
+
     }
-
-
 
     @FXML
     void update_activite(ActionEvent event) throws IOException {

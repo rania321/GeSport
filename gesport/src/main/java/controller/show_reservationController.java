@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import service.ReservationService;
 import service.UserService;
@@ -68,6 +69,16 @@ public class show_reservationController {
     @FXML
     private Label choisirHeure;
 
+    @FXML
+    private ImageView imageviewR;
+
+    @FXML
+    private ImageView imageviewUpdate;
+
+    @FXML
+    private AnchorPane anchorpanemodifier;
+
+
     ReservationService rs = new ReservationService();
     Reservation reservation = new Reservation();
 
@@ -78,13 +89,19 @@ public class show_reservationController {
                 "09:30","11:00","12:30","14:00","15:30","17:00"
         );
         heureR.setItems(options);
+        anchorpanemodifier.setVisible(false);
+        imageviewUpdate.setVisible(false);
 
         TableViewR.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // Vérifie si c'est un simple clic
                 Reservation selectedReservation = (Reservation) TableViewR.getSelectionModel().getSelectedItem();
                 if (selectedReservation != null) {
+                    anchorpanemodifier.setVisible(true);
+                    imageviewR.setVisible(false);
+                    imageviewUpdate.setVisible(true);
                     // Afficher les informations de la séance sélectionnée dans le formulaire
                     displayReservationInfo(selectedReservation);
+
                 }
             }
         });
@@ -159,6 +176,9 @@ public class show_reservationController {
 
                 // Rafraîchir l'affichage des activités dans la TableView
                 ShowReservation();
+                anchorpanemodifier.setVisible(false);
+                imageviewUpdate.setVisible(false);
+                imageviewR.setVisible(true);
             }
         } else {
             // Afficher un message si aucune activité n'est sélectionnée
@@ -210,6 +230,9 @@ public class show_reservationController {
                 rs.update(selectedReservation);
                 // Rafraîchir l'affichage des séances dans la TableView
                 ShowReservation();
+                anchorpanemodifier.setVisible(false);
+                imageviewUpdate.setVisible(false);
+                imageviewR.setVisible(true);
             }
         }
         else {
