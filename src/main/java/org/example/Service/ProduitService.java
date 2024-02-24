@@ -62,10 +62,9 @@ public class ProduitService implements IService <Produit>{
             ps.setFloat( 3,   p.getPrixP());
             ps.setInt(   4,   p.getStockP());
             ps.setDate(  5,   p.getDateAjoutP());
-            ps.setInt(   6,   p.getIdP());
-            ps.setString(7,   p.getImageP());
-            ps.setInt(8,   p.getReferenceP());
-
+            ps.setString(6,   p.getImageP());
+            ps.setInt(   7,   p.getReferenceP());
+            ps.setInt(   8,   p.getIdP());
 
             ps.executeUpdate();
             System.out.println("Produit modifié avec succes");

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" styleClass="backgroundbleu" stylesheets="@../java/values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="-1.0" layoutY="77.0" prefHeight="723.0" prefWidth="1307.0" styleClass="backgroundbleu" stylesheets="@../java/values/style.css">
@@ -46,7 +45,7 @@
                               <Font name="Calibri" size="21.0" />
                            </font>
                         </Label>
-                        <Label layoutX="92.0" layoutY="362.0" prefHeight="26.0" prefWidth="45.0" text="xx" textFill="WHITE">
+                        <Label fx:id="totalPa" layoutX="92.0" layoutY="362.0" prefHeight="26.0" prefWidth="45.0" text="xx" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="21.0" />
                            </font>
@@ -69,20 +68,20 @@
                         <String fx:value="white-bg" />
                      </styleClass>
                      <children>
-                        <ImageView fitHeight="124.0" fitWidth="171.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="178.0" layoutY="45.0" text="Nom produit" textFill="#17447a">
+                        <ImageView fx:id="imagepanier" fitHeight="124.0" fitWidth="171.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="nomPPa" layoutX="178.0" layoutY="45.0" text="Nom produit" textFill="#17447a">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label layoutX="178.0" layoutY="66.0" text="Description" textFill="#5d62e8" />
-                        <Label layoutX="478.0" layoutY="54.0" text="Prix ">
+                        <Label fx:id="DescPPa" layoutX="178.0" layoutY="66.0" text="Description" textFill="#5d62e8" />
+                        <Label fx:id="prixPPa" layoutX="478.0" layoutY="54.0" text="Prix ">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
                         <Label layoutX="506.0" layoutY="54.0" text="dt" textFill="#5d62e8" />
-                        <Label layoutX="553.0" layoutY="30.0" text="x" textFill="#f9b13d">
+                        <Label fx:id="suppPPa" layoutX="553.0" layoutY="30.0" text="x" textFill="#f9b13d">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -147,9 +146,9 @@
                         <String fx:value="shadow2" />
                      </styleClass>
                      <children>
-                        <ImageView fitHeight="25.0" fitWidth="74.0" layoutX="196.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgvisa" fitHeight="25.0" fitWidth="74.0" layoutX="196.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../Downloads/png-clipart-logo-visa-credit-card-wordmark-atm-card-visa-blue-text-removebg-preview.png" />
+                              <Image url="@../../../../../../../../../../xampp/htdocs/image/png-clipart-logo-visa-credit-card-wordmark-atm-card-visa-blue-text-removebg-preview.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="26.0" layoutY="41.0" text="_ _ _ _" textFill="WHITE">
