@@ -58,14 +58,14 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="77.0" layoutY="89.0" prefHeight="35.0" prefWidth="167.0" text="      PokeBowl " textAlignment="CENTER" textFill="#f9b13d">
+            <Label fx:id="nompAf" layoutX="54.0" layoutY="86.0" prefHeight="35.0" prefWidth="213.0" text="Choisissez un produit" textAlignment="CENTER" textFill="#f9b13d">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <Label layoutX="146.0" layoutY="139.0" prefHeight="17.0" prefWidth="28.0" text="12dt" textFill="WHITE">
+            <Label fx:id="prixpAf" layoutX="105.0" layoutY="141.0" prefHeight="36.0" prefWidth="92.0" text="    " textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
             </Label>
             <ImageView fitHeight="130.0" fitWidth="108.0" layoutX="106.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
@@ -73,7 +73,7 @@
                   <Image url="@../../../../../../../../Downloads/23fad750c30604b4350846efadbacc74-removebg-preview.png" />
                </image>
             </ImageView>
-            <Label fx:id="qtelb" layoutX="33.0" layoutY="379.0" prefHeight="17.0" prefWidth="88.0" text=" Quantité :" textFill="WHITE">
+            <Label fx:id="qtelb" layoutX="31.0" layoutY="379.0" prefHeight="17.0" prefWidth="88.0" text=" Quantité :" textFill="#f9b13d">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -97,6 +97,31 @@
             <Label layoutX="181.0" layoutY="549.0" text="Total : " textFill="WHITE" />
             <Label fx:id="totalclabel" layoutX="221.0" layoutY="549.0" prefHeight="17.0" prefWidth="44.0" text="0" textAlignment="RIGHT" textFill="WHITE" />
             <Label layoutX="270.0" layoutY="549.0" text="dt" textFill="WHITE" />
+            <Label fx:id="descrpAf1" layoutX="32.0" layoutY="454.0" prefHeight="88.0" prefWidth="256.0" text="    " textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="refpAf" layoutX="116.0" layoutY="548.0" prefHeight="20.0" prefWidth="60.0" text="   " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="548.0" prefHeight="20.0" prefWidth="81.0" text="Réference :" textFill="#f9b13d">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="descrpAf11" layoutX="33.0" layoutY="434.0" prefHeight="20.0" prefWidth="256.0" text="Description :" textFill="#f9b13d" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="197.0" layoutY="141.0" prefHeight="36.0" prefWidth="92.0" text="dt" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <ScrollPane fx:id="scroll" layoutX="370.0" layoutY="93.0" prefHeight="602.0" prefWidth="867.0" styleClass="shadow2" stylesheets="@../java/values/style.css">

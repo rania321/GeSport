@@ -89,6 +89,18 @@ public class ListerProduitController {
     private Button tournois;
 
     @FXML
+    private Label prixpAf;
+
+    @FXML
+    private Label nompAf;
+
+    @FXML
+    private Label descrpAf1;
+
+    @FXML
+    private Label refpAf;
+
+    @FXML
     private AnchorPane menu_formA;
     private File selectedFile;
 
@@ -156,6 +168,12 @@ public class ListerProduitController {
             affichageButton.setOnAction(event -> {
                 selectedProduit = produit;
                 System.out.println("Produit sélectionnée : " + selectedProduit);
+
+                nompAf.setText("" + selectedProduit.getNomP());
+                prixpAf.setText("" + selectedProduit.getPrixP());
+                descrpAf1.setText("" + selectedProduit.getDescriP());
+                refpAf.setText("" + selectedProduit.getReferenceP());
+
                 /*// Mettez ici la logique pour afficher l'interface de prise de rendez-vous
                 System.out.println("Bouton affichage cliqué pour : " + produit.getNomP());
                 // Ajoutez ici le code pour afficher l'interface de réservation
