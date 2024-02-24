@@ -88,7 +88,7 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button fx:id="ajoutpanier" layoutX="86.0" layoutY="586.0" mnemonicParsing="false" onAction="#ajoutpanier" prefHeight="25.0" prefWidth="129.0" styleClass="search-button" text="Ajouter au panier" textFill="#f8f8f8">
+            <Button fx:id="ajoutpanier" layoutX="86.0" layoutY="586.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" styleClass="search-button" text="Ajouter au panier" textFill="#f8f8f8">
                <opaqueInsets>
                   <Insets bottom="30.0" />
                </opaqueInsets>

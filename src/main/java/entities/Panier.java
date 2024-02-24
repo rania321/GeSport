@@ -13,6 +13,11 @@ public class Panier {
         this.quantiteP = quantiteP;
         this.totalPa = totalPa;
     }
+    public Panier(int idP, int quantiteP, float totalPa) {
+        this.idP = idP;
+        this.quantiteP = quantiteP;
+        this.totalPa = totalPa;
+    }
 
     public int getIdV() {
         return idV;

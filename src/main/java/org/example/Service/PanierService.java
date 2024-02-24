@@ -16,7 +16,7 @@ public class PanierService implements IService <Panier>{
 
     @Override
     public void add(Panier pa) {
-        String requete= "insert into panier (idP,idV,quantiteP,totalPa) values (?,?,?,?,?,?,?)";
+        String requete= "insert into panier (idP,idV,quantiteP,totalPa) values (?,?,?,?)";
         try {
             PreparedStatement pst = con.prepareStatement(requete);
 

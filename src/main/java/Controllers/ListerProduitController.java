@@ -1,5 +1,6 @@
 package Controllers;
 
+import entities.Panier;
 import entities.Produit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import org.example.Service.PanierService;
 import org.example.Service.ProduitService;
 import javafx.stage.Stage;
 
@@ -110,6 +112,10 @@ public class ListerProduitController {
     List<Produit> produits = ps.readAll();
     //Produit produit = new Produit();
 
+    private Panier panier;
+    private PanierService pas = new PanierService();
+
+
     private int va =0;
 
     public void initialize(){
@@ -152,8 +158,8 @@ public class ListerProduitController {
         try {
             Image image = new Image(new File(produit.getImageP()).toURI().toString());
             imageView.setImage(image);
-            imageView.setFitWidth(300);  // Définir la largeur selon vos besoins
-            imageView.setFitHeight(200); // Définir la hauteur selon vos besoins
+            imageView.setFitWidth(300);  // largeur
+            imageView.setFitHeight(200); // hauteur
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -173,6 +179,7 @@ public class ListerProduitController {
                 prixpAf.setText("" + selectedProduit.getPrixP());
                 descrpAf1.setText("" + selectedProduit.getDescriP());
                 refpAf.setText("" + selectedProduit.getReferenceP());
+
 
                 /*// Mettez ici la logique pour afficher l'interface de prise de rendez-vous
                 System.out.println("Bouton affichage cliqué pour : " + produit.getNomP());
@@ -209,6 +216,21 @@ public class ListerProduitController {
             affichageButton.getStyleClass().add("round-buttonMenu1");
 
             vbox.getChildren().add(affichageButton);
+
+            ajoutpanier.setOnAction(event -> {
+                try {
+                    int quantite = Integer.parseInt(qteproduit.getText());
+                    float total = Float.parseFloat(totalclabel.getText());
+
+                    Panier pa = new Panier(9, selectedProduit.getIdP(), quantite, total);
+                    pas.add(pa);
+                    System.out.println("Ajout au panier effectuer avec succes ");
+
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            });
+
         }
         vbox.setAlignment(Pos.CENTER);
         return vbox;
@@ -244,10 +266,7 @@ public class ListerProduitController {
 
     }
 
-    @FXML
-    void ajoutpanier(ActionEvent event) {
 
-    }
 /*---------------------controller quantité----------------------------------------------------------------*/
     @FXML
     void getqteproduit(ActionEvent event) {
@@ -265,7 +284,7 @@ public class ListerProduitController {
         if (va > 0) {
             va--;
             System.out.println("Quantité : " + va);
-            qteproduit.setText(" " + va);
+            qteproduit.setText(String.valueOf(va));
         }
     }
 
@@ -273,7 +292,7 @@ public class ListerProduitController {
     void plusqte(ActionEvent event) {
         va++;
         System.out.println("Quantité : " + va);
-        qteproduit.setText(" " + va);
+        qteproduit.setText(String.valueOf(va));
     }
     /*---------------------controller quantité----------------------------------------------------------------*/
 
