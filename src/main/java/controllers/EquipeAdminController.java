@@ -4,16 +4,21 @@ import entities.Equipe;
 import entities.Tournoi;
 import entities.User;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import service.EquipeService;
+import service.JoueurService;
 import service.TournoiService;
 import service.UserService;
 
@@ -27,17 +32,18 @@ import java.util.List;
 public class EquipeAdminController {
     private List<Equipe> Elist;
     private final EquipeService es = new EquipeService();
+    private final JoueurService js= new JoueurService();
     private final Equipe equipe = new Equipe();
+    private final TournoiService tournoiService = new TournoiService();
+
     @FXML
     private TableView<Equipe> equipeTable;
-    @FXML
-    private TableColumn<Equipe, Integer> idColumn;
 
     @FXML
-    private TableColumn<Equipe, Integer> idTColumn;
+    private TableColumn<Equipe, String> TColumn;
 
     @FXML
-    private TableColumn<Equipe, Integer> idUColumn;
+    private TableColumn<Equipe, String> nomUColumn;
 
     @FXML
     private TableColumn<Equipe, String> nomColumn;
@@ -46,11 +52,6 @@ public class EquipeAdminController {
     private TableColumn<Equipe, String> statutColumn;
 
 
-    @FXML
-    private TextField idE;
-
-    @FXML
-    private TextField idTE;
 
     @FXML
     private TextField idUE;
@@ -61,13 +62,23 @@ public class EquipeAdminController {
     @FXML
     private TextField statutE;
 
+    @FXML
+    private ComboBox<String> nomT;
+
 
     public void showEquipe() throws IOException {
         Elist = es.readAll();
-        idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIdE()).asObject());
         nomColumn.setCellValueFactory(new PropertyValueFactory<Equipe, String>("nomE"));
-        idTColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getTournoi().getIdT()).asObject());
-        idUColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getUser().getIdU()).asObject());
+        TColumn.setCellValueFactory(cellData -> {
+            Equipe equipe = cellData.getValue();
+            String nomTournoi = equipe.getTournoi().getNomT();
+            return new SimpleStringProperty(nomTournoi);
+        });
+        nomUColumn.setCellValueFactory(cellData -> {
+            Equipe equipe = cellData.getValue();
+            String nomUser = equipe.getUser().getPrenomU();
+            return new SimpleStringProperty(nomUser);
+        });
         statutColumn.setCellValueFactory(new PropertyValueFactory<Equipe, String>("statutE"));
 
         if (equipeTable != null && equipeTable instanceof TableView<Equipe>) {
@@ -76,11 +87,20 @@ public class EquipeAdminController {
 
     }
 
+    public void initialize() {
+        List<String> tournoiNames = tournoiService.readAllNames();
+        ObservableList<String> observableNames = FXCollections.observableArrayList(tournoiNames);
+        nomT.setItems(observableNames);}
+
+
     @FXML
     void ajouter(ActionEvent event) {
 
         String nom = nomE.getText();
-        int IDTE = Integer.parseInt(idTE.getText());
+        // Récupérer l'ID du tournoi sélectionné dans la ComboBox
+        String nomTournoi = nomT.getValue();
+        int IDTE = tournoiService.getIdByName(nomTournoi);
+
         int IDUE = Integer.parseInt(idUE.getText());
         String Statut = statutE.getText();
 
@@ -89,23 +109,23 @@ public class EquipeAdminController {
         TournoiService tournoiService = new TournoiService();
         UserService userservice = new UserService();
 
-        // Lecture des objets Tournoi et User en fonction de leurs identifiants
+        // read by id Tournoi et User
         Tournoi tournoi = tournoiService.readById(IDTE);
         User user = userservice.readById(IDUE);
 
-        // Création de l'équipe avec les objets Tournoi et User récupérés
+        // Création équipe avec Tournoi et User récupérés
         Equipe e = new Equipe(nom, tournoi, user, Statut);
 
-        // Ajout de l'équipe
+
         equipeService.add(e);
 
-        // Mettre à jour la liste des equipes depuis le service
+        // maj
         List<Equipe> equipes = equipeService.readAll();
 
-        // Mettre à jour les données de la TableView
+        //maj TableView
         equipeTable.getItems().setAll(equipes);
 
-        // Afficher une alerte de succès
+        // alerte succès
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Succès");
         alert.setHeaderText(null);
@@ -117,11 +137,10 @@ public class EquipeAdminController {
     void selection(MouseEvent event) {
         Equipe selectedEquipe = equipeTable.getSelectionModel().getSelectedItem();
         if (selectedEquipe != null) {
-            // Remplir les champs avec les informations du tournoi sélectionné
+            // Remplir les champs avec  tournoi sélectionné
             nomE.setText(selectedEquipe.getNomE());
-            idTE.setText(String.valueOf(selectedEquipe.getTournoi().getIdT())); // Convertir l'entier en chaîne de caractères
+            // nomT.setValue(selectedEquipe.getTournoi().getNomT());
             idUE.setText(String.valueOf(selectedEquipe.getUser().getIdU()));
-            idE.setText(String.valueOf(selectedEquipe.getIdE()));
             statutE.setText(selectedEquipe.getStatutE());
 
 
@@ -129,14 +148,16 @@ public class EquipeAdminController {
     }
     @FXML
     void supprimer(ActionEvent event)  {
-        // Récupérer la ligne sélectionnée dans la TableView
+        // Récupérer la ligne sélectionnée
         Equipe equipe = equipeTable.getSelectionModel().getSelectedItem();
 
         if (equipe != null) {
-            // Appeler la méthode de suppression de la ligne
+            // Supprimer les joueurs associés à l'équipe
+            js.deleteJoueursByEquipeId(equipe.getIdE());
             supprimerLigne(equipe);
+            es.delete(equipe);
         } else {
-            // Afficher un message d'erreur si aucune ligne n'est sélectionnée
+            // message d'erreur
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
@@ -148,22 +169,23 @@ public class EquipeAdminController {
 
     private void supprimerLigne(Equipe equipe) {
 
-        // Suppression de la ligne sélectionnée
+        // Supp ligne sélectionnée
         equipeTable.getItems().remove(equipe);
-        // Appel à la méthode de suppression dans le service
+
         es.delete(equipe);
 
 
     }
     @FXML
     void modifier(ActionEvent event) {
-        // Vérifier si un élément est sélectionné dans la TableView
+        // Vérifier élément sélectionné
         Equipe equipeSelectionne = equipeTable.getSelectionModel().getSelectedItem();
         if (equipeSelectionne != null) {
-            // Récupérer les valeurs des champs de texte
+            // Récupérer les valeurs
             String nom = nomE.getText();
             String statut = statutE.getText();
-            int IDTE = Integer.parseInt(idTE.getText());
+            String nomTournoi = nomT.getValue();
+            int IDTE = tournoiService.getIdByName(nomTournoi);
             int IDUE = Integer.parseInt(idUE.getText());
 
             TournoiService tournoiService = new TournoiService();
@@ -173,7 +195,7 @@ public class EquipeAdminController {
             User user = userService.readById(IDUE);
 
 
-            // Mettre à jour les informations de l equipe sélectionné
+            // maj  equipe sélectionné
             equipeSelectionne.setNomE(nom);
             equipeSelectionne.setTournoi(tournoi);
             equipeSelectionne.setUser(user);
@@ -182,21 +204,19 @@ public class EquipeAdminController {
 
 
 
-            // Mettre à jour la TableView avec les modifications
+            // maj TableView
             equipeTable.refresh();
 
-            //  appel  méthode de mise à jour dans le service
+            //  appel update
             EquipeService es = new EquipeService();
             es.update(equipeSelectionne);
 
-            // Réinitialiser les champs de texte après la modification
-            idE.clear();
             nomE.clear();
             statutE.clear();
             idUE.clear();
-            idTE.clear();
+            nomT.getSelectionModel().clearSelection();
         } else {
-            // Afficher un message d'erreur si aucun élément n'est sélectionné
+            // message d'erreur
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
@@ -205,15 +225,38 @@ public class EquipeAdminController {
         }
     }
 
+    public void backMenu(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterTournoi.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root, 1300, 800);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Menu");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
 
+    public void toTournoi(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherTournoi.fxml"));
+        Parent root = loader.load();
 
+        AfficherTournoiController controller = loader.getController();
+        controller.showTournoi();
 
+        // Créer une nouvelle scène avec la vue chargée
+        Scene scene = new Scene(root);
 
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Equipes");
 
-
-
+        stage.show();
+    }
+}
 
 
 

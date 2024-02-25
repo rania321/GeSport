@@ -1,41 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseClicked="#selection" prefHeight="612.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherTournoiController">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherTournoiController">
    <children>
-      <TableView fx:id="tournoiTable" layoutX="70.0" layoutY="67.0" onMouseClicked="#selection" prefHeight="220.0" prefWidth="580.0">
-        <columns>
-           <TableColumn fx:id="idColumn" text="ID tournoi" />
-           <TableColumn fx:id="nomColumn" text="Nom" />
-           <TableColumn fx:id="dateDebutColumn" text="Date Début" />
-           <TableColumn fx:id="dateFinColumn" text="Date Fin" />
-           <TableColumn fx:id="descriptionColumn" text="Description" />
-           <TableColumn fx:id="statutColumn" text="Statut" />
-        </columns>
-      </TableView>
-      <Button layoutX="615.0" layoutY="443.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
-      <TextField fx:id="nomT" layoutX="123.0" layoutY="368.0" />
-      <DatePicker fx:id="DdebutT" layoutX="125.0" layoutY="417.0" />
-      <DatePicker fx:id="DfinT" layoutX="125.0" layoutY="462.0" />
-      <TextField fx:id="DescriT" layoutX="360.0" layoutY="320.0" />
-      <TextField fx:id="StatutT" layoutX="360.0" layoutY="377.0" />
-      <Label layoutX="130.0" layoutY="350.0" text="Nom Tournoi " />
-      <Label layoutX="126.0" layoutY="397.0" text="Date debut" />
-      <Label layoutX="127.0" layoutY="443.0" text="Date Fin" />
-      <Label layoutX="366.0" layoutY="302.0" text="Description" />
-      <Label layoutX="366.0" layoutY="354.0" prefHeight="18.0" prefWidth="60.0" text="Statut" />
-      <Button layoutX="510.0" layoutY="443.0" mnemonicParsing="false" onAction="#modifier" text="modifier" />
-      <Button layoutX="439.0" layoutY="443.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
-      <TextField fx:id="idT" layoutX="123.0" layoutY="320.0" />
-      <Label layoutX="128.0" layoutY="302.0" text="ID Tournoi" />
-      <TextField fx:id="recherche" layoutX="141.0" layoutY="28.0" />
-      <Label layoutX="78.0" layoutY="32.0" text="recherche" />
+      <AnchorPane layoutX="232.0" layoutY="21.0" prefHeight="759.0" prefWidth="334.0" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="radius" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <children>
+            <Label layoutX="67.0" layoutY="65.0" prefHeight="37.0" prefWidth="200.0" text="Ajouter un Tournoi" textFill="#1e77bc">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nomT" layoutX="61.0" layoutY="160.0" prefHeight="25.0" prefWidth="238.0" />
+            <DatePicker fx:id="DdebutT" layoutX="61.0" layoutY="218.0" prefHeight="25.0" prefWidth="238.0" />
+            <DatePicker fx:id="DfinT" layoutX="60.0" layoutY="279.0" prefHeight="25.0" prefWidth="238.0" />
+            <TextField fx:id="DescriT" layoutX="60.0" layoutY="352.0" prefHeight="107.0" prefWidth="238.0" />
+            <TextField fx:id="StatutT" layoutX="61.0" layoutY="528.0" prefHeight="25.0" prefWidth="238.0" />
+            <Button layoutX="180.0" layoutY="625.0" mnemonicParsing="false" onAction="#modifier" prefHeight="37.0" prefWidth="76.0" text="modifier" />
+            <Button layoutX="80.0" layoutY="625.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="37.0" prefWidth="76.0" text="Ajouter" />
+            <Label layoutX="60.0" layoutY="128.0" prefHeight="17.0" prefWidth="48.0" text="Nom" textFill="#17447a">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="192.0" prefHeight="17.0" prefWidth="48.0" text="Date debut" textFill="#17447a">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="256.0" prefHeight="17.0" prefWidth="89.0" text="Date fin" textFill="#17447a">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="318.0" prefHeight="17.0" prefWidth="83.0" text="Description" textFill="#17447a">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="57.0" layoutY="501.0" prefHeight="17.0" prefWidth="83.0" text="Statut" textFill="#17447a">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="10.0" layoutY="21.0" prefHeight="765.0" prefWidth="200.0" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="radius" />
+            <String fx:value="shadow" />
+            <String fx:value="menu-bar" />
+         </styleClass>
+         <children>
+            <Button alignment="CENTER" layoutX="35.0" layoutY="59.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="91.0" prefWidth="89.0" styleClass="transparent" stylesheets="@../../../../activite/gesport/src/main/resources/style.css">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/logo1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="11.0" layoutY="288.0" mnemonicParsing="false" onAction="#toEquipe" prefHeight="37.0" prefWidth="168.0" styleClass="transparent" stylesheets="@../../../../activite/gesport/src/main/resources/style.css" text="Equipe">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="590.0" layoutY="21.0" prefHeight="759.0" prefWidth="695.0" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="radius" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <children>
+            <Label layoutX="22.0" layoutY="28.0" prefHeight="27.0" prefWidth="340.0" text="Trouvez tous les Tournoi ici :" textFill="#1e77bc">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tournoiTable" layoutX="29.0" layoutY="75.0" onMouseClicked="#selection" prefHeight="327.0" prefWidth="642.0">
+               <columns>
+                  <TableColumn fx:id="nomColumn" prefWidth="100.0" text="Nom" />
+                  <TableColumn fx:id="dateDebutColumn" prefWidth="100.0" text="Date Début" />
+                  <TableColumn fx:id="dateFinColumn" prefWidth="100.0" text="Date Fin" />
+                  <TableColumn fx:id="descriptionColumn" prefWidth="150.0" text="Description" />
+                  <TableColumn fx:id="statutColumn" prefWidth="140.0" text="Statut" />
+               </columns>
+            </TableView>
+            <Button layoutX="582.0" layoutY="423.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="37.0" prefWidth="76.0" text="supprimer" />
+            <Label layoutX="26.0" layoutY="427.0" prefHeight="27.0" prefWidth="340.0" text="Trouvez toutes les inscription ici :" textFill="#1e77bc">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Label>
+            <TableView fx:id="inscriTable" layoutX="36.0" layoutY="478.0" prefHeight="245.0" prefWidth="263.0">
+               <columns>
+                  <TableColumn fx:id="tournoiColumn" prefWidth="118.93328857421875" text="Tournoi" />
+                  <TableColumn fx:id="equipeColumn" prefWidth="141.86669921875" text="Equipe" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

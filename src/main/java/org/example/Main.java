@@ -1,19 +1,15 @@
 package org.example;
-import entities.Equipe;
-import entities.Tournoi;
-import entities.User;
-import service.EquipeService;
-import service.TournoiService;
-import service.UserService;
-import utils.DataSource;
+import entities.*;
+import service.*;
+
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ParseException {
 
 //*************************TOURNOI*****************************
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -86,21 +82,20 @@ public class Main {
 
         EquipeService Es = new EquipeService();
         TournoiService Ts = new TournoiService();
-        User u=new User();
-        UserService us= new UserService();
+        User u = new User();
+        UserService us = new UserService();
 //------------------------------------------------------------------------------------
 
 
-
         //ajouter equipe***********************
-        /*
 
+/*
         // Récupérez l'ID du tournoi existant
-        int idTournoi = 2;
+        int idTournoi = 34;
         int idUser = 3;
 
         // Récupérez l'objet  correspondant à l'ID
-        Tournoi tournoi = Ts.readById(idTournoi);
+       Tournoi tournoi = Ts.readById(idTournoi);
         User user= us.readById(idUser);
 
         // Créez une nouvelle équipe et associez-lui le tournoi choisi
@@ -110,8 +105,8 @@ public class Main {
         Es.add(nouvelleEquipe);
 
         System.out.println("Nouvelle équipe ajoutée avec succès !");
-
 */
+
 //____________________________________________________________________________________________________________________
         //SUPPRIMER equipe **********************************************************************
 
@@ -143,15 +138,11 @@ public class Main {
         }*/
 
 
-
-
-
-
 //-----------------------------------------------------------------------------------------------
 
         //afficher equipe ******************************************
 
-
+/*
 
       // Lire toutes les équipes
         List<Equipe> equipes = E.readAll();
@@ -160,7 +151,7 @@ public class Main {
         for (Equipe equipe : equipes) {
             System.out.println(equipe);
 
-        }
+        }*/
 
 
 //---------------------------------------------------------------------------------------
@@ -169,7 +160,7 @@ public class Main {
 
 
         // ID de l'équipe à lire
-      /* int idEquipe = 9;
+      /* int idEquipe = 66;
 
         Equipe equipe = E.readById(idEquipe);
 
@@ -179,11 +170,90 @@ public class Main {
         } else {
             System.out.println("Aucune équipe trouvée avec cet ID.");
         }
-          */
+*/
+
+
+        // Récupérer l'ID de l'équipe depuis une source quelconque
+     /*   int equipeId = 25;
+
+        // Recherche de l'équipe correspondante dans la base de données en utilisant l'ID
+        EquipeService equipeService = new EquipeService();
+        Equipe equipe = equipeService.readById(equipeId);
+
+        // Création d'un nouvel objet Joueur avec le nom "aaaaa" et l'équipe récupérée
+        Joueur joueur = new Joueur("aaaaa", equipe);
+
+        // Création d'une instance de JoueurService
+        JoueurService joueurService = new JoueurService();
+
+        try {
+            // Ajout du joueur à la base de données
+            joueurService.add(joueur);
+            System.out.println("Joueur ajouté avec succès !");
+        } catch (RuntimeException e) {
+            // Gestion des exceptions
+            System.err.println("Erreur lors de l'ajout du joueur : " + e.getMessage());
+            e.printStackTrace();
+      */
+
+
+
+
+
+/*
+        // Création d'une instance de InscriTournoiService
+        InscriTournoiService inscriTournoiService = new InscriTournoiService();
+        EquipeService equipeService = new EquipeService();
+
+        int idT = 33; // ID du tournoi spécifique
+        Tournoi tournoi = Ts.readById(idT);
+
+        // Récupérer toutes les équipes associées à ce tournoi
+        List<Equipe> equipes = equipeService.readAllEquipesByTournoiId(idT);
+
+        // Afficher les équipes récupérées
+        for (Equipe equipe : equipes) {
+            System.out.println("Equipe: " + equipe);
+        }
+
+        // Création et ajout des inscriptions pour chaque équipe
+        for (Equipe equipe : equipes) {
+            InscriTournoi inscriTournoiToAdd = new InscriTournoi(tournoi, equipe);
+            inscriTournoiService.add(inscriTournoiToAdd);
+        }
+
+*/
+        /*
+        InscriTournoiService inscriTournoiService = new InscriTournoiService();
+        // Récupérez l'ID du tournoi existant
+        int idTournoi = 34;
+        int idequipe  = 67;
+
+
+        Tournoi tournoi = Ts.readById(idTournoi);
+        Equipe equipe =Es.readById(idequipe);
+
+
+
+        // Création de l'inscription
+        InscriTournoi inscriTournoiToAdd = new InscriTournoi(tournoi, equipe);
+
+        // Ajout de l'inscription
+        inscriTournoiService.add(inscriTournoiToAdd);
+
+        System.out.println("Inscription ajoutée avec succès !");
+*/
 
 
 
 
     }
 }
+
+
+
+
+
+
+
 

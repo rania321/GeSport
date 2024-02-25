@@ -23,9 +23,9 @@ public class MainFX extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterTournoi.fxml"));
         Parent root = loader.load();
-        Scene scene =new Scene(root,700,500);
+        Scene scene =new Scene(root,1300,800);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Tournoi");
+        primaryStage.setTitle("dashboard");
         primaryStage.show();
 
     }
@@ -45,14 +45,14 @@ public class MainFX extends Application {
         controller.showTournoi();
 
 
-        Scene scene =new Scene(root,700,400);
+        Scene scene =new Scene(root,1300,800);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Tournoi");
         primaryStage.show();
 
     }*/
 
-   /*  @Override
+  /*  @Override
       public void start(Stage primaryStage) throws IOException {
           FXMLLoader loader = new FXMLLoader(getClass().getResource("/EquipeAdmin.fxml"));
           Parent root = loader.load();
@@ -70,7 +70,7 @@ public class MainFX extends Application {
       }*/
 
 
-   /* @Override
+    /* @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/EquipeClient.fxml"));
         Parent root = loader.load();
@@ -87,7 +87,6 @@ public class MainFX extends Application {
 
     }*/
 }
-
 
 
 

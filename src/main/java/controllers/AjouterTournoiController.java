@@ -1,106 +1,77 @@
 package controllers;
 
-import entities.Tournoi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import service.TournoiService;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 public class AjouterTournoiController {
 
-    private final TournoiService ts = new TournoiService();
-    private final Tournoi t = new Tournoi();
+    @FXML
+    private Button activite;
 
     @FXML
-    private DatePicker DdebutT;
+    private Button buvette;
 
     @FXML
-    private TextField DescriT;
+    private Button compte;
 
     @FXML
-    private DatePicker DfinT;
+    private Button logout;
 
     @FXML
-    private TextField StatutT;
+    private Button reclamation;
 
     @FXML
-    private TextField nomT;
-
-
-
+    private Button tournoi;
 
     @FXML
-    void ajouter(ActionEvent event) {
-        String nom = nomT.getText();
-        // Convertir les valeurs des DatePicker en java.util.Date
-        Date dateDebut = java.sql.Date.valueOf(DdebutT.getValue());
-        Date dateFin = java.sql.Date.valueOf(DfinT.getValue());
-        String Description = DescriT.getText();
-        String Statut = StatutT.getText();
-        Tournoi t = new Tournoi(nom,dateDebut,dateFin,Description,Statut);
-        TournoiService ts = new TournoiService();
-        ts.add(t);
-       // try {
-         //   ts.add(new Tournoi(nomT.getText(), dateDebut, dateFin, DescriT.getText(), StatutT.getText()));
-       // }catch ( RuntimeException e)
-       /* {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("error");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-        }*/
-        // Afficher une alerte de succès
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Succès");
-        alert.setHeaderText(null);
-        alert.setContentText("Le tournoi a été ajouté avec succès !");
-        alert.showAndWait();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherTournoi.fxml"));
-        try {
-            Parent root = loader.load();
-            AfficherTournoiController ac = loader.getController();
-            ac.showTournoi();
-            nomT.getScene().setRoot(root);
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
+    void activite(ActionEvent event) {
 
     }
 
     @FXML
-    void gerer(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherTournoi.fxml"));
-        try {
-            Parent root = loader.load();
-            AfficherTournoiController ac = loader.getController();
-            ac.showTournoi();
-            nomT.getScene().setRoot(root);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-
+    void compte(ActionEvent event) {
 
     }
 
+    @FXML
+    void reclamation(ActionEvent event) {
+
+    }
+
+    @FXML
+    void restaurant(ActionEvent event) {
+
+    }
+
+    @FXML
+    void tournoi(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherTournoi.fxml"));
+        Parent root = loader.load();
+        // Appel de showTournoi()
+        AfficherTournoiController controller = loader.getController();
+        controller.showTournoi();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root,1300,800);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Tournois");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+
+
+    }
 
 }

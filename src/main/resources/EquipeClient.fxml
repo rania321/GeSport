@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.EquipeClientController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EquipeClientController">
     <children>
-        <TableView fx:id="equipeTable" layoutX="262.0" layoutY="45.0"  prefHeight="200.0" prefWidth="448.0">
-        <columns>
-                <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID Equipe " />
-                <TableColumn fx:id="nomColumn" prefWidth="75.0" text="Nom" />
-                <TableColumn fx:id="idTColumn" prefWidth="75.0" text="ID Tournoi" />
-                <TableColumn fx:id="idUColumn" prefWidth="99.99993896484375" text="ID Utilisateur" />
-                <TableColumn fx:id="statutColumn" prefWidth="120.7999267578125" text="Statut" />
+        <TableView fx:id="equipeTable" layoutX="262.0" layoutY="15.0" prefHeight="388.0" prefWidth="450.0">
+            <columns>
+                <TableColumn fx:id="nomColumn" prefWidth="114.39996337890625" text="Nom Equipe" />
+                <TableColumn fx:id="TColumn" prefWidth="89.5999755859375" text="Tournoi" />
+                <TableColumn fx:id="nomUColumn" prefWidth="114.4000244140625" text="capitaine" />
+                <TableColumn fx:id="statutColumn" prefWidth="102.39996337890625" text="Statut" />
             </columns>
         </TableView>
-        <TextField fx:id="idE" layoutX="63.0" layoutY="62.0" />
-        <TextField fx:id="nomE" layoutX="63.0" layoutY="106.0" />
-        <TextField fx:id="idTE" layoutX="63.0" layoutY="155.0" />
-        <TextField fx:id="statutE" layoutX="63.0" layoutY="254.0" />
-        <Label layoutX="63.0" layoutY="41.0" text="ID Equipe" />
-        <Label layoutX="63.0" layoutY="88.0" text="Nom" />
-        <Label layoutX="63.0" layoutY="137.0" text="ID Tournoi" />
-        <Label layoutX="63.0" layoutY="236.0" text="Statut" />
-        <TextField fx:id="idUE" layoutX="64.0" layoutY="204.0" />
-        <Label layoutX="65.0" layoutY="187.0" text="ID Utilisateur" />
-        <Button layoutX="93.0" layoutY="312.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+        <TextField fx:id="nomE" layoutX="33.0" layoutY="43.0" />
+        <Label layoutX="33.0" layoutY="25.0" prefHeight="18.0" prefWidth="78.0" text="Nom Equipe" />
+        <TextField fx:id="idUE" layoutX="34.0" layoutY="141.0" />
+        <Label layoutX="35.0" layoutY="124.0" text="ID Utilisateur" />
+        <Button layoutX="162.0" layoutY="187.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+        <ComboBox fx:id="nomT" layoutX="33.0" layoutY="82.0" prefWidth="150.0" promptText="Tournoi" />
+        <TextField fx:id="joueur" layoutX="32.0" layoutY="245.0" />
+        <Button layoutX="183.0" layoutY="244.0" mnemonicParsing="false" onAction="#ajouterJ" prefHeight="26.0" prefWidth="28.0" text="+" />
+        <TableView fx:id="joueurTable" layoutX="35.0" layoutY="300.0" prefHeight="200.0" prefWidth="194.0">
+            <columns>
+                <TableColumn fx:id="nomJoueurColumn" prefWidth="199.19999313354492" text="joueurs" />
+            </columns>
+        </TableView>
 
     </children>
 

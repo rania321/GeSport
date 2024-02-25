@@ -112,4 +112,42 @@ public class TournoiService implements iService<Tournoi> {
             throw new RuntimeException(var4);
         }
     }
+
+
+    public List<String> readAllNames() {
+        String requete = "SELECT nomT FROM tournoi";
+        List<String> namesList = new ArrayList<>();
+
+        try {
+            this.ste = this.conn.createStatement();
+            ResultSet rs = this.ste.executeQuery(requete);
+
+            while(rs.next()) {
+                namesList.add(rs.getString(1));
+            }
+
+            return namesList;
+        } catch (SQLException var4) {
+            throw new RuntimeException(var4);
+        }
+    }
+
+    public int getIdByName(String nom) {
+        int id = -1; // Valeur par défaut si aucun tournoi avec ce nom n'est trouvé
+
+        String query = "SELECT idT FROM tournoi WHERE nomT = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, nom);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                id = resultSet.getInt("idT");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérer l'exception de manière appropriée
+        }
+
+        return id;
+    }
 }
