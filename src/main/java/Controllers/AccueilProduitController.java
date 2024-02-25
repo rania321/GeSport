@@ -79,7 +79,7 @@ public class AccueilProduitController {
 
     @FXML
     void restaurant(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduit.fxml"));
         Parent root = loader.load();
 
         // Créer une nouvelle scène
@@ -104,6 +104,8 @@ public class AccueilProduitController {
 
     public void activité(ActionEvent actionEvent) {
     }
+
+
 /*___________________________________________entete___________________________________________________*/
 
 }

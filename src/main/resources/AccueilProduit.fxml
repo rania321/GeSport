@@ -11,7 +11,7 @@
     <children>
         <ImageView fitHeight="800.0" fitWidth="1300.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@image/imagebuvettebackgroundaccueil.png" />
+            <Image url="@../../../../../../../../../../xampp/htdocs/image/buvettebackgroundaccueil.png" />
          </image>
         </ImageView>
         <Button layoutX="397.0" layoutY="109.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Activité" textFill="#3c3c3c">
@@ -19,14 +19,14 @@
                 <Font name="Walkway Bold" size="17.0" />
             </font>
         </Button>
-        <Button layoutX="289.0" layoutY="109.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Accueil" textFill="#3c3c3c">
-            <font>
-                <Font name="Walkway Bold" size="17.0" />
-            </font>
-        </Button>
-        <Button layoutX="601.0" layoutY="109.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Buvette" textFill="#f9b13d">
+        <Button layoutX="289.0" layoutY="109.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Accueil" textFill="#f9b13d">
             <font>
                 <Font name="System Bold" size="17.0" />
+            </font>
+        </Button>
+        <Button layoutX="601.0" layoutY="109.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Buvette">
+            <font>
+                <Font size="17.0" />
             </font>
         </Button>
         <Button layoutX="693.0" layoutY="109.0" mnemonicParsing="false" onAction="#tournois" prefHeight="38.0" prefWidth="120.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Tournois" textFill="#3c3c3c">

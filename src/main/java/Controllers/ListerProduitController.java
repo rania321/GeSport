@@ -85,6 +85,9 @@ public class ListerProduitController {
     private ImageView showpanier;
 
     @FXML
+    private ImageView imageaffp;
+
+    @FXML
     private Label totalclabel;
 
     @FXML
@@ -133,9 +136,9 @@ public class ListerProduitController {
             currentHBox.getChildren().add(vbox);
 
             // Créer une nouvelle ligne après chaque 3 activités
-            if (currentHBox.getChildren().size() == 3) {
+            if (currentHBox.getChildren().size() == 4) {
                 mainVBox.getChildren().add(currentHBox);
-                currentHBox = new HBox(20);
+                currentHBox = new HBox(40);
             }
         }
 
@@ -143,6 +146,7 @@ public class ListerProduitController {
         if (!currentHBox.getChildren().isEmpty()) {
             mainVBox.getChildren().add(currentHBox);
         }
+
 
         // Ajouter le VBox principal à votre conteneur parent (ScrollPane)
         scroll.setContent(mainVBox);
@@ -152,14 +156,14 @@ public class ListerProduitController {
         VBox vbox = new VBox();
 
         Label nomLabel = new Label(produit.getNomP());
-        Label prixLabel = new Label(Float.toString(produit.getPrixP()));
+        Label prixLabel = new Label(Float.toString(produit.getPrixP()) + "dt");
         ImageView imageView = new ImageView();
 
         try {
             Image image = new Image(new File(produit.getImageP()).toURI().toString());
             imageView.setImage(image);
-            imageView.setFitWidth(300);  // largeur
-            imageView.setFitHeight(200); // hauteur
+            imageView.setFitWidth(140);  // largeur
+            imageView.setFitHeight(140); // hauteur
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -168,7 +172,7 @@ public class ListerProduitController {
 
         vbox.getChildren().addAll(imageView,nomLabel, prixLabel);
 
-        // Ajouter un bouton de réservation
+        // Ajouter un bouton affichage
         if (produit.getStockP()!= 0) {
             Button affichageButton = new Button("Voir");
             affichageButton.setOnAction(event -> {
@@ -179,6 +183,8 @@ public class ListerProduitController {
                 prixpAf.setText("" + selectedProduit.getPrixP());
                 descrpAf1.setText("" + selectedProduit.getDescriP());
                 refpAf.setText("" + selectedProduit.getReferenceP());
+                Image image = new Image(new File(selectedProduit.getImageP()).toURI().toString());
+                imageaffp.setImage(image);
 
 
                 /*// Mettez ici la logique pour afficher l'interface de prise de rendez-vous
@@ -238,8 +244,20 @@ public class ListerProduitController {
 
 
     @FXML
-    void accueil(ActionEvent event) {
+    void accueil(javafx.event.ActionEvent actionEvent) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Buvette");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
     @FXML
@@ -257,8 +275,20 @@ public class ListerProduitController {
     }
 
     @FXML
-    void restaurant(ActionEvent event) {
+    public void restaurant(javafx.event.ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduit.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Buvette");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
     @FXML
@@ -296,9 +326,21 @@ public class ListerProduitController {
     }
     /*---------------------controller quantité----------------------------------------------------------------*/
 
-    @FXML
-    void panier(MouseEvent event) {
+    public void panier(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        java.awt.Image actionEvent = null;
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Buvette");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
     @FXML
