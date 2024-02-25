@@ -5,14 +5,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccueulController">
    <children>
-      <ImageView fitHeight="757.0" fitWidth="863.0" pickOnBounds="true">
+      <ImageView fitHeight="757.0" fitWidth="973.0" pickOnBounds="true">
          <image>
             <Image url="@accueil.png" />
          </image>
       </ImageView>
-      <Button fx:id="GoCompte" layoutX="257.0" layoutY="69.0" mnemonicParsing="false" onAction="#GoCompte" prefHeight="26.0" prefWidth="57.0" styleClass="transparent" stylesheets="@register.css" />
+      <Button fx:id="GoCompte" layoutX="279.0" layoutY="69.0" mnemonicParsing="false" onAction="#GoCompte" prefHeight="26.0" prefWidth="89.0" styleClass="transparent" stylesheets="@register.css" />
    </children>
 </AnchorPane>

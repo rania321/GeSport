@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutDmController">
+   <children>
+      <ImageView fitHeight="263.0" fitWidth="831.0" layoutY="-125.0" pickOnBounds="true">
+         <image>
+            <Image url="@Comtebar.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="662.0" fitWidth="831.0" layoutX="11.0" layoutY="125.0" pickOnBounds="true">
+         <image>
+            <Image url="@Compte2.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="150.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Dossier Medicale" textAlignment="CENTER" wrappingWidth="552.5366516113281">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="PoidsDM" layoutX="63.0" layoutY="254.0" promptText="Poids" style="-fx-background-color: #2596be; -fx-background-radius: 50;" />
+      <TextField fx:id="tailleDM" layoutX="63.0" layoutY="331.0" promptText="taille" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TextField fx:id="ageDM" layoutX="63.0" layoutY="421.0" promptText="age" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <ListView fx:id="listDm" layoutY="488.0" prefHeight="162.0" prefWidth="831.0" />
+      <Button fx:id="ModifierDm" layoutX="266.0" layoutY="665.0" mnemonicParsing="false" onAction="#ModifierDm" styleClass="transparent" stylesheets="@register.css">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@mod.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="AjoutDm" layoutX="161.0" layoutY="666.0" mnemonicParsing="false" onAction="#AjoutDm" prefHeight="53.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css">
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ajout.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="SupprimerDm" layoutX="343.0" layoutY="660.0" mnemonicParsing="false" onAction="#SupprimerDm" prefHeight="65.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css" />
+      <ImageView fitHeight="47.0" fitWidth="62.0" layoutX="355.0" layoutY="669.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@supp.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -29,22 +29,30 @@ public class LoginUserControllers {
     @FXML
     private Button goRegister;
     private UserService userService = new UserService();
+    private static User loggedInUser;
+
+    public static void setLoggedInUser(User user) {
+        loggedInUser = user;
+    }
+
+    // Méthode pour obtenir l'utilisateur connecté
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
 
 
     @FXML
-    public void goregister(javafx.event.ActionEvent event){
+    public void goregister(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPersonne.fxml"));
-            loader.load();
-            // Vous pouvez également obtenir le contrôleur de l'interface d'inscription ici si nécessaire
-
-            // Rediriger vers l'interface d'inscription
-            Parent root=loader.load();
-            Scene scene=new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("AjouterPersonne.fxml");
+            Parent root = loader.load();
+            Stage stage = new Stage(); // Créez une nouvelle instance de Stage
+            stage.setScene(new Scene(root));
+            stage.setTitle("Interface d'administration"); // Titre de la fenêtre
             stage.show();
+
+            // Fermez la fenêtre actuelle si nécessaire
+            ((Node) event.getSource()).getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -126,6 +134,7 @@ public class LoginUserControllers {
         // Vérifier les informations de connexion
         User loggedInUser = userService.login(email, password);
         if (loggedInUser != null) {
+
             // Connexion réussie
             role role1 = loggedInUser.getRoleU();
             switch (role1) {
@@ -134,6 +143,7 @@ public class LoginUserControllers {
                     loadAdminInterface(event);
                     break;
                 case utulisateur:
+
                     // Rediriger vers l'interface utilisateur
                     loadUserInterface(event);
                     break;
@@ -141,6 +151,8 @@ public class LoginUserControllers {
                     // Gérer les autres rôles si nécessaire
                     break;
             }
+            setLoggedInUser(loggedInUser);
+
         } else {
             // Afficher un message d'erreur en cas d'échec de la connexion
             alertError("Identifiants invalides. Veuillez réessayer.");
