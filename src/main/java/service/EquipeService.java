@@ -161,16 +161,14 @@ public class EquipeService implements iService<Equipe> {
         } catch (SQLException var4) {
             throw new RuntimeException(var4);
         }
-        // Si aucune équipe n'est trouvée avec ce nom, vous pouvez choisir de retourner une valeur par défaut ou null
-        return -1; // ou retournez une valeur qui n'est pas un ID valide (par exemple, -1)
+        return -1; //  retournez une valeur qui n'est pas un ID valide
     }
 
-    // Méthode pour récupérer toutes les équipes associées à un tournoi spécifique
+    // récupérer toutes les équipes associées à un tournoi spécifique
     public List<Equipe> readAllEquipesByTournoiId(int idT) {
         List<Equipe> equipes = new ArrayList<>();
 
         try {
-            // Préparer la requête SQL avec une jointure entre InscriTournoi et Equipe
             String query = "SELECT e.* FROM InscriTournoi it " +
                     "JOIN Equipe e ON it.idE = e.idE " +
                     "WHERE it.idT = ?";
@@ -184,7 +182,6 @@ public class EquipeService implements iService<Equipe> {
             while (rs.next()) {
                 Equipe equipe = new Equipe();
                 equipe.setIdE(rs.getInt("idE"));
-                // Ajouter d'autres attributs de l'équipe si nécessaire
 
                 equipes.add(equipe);
                 // Afficher les équipes récupérées

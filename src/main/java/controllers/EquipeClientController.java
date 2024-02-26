@@ -39,6 +39,8 @@ public class EquipeClientController {
     private TableView<Equipe> equipeTable;
     List<Joueur> listeDesJoueurs = new ArrayList<>();
 
+    private final JoueurService js= new JoueurService();
+
 
     @FXML
     private TableColumn<Equipe, String> TColumn;
@@ -73,7 +75,7 @@ public class EquipeClientController {
 
         // Filtrer les équipes pour ne garder que celles qui participent à des tournois non terminés
         List<Equipe> filteredEquipes = Elist.stream()
-                .filter(equipe -> !equipe.getTournoi().getStatutT().equals("terminé"))
+                .filter(equipe -> !equipe.getTournoi().getStatutT().equalsIgnoreCase("terminé"))
                 .collect(Collectors.toList());
 
         // Configurer les colonnes de la table avec les données filtrées
@@ -97,17 +99,32 @@ public class EquipeClientController {
         }
 
     }
+    private void showJoueurs(int equipeid) {
+        // Récupération des joueurs pour l'équipe spécifiée depuis le service
+        listeDesJoueurs = js.getJoueurbyEquipe(equipeid);
 
+        // Création d'une liste observable pour les joueurs
+        ObservableList<Joueur> observableJoueurs = FXCollections.observableArrayList(listeDesJoueurs);
+
+        // Ajout des joueurs à la table
+        joueurTable.setItems(observableJoueurs);
+    }
 
     public void initialize() {
-        List<String> tournoiNames = tournoiService.readAllNames();
-        ObservableList<String> observableNames = FXCollections.observableArrayList(tournoiNames);
+        // Récupérer tous les noms des tournois depuis le service
+        List<String> allTournamentNames = tournoiService.readAllNames();
+
+        // Filtrer les noms des tournois qui ne sont pas terminés
+        List<String> nonTerminatedTournamentNames = allTournamentNames.stream()
+                .filter(name -> !tournoiService.Tournoitermine(name))
+                .collect(Collectors.toList());
+
+        // Mettre à jour la ComboBox avec les noms des tournois non terminés
+        ObservableList<String> observableNames = FXCollections.observableArrayList(nonTerminatedTournamentNames);
         nomT.setItems(observableNames);
 
         // Initialisation de la TableView des joueurs
         nomJoueurColumn.setCellValueFactory(new PropertyValueFactory<>("joueur"));
-
-
     }
 
     @FXML
@@ -115,8 +132,6 @@ public class EquipeClientController {
         String nom = nomE.getText();
         // Récupérer l'ID du tournoi sélectionné dans la ComboBox
         String nomTournoi = nomT.getValue();
-
-
         // Vérifier si une équipe avec le même nom existe déjà pour ce tournoi
         if (Elist.stream().anyMatch(equipe -> equipe.getNomE().equals(nom) && equipe.getTournoi().getNomT().equals(nomTournoi))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -146,9 +161,14 @@ public class EquipeClientController {
 
         // Mise à jour de la liste Elist
         Elist = es.readAll();
+        // Filtrer les équipes pour ne garder que celles qui participent à des tournois non terminés
+        List<Equipe> filteredEquipes = Elist.stream()
+                .filter(equipe -> !equipe.getTournoi().getStatutT().equalsIgnoreCase("terminé"))
+                .collect(Collectors.toList());
+
 
         // Mise à jour de la TableView
-        equipeTable.getItems().setAll(Elist);
+        equipeTable.getItems().setAll(filteredEquipes);
 
         // Alerte de succès
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -184,6 +204,9 @@ public class EquipeClientController {
             // Ajouter le nouvel objet Joueur à la liste des joueurs
             joueurService.add(nouveauJoueur);
             joueurService.supprimerJoueursVides();
+
+            // Appeler showJoueurs pour afficher les joueurs de la dernière équipe ajoutée
+            showJoueurs(derniereEquipe.getIdE());
         }
 
 
@@ -227,10 +250,10 @@ public class EquipeClientController {
             confirmationDialog.setHeaderText("Supprimer le joueur");
             confirmationDialog.setContentText("Êtes-vous sûr de vouloir supprimer ce joueur ?");
 
-            // Afficher la boîte de dialogue et attendre la réponse de l'utilisateur
+            //  attendre la réponse de l'utilisateur
             Optional<ButtonType> result = confirmationDialog.showAndWait();
 
-            // Si l'utilisateur a confirmé la suppression
+            // confirmé
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // Créer une instance du service JoueurService
                 JoueurService joueurService = new JoueurService();
@@ -266,5 +289,22 @@ public class EquipeClientController {
             alert.showAndWait();
         }
     }
+
+    public void accueil(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dachboardFront.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("accueil");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
+}
 

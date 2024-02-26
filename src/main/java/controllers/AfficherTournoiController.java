@@ -139,7 +139,7 @@ public class AfficherTournoiController {
     @FXML
     void ajouter(ActionEvent event) {
         String nom = nomT.getText();
-        // Vérifier si un tournoi avec le même nom existe déjà
+        // contrôle de saisie sur le nom
         if (ts.readAll().stream().anyMatch(t -> t.getNomT().equals(nom))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -156,7 +156,7 @@ public class AfficherTournoiController {
 
         String Statut;
 
-        // Déterminer le statut en fonction du bouton radio sélectionné
+        //  bouton radio
         if (enCoursRadio.isSelected()) {
             Statut = "En cours";
         } else if (termineRadio.isSelected()) {
@@ -164,7 +164,7 @@ public class AfficherTournoiController {
         } else if (aVenirRadio.isSelected()) {
             Statut = "À venir";
         } else {
-            // Aucun bouton radio sélectionné, utiliser une valeur par défaut
+            // Aucun bouton radio sélectionné,  valeur par défaut
             Statut = "À venir";
         }
 
@@ -176,6 +176,12 @@ public class AfficherTournoiController {
 
         // maj   des données de la TableView
         tournoiTable.getItems().setAll(tournois);
+
+        nomT.clear();
+        DescriT.clear();
+        DdebutT.setValue(null);
+        DfinT.setValue(null);
+        clearRadioButtons();
 
         //  alerte de succès
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -222,6 +228,12 @@ public class AfficherTournoiController {
         // Supprimer la ligne d'équipe
         equipeService.delete(equipe);
 
+        nomT.clear();
+        DescriT.clear();
+        DdebutT.setValue(null);
+        DfinT.setValue(null);
+        clearRadioButtons();
+
 
     }
 
@@ -233,7 +245,7 @@ public class AfficherTournoiController {
             nomT.setText(selectedTournoi.getNomT());
             DescriT.setText(selectedTournoi.getDescriT());
             clearRadioButtons();
-            // Sélectionner le bouton radio en fonction du statut du tournoi
+            //  bouton radio
             switch (selectedTournoi.getStatutT()) {
                 case "En cours":
                     enCoursRadio.setSelected(true);
@@ -245,7 +257,7 @@ public class AfficherTournoiController {
                     aVenirRadio.setSelected(true);
                     break;
                 default:
-                    // Aucun statut correspondant, ne rien sélectionner
+                    // Aucun statut correspondant
                     enCoursRadio.setSelected(false);
                     termineRadio.setSelected(false);
                     aVenirRadio.setSelected(false);
@@ -277,7 +289,7 @@ public class AfficherTournoiController {
             // Récupérer les valeurs
             String nom = nomT.getText();
             String description = DescriT.getText();
-            // Récupérer le statut à partir des boutons radio sélectionnés
+            // Récupérer le statut boutons radio
             String statut;
             if (enCoursRadio.isSelected()) {
                 statut = "En cours";
@@ -286,7 +298,7 @@ public class AfficherTournoiController {
             } else if (aVenirRadio.isSelected()) {
                 statut = "À venir";
             } else {
-                // Aucun bouton radio sélectionné, utiliser une valeur par défaut
+                // Aucun bouton radio sélectionné
                 statut = "À venir";
             }
 
@@ -364,7 +376,38 @@ public class AfficherTournoiController {
         aVenirRadio.setSelected(false);
 
     }
-}
+
+    public void supprimerIns(ActionEvent actionEvent) {
+        // Récupérer l'inscription sélectionnée dans la TableView
+        InscriTournoi inscription = inscriTable.getSelectionModel().getSelectedItem();
+
+        if (inscription != null) {
+            // Récupérer l'équipe associée à cette inscription
+            Equipe equipe = inscription.getE();
+
+            // Supprimer l'équipe de l'inscription sélectionnée
+            equipeService.delete(equipe);
+
+            // maj liste des inscriptions affichée dans la table
+            showInscriptions(inscription.getT().getIdT());
+
+            //  message de succès
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Succès");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("L'équipe de l'inscription a été supprimée avec succès !");
+            successAlert.showAndWait();
+        } else {
+            // Aucune inscription sélectionnée erreur
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Erreur");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("Veuillez sélectionner une inscription à supprimer.");
+            errorAlert.showAndWait();
+        }
+    }
+    }
+
 
 
 

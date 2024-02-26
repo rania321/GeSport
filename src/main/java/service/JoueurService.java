@@ -23,12 +23,10 @@ public class JoueurService implements iService<Joueur> {
             // Désactiver autocommit
             this.conn.setAutoCommit(false);
 
-            // Préparer la requête
             this.pst = this.conn.prepareStatement(requete);
             this.pst.setString(1, joueur.getJoueur());
             this.pst.setInt(2, joueur.getEquipe().getIdE());
 
-            // Exécuter la requête
             this.pst.executeUpdate();
 
             // Valider la transaction
@@ -37,14 +35,13 @@ public class JoueurService implements iService<Joueur> {
             // Réactiver autocommit
             this.conn.setAutoCommit(true);
 
-            // Fermer le PreparedStatement
             this.pst.close();
         } catch (SQLException var4) {
             // En cas d'erreur, annuler la transaction
             try {
                 this.conn.rollback();
             } catch (SQLException e) {
-                throw new RuntimeException("Erreur lors du rollback de la transaction : " + e.getMessage(), e);
+                throw new RuntimeException("Erreur  : " + e.getMessage(), e);
             }
             throw new RuntimeException("Erreur lors de l'ajout du joueur : " + var4.getMessage(), var4);
         }

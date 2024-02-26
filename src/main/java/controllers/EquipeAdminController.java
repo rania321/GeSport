@@ -96,7 +96,7 @@ public class EquipeAdminController {
             ((TableView<Equipe>) equipeTable).setItems(FXCollections.observableArrayList(Elist));
         }
 
-        // Ajouter un écouteur de sélection à la table
+        // écouteur de sélection
         equipeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 // Afficher les nom des joueurs
@@ -108,10 +108,10 @@ public class EquipeAdminController {
 
 
     private void showJoueurs(int equipeid) {
-        // Récupération des joueurs pour l'équipe spécifiée depuis le service
+        // Récupération des joueurs pour l'équipe spécifiée
         Jlist = js.getJoueurbyEquipe(equipeid);
 
-        // Création d'une liste observable pour les joueurs
+        // Création d'une liste  joueurs
         ObservableList<Joueur> observableJoueurs = FXCollections.observableArrayList(Jlist);
 
         // Ajout des joueurs à la table
@@ -137,7 +137,7 @@ public class EquipeAdminController {
         String nom = nomE.getText();
         // Récupérer l'ID du tournoi sélectionné dans la ComboBox
         String nomTournoi = nomT.getValue();
-        // Vérifier si une équipe avec le même nom existe déjà pour ce tournoi
+        // controle de saisiepour le nom du tournoi
         if (Elist.stream().anyMatch(equipe -> equipe.getNomE().equals(nom) && equipe.getTournoi().getNomT().equals(nomTournoi))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -348,16 +348,16 @@ public class EquipeAdminController {
 
         // Vérifier si un joueur est sélectionné
         if (joueur != null) {
-            // Créer une boîte de dialogue de confirmation
+            // confirmation
             Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationDialog.setTitle("Confirmation");
             confirmationDialog.setHeaderText("Supprimer le joueur");
             confirmationDialog.setContentText("Êtes-vous sûr de vouloir supprimer ce joueur ?");
 
-            // Afficher la boîte de dialogue et attendre la réponse de l'utilisateur
+            //  attendre la réponse de l'utilisateur
             Optional<ButtonType> result = confirmationDialog.showAndWait();
 
-            // Si l'utilisateur a confirmé la suppression
+            // confirmé
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // Créer une instance du service JoueurService
                 JoueurService joueurService = new JoueurService();

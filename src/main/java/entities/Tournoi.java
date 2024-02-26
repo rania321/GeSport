@@ -13,6 +13,12 @@ public class Tournoi {
     public Tournoi() {
     }
 
+    public Tournoi(int idT, String nomT, String statutT) {
+        this.idT = idT;
+        this.nomT = nomT;
+        this.statutT = statutT;
+    }
+
     public Tournoi(int idT, String nomT, Date dateDebutT, Date dateFinT, String descriT, String statutT) {
         this.idT = idT;
         this.nomT = nomT;

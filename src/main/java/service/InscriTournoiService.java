@@ -27,7 +27,6 @@ public class InscriTournoiService  implements iService<InscriTournoi> {
             // Récupérer toutes les équipes associées au tournoi
             List<Equipe> equipes = Es.readAllEquipesByTournoiId(inscriTournoi.getT().getIdT());
 
-            // Utiliser la connexion de la classe et non déclarer une nouvelle connexion locale
             pst = conn.prepareStatement(requete);
 
             // Ajouter chaque équipe dans la table inscritournoi
@@ -44,7 +43,6 @@ public class InscriTournoiService  implements iService<InscriTournoi> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            // Fermer la PreparedStatement pour libérer les ressources
             if (pst != null) {
                 try {
                     pst.close();

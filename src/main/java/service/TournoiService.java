@@ -145,12 +145,48 @@ public class TournoiService implements iService<Tournoi> {
                 id = resultSet.getInt("idT");
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Gérer l'exception de manière appropriée
+            e.printStackTrace();
         }
 
         return id;
     }
 
+    public Tournoi readByName(String nom) {
+        String requete = "SELECT * FROM tournoi WHERE nomT = ?";
+        try {
+            this.pst = this.conn.prepareStatement(requete);
+            this.pst.setString(1, nom);
+            ResultSet rs = this.pst.executeQuery();
+            if (rs.next()) {
+                int idTournoi = rs.getInt("idT");
+                String nomTournoi = rs.getString("nomT");
+                String statutTournoi = rs.getString("statutT");
 
+                return new Tournoi(idTournoi, nomTournoi, statutTournoi);
+            } else {
+                throw new RuntimeException("Aucun tournoi trouvé avec le nom : " + nom);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la lecture du tournoi avec le nom " + nom + " : " + e.getMessage(), e);
+        }
+    }
 
+    public boolean Tournoitermine(String tournoiName) {
+        String query = "SELECT statutT FROM tournoi WHERE nomT = ?";
+
+        try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setString(1, tournoiName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String status = resultSet.getString("statutT");
+                return status.equalsIgnoreCase("terminé");
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
