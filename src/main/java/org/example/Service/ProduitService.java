@@ -53,7 +53,7 @@ public class ProduitService implements IService <Produit>{
 
     @Override
     public void update(Produit p) {
-        String req = "UPDATE `produit` SET nomP=?, descriP=?, PrixP=?, StockP=?, DateAjoutP=?, imageP=?, referenceP=? WHERE idP = ?";
+        String req = "UPDATE `produit` SET nomP=?, descriP=?, PrixP=?, StockP=?, DateAjoutP=?, imageP=? WHERE idP = ?";
         try {
             PreparedStatement ps = con.prepareStatement(req);
 
@@ -63,8 +63,7 @@ public class ProduitService implements IService <Produit>{
             ps.setInt(   4,   p.getStockP());
             ps.setDate(  5,   p.getDateAjoutP());
             ps.setString(6,   p.getImageP());
-            ps.setInt(   7,   p.getReferenceP());
-            ps.setInt(   8,   p.getIdP());
+            ps.setInt(   7,   p.getIdP());
 
             ps.executeUpdate();
             System.out.println("Produit modifié avec succes");

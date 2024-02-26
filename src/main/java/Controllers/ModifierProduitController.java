@@ -1,4 +1,86 @@
 package Controllers;
 
+import entities.Produit;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import org.example.Service.ProduitService;
+
+import java.io.IOException;
+import java.util.Date;
+
 public class ModifierProduitController {
+
+    private int idp;
+
+    @FXML
+    private TextField descrim;
+
+    @FXML
+    private TextField imagem;
+
+    @FXML
+    private Button modification;
+
+    @FXML
+    private TextField nomm;
+
+    @FXML
+    private TextField prixm;
+
+    @FXML
+    private TextField quantitem;
+    ProduitService ps = new ProduitService();
+    Date utilDate = new Date();
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+    public void setProduitId(int id) {
+        this.idp = id;
+        // Vous pouvez effectuer d'autres opérations liées à la venteId si nécessaire
+        System.out.println("ID de la vente dans le nouveau contrôleur : " + idp);
+    }
+
+
+    public void modifier(javafx.event.ActionEvent actionEvent) throws IOException {
+        String nom = nomm.getText();
+        String descr = descrim.getText();
+        String image = imagem.getText();
+
+        if (!ps.isNumeric(prixm.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setHeaderText(null);
+            alert.setContentText("Saisie invalide pour le prix !");
+            alert.showAndWait();
+            return;
+        }
+        if (!ps.isNumericInt(quantitem.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setHeaderText(null);
+            alert.setContentText("Saisie invalide pour la quantité !");
+            alert.showAndWait();
+            return;
+        }
+
+        if (nom.isEmpty() || image.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setHeaderText(null);
+            alert.setContentText("Information manquante !");
+            alert.showAndWait();
+            return;
+        }
+
+        float prix =Float.parseFloat(prixm.getText());
+        int stock = Integer.parseInt(quantitem.getText());
+        Produit pp = new Produit(12, "nom", "descr",0.2f, 77, sqlDate, "image" );
+        ps.update(pp);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduitBack.fxml") );
+        Parent root = loader.load();
+    }
 }
+

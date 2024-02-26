@@ -21,8 +21,7 @@ import java.util.List;
 
 public class ListerProduitBackController {
 
-        @FXML
-        private ComboBox<String> CBStatuteP;
+
 
         @FXML
         private Button ButtonAccueil;
@@ -81,7 +80,6 @@ public class ListerProduitBackController {
                         "confirmée",
                         "annulée"
                 );
-                CBStatuteP.setItems(options);
                 ShowProduit();
                 configureSuppressionColumn();
                 configureModificationColumn();
@@ -91,12 +89,46 @@ public class ListerProduitBackController {
                 ModificationP.setCellFactory(param -> new TableCell<>() {
                         private final Button boutonModifier = new Button("Modifier");
                         {
-                                boutonModifier.setOnAction(event -> {
+                                /*boutonModifier.setOnAction(event -> {
                                         Produit produit = getTableView().getItems().get(getIndex());
                                         System.out.println("Modifier : " + produit.getNomP());
                                         TableProduit.refresh();
 
-                                        });
+                                        });*/
+                                boutonModifier.setOnAction(event -> {
+                                        Produit produit = getTableView().getItems().get(getIndex());
+                                        System.out.println("Modifier : " + produit.getNomP());
+
+                                        // Créer une nouvelle fenêtre (Stage)
+                                        Stage nouvelleFenetre = new Stage();
+
+                                        // Créer un FXMLLoader pour charger la nouvelle scène depuis le fichier FXML
+                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierProduit.fxml"));
+
+                                        try {
+                                                // Charger la racine de la nouvelle scène
+                                                Parent root = loader.load();
+
+                                                // Obtenir le contrôleur de la nouvelle scène
+                                                ModifierProduitController modifierProduitController = loader.getController();
+
+                                                // Transmettre l'id de la vente au contrôleur de la nouvelle scène
+                                                modifierProduitController.setProduitId(produit.getIdP());
+
+                                                Scene nouvelleScene = new Scene(root);
+                                                nouvelleFenetre.setScene(nouvelleScene);
+
+                                                // Afficher la nouvelle fenêtre
+                                                nouvelleFenetre.show();
+
+                                        } catch (IOException e) {
+                                                e.printStackTrace();
+                                        }
+
+                                        // Rafraîchir la TableView si nécessaire
+                                        TableProduit.refresh();
+                                });
+
                         }
                         @Override
                         protected void updateItem(Void item, boolean empty) {

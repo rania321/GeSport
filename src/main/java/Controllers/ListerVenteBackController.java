@@ -21,9 +21,6 @@ import java.util.List;
 public class ListerVenteBackController {
 
     @FXML
-    private ComboBox<String> CBStatuteP;
-
-    @FXML
     private Button ButtonAccueil;
 
     @FXML
@@ -135,7 +132,6 @@ public class ListerVenteBackController {
                 "confirmée",
                 "annulée"
         );
-        CBStatuteP.setItems(options);
         ShowVente();
         configureSuppressionColumn();
     }

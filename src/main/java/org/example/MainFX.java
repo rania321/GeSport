@@ -19,7 +19,7 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml") );
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml") );
         Parent root = loader.load();
         Scene scene = new Scene(root);
         //scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());

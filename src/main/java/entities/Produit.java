@@ -31,6 +31,14 @@ public class Produit {
         referenceP =refp;
     }
 
+    public Produit(int id, String NomP, String DescriP, float prixP, int stockP, Date dateAjoutP, String ImageP) {
+        nomP = NomP;
+        descriP = DescriP;
+        PrixP = prixP;
+        StockP = stockP;
+        DateAjoutP = dateAjoutP;
+        imageP= ImageP;
+    }
     public int getReferenceP() {
         return referenceP;
     }
