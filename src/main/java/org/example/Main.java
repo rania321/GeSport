@@ -37,25 +37,25 @@ public class Main {
        /* userservice us3 = new userservice();
 
         */
-        User u9=us.readById(5);
+        User u9=us.readById(19);
 
 
         /////////////adddddddddddddd////////////
-       /* dossiermedical d1 = new dossiermedical(u9, "aaa", "aaaa", 12);
+        dossiermedical d1 = new dossiermedical(u9, "aaa", "aaaa", 12);
         dmservices dm=new dmservices();
-        dm.add(d1);*/
+        dm.add(d1);
         ////////////delllllettte/////////
        /*int iddr=3;
         dm.deleteById(iddr);*/
         ///////updae dossier////////////
-        /*dossiermedical update=new dossiermedical(21,u9,"bbbbccb","cccccc",13);
+        dossiermedical update=new dossiermedical(21,u9,"bbbbccb","cccccc",13);
 
 
         dmservices d2=new dmservices();
         d2.update(update);
 
         //////read alll////////
-        d2.readall().forEach(System.out::println);*/
+        d2.readall().forEach(System.out::println);
 
 
 

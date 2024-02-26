@@ -1,6 +1,7 @@
 package Services;
 
 import Utils.DataSource;
+import controllers.LoginUserControllers;
 import entities.User;
 import entities.dossiermedical;
 
@@ -12,6 +13,7 @@ public class dmservices implements Iservice<dossiermedical> {
     private Connection conn;
     private Statement ste;
     private PreparedStatement pst;
+
 
     public dmservices() {
         conn = DataSource.getInstance().getCnx();
@@ -33,6 +35,8 @@ public class dmservices implements Iservice<dossiermedical> {
             throw new RuntimeException(e);
         }
     }
+
+
 
     @Override
     public void delete(dossiermedical d) {
@@ -67,9 +71,29 @@ public class dmservices implements Iservice<dossiermedical> {
         }
     }
 
+
+
     @Override
     public void update(dossiermedical d) {
-        String req = "update dossiermedical SET idU=?,poidsDM=?,tailleDM=?,ageDM=? where idDM=?";
+        /*String req = "update dossiermedical SET idU=?,poidsDM=?,tailleDM=?,ageDM=? where idDM=?";
+        try {
+            pst = conn.prepareStatement(req);
+            pst.setInt(1, d.getUse().getIdU());
+            pst.setString(2, d.getPoidsDM());
+            pst.setString(3, d.getTailleDM());
+            pst.setInt(4, d.getAgeDM());
+            pst.setInt(5, d.getIdDM());
+
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }*/
+        if (d.getUse() == null) {
+            System.err.println("Utilisateur associé au dossier médical est nul.");
+            return; // Sortir de la méthode si l'utilisateur est nul
+        }
+
+        String req = "update dossiermedical SET idU=?, poidsDM=?, tailleDM=?, ageDM=? where idDM=?";
         try {
             pst = conn.prepareStatement(req);
             pst.setInt(1, d.getUse().getIdU());
@@ -149,6 +173,101 @@ public class dmservices implements Iservice<dossiermedical> {
         // For now, let's just return null
         return null;
     }
+    public boolean dossierMedicalExistsForUser(int userId) {
+        try {
+            // Créer une requête SQL pour vérifier si un dossier médical existe pour l'utilisateur spécifié
+            String query = "SELECT COUNT(*) FROM dossiermedical WHERE idU = ?";
+
+            // Préparer la requête
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, userId);
+
+            // Exécuter la requête et récupérer le résultat
+            ResultSet rs = pst.executeQuery();
+            rs.next(); // Déplacer le curseur sur la première ligne (il n'y en aura qu'une seule)
+
+            // Récupérer le résultat du comptage
+            int count = rs.getInt(1);
+
+            // Vérifier si un dossier médical existe pour cet utilisateur
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+    public dossiermedical getDossierMedicalByUserId(int userId) {
+        // Vérification de la connexion JDBC
+        if (conn == null) {
+            System.err.println("La connexion JDBC n'est pas initialisée.");
+            return null;
+        }
+
+        // Vérification de l'utilisateur connecté
+        if (LoginUserControllers.getLoggedInUser() == null) {
+            System.err.println("Utilisateur non connecté.");
+            return null;
+        }
+
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        dossiermedical dm = null;
+
+        try {
+            String query = "SELECT * FROM dossiermedical WHERE idU = ?";
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, userId);
+            rs = pst.executeQuery();
+
+            // Affichage des résultats du ResultSet
+            while (rs.next()) {
+                int idU=rs.getInt("idU");
+                int idDM = rs.getInt("idDM");
+                String poidsDM = rs.getString("poidsDM");
+                String tailleDM = rs.getString("tailleDM");
+                int ageDM = rs.getInt("ageDM");
+
+                // Afficher les valeurs dans la console
+                System.out.println("idDM: " + idDM + ", poidsDM: " + poidsDM + ", tailleDM: " + tailleDM + ", ageDM: " + ageDM);
+
+                // Création de l'objet dossiermedical avec les valeurs récupérées
+                dm = new dossiermedical();
+                dm.setuse(LoginUserControllers.getLoggedInUser());
+                dm.setIdDM(idDM);
+                dm.setPoidsDM(poidsDM);
+                dm.setTailleDM(tailleDM);
+                dm.setAgeDM(ageDM);
+            }
+
+            // Autres traitements si nécessaire
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fermeture des ressources JDBC
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Retourner l'objet dossiermedical récupéré
+        return dm;
+
+
+
+    }
+
 }
 
 

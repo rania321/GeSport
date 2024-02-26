@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class ProfileController {
@@ -107,7 +108,7 @@ public class ProfileController {
     }
 
     public void gotoAjouterDm(ActionEvent event) {
-        try {
+        /*try {
             // Charger l'interface utilisateur AjoutDm.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterDm.fxml"));
             Parent root = loader.load();
@@ -125,9 +126,44 @@ public class ProfileController {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+        }*/
+        try {
+            // Charger l'interface utilisateur AjoutDm.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterDm.fxml"));
+            Parent root = loader.load();
+
+            // Récupérer le contrôleur associé à AjoutDm.fxml
+            AjoutDmController ajoutDmController = loader.getController();
+
+            // Passer l'ID de l'utilisateur actuellement connecté au contrôleur AjoutDmController
+            ajoutDmController.setLoggedInUserId(loggedInUser.getIdU());
+
+            // Remplacer le contenu de la fenêtre actuelle par la nouvelle interface utilisateur
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Ajouter DM");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    public void Accueil(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage(); // Créez une nouvelle instance de Stage
+            stage.setScene(new Scene(root));
+            stage.setTitle("Interface utilisateur"); // Titre de la fenêtre
+            stage.show();
+
+            // Fermez la fenêtre actuelle si nécessaire
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

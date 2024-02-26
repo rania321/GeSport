@@ -48,5 +48,6 @@
             <Image url="@NAV.png" />
          </image>
       </ImageView>
+      <Button layoutX="172.0" layoutY="61.0" mnemonicParsing="false" onAction="#Accueil" prefHeight="26.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css" />
    </children>
 </AnchorPane>
