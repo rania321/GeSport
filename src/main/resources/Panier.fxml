@@ -65,7 +65,7 @@
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
-                        <Button layoutX="201.0" layoutY="364.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@../java/values/style.css" text="Confirmer" textFill="#17447a">
+                        <Button fx:id="confirmerV" layoutX="201.0" layoutY="364.0" mnemonicParsing="false" onAction="#confirmerVente" prefHeight="25.0" prefWidth="100.0" stylesheets="@../java/values/style.css" text="Confirmer" textFill="#17447a">
                            <styleClass>
                               <String fx:value="shadow2" />
                               <String fx:value="add-btn" />
@@ -94,7 +94,7 @@
                   </AnchorPane>
                   <ScrollPane fx:id="Scrollpa" layoutX="99.0" layoutY="96.0" prefHeight="389.0" prefWidth="505.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="504.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="504.0">
                            <children>
                               <GridPane fx:id="gridpa" layoutX="29.0" layoutY="53.0" prefHeight="126.0" prefWidth="442.0">
                                 <columnConstraints>

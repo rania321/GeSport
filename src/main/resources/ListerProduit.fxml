@@ -116,6 +116,11 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Label fx:id="totalclabel" layoutX="224.0" layoutY="550.0" prefHeight="25.0" prefWidth="81.0" text="  " textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <ScrollPane fx:id="scroll" layoutX="370.0" layoutY="93.0" prefHeight="602.0" prefWidth="867.0" styleClass="shadow2" stylesheets="@../java/values/style.css">

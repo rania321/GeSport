@@ -2,6 +2,7 @@ package Controllers;
 
 import entities.Panier;
 import entities.Produit;
+import entities.Vente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,8 @@ import javafx.scene.Scene;
 import org.example.Service.ProduitService;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.example.Service.VenteService;
+
 import java.io.File;
 
 import java.awt.*;
@@ -32,12 +35,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 
 
 public class PanierController {
+
+    @FXML
+    private Button confirmerV;
 
     @FXML
     private ScrollPane Scrollpa;
@@ -58,6 +65,16 @@ public class PanierController {
     List<Panier> paniers =  pas.readAll();
 
     private ProduitService ps = new ProduitService();
+
+    private VenteService vs = new VenteService();
+
+    List<Vente> ventes =  vs.readAll();
+
+    Vente vente;
+
+    // Pour avoir la date actuelle
+    Date utilDate = new Date();
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
     public void initialize() {
         setPanierGridPaneList();
@@ -174,7 +191,14 @@ public class PanierController {
         Label prixLabel = new Label(Float.toString(prixpp)+"dt");
         Label quantiteLabel = new Label("Quantité : "+Integer.toString(panier.getQuantiteP()));
 
-        float total = panier.getTotalPa() * panier.getQuantiteP();
+        int index = 0;
+        float total=0.0f;
+        while (index < paniers.size()) {
+            Panier p = paniers.get(index);
+             total = total + (p.getTotalPa() * p.getQuantiteP());
+            index++;
+        }
+
         totalPa.setText(Float.toString(total));
 
         vbox.getChildren().add(imageView);
@@ -322,5 +346,47 @@ public class PanierController {
 
 
     /*---------------------controller quantité----------------------------------------------------------------*/
-    
+
+
+    @FXML
+    void confirmerVente(ActionEvent event) {
+        int index = 0;
+        while (index < paniers.size()) {
+            Panier panier = paniers.get(index);
+            Vente vi = new Vente(2, panier.getIdP() , panier.getQuantiteP(), sqlDate, Float.parseFloat(totalPa.getText()));
+            vs.add(vi);
+            pas.delete(panier);
+
+            /*if (index == paniers.size())
+            {paniers.clear();}*/
+            index++;
+        }
+       /* while (index < paniers.size()) {
+            Panier panier = paniers.get(index);
+            pas.delete(panier);
+            index++;
+        }*/
+
+        System.out.println("Panier clean");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
+            Parent root = loader.load();
+            // Obtenir le contrôleur de la nouvelle interface
+            PanierController panierController = loader.getController();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Configurer la nouvelle scène dans une nouvelle fenêtre
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+
+            // Afficher la nouvelle fenêtre
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
