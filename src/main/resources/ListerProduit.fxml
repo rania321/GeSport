@@ -13,40 +13,45 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListerProduitController">
    <children>
-      <Button fx:id="activité" layoutX="397.0" layoutY="35.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Activité" textFill="#3c3c3c">
+      <ImageView fitHeight="242.0" fitWidth="1372.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../xampp/htdocs/image/entetefront.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="activité" layoutX="516.0" layoutY="35.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
 <!--_____________________________________________entete___________________________________________________-->
 
-      <Button fx:id="accueil" layoutX="289.0" layoutY="35.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Accueil" textFill="#3c3c3c">
+      <Button fx:id="accueil" layoutX="289.0" layoutY="35.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buvette" layoutX="601.0" layoutY="35.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Buvette" textFill="#f9b13d">
+      <Button fx:id="buvette" layoutX="629.0" layoutY="35.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#f9b13d">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="tournois" layoutX="693.0" layoutY="35.0" mnemonicParsing="false" onAction="#tournois" prefHeight="38.0" prefWidth="120.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Tournois" textFill="#3c3c3c">
+      <Button fx:id="tournois" layoutX="753.0" layoutY="35.0" mnemonicParsing="false" onAction="#tournois" prefHeight="38.0" prefWidth="120.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="   " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="reclamation" layoutX="815.0" layoutY="35.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="38.0" prefWidth="143.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Réclamation" textFill="#3c3c3c">
+      <Button fx:id="reclamation" layoutX="864.0" layoutY="35.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="38.0" prefWidth="143.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="   " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="recherchep" layoutX="1038.0" layoutY="39.0" maxWidth="143.0" mnemonicParsing="false" onAction="#recherchep" prefHeight="30.0" prefWidth="143.0" styleClass="round-buttonMenu1" stylesheets="@../java/values/style.css" text="Recherche.." />
-      <Button fx:id="compte" layoutX="499.0" layoutY="35.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Compte" textFill="#3c3c3c">
+      <Button fx:id="recherchep" layoutX="1049.0" layoutY="39.0" maxWidth="179.0" minWidth="92.0" mnemonicParsing="false" onAction="#recherchep" prefHeight="30.0" prefWidth="179.0" styleClass="round-buttonMenu1" stylesheets="@../java/values/style.css" text="Panier" />
+      <Button fx:id="compte" layoutX="397.0" layoutY="35.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <ImageView fx:id="showpanier" fitHeight="28.0" fitWidth="32.0" layoutX="1210.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="showpanier" fitHeight="20.0" fitWidth="23.0" layoutX="1053.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../../../xampp/htdocs/image/shopping-basket-fill.png" />
          </image>
@@ -63,7 +68,7 @@
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <Label fx:id="prixpAf" layoutX="105.0" layoutY="141.0" prefHeight="36.0" prefWidth="92.0" text="    " textFill="WHITE">
+            <Label fx:id="prixpAf" layoutX="105.0" layoutY="141.0" prefHeight="36.0" prefWidth="179.0" text="    " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -89,10 +94,7 @@
                   <Insets bottom="30.0" />
                </opaqueInsets>
             </Button>
-            <Label fx:id="qteproduit" layoutX="121.0" layoutY="381.0" prefHeight="17.0" prefWidth="60.0" text="0" textFill="WHITE" />
-            <Label layoutX="181.0" layoutY="549.0" text="Total : " textFill="WHITE" />
-            <Label fx:id="totalclabel" layoutX="221.0" layoutY="549.0" prefHeight="17.0" prefWidth="44.0" text="0" textAlignment="RIGHT" textFill="WHITE" />
-            <Label layoutX="270.0" layoutY="549.0" text="dt" textFill="WHITE" />
+            <Label fx:id="qteproduit" layoutX="121.0" layoutY="381.0" prefHeight="17.0" prefWidth="60.0" text="1" textFill="WHITE" />
             <Label fx:id="descrpAf1" layoutX="32.0" layoutY="454.0" prefHeight="88.0" prefWidth="256.0" text="    " textFill="WHITE" wrapText="true">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -113,11 +115,6 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="197.0" layoutY="141.0" prefHeight="36.0" prefWidth="92.0" text="dt" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <ScrollPane fx:id="scroll" layoutX="370.0" layoutY="93.0" prefHeight="602.0" prefWidth="867.0" styleClass="shadow2" stylesheets="@../java/values/style.css">
@@ -133,10 +130,5 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <ImageView fitHeight="54.0" fitWidth="183.0" layoutX="38.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../../../xampp/htdocs/image/logo.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

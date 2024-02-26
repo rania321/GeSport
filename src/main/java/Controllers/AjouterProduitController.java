@@ -80,12 +80,30 @@ public class AjouterProduitController {
     public void ajouterp(javafx.event.ActionEvent actionEvent) throws IOException {
         String nomt = nomtf.getText();
         String descri = desctf.getText();
-        float prix = Float.parseFloat(prixtf.getText());
-        int qt = Integer.parseInt(qtf.getText());
+        //float prix = Float.parseFloat(prixtf.getText());
+        //int qt = Integer.parseInt(qtf.getText());
         String imaget = imagetf.getText();
-        int ref = Integer.parseInt(referencetf.getText());
+       // int ref = Integer.parseInt(referencetf.getText());
 
-        if (nomt.isEmpty() || descri.isEmpty()  || imaget.isEmpty()) {
+
+        if (!ps.isNumeric(prixtf.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setHeaderText(null);
+            alert.setContentText("Saisie invalide pour le prix !");
+            alert.showAndWait();
+            return;
+        }
+        if (!ps.isNumericInt(qtf.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setHeaderText(null);
+            alert.setContentText("Saisie invalide pour la quantité !");
+            alert.showAndWait();
+            return;
+        }
+
+        if (nomt.isEmpty() || imaget.isEmpty()) {
             // Afficher un message d'erreur si les champs obligatoires ne sont pas remplis
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur!");
@@ -94,7 +112,27 @@ public class AjouterProduitController {
             alert.showAndWait();
             return;
         }
-        ps.add(new Produit(nomt,descri,prix, qt, sqlDate, imaget,ref ));
+
+        if (referencetf == null || referencetf.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setHeaderText(null);
+            alert.setContentText("Il faut saisir une réference!");
+            alert.showAndWait();
+            return;
+        }
+
+        if (ps.referenceExists(referencetf.getText())) {
+            // Affichez un message d'erreur si la référence existe déjà
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setHeaderText(null);
+            alert.setContentText("La référence existe déjà dans la base de données !");
+            alert.showAndWait();
+            return;
+        }
+
+        ps.add(new Produit(nomt,descri,Float.parseFloat(prixtf.getText()), Integer.parseInt(qtf.getText()), sqlDate, imaget,Integer.parseInt(referencetf.getText()) ));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterProduit.fxml") );
         Parent root = loader.load();
     }

@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.Service.ProduitService;
 
@@ -68,7 +70,7 @@ public class ListerProduitBackController {
         private TableColumn<Produit, Void> SuppressionP;
 
         @FXML
-        private TableColumn<Produit, Produit> ModificationP;
+        private TableColumn<Produit, Void> ModificationP;
 
         ProduitService ps = new ProduitService();
         List<Produit> PList;
@@ -91,64 +93,18 @@ public class ListerProduitBackController {
                         {
                                 boutonModifier.setOnAction(event -> {
                                         Produit produit = getTableView().getItems().get(getIndex());
-                                        ps.update(produit);
                                         System.out.println("Modifier : " + produit.getNomP());
+                                        TableProduit.refresh();
 
-                                        // Mettre à jour uniquement cette cellule
-                                        updateItem(produit, false);
-                                        // Appeler le rafraîchissement des graphiques pour que la cellule soit correctement mise à jour visuellement
-                                        getTableView().getColumns().get(getTableView().getColumns().indexOf(getTableColumn())).setVisible(false);
-                                        getTableView().getColumns().get(getTableView().getColumns().indexOf(getTableColumn())).setVisible(true);
-                                });
+                                        });
                         }
                         @Override
-                        protected void updateItem(Produit produit, boolean empty) {
-                                super.updateItem(produit, empty);
-
-                                if (empty || produit == null) {
-                                        setText(null);
-                                        setGraphic(null);
-                                } else {
-                                        setText("Nouvelle valeur : " + produit.getNomP());
-                                        setGraphic(boutonModifier);
-                                }
+                        protected void updateItem(Void item, boolean empty) {
+                                super.updateItem(item, empty);
+                                setGraphic(empty ? null : boutonModifier);
                         }
                 });
         }
-        /*@FXML
-    void update_reservation(ActionEvent event) throws IOException {
-// Récupérer les informations modifiées depuis le formulaire
-
-            String statut = CBStatutR.getSelectionModel().getSelectedItem();
-
-            // Mettre à jour la séance dans la base de données
-            Reservation selectedReservation = TableViewR.getSelectionModel().getSelectedItem();
-            if (selectedReservation != null) {
-                selectedReservation.setStatutR(statut);
-                // Demander une confirmation à l'utilisateur (vous pouvez personnaliser cela selon vos besoins)
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation de modification");
-                alert.setHeaderText("Modifier la réservation");
-                alert.setContentText("Êtes-vous sûr de vouloir modifier la réservation sélectionnée ?");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                // Si l'utilisateur confirme la suppression, procéder
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    // Mettre à jour la séance dans la base de données
-                    rs.update(selectedReservation);
-                    // Rafraîchir l'affichage des séances dans la TableView
-                    ShowReservation();
-                }
-            }
-            else {
-                // Afficher un message si aucune activité n'est sélectionnée
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Aucune Réservation sélectionnée");
-                alert.setHeaderText("Aucune Réservation sélectionnée");
-                alert.setContentText("Veuillez sélectionner une réservation à modifier.");
-                alert.showAndWait();
-            }
-        }*/
 
         private void configureSuppressionColumn() {
                 SuppressionP.setCellFactory(param -> new TableCell<>() {

@@ -135,4 +135,39 @@ public class ProduitService implements IService <Produit>{
         return p;
     }*/
 
+
+    public boolean referenceExists(String reference) {
+        try {
+            String req = "SELECT COUNT(*) FROM produit WHERE referenceP = ?";
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setString(1, reference);
+            ResultSet rst = ps.executeQuery();
+            rst.next();
+
+            int count = rst.getInt(1);
+            return count > 0; // Si count > 0, la référence existe déjà
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer l'exception selon vos besoins
+            return false;
+        }
+    }
+
+    public boolean isNumeric(String str) {
+        try {
+            Float.parseFloat(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    public boolean isNumericInt(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }

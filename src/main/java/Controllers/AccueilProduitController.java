@@ -51,20 +51,8 @@ public class AccueilProduitController {
 */
 /*___________________________________________entete___________________________________________________*/
     @FXML
-    void accueil(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
-        Parent root = loader.load();
+    void accueil(ActionEvent event) {
 
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
-
-        // Configurer la nouvelle scène dans une nouvelle fenêtre
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Restaurant");
-
-        // Afficher la nouvelle fenêtre
-        stage.show();
     }
 
     @FXML
@@ -79,7 +67,7 @@ public class AccueilProduitController {
 
     @FXML
     void restaurant(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduit.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
         Parent root = loader.load();
 
         // Créer une nouvelle scène
@@ -103,6 +91,22 @@ public class AccueilProduitController {
     }
 
     public void activité(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void ListeP(javafx.event.ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduit.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Buvette");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
 
