@@ -170,4 +170,53 @@ public class ProduitService implements IService <Produit>{
         }
     }
 
+    public String getImageFromIdProduit(int id) {
+        String imageP = null;  // Variable pour stocker le contenu de imageP
+
+        String req = "SELECT * FROM produit WHERE idP = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rst = ps.executeQuery();
+            while (rst.next()) {
+                imageP = rst.getString("imageP");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return imageP;
+    }
+    public String getNomFromIdProduit(int id) {
+        String nom = null;
+
+        String req = "SELECT * FROM produit WHERE idP = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rst = ps.executeQuery();
+            while (rst.next()) {
+                nom = rst.getString("nomP");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return nom;
+    }
+    public float getPrixFromIdProduit(int id) {
+        float prix = 0.0f;
+
+        String req = "SELECT * FROM produit WHERE idP = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rst = ps.executeQuery();
+            while (rst.next()) {
+                prix = rst.getFloat("prixP");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return prix;
+    }
+
 }

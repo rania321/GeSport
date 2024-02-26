@@ -18,6 +18,7 @@
             <Image url="@../../../../../../../../../../xampp/htdocs/image/entetefront.png" />
          </image>
       </ImageView>
+      <AnchorPane layoutX="1028.0" layoutY="26.0" prefHeight="54.0" prefWidth="241.0" styleClass="white-bg" stylesheets="@../java/values/style.css" />
       <Button fx:id="activité" layoutX="516.0" layoutY="35.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
@@ -51,7 +52,7 @@
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <ImageView fx:id="showpanier" fitHeight="20.0" fitWidth="23.0" layoutX="1053.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="showpanier" fitHeight="20.0" fitWidth="23.0" layoutX="1063.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../../../xampp/htdocs/image/shopping-basket-fill.png" />
          </image>

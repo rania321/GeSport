@@ -216,3 +216,8 @@
     -fx-font-family: Calibri;
     -fx-font-size: 15px;
 }
+
+.button-vbox {
+    -fx-alignment: center-right;
+    -fx-margin: 0 300 0 -400;
+}
