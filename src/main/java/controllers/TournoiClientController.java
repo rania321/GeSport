@@ -19,6 +19,7 @@ import service.TournoiService;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TournoiClientController {
 
@@ -29,8 +30,7 @@ public class TournoiClientController {
     @FXML
     private TableView<Tournoi> tournoiTable;
 
-    @FXML
-    private TableColumn<Tournoi, Integer> idColumn;
+
 
     @FXML
     private TableColumn<Tournoi, String> nomColumn;
@@ -51,16 +51,24 @@ public class TournoiClientController {
 
 
     public void showTournoi() throws IOException {
+        // Récupérer tous les tournois depuis le service
         Tlist = ts.readAll();
-        idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIdT()).asObject());
+
+        // Filtrer les tournois qui n'ont pas le statut "terminé"
+        List<Tournoi> filteredTournois = Tlist.stream()
+                .filter(tournoi -> !tournoi.getStatutT().equals("terminé"))
+                .collect(Collectors.toList());
+
+        // Configurer les colonnes de la table avec les données filtrées
         nomColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, String>("nomT"));
         dateDebutColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, Date>("DateDebutT"));
         dateFinColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, Date>("DateFinT"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, String>("DescriT"));
         statutColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, String>("statutT"));
 
+        // Afficher les données filtrées dans la TableView
         if (tournoiTable != null && tournoiTable instanceof TableView<Tournoi>) {
-            ((TableView<Tournoi>) tournoiTable).setItems(FXCollections.observableArrayList(Tlist));
+            ((TableView<Tournoi>) tournoiTable).setItems(FXCollections.observableArrayList(filteredTournois));
         }
 
     }

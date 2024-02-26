@@ -26,6 +26,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class EquipeAdminController {
     private List<Equipe> Elist;
@@ -64,7 +65,13 @@ public class EquipeAdminController {
     private TextField nomE;
 
     @FXML
-    private TextField statutE;
+    private RadioButton inscriteRadio;
+
+    @FXML
+    private RadioButton qualifieeRadio;
+
+    @FXML
+    private RadioButton elimineeRadio;
 
     @FXML
     private ComboBox<String> nomT;
@@ -130,9 +137,28 @@ public class EquipeAdminController {
         String nom = nomE.getText();
         // Récupérer l'ID du tournoi sélectionné dans la ComboBox
         String nomTournoi = nomT.getValue();
+        // Vérifier si une équipe avec le même nom existe déjà pour ce tournoi
+        if (Elist.stream().anyMatch(equipe -> equipe.getNomE().equals(nom) && equipe.getTournoi().getNomT().equals(nomTournoi))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Une équipe avec le même nom existe déjà pour ce tournoi.");
+            alert.showAndWait();
+            return;
+        }
+
         int IDTE = tournoiService.getIdByName(nomTournoi);
 
-        String Statut = statutE.getText();
+        String statut;
+        if (inscriteRadio.isSelected()) {
+            statut = "Inscrite";
+        } else if (qualifieeRadio.isSelected()) {
+            statut = "Qualifiée";
+        } else if (elimineeRadio.isSelected()) {
+            statut = "Éliminée";
+        } else {
+            statut = "Inscrite";
+        }
 
         // Création des instances
         EquipeService equipeService = new EquipeService();
@@ -144,7 +170,7 @@ public class EquipeAdminController {
         User user = userservice.readById(1);
 
         // Création équipe avec Tournoi et User récupérés
-        Equipe e = new Equipe(nom, tournoi, user, Statut);
+        Equipe e = new Equipe(nom, tournoi, user, statut);
 
 
         equipeService.add(e);
@@ -169,10 +195,23 @@ public class EquipeAdminController {
         if (selectedEquipe != null) {
             // Remplir les champs avec  tournoi sélectionné
             nomE.setText(selectedEquipe.getNomE());
-            // nomT.setValue(selectedEquipe.getTournoi().getNomT());
-            idUE.setText(String.valueOf(selectedEquipe.getUser().getIdU()));
-            statutE.setText(selectedEquipe.getStatutE());
-
+            nomT.setValue(selectedEquipe.getTournoi().getNomT());
+            // Effacer la sélection des autres RadioButtons
+            clearRadioButtons();
+            // Sélectionner le RadioButton correspondant au statut de l'équipe
+            switch (selectedEquipe.getStatutE()) {
+                case "Inscrite":
+                    inscriteRadio.setSelected(true);
+                    break;
+                case "Qualifiée":
+                    qualifieeRadio.setSelected(true);
+                    break;
+                case "Éliminée":
+                    elimineeRadio.setSelected(true);
+                    break;
+                default:
+                    break;
+            }
 
         }
     }
@@ -213,7 +252,17 @@ public class EquipeAdminController {
         if (equipeSelectionne != null) {
             // Récupérer les valeurs
             String nom = nomE.getText();
-            String statut = statutE.getText();
+
+            String statut;
+            if (inscriteRadio.isSelected()) {
+                statut = "Inscrite";
+            } else if (qualifieeRadio.isSelected()) {
+                statut = "Qualifiée";
+            } else if (elimineeRadio.isSelected()) {
+                statut = "Éliminée";
+            } else {
+                statut = "Inscrite";
+            }
             String nomTournoi = nomT.getValue();
             int IDTE = tournoiService.getIdByName(nomTournoi);
 
@@ -241,9 +290,9 @@ public class EquipeAdminController {
             es.update(equipeSelectionne);
 
             nomE.clear();
-            statutE.clear();
-
             nomT.getSelectionModel().clearSelection();
+            // Effacer la sélection des autres RadioButtons
+            clearRadioButtons();
         } else {
             // message d'erreur
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -284,6 +333,65 @@ public class EquipeAdminController {
         stage.setTitle("Equipes");
 
         stage.show();
+    }
+
+    @FXML
+    void clearRadioButtons() {
+        inscriteRadio.setSelected(false);
+        qualifieeRadio.setSelected(false);
+        elimineeRadio.setSelected(false);
+    }
+
+    public void supprimerJ(ActionEvent actionEvent) {
+        // Récupérer le joueur sélectionné dans la TableView joueurTable
+        Joueur joueur = joueurTable.getSelectionModel().getSelectedItem();
+
+        // Vérifier si un joueur est sélectionné
+        if (joueur != null) {
+            // Créer une boîte de dialogue de confirmation
+            Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationDialog.setTitle("Confirmation");
+            confirmationDialog.setHeaderText("Supprimer le joueur");
+            confirmationDialog.setContentText("Êtes-vous sûr de vouloir supprimer ce joueur ?");
+
+            // Afficher la boîte de dialogue et attendre la réponse de l'utilisateur
+            Optional<ButtonType> result = confirmationDialog.showAndWait();
+
+            // Si l'utilisateur a confirmé la suppression
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Créer une instance du service JoueurService
+                JoueurService joueurService = new JoueurService();
+
+                try {
+                    // Supprimer le joueur de la base de données en utilisant le service
+                    joueurService.delete(joueur);
+
+                    // Supprimer le joueur de la TableView
+                    joueurTable.getItems().remove(joueur);
+
+                    // Afficher un message de succès
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Succès");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Le joueur a été supprimé avec succès !");
+                    successAlert.showAndWait();
+                } catch (RuntimeException e) {
+                    // En cas d'erreur, afficher un message d'erreur
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Erreur");
+                    errorAlert.setHeaderText(null);
+                    errorAlert.setContentText("Erreur lors de la suppression du joueur : " + e.getMessage());
+                    errorAlert.showAndWait();
+                }
+            }
+        } else {
+            // Si aucun joueur n'est sélectionné, afficher un message d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner un joueur à supprimer.");
+            alert.showAndWait();
+        }
     }
 }
 

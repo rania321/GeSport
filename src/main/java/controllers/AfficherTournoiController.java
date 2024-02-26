@@ -43,11 +43,17 @@ public class AfficherTournoiController {
     private DatePicker DfinT;
 
     @FXML
-    private TextField StatutT;
+    private RadioButton enCoursRadio;
+
+    @FXML
+    private RadioButton termineRadio;
+
+    @FXML
+    private RadioButton aVenirRadio;
+
     @FXML
     private TextField nomT;
-    @FXML
-    private TextField idT;
+
     private List<Tournoi> Tlist;
 
     private List<InscriTournoi>Ilist;
@@ -133,11 +139,35 @@ public class AfficherTournoiController {
     @FXML
     void ajouter(ActionEvent event) {
         String nom = nomT.getText();
+        // Vérifier si un tournoi avec le même nom existe déjà
+        if (ts.readAll().stream().anyMatch(t -> t.getNomT().equals(nom))) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Un tournoi avec le même nom existe déjà.");
+            alert.showAndWait();
+            return;
+        }
+
         // Convertir les valeurs des DatePicker en java.util.Date
         Date dateDebut = java.sql.Date.valueOf(DdebutT.getValue());
         Date dateFin = java.sql.Date.valueOf(DfinT.getValue());
         String Description = DescriT.getText();
-        String Statut = StatutT.getText();
+
+        String Statut;
+
+        // Déterminer le statut en fonction du bouton radio sélectionné
+        if (enCoursRadio.isSelected()) {
+            Statut = "En cours";
+        } else if (termineRadio.isSelected()) {
+            Statut = "Terminé";
+        } else if (aVenirRadio.isSelected()) {
+            Statut = "À venir";
+        } else {
+            // Aucun bouton radio sélectionné, utiliser une valeur par défaut
+            Statut = "À venir";
+        }
+
         Tournoi t = new Tournoi(nom,dateDebut,dateFin,Description,Statut);
         TournoiService ts = new TournoiService();
         ts.add(t);
@@ -202,7 +232,25 @@ public class AfficherTournoiController {
             // Remplir les champs
             nomT.setText(selectedTournoi.getNomT());
             DescriT.setText(selectedTournoi.getDescriT());
-            StatutT.setText(selectedTournoi.getStatutT());
+            clearRadioButtons();
+            // Sélectionner le bouton radio en fonction du statut du tournoi
+            switch (selectedTournoi.getStatutT()) {
+                case "En cours":
+                    enCoursRadio.setSelected(true);
+                    break;
+                case "Terminé":
+                    termineRadio.setSelected(true);
+                    break;
+                case "À venir":
+                    aVenirRadio.setSelected(true);
+                    break;
+                default:
+                    // Aucun statut correspondant, ne rien sélectionner
+                    enCoursRadio.setSelected(false);
+                    termineRadio.setSelected(false);
+                    aVenirRadio.setSelected(false);
+                    break;
+            }
             // Convertir les dates
             Date dateDebut = selectedTournoi.getDateDebutT();
             Date dateFin = selectedTournoi.getDateFinT();
@@ -214,6 +262,8 @@ public class AfficherTournoiController {
             // maj DatePicker
             DdebutT.setValue(localDateDebut);
             DfinT.setValue(localDateFin);
+
+
         }
 
     }
@@ -227,7 +277,19 @@ public class AfficherTournoiController {
             // Récupérer les valeurs
             String nom = nomT.getText();
             String description = DescriT.getText();
-            String statut = StatutT.getText();
+            // Récupérer le statut à partir des boutons radio sélectionnés
+            String statut;
+            if (enCoursRadio.isSelected()) {
+                statut = "En cours";
+            } else if (termineRadio.isSelected()) {
+                statut = "Terminé";
+            } else if (aVenirRadio.isSelected()) {
+                statut = "À venir";
+            } else {
+                // Aucun bouton radio sélectionné, utiliser une valeur par défaut
+                statut = "À venir";
+            }
+
 
             // Convertir les valeurs des DatePicker
             Date dateDebut = java.sql.Date.valueOf(DdebutT.getValue());
@@ -247,12 +309,12 @@ public class AfficherTournoiController {
             TournoiService ts = new TournoiService();
             ts.update(tournoiSelectionne);
 
-            idT.clear();
+
             nomT.clear();
             DescriT.clear();
-            StatutT.clear();
             DdebutT.setValue(null);
             DfinT.setValue(null);
+            clearRadioButtons();
         } else {
             //message d'erreur
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -293,6 +355,14 @@ public class AfficherTournoiController {
 
         // Afficher la nouvelle fenêtre
         stage.show();
+    }
+
+    @FXML
+    void clearRadioButtons() {
+        enCoursRadio.setSelected(false);
+        termineRadio.setSelected(false);
+        aVenirRadio.setSelected(false);
+
     }
 }
 

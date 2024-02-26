@@ -244,11 +244,11 @@ public class Main {
         System.out.println("Inscription ajoutée avec succès !");
 */
 
-    /*    JoueurService joueurService = new JoueurService();
+        JoueurService joueurService = new JoueurService();
 
         // Création d'un joueur à supprimer (vous devriez récupérer un joueur existant de la base de données)
         Joueur joueurASupprimer = new Joueur();
-        joueurASupprimer.setIdJoueur(118); // Remplacez 1 par l'identifiant réel du joueur à supprimer
+        joueurASupprimer.setIdJoueur(131); // Remplacez 1 par l'identifiant réel du joueur à supprimer
 
         try {
             // Appel de la méthode delete pour supprimer le joueur
@@ -259,7 +259,7 @@ public class Main {
         } catch (RuntimeException e) {
             // En cas d'erreur, afficher le message d'erreur
             System.err.println("Erreur lors de la suppression du joueur : " + e.getMessage());
-        }*/
+        }
 
 
 

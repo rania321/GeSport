@@ -54,11 +54,9 @@ public class JoueurService implements iService<Joueur> {
     public void delete(Joueur joueur) {
         String requete = "DELETE FROM joueur WHERE idJ = ?";
         try {
-            // Préparer la requête
             this.pst = this.conn.prepareStatement(requete);
             this.pst.setInt(1, joueur.getIdJoueur());
 
-            // Exécuter la requête
             this.pst.executeUpdate();
         } catch (SQLException var4) {
             throw new RuntimeException(var4);
@@ -97,8 +95,25 @@ public class JoueurService implements iService<Joueur> {
     }
 
     @Override
-    public Joueur readById(int i) {
-        return null;
+    public Joueur readById(int id) {
+        String requete = "SELECT * FROM joueur WHERE idJ = ?";
+        try {
+            this.pst = this.conn.prepareStatement(requete);
+            this.pst.setInt(1, id);
+            ResultSet rs = this.pst.executeQuery();
+            if (rs.next()) {
+                int idJoueur = rs.getInt("idJ");
+                String nomJoueur = rs.getString("joueur");
+                int idE = rs.getInt("idE");
+                EquipeService equipeService = new EquipeService();
+                Equipe equipe = equipeService.readById(idE);
+                return new Joueur(idJoueur, nomJoueur, equipe);
+            } else {
+                throw new RuntimeException("Aucun joueur trouvé avec l'ID : " + id);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la lecture du joueur avec l'ID " + id + " : " + e.getMessage(), e);
+        }
     }
 
 

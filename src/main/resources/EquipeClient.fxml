@@ -46,11 +46,6 @@
                             <TableColumn fx:id="nomJoueurColumn" prefWidth="199.19999313354492" text="joueurs" />
                         </columns>
                     </TableView>
-                  <Button layoutX="168.0" layoutY="500.0" mnemonicParsing="false" onAction="#supprimerJ" styleClass="a-s" text="supprimer ">
-                     <font>
-                        <Font size="8.0" />
-                     </font>
-                  </Button>
                   <Label layoutX="39.0" layoutY="69.0" prefHeight="18.0" prefWidth="138.0" text="Nom Equipe" textFill="#17447a">
                      <font>
                         <Font name="Arial Black" size="12.0" />
@@ -61,6 +56,11 @@
                         <Font name="Arial Black" size="18.0" />
                      </font>
                   </Label>
+                  <Button layoutX="155.0" layoutY="499.0" mnemonicParsing="false" onAction="#supprimerJ" styleClass="a-s" text="supprimer ">
+                     <font>
+                        <Font size="8.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <Label layoutX="59.0" layoutY="316.0" prefHeight="18.0" prefWidth="138.0" text="Nom Joueur" textFill="#17447a">
