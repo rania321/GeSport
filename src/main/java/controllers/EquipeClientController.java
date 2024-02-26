@@ -10,8 +10,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import service.EquipeService;
 import service.JoueurService;
 import service.TournoiService;
@@ -200,5 +205,25 @@ public class EquipeClientController {
             }
         }
 
+    @FXML
+    void tournois(ActionEvent event) throws IOException {
 
-}
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TournoiClient.fxml"));
+        Parent root = loader.load();
+        // Appel de showTournoi()
+        TournoiClientController controller = loader.getController();
+        controller.showTournoi();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root, 1300, 800);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Tournois");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    }
