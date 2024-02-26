@@ -95,7 +95,7 @@ public class ListerProduitBackController {
                                         TableProduit.refresh();
 
                                         });*/
-                                boutonModifier.setOnAction(event -> {
+                                        boutonModifier.setOnAction(event -> {
                                         Produit produit = getTableView().getItems().get(getIndex());
                                         System.out.println("Modifier : " + produit.getNomP());
 
@@ -128,7 +128,6 @@ public class ListerProduitBackController {
                                         // Rafraîchir la TableView si nécessaire
                                         TableProduit.refresh();
                                 });
-
                         }
                         @Override
                         protected void updateItem(Void item, boolean empty) {
@@ -150,6 +149,25 @@ public class ListerProduitBackController {
                                         ps.delete(produit);
                                         System.out.println("Supprimer : " + produit.getNomP());
                                         TableProduit.refresh();
+                                        try {
+                                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerproduitBack.fxml"));
+                                                Parent root = loader.load();
+                                                // Obtenir le contrôleur de la nouvelle interface
+                                                ListerProduitBackController listerproduitBackController = loader.getController();
+
+                                                // Créer une nouvelle scène
+                                                Scene scene = new Scene(root);
+
+                                                // Configurer la nouvelle scène dans une nouvelle fenêtre
+                                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                                stage.setScene(scene);
+
+                                                // Afficher la nouvelle fenêtre
+                                                stage.show();
+
+                                        } catch (IOException e) {
+                                                e.printStackTrace();
+                                        }
 
                                 });
                         }

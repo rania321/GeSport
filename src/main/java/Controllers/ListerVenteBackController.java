@@ -55,6 +55,8 @@ public class ListerVenteBackController {
 
     @FXML
     private TableColumn<?, ?> refPV;
+    @FXML
+    private TableColumn<Vente, Void> ModificationV;
 
     @FXML
     public void Home(ActionEvent actionEvent) throws IOException {
@@ -147,6 +149,52 @@ public class ListerVenteBackController {
                     TableVente.refresh();
                 });
             }
+
+            private void configureModificationColumn() {
+                ModificationV.setCellFactory(param -> new TableCell<>() {
+                    private final Button boutonModifier = new Button("Modifier");
+                    {
+                        boutonModifier.setOnAction(event -> {
+                            Vente vente = getTableView().getItems().get(getIndex());
+                            System.out.println("Modifier : " + vente.getIdV());
+
+                            // Créer une nouvelle fenêtre (Stage)
+                            Stage nouvelleFenetre = new Stage();
+
+                            // Créer un FXMLLoader pour charger la nouvelle scène depuis le fichier FXML
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierVente.fxml"));
+
+                            try {
+                                // Charger la racine de la nouvelle scène
+                                Parent root = loader.load();
+
+                                // Obtenir le contrôleur de la nouvelle scène
+                                ModifierVenteController modifierVenteController = loader.getController();
+
+                                // Transmettre l'id de la vente au contrôleur de la nouvelle scène
+                                modifierVenteController.setVenteId(vente.getIdV());
+
+                                Scene nouvelleScene = new Scene(root);
+                                nouvelleFenetre.setScene(nouvelleScene);
+
+                                // Afficher la nouvelle fenêtre
+                                nouvelleFenetre.show();
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            // Rafraîchir la TableView si nécessaire
+                            TableVente.refresh();
+                        });
+                    }
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setGraphic(empty ? null : boutonModifier);
+                    }
+                });
+            }
+
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);

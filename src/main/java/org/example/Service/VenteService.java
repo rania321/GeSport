@@ -136,4 +136,21 @@ public class VenteService implements IService<Vente> {
         System.out.println("ID NULL !");
         return -1;
     }*/
+
+    public boolean isNumeric(String str) {
+        try {
+            Float.parseFloat(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    public boolean isNumericInt(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }

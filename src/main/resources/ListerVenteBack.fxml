@@ -22,7 +22,7 @@
                     <children>
  <!--____________________________________________DASHBOARD__________________________________________________-->
 
-        <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="206.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
+        <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="206.0" mnemonicParsing="false" onAction="#Home" prefHeight="34.0" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
             <styleClass>
                 <String fx:value="transparent" />
                 <String fx:value="shadow2" />
@@ -83,7 +83,7 @@
 
 <!--____________________________________________DASHBOARD__________________________________________________-->
 
-<TableView fx:id="TableVente" layoutX="394.0" layoutY="201.0" prefHeight="398.0" prefWidth="631.0" styleClass="shadow2" stylesheets="@../java/values/style.css">
+<TableView fx:id="TableVente" layoutX="394.0" layoutY="201.0" prefHeight="398.0" prefWidth="732.0" styleClass="shadow2" stylesheets="@../java/values/style.css">
     <columns>
         <TableColumn fx:id="nomUser" prefWidth="100.0" text="User" />
         <TableColumn fx:id="refPV" prefWidth="124.0" text="Reference Produit" />
@@ -91,6 +91,7 @@
         <TableColumn fx:id="QV" minWidth="0.0" prefWidth="100.0" text="Quantié" />
         <TableColumn fx:id="MV" prefWidth="100.0" text="MontantV" />
         <TableColumn fx:id="SuppressionV" prefWidth="100.0" />
+            <TableColumn fx:id="ModificationV" prefWidth="105.0" />
     </columns>
 </TableView>
 

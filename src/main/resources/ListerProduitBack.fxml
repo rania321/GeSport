@@ -20,7 +20,7 @@
       <AnchorPane layoutX="258.0" layoutY="94.0" prefHeight="704.0" prefWidth="1132.0" styleClass="white-bg" stylesheets="@../java/values/style.css" />
       <AnchorPane prefHeight="800.0" prefWidth="258.0" styleClass="side_ankerpane" stylesheets="@../java/values/style2.css">
          <children>
-            <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="203.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
+            <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="203.0" mnemonicParsing="false" onAction="#Home" prefHeight="34.0" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
                <styleClass>
                   <String fx:value="transparent" />
                   <String fx:value="shadow2" />

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierVenteController">
+    <children>
+        <ImageView fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../../Downloads/home-4-fill.png" />
+            </image>
+            <VBox.margin>
+                <Insets left="15.0" top="15.0" />
+            </VBox.margin>
+        </ImageView>
+        <VBox alignment="BOTTOM_CENTER" layoutX="83.0" layoutY="47.0" prefHeight="306.0" prefWidth="435.0" stylesheets="@../java/values/style.css">
+            <VBox.margin>
+                <Insets left="70.0" right="70.0" />
+            </VBox.margin>
+            <children>
+                <Label prefHeight="67.0" prefWidth="317.0" text="MODIFIER UNE VENTE" textFill="#f9b13d">
+                    <font>
+                        <Font name="Calibri Bold" size="32.0" />
+                    </font>
+                    <padding>
+                        <Insets top="30.0" />
+                    </padding>
+                </Label>
+                <VBox prefHeight="240.0" prefWidth="361.0">
+                    <children>
+                  <AnchorPane prefHeight="27.0" prefWidth="355.0" />
+                        <Label prefHeight="29.0" prefWidth="49.0" text="Nom :" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="80.0" />
+                            </VBox.margin>
+                            <padding>
+                                <Insets top="25.0" />
+                            </padding>
+                            <graphic>
+                                <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="302.0">
+                                    <children>
+                                        <Label prefHeight="31.0" prefWidth="88.0" text="Quantité : " textFill="WHITE">
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <TextField fx:id="quantiteV" prefHeight="29.0" prefWidth="190.0" promptText="Quantité.." stylesheets="@../java/values/style.css" />
+                                    </children>
+                                </HBox>
+                            </graphic>
+                        </Label>
+                  <AnchorPane prefHeight="31.0" prefWidth="355.0" />
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="36.0" prefWidth="280.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="158.0" text="Montant :" textFill="WHITE">
+                                    <HBox.margin>
+                                        <Insets left="80.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="montantV" prefHeight="25.0" prefWidth="258.0" promptText="En dinar" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="41.0" prefWidth="201.0">
+                            <VBox.margin>
+                                <Insets left="180.0" right="80.0" top="15.0" />
+                            </VBox.margin>
+                            <children>
+                                <Button fx:id="modification" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="151.0" text="Confirmer" textFill="#fcfcfc">
+                                    <stylesheets>
+                                        <URL value="@values/style2.css" />
+                                        <URL value="@../java/values/style.css" />
+                                    </stylesheets>
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="search-button2" />
+                                    </styleClass>
+                                </Button>
+                            </children>
+                            <stylesheets>
+                                <URL value="@../java/values/style.css" />
+                                <URL value="@values/style2.css" />
+                            </stylesheets>
+                        </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets right="80.0" />
+                    </VBox.margin>
+                </VBox>
+            </children>
+            <styleClass>
+                <String fx:value="search-button" />
+                <String fx:value="shadow" />
+            </styleClass>
+        </VBox>
+    </children>
+
+</AnchorPane>

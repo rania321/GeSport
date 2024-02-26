@@ -1,16 +1,19 @@
 package Controllers;
 
 import entities.Produit;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import org.example.Service.ProduitService;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Optional;
 
 public class ModifierProduitController {
 
@@ -43,12 +46,11 @@ public class ModifierProduitController {
         System.out.println("ID de la vente dans le nouveau contrôleur : " + idp);
     }
 
-
-    public void modifier(javafx.event.ActionEvent actionEvent) throws IOException {
+    @FXML
+    void modifier(ActionEvent event) throws IOException {
         String nom = nomm.getText();
         String descr = descrim.getText();
         String image = imagem.getText();
-
         if (!ps.isNumeric(prixm.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur!");
@@ -74,13 +76,30 @@ public class ModifierProduitController {
             alert.showAndWait();
             return;
         }
+            float prix =Float.parseFloat(prixm.getText());
+            int stock = Integer.parseInt(quantitem.getText());
+            Produit pp = new Produit();
+            pp.setIdP(this.idp);
+            pp.setNomP(nom);
+            pp.setPrixP(prix);
+            pp.setStockP(stock);
+            pp.setImageP(image);
+            pp.setDateAjoutP(sqlDate);
+            pp.setDescriP(descr);
+            // Demander une confirmation à l'utilisateur (vous pouvez personnaliser cela selon vos besoins)
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation de modification");
+            alert.setHeaderText("Modifier la réservation");
+            alert.setContentText("Êtes-vous sûr de vouloir modifier la réservation sélectionnée ?");
 
-        float prix =Float.parseFloat(prixm.getText());
-        int stock = Integer.parseInt(quantitem.getText());
-        Produit pp = new Produit(12, "nom", "descr",0.2f, 77, sqlDate, "image" );
-        ps.update(pp);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduitBack.fxml") );
-        Parent root = loader.load();
+            Optional<ButtonType> result = alert.showAndWait();
+            // Si l'utilisateur confirme la suppression, procéder
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Mettre à jour la séance dans la base de données
+                ps.update(pp);
+
+            }
+        }
     }
-}
+
 

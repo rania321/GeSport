@@ -195,7 +195,7 @@ public class ListerProduitController {
                     float  total=quantite*selectedProduit.getPrixP();
                     //total = Float.parseFloat(totalclabel.getText());
                     totalclabel.setText(total+"dt");
-                    Panier pa = new Panier(9, selectedProduit.getIdP(), quantite, total);
+                    Panier pa = new Panier(1, selectedProduit.getIdP(), quantite, total);
                     pas.add(pa);
                     System.out.println("Ajout au panier effectuer avec succes ");
 
