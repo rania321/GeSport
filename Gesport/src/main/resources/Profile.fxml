@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.Gesport.controllers.ProfileController">
+   <children>
+      <ImageView fitHeight="604.0" fitWidth="936.0" layoutY="195.0" pickOnBounds="true">
+         <image>
+            <Image url="@Compte2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="132.0" fitWidth="134.0" layoutX="78.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imageprof.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="PrenomU" layoutX="610.0" layoutY="319.0" promptText="prenom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TextField fx:id="EmailU" layoutX="282.0" layoutY="458.0" promptText="Email" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TextField fx:id="mdpU" layoutX="610.0" layoutY="458.0" promptText="Mot de passe" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <TextField fx:id="NomU" layoutX="303.0" layoutY="319.0" promptText="Nom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
+      <ListView fx:id="listU" layoutY="536.0" prefHeight="91.0" prefWidth="944.0" />
+      <Button layoutX="670.0" layoutY="234.0" mnemonicParsing="false" onAction="#gotoAjouterDm" prefHeight="26.0" prefWidth="158.0" style="-fx-background-color: #2596be;" text="Ajouter dossier medicale" />
+      <Button layoutX="670.0" layoutY="663.0" mnemonicParsing="false" onAction="#SupprCuser" prefHeight="26.0" prefWidth="60.0" styleClass="transparent" stylesheets="@register.css">
+         <graphic>
+            <ImageView fitHeight="51.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@supp.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="530.0" layoutY="661.0" mnemonicParsing="false" onAction="#modifieCuser" prefHeight="53.0" prefWidth="67.0" styleClass="transparent" stylesheets="@register.css">
+         <graphic>
+            <ImageView fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@mod.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="318.0" fitWidth="944.0" layoutY="-123.0" pickOnBounds="true">
+         <image>
+            <Image url="@NAV.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

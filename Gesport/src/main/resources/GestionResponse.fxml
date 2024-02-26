@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.Gesport.controllers.ResponseController">
+    <children>
+      <ImageView fitHeight="800.0" fitWidth="1300.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/8.png" />
+         </image>
+      </ImageView>
+
+        <AnchorPane layoutX="266.0" layoutY="169.0" prefHeight="415.0" prefWidth="264.0" stylesheets="@style.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="radius" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <Label layoutX="56.0" layoutY="69.0" prefHeight="37.0" prefWidth="249.0" text="Ajouter une réponse" textFill="#1e77bc">
+                    <font>
+                        <Font name="Arial Black" size="18.0" />
+                    </font>
+                </Label>
+                <Button fx:id="addButton" layoutX="48.0" layoutY="287.0" mnemonicParsing="false" onAction="#addResponse" prefHeight="25.0" prefWidth="51.0" text="add" />
+                <Button fx:id="deleteButton" layoutX="90.0" layoutY="328.0" mnemonicParsing="false" onAction="#deleteResponse" text="Delete" />
+                <Button fx:id="updateButton" layoutX="126.0" layoutY="287.0" mnemonicParsing="false" onAction="#updateResponse" text="Update" />
+                <Label layoutX="48.0" layoutY="138.0" prefHeight="17.0" prefWidth="105.0" text="Reclamation ID" textFill="#17447a">
+                    <font>
+                        <Font name="Arial Black" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="reclamationIdField" layoutX="48.0" layoutY="163.0" prefHeight="25.0" prefWidth="238.0" />
+                <Label layoutX="48.0" layoutY="200.0" prefHeight="17.0" prefWidth="83.0" text="Content" textFill="#17447a">
+                    <font>
+                        <Font name="Arial Black" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="contentField" layoutX="48.0" layoutY="225.0" prefHeight="25.0" prefWidth="238.0" />
+            </children>
+        </AnchorPane>
+        <Pane prefHeight="800.0" prefWidth="220.0" />
+        <Pane layoutX="575.0" prefHeight="800.0" prefWidth="725.0">
+            <children>
+                <TableView fx:id="responseTableView" layoutX="13.0" layoutY="171.0" onMouseClicked="#getResponseData" prefHeight="404.0" prefWidth="563.0" stylesheets="@style.css">
+                    <columns>
+                        <TableColumn fx:id="idColumn" minWidth="-1.0" prefWidth="116.0" text="ID Response" />
+                        <TableColumn fx:id="reclamationIdColumn" prefWidth="101.0" text="Reclamation ID" />
+                        <TableColumn fx:id="dateColumn" prefWidth="183.0" text="Date">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="dateRep" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="contentColumn" prefWidth="149.0" text="Content" />
+                    </columns>
+                    <styleClass>
+                        <String fx:value="column-header-background" />
+                        <String fx:value="column-header" />
+                        <String fx:value="table-view" />
+                    </styleClass>
+
+                </TableView>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
