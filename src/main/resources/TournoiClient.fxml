@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TournoiClientController">
     <children>
-        <TableView fx:id="tournoiTable" layoutX="230.0" layoutY="134.0" prefHeight="300.0" prefWidth="560.0">
-            <columns>
-                <TableColumn fx:id="idColumn" text="ID tournoi" />
-                <TableColumn fx:id="nomColumn" text="Nom" />
-                <TableColumn fx:id="dateDebutColumn" text="Date Début" />
-                <TableColumn fx:id="dateFinColumn" text="Date Fin" />
-                <TableColumn fx:id="descriptionColumn" text="Description" />
-                <TableColumn fx:id="statutColumn" text="Statut" />
-            </columns>
-        </TableView>
-        <Button layoutX="771.0" layoutY="537.0" mnemonicParsing="false" onAction="#inscrire" text="S'inscrire" />
+      <ImageView fitHeight="800.0" fitWidth="1300.0">
+         <image>
+            <Image url="@img/front.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="283.0" layoutY="106.0" prefHeight="695.0" prefWidth="742.0" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="radius" />
+         </styleClass>
+      </AnchorPane>
+      <AnchorPane layoutX="283.0" layoutY="166.0" prefHeight="561.0" prefWidth="742.0" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="radius" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <children>
+            <TableView fx:id="tournoiTable" layoutX="59.0" layoutY="45.0" prefHeight="336.0" prefWidth="627.0">
+               <columns>
+                  <TableColumn fx:id="idColumn" text="ID tournoi" />
+                  <TableColumn fx:id="nomColumn" text="Nom" />
+                  <TableColumn fx:id="dateDebutColumn" prefWidth="102.40005493164062" text="Date Début" />
+                  <TableColumn fx:id="dateFinColumn" prefWidth="89.5999755859375" text="Date Fin" />
+                  <TableColumn fx:id="descriptionColumn" prefWidth="112.0" text="Description" />
+                  <TableColumn fx:id="statutColumn" prefWidth="160.0" text="Statut" />
+               </columns>
+            </TableView>
+            <Button layoutX="585.0" layoutY="459.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="58.0" prefWidth="104.0" styleClass="but" stylesheets="@style.css" text="S'inscrire" textFill="#202563">
+               <font>
+                  <Font name="Yu Gothic Regular" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="215.0" fitWidth="351.0" layoutX="143.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/tournoiC.jpg" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

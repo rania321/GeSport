@@ -1,8 +1,6 @@
 package controllers;
 
-import entities.Equipe;
-import entities.Tournoi;
-import entities.User;
+import entities.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -32,6 +30,7 @@ import java.util.List;
 public class EquipeAdminController {
     private List<Equipe> Elist;
     private final EquipeService es = new EquipeService();
+    private List<Joueur> Jlist;
     private final JoueurService js= new JoueurService();
     private final Equipe equipe = new Equipe();
     private final TournoiService tournoiService = new TournoiService();
@@ -51,6 +50,11 @@ public class EquipeAdminController {
     @FXML
     private TableColumn<Equipe, String> statutColumn;
 
+    @FXML
+    private TableView<Joueur> joueurTable;
+
+    @FXML
+    private TableColumn<Joueur, String> nomJoueurColumn;
 
 
     @FXML
@@ -85,12 +89,39 @@ public class EquipeAdminController {
             ((TableView<Equipe>) equipeTable).setItems(FXCollections.observableArrayList(Elist));
         }
 
+        // Ajouter un écouteur de sélection à la table
+        equipeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                // Afficher les nom des joueurs
+                showJoueurs(newSelection.getIdE());
+            }
+        });
+
+    }
+
+
+    private void showJoueurs(int equipeid) {
+        // Récupération des joueurs pour l'équipe spécifiée depuis le service
+        Jlist = js.getJoueurbyEquipe(equipeid);
+
+        // Création d'une liste observable pour les joueurs
+        ObservableList<Joueur> observableJoueurs = FXCollections.observableArrayList(Jlist);
+
+        // Ajout des joueurs à la table
+        joueurTable.setItems(observableJoueurs);
     }
 
     public void initialize() {
         List<String> tournoiNames = tournoiService.readAllNames();
         ObservableList<String> observableNames = FXCollections.observableArrayList(tournoiNames);
-        nomT.setItems(observableNames);}
+        nomT.setItems(observableNames);
+
+        nomJoueurColumn.setCellValueFactory(new PropertyValueFactory<>("joueur"));
+
+        }
+
+
+
 
 
     @FXML
@@ -101,7 +132,6 @@ public class EquipeAdminController {
         String nomTournoi = nomT.getValue();
         int IDTE = tournoiService.getIdByName(nomTournoi);
 
-        int IDUE = Integer.parseInt(idUE.getText());
         String Statut = statutE.getText();
 
         // Création des instances
@@ -111,7 +141,7 @@ public class EquipeAdminController {
 
         // read by id Tournoi et User
         Tournoi tournoi = tournoiService.readById(IDTE);
-        User user = userservice.readById(IDUE);
+        User user = userservice.readById(1);
 
         // Création équipe avec Tournoi et User récupérés
         Equipe e = new Equipe(nom, tournoi, user, Statut);
@@ -186,19 +216,18 @@ public class EquipeAdminController {
             String statut = statutE.getText();
             String nomTournoi = nomT.getValue();
             int IDTE = tournoiService.getIdByName(nomTournoi);
-            int IDUE = Integer.parseInt(idUE.getText());
+
 
             TournoiService tournoiService = new TournoiService();
             UserService userService = new UserService();
 
             Tournoi tournoi = tournoiService.readById(IDTE);
-            User user = userService.readById(IDUE);
+
 
 
             // maj  equipe sélectionné
             equipeSelectionne.setNomE(nom);
             equipeSelectionne.setTournoi(tournoi);
-            equipeSelectionne.setUser(user);
             equipeSelectionne.setStatutE(statut);
 
 
@@ -213,7 +242,7 @@ public class EquipeAdminController {
 
             nomE.clear();
             statutE.clear();
-            idUE.clear();
+
             nomT.getSelectionModel().clearSelection();
         } else {
             // message d'erreur

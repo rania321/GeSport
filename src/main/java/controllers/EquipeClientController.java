@@ -17,6 +17,7 @@ import service.JoueurService;
 import service.TournoiService;
 import service.UserService;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,8 @@ public class EquipeClientController {
 
     private List<Equipe> Elist;
     private final EquipeService es = new EquipeService();
-    private final Equipe equipe = new Equipe();
+
+
     private final TournoiService tournoiService = new TournoiService();
     @FXML
     private TableView<Equipe> equipeTable;
@@ -50,10 +52,6 @@ public class EquipeClientController {
 
     @FXML
     private TableColumn<Joueur, String> nomJoueurColumn;
-
-
-    @FXML
-    private TextField idUE;
 
     @FXML
     private TextField nomE;
@@ -103,7 +101,7 @@ public class EquipeClientController {
         String nomTournoi = nomT.getValue();
         int IDTE = tournoiService.getIdByName(nomTournoi);
 
-        int IDUE = Integer.parseInt(idUE.getText());
+
         String Statut = "inscrite";
 
         // Création instances
@@ -113,7 +111,7 @@ public class EquipeClientController {
 
         // read by id Tournoi et User
         Tournoi tournoi = tournoiService.readById(IDTE);
-        User user = userservice.readById(IDUE);
+        User user = userservice.readById(1);
 
         // Création équipe avec Tournoi et User récupérés
         Equipe e = new Equipe(nom, tournoi, user, Statut);
@@ -154,16 +152,53 @@ public class EquipeClientController {
             listeDesJoueurs.add(nouveauJoueur);
             // Mettre à jour la TableView des joueurs
             joueurTable.getItems().setAll(listeDesJoueurs);
+            joueur.clear();
+
+            JoueurService joueurService=new JoueurService();
+            // Ajouter le nouvel objet Joueur à la liste des joueurs
+            joueurService.add(nouveauJoueur);
+            joueurService.supprimerJoueursVides();
         }
-        // Créer un nouvel objet Joueur avec le nom récupéré et l'équipe correspondante
-        Joueur nouveauJoueur = new Joueur(nomJoueur, derniereEquipe);
-        JoueurService joueurService=new JoueurService();
-        // Ajouter le nouvel objet Joueur à la liste des joueurs
-        joueurService.add(nouveauJoueur);
-        joueurService.supprimerJoueursVides();
+
+
 
     }
 
+
+    public void supprimerJ(ActionEvent actionEvent) {
+            Joueur joueur = joueurTable.getSelectionModel().getSelectedItem();
+            if (joueur != null) {
+                JoueurService joueurService = new JoueurService();
+                try {
+                    // Supprimer le joueur de la base de données en utilisant son identifiant
+                    joueurService.deleteById(joueur.getIdJoueur());
+
+                    // Supprimer le joueur de la TableView
+                    joueurTable.getItems().remove(joueur);
+
+                    // Afficher un message de succès
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Succès");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Le joueur a été supprimé avec succès !");
+                    alert.showAndWait();
+                } catch (RuntimeException e) {
+                    // En cas d'erreur, afficher un message d'erreur
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Erreur lors de la suppression du joueur : " + e.getMessage());
+                    alert.showAndWait();
+                }
+            } else {
+                // Si aucun joueur n'est sélectionné, afficher un message d'erreur
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez sélectionner une ligne à supprimer.");
+                alert.showAndWait();
+            }
+        }
 
 
 }

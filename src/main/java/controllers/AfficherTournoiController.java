@@ -87,8 +87,7 @@ public class AfficherTournoiController {
     private TableView<InscriTournoi> inscriTable;
     @FXML
     private TableColumn<InscriTournoi,String> equipeColumn;
-    @FXML
-    private TableColumn<InscriTournoi,String> tournoiColumn;
+
 
 
 
@@ -123,11 +122,7 @@ public class AfficherTournoiController {
             String nomEquipe = is.getE().getNomE();
             return new SimpleStringProperty(nomEquipe);
         });
-        tournoiColumn.setCellValueFactory(cellData -> {
-            InscriTournoi is = cellData.getValue();
-            String nomTournoi = is.getT().getNomT();
-            return new SimpleStringProperty(nomTournoi);
-        });
+
 
         // Ajout des données à la table inscriTable
         inscriTable.setItems(FXCollections.observableArrayList(Ilist));

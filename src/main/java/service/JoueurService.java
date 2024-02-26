@@ -1,8 +1,10 @@
 package service;
 
 import entities.Equipe;
+import entities.InscriTournoi;
 import entities.Joueur;
 
+import entities.Tournoi;
 import utils.DataSource;
 
 import java.sql.*;
@@ -50,7 +52,17 @@ public class JoueurService implements iService<Joueur> {
 
     @Override
     public void delete(Joueur joueur) {
+        String requete = "DELETE FROM joueur WHERE idJ = ?";
+        try {
+            // Préparer la requête
+            this.pst = this.conn.prepareStatement(requete);
+            this.pst.setInt(1, joueur.getIdJoueur());
 
+            // Exécuter la requête
+            this.pst.executeUpdate();
+        } catch (SQLException var4) {
+            throw new RuntimeException(var4);
+        }
     }
 
     @Override
@@ -60,7 +72,28 @@ public class JoueurService implements iService<Joueur> {
 
     @Override
     public List<Joueur> readAll() {
-        return null;
+        String requete = "select * from joueur";
+        List<Joueur> list = new ArrayList();
+
+        try {
+            this.ste = this.conn.createStatement();
+            ResultSet rs = this.ste.executeQuery(requete);
+
+            while (rs.next()) {
+                int idJoueur = rs.getInt("idJ");
+                String nomJoueur = rs.getString("joueur");
+                int idE = rs.getInt("idE");
+                EquipeService equipeService = new EquipeService();
+                Equipe equipe = equipeService.readById(idE);
+                Joueur joueur = new Joueur(rs.getInt("idJ"),rs.getString("joueur"),equipe);
+                list.add(joueur);
+
+            }
+
+            return list;
+        } catch (SQLException var10) {
+            throw new RuntimeException(var10);
+        }
     }
 
     @Override
@@ -94,7 +127,32 @@ public class JoueurService implements iService<Joueur> {
             throw new RuntimeException(var4);
         }
     }
+
+
+    public List<Joueur> getJoueurbyEquipe(int equipeId) {
+        List<Joueur> joueurbyequipe = new ArrayList<>();
+        List<Joueur> alljoueurs = readAll();
+        for ( Joueur J : alljoueurs) {
+            if (J.getEquipe().getIdE()==equipeId) {
+                joueurbyequipe.add(J);
+            }
+        }
+        return joueurbyequipe;
+    }
+
+    public void deleteById(int joueurId) {
+        String requete = "DELETE FROM joueur WHERE idJ = ?";
+        try {
+            this.pst = this.conn.prepareStatement(requete);
+            this.pst.setInt(1, joueurId);
+            this.pst.executeUpdate();
+        } catch (SQLException var4) {
+            throw new RuntimeException(var4);
+        }
+    }
 }
+
+
 
 
 
