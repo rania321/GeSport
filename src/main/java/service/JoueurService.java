@@ -1,10 +1,8 @@
 package service;
 
 import entities.Equipe;
-import entities.InscriTournoi;
 import entities.Joueur;
 
-import entities.Tournoi;
 import utils.DataSource;
 
 import java.sql.*;
@@ -36,14 +34,14 @@ public class JoueurService implements iService<Joueur> {
             this.conn.setAutoCommit(true);
 
             this.pst.close();
-        } catch (SQLException var4) {
+        } catch (SQLException ex) {
             // En cas d'erreur, annuler la transaction
             try {
                 this.conn.rollback();
             } catch (SQLException e) {
                 throw new RuntimeException("Erreur  : " + e.getMessage(), e);
             }
-            throw new RuntimeException("Erreur lors de l'ajout du joueur : " + var4.getMessage(), var4);
+            throw new RuntimeException("Erreur lors de l'ajout du joueur : " + ex.getMessage(), ex);
         }
     }
 
@@ -55,8 +53,8 @@ public class JoueurService implements iService<Joueur> {
             this.pst.setInt(1, joueur.getIdJoueur());
 
             this.pst.executeUpdate();
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -86,8 +84,8 @@ public class JoueurService implements iService<Joueur> {
             }
 
             return list;
-        } catch (SQLException var10) {
-            throw new RuntimeException(var10);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -122,8 +120,8 @@ public class JoueurService implements iService<Joueur> {
             this.pst = this.conn.prepareStatement(requete);
 
             this.pst.executeUpdate();
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -135,8 +133,8 @@ public class JoueurService implements iService<Joueur> {
             this.pst.setInt(1, equipeId);
             this.pst.executeUpdate();
 
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -152,7 +150,7 @@ public class JoueurService implements iService<Joueur> {
         return joueurbyequipe;
     }
 
-    public void deleteById(int joueurId) {
+  /*  public void deleteById(int joueurId) {
         String requete = "DELETE FROM joueur WHERE idJ = ?";
         try {
             this.pst = this.conn.prepareStatement(requete);
@@ -162,6 +160,8 @@ public class JoueurService implements iService<Joueur> {
             throw new RuntimeException(var4);
         }
     }
+
+   */
 }
 
 

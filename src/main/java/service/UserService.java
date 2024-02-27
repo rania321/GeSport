@@ -28,8 +28,8 @@ public class UserService implements iService<User> {
             this.pst.setString(4, user.getMdpU());
             this.pst.setString(5, user.getRoleU());
             this.pst.executeUpdate();
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -60,8 +60,8 @@ public class UserService implements iService<User> {
                 user.setMdpU(rs.getString("mdpU"));
                 user.setRoleU(rs.getString("RoleU"));
             }
-        } catch (SQLException var6) {
-            System.out.println(var6.getMessage());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return user;

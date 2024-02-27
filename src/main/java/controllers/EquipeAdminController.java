@@ -1,7 +1,6 @@
 package controllers;
 
 import entities.*;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,8 +57,7 @@ public class EquipeAdminController {
     private TableColumn<Joueur, String> nomJoueurColumn;
 
 
-    @FXML
-    private TextField idUE;
+
 
     @FXML
     private TextField nomE;
@@ -119,10 +117,11 @@ public class EquipeAdminController {
     }
 
     public void initialize() {
+        //combobox
         List<String> tournoiNames = tournoiService.readAllNames();
         ObservableList<String> observableNames = FXCollections.observableArrayList(tournoiNames);
         nomT.setItems(observableNames);
-
+        //tab J
         nomJoueurColumn.setCellValueFactory(new PropertyValueFactory<>("joueur"));
 
         }
@@ -137,7 +136,7 @@ public class EquipeAdminController {
         String nom = nomE.getText();
         // Récupérer l'ID du tournoi sélectionné dans la ComboBox
         String nomTournoi = nomT.getValue();
-        // controle de saisiepour le nom du tournoi
+        // controle de saisie pour le nom
         if (Elist.stream().anyMatch(equipe -> equipe.getNomE().equals(nom) && equipe.getTournoi().getNomT().equals(nomTournoi))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -147,7 +146,7 @@ public class EquipeAdminController {
             return;
         }
 
-        int IDTE = tournoiService.getIdByName(nomTournoi);
+
 
         String statut;
         if (inscriteRadio.isSelected()) {
@@ -166,6 +165,7 @@ public class EquipeAdminController {
         UserService userservice = new UserService();
 
         // read by id Tournoi et User
+        int IDTE = tournoiService.getIdByName(nomTournoi);
         Tournoi tournoi = tournoiService.readById(IDTE);
         User user = userservice.readById(1);
 
@@ -240,7 +240,6 @@ public class EquipeAdminController {
 
         // Supp ligne sélectionnée
         equipeTable.getItems().remove(equipe);
-
         es.delete(equipe);
 
 
@@ -341,7 +340,7 @@ public class EquipeAdminController {
         qualifieeRadio.setSelected(false);
         elimineeRadio.setSelected(false);
     }
-
+    @FXML
     public void supprimerJ(ActionEvent actionEvent) {
         // Récupérer le joueur sélectionné dans la TableView joueurTable
         Joueur joueur = joueurTable.getSelectionModel().getSelectedItem();

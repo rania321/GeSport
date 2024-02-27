@@ -29,8 +29,8 @@ public class TournoiService implements iService<Tournoi> {
         try {
             this.ste = this.conn.createStatement();
             this.ste.executeUpdate(requete);
-        } catch (SQLException var7) {
-            throw new RuntimeException(var7);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -48,8 +48,8 @@ public class TournoiService implements iService<Tournoi> {
             this.pst.setString(4, t.getDescriT());
             this.pst.setString(5, t.getStatutT());
             this.pst.executeUpdate();
-        } catch (SQLException var7) {
-            throw new RuntimeException(var7);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -60,8 +60,8 @@ public class TournoiService implements iService<Tournoi> {
             this.pst = this.conn.prepareStatement(requete);
             this.pst.setInt(1, tournoi.getIdT());
             this.pst.executeUpdate();
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -77,8 +77,8 @@ public class TournoiService implements iService<Tournoi> {
             this.pst.setString(5, tournoi.getStatutT());
             this.pst.setInt(6, tournoi.getIdT());
             this.pst.executeUpdate();
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -95,8 +95,8 @@ public class TournoiService implements iService<Tournoi> {
             }
 
             return list;
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -108,8 +108,8 @@ public class TournoiService implements iService<Tournoi> {
             this.pst.setInt(1, id);
             ResultSet rs = this.pst.executeQuery();
             return rs.next() ? new Tournoi(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getDate(4), rs.getString(5), rs.getString(6)) : null;
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -127,8 +127,8 @@ public class TournoiService implements iService<Tournoi> {
             }
 
             return namesList;
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

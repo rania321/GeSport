@@ -55,11 +55,17 @@ public class EquipeService implements iService<Equipe> {
 
     public void delete(Equipe equipe) {
         try {
-            // Supprimer l'entrée correspondante dans la table inscritournoi
+            // Supprimer  dans la table inscritournoi
             String deleteInscriTournoi = "DELETE FROM inscritournoi WHERE idE=?";
             this.pst = this.conn.prepareStatement(deleteInscriTournoi);
             this.pst.setInt(1, equipe.getIdE());
             this.pst.executeUpdate();
+            //Supprimer de la table joueur
+            String deleteJoueur = "DELETE FROM joueur WHERE idE=?";
+            this.pst = this.conn.prepareStatement(deleteJoueur);
+            this.pst.setInt(1, equipe.getIdE());
+            this.pst.executeUpdate();
+
 
             // Supprimer l'équipe de la table equipe
             String requete = "DELETE FROM equipe WHERE idE=?";
@@ -71,22 +77,22 @@ public class EquipeService implements iService<Equipe> {
 
 
 
-        } catch (SQLException var4) {
-            throw new RuntimeException(var4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public void update(Equipe equipe) {
 
         try{
-            // Mettre à jour l'entrée correspondante dans la table inscritournoi
+            // maj de la table inscritournoi
             String updateInscriTournoi = "UPDATE inscritournoi SET idT=? WHERE idE=?";
             this.pst = conn.prepareStatement(updateInscriTournoi);
             this.pst.setInt(1, equipe.getTournoi().getIdT());
             this.pst.setInt(2, equipe.getIdE());
             this.pst.executeUpdate();
 
-            // Mettre à jour l'équipe dans la table equipe
+            // maj équipe  equipe
 
             String requete = "UPDATE equipe SET nomE=?, idT=?, idU=?, statutE=? WHERE idE=?";
 
@@ -149,7 +155,7 @@ public class EquipeService implements iService<Equipe> {
             throw new RuntimeException(var10);
         }
     }
-    public  int getIdByName(String nomEquipe) {
+   /* public  int getIdByName(String nomEquipe) {
         String requete = "SELECT idE FROM equipe WHERE nomE = ?";
         try {
             this.pst = this.conn.prepareStatement(requete);
@@ -162,9 +168,8 @@ public class EquipeService implements iService<Equipe> {
             throw new RuntimeException(var4);
         }
         return -1; //  retournez une valeur qui n'est pas un ID valide
-    }
+    }*/
 
-    // récupérer toutes les équipes associées à un tournoi spécifique
     public List<Equipe> readAllEquipesByTournoiId(int idT) {
         List<Equipe> equipes = new ArrayList<>();
 
@@ -175,28 +180,30 @@ public class EquipeService implements iService<Equipe> {
             pst = conn.prepareStatement(query);
             pst.setInt(1, idT);
 
-            // Exécuter la requête SQL
             ResultSet rs = pst.executeQuery();
 
             // Parcourir les résultats de la requête et ajouter les équipes à la liste
             while (rs.next()) {
+                // Créer un nouvel objet Equipe
                 Equipe equipe = new Equipe();
+                // Définir les propriétés de l'équipe à partir des données du ResultSet
                 equipe.setIdE(rs.getInt("idE"));
-
+                equipe.setNomE(rs.getString("nomE"));
+                // Ajouter l'équipe à la liste
                 equipes.add(equipe);
-                // Afficher les équipes récupérées
-                for (Equipe e : equipes) {
-                    System.out.println("Equipe: " + e);
-                }
-
             }
+
+            // Afficher les équipes récupérées (si besoin)
+            for (Equipe e : equipes) {
+                System.out.println("Equipe: " + e);
+            }
+
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
 
         return equipes;
     }
-
 
 
 

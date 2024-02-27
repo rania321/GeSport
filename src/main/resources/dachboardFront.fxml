@@ -28,7 +28,7 @@
                 <Font name="Walkway Bold" size="17.0" />
             </font>
         </Button>
-        <Button layoutX="727.0" layoutY="70.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+        <Button layoutX="727.0" layoutY="67.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
             <font>
                 <Font name="Walkway Bold" size="17.0" />
             </font>

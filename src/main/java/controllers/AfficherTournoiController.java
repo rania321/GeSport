@@ -4,10 +4,8 @@ import entities.Equipe;
 import entities.InscriTournoi;
 import entities.Joueur;
 import entities.Tournoi;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +16,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import service.EquipeService;
 import service.InscriTournoiService;
 import service.JoueurService;
@@ -109,7 +106,7 @@ public class AfficherTournoiController {
             ((TableView<Tournoi>) tournoiTable).setItems(FXCollections.observableArrayList(Tlist));
         }
 
-        // Ajouter un écouteur de sélection à la table tournoiTable
+        //  sélection à la table tournoiTable
         tournoiTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 // Afficher les inscriptions du tournoi sélectionné
@@ -119,7 +116,7 @@ public class AfficherTournoiController {
     }
 
     private void showInscriptions(int tournoiId) {
-        // Récupération des inscriptions pour le tournoi spécifié depuis le service
+        // Récupération des inscriptions pour le tournoi spécifié
         Ilist = its.getInscriptionsByTournoi(tournoiId);
 
         // Configuration des colonnes de la table inscriTable
@@ -215,18 +212,21 @@ public class AfficherTournoiController {
 
         // Récupérer toutes les équipes associées à ce tournoi
         List<Equipe> equipes = equipeService.readAllEquipesByTournoiId(tournoi.getIdT());
-        joueurService.deleteJoueursByEquipeId(equipe.getIdE());
 
         // Supprimer toutes les équipes associées à ce tournoi
         for (Equipe equipe : equipes) {
+            // Récupérer les joueurs de cette équipe et les supprimer
+            List<Joueur> joueurs = joueurService.getJoueurbyEquipe(equipe.getIdE());
+            for (Joueur joueur : joueurs) {
+                joueurService.delete(joueur);
+            }
+            // Supprimer l'équipe
             equipeService.delete(equipe);
         }
 
-        // Supprimer la ligne de tournoi
+        // Maintenant que les équipes associées sont supprimées, vous pouvez supprimer le tournoi
         tournoiTable.getItems().remove(tournoi);
         ts.delete(tournoi);
-        // Supprimer la ligne d'équipe
-        equipeService.delete(equipe);
 
         nomT.clear();
         DescriT.clear();

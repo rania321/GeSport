@@ -3,7 +3,6 @@ package service;
 import entities.Equipe;
 import entities.InscriTournoi;
 import entities.Tournoi;
-import entities.User;
 import utils.DataSource;
 
 import java.sql.*;

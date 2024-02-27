@@ -244,7 +244,7 @@ public class EquipeClientController {
 
         // Vérifier si un joueur est sélectionné
         if (joueur != null) {
-            // Créer une boîte de dialogue de confirmation
+            // confirmation
             Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationDialog.setTitle("Confirmation");
             confirmationDialog.setHeaderText("Supprimer le joueur");
@@ -259,7 +259,7 @@ public class EquipeClientController {
                 JoueurService joueurService = new JoueurService();
 
                 try {
-                    // Supprimer le joueur de la base de données en utilisant le service
+                    // Supprimer le joueur de la base de données
                     joueurService.delete(joueur);
 
                     // Supprimer le joueur de la TableView
