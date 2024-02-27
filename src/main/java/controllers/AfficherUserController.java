@@ -82,7 +82,7 @@ public class AfficherUserController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         // Configure cell value factories
-        idU.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getIdU()));
+        //idU.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getIdU()));
         nomU1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNomU()));
         prenomU1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPrenomU()));
         EmailU1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getEmailU()));

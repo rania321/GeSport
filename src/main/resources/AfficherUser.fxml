@@ -20,9 +20,8 @@
       <TextField fx:id="emailU" layoutX="226.0" layoutY="515.0" promptText="Email" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
       <TextField fx:id="nomU" layoutX="226.0" layoutY="402.0" promptText="Nom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
       <TextField fx:id="roleU" layoutX="226.0" layoutY="609.0" promptText="Role" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TableView fx:id="tableAdd" layoutX="186.0" layoutY="118.0" prefHeight="214.0" prefWidth="731.0">
+      <TableView fx:id="tableAdd" layoutX="240.0" layoutY="123.0" prefHeight="214.0" prefWidth="626.0">
         <columns>
-          <TableColumn fx:id="idU" prefWidth="180.00002747774124" style="-fx-background-color: #2596be;" text="Id_user" />
             <TableColumn fx:id="prenomU1" prefWidth="151.199951171875" style="-fx-background-color: #2596be;" text="PrenomU" />
             <TableColumn fx:id="mdpU1" prefWidth="95.199951171875" style="-fx-background-color: #2596be;" text="mdpU" />
           <TableColumn fx:id="nomU1" prefWidth="149.59999084472656" style="-fx-background-color: #2596be;" text="NomU" />
