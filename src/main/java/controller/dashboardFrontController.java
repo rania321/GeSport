@@ -13,6 +13,23 @@ import java.io.IOException;
 public class dashboardFrontController {
 
     @FXML
+    void isometrie(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/isometrieActivite.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Activités");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
     void activite(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_activite.fxml"));
         Parent root = loader.load();

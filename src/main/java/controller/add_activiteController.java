@@ -1,6 +1,7 @@
 package controller;
 
 import entities.Activite;
+import entities.Reservation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -90,7 +91,12 @@ public class add_activiteController {
 
     String uploadedPhotoName ;
 
+    private List<Activite> ActiviteList = new ArrayList<>();
+    @FXML
+    private TextField searchTF;
+
     public void initialize() throws IOException {
+
         // Initialiser le ComboBox avec des données
         ObservableList<String> options = FXCollections.observableArrayList(
                 "Disponible",
@@ -108,7 +114,25 @@ public class add_activiteController {
             }
         });
         ShowActivite();
+        // Ajoutez un écouteur sur le TextField de recherche pour gérer la recherche dynamique
+        searchTF.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                searchActivite(newValue); // Appel de la méthode de recherche avec le nouveau texte
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
+    }
+    private void searchActivite(String searchText) throws IOException {
+        List<Activite> searchResult = new ArrayList<>();
+        for (Activite activite : ActiviteList) {
+            if (activite.getTypeA().toLowerCase().contains(searchText.toLowerCase())) {
+                searchResult.add(activite);
+            }
+        }
+        // Mettre à jour la TableView avec les résultats de la recherche
+        TableViewA.setItems(FXCollections.observableArrayList(searchResult));
     }
 
     private void displayActiviteInfo(Activite a) {
@@ -236,6 +260,7 @@ public class add_activiteController {
     public void ShowActivite() throws IOException{
 
         actList = as.readAll();
+        ActiviteList = new ArrayList<>(actList);
 
         //ticket_tv_id.setCellValueFactory(new PropertyValueFactory<>("ticket_id"));
         CVNomA.setCellValueFactory(new PropertyValueFactory<>("NomA"));

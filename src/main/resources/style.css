@@ -161,6 +161,14 @@
     -fx-background-color: #80d3f7; /* Bleu clair enfoncé */
 }
 
+.image-button {
+    -fx-background-radius: 50%;
+    -fx-background-color: transparent;
+    -fx-border-radius: 50%;
+    -fx-border-color: transparent;
+    -fx-content-display: top;
+}
+
 
 
 

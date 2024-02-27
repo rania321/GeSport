@@ -33,24 +33,24 @@
             </ImageView>
          </graphic>
       </Button>
-      <AnchorPane layoutX="264.0" layoutY="128.0" prefHeight="624.0" prefWidth="292.0" stylesheets="@style.css">
+      <AnchorPane layoutX="264.0" layoutY="128.0" prefHeight="647.0" prefWidth="288.0" stylesheets="@style.css">
          <children>
             <Label layoutX="41.0" layoutY="437.0" prefHeight="17.0" prefWidth="83.0" text="Image" textFill="#17447a">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="btnDeleteA" layoutX="143.0" layoutY="557.0" mnemonicParsing="false" onAction="#delete_activite" prefHeight="30.0" prefWidth="66.0" styleClass="round-buttonMenu2" stylesheets="@style.css" text="Delete" />
-            <ImageView fx:id="imageViewA" fitHeight="43.0" fitWidth="55.0" layoutX="176.0" layoutY="604.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="btnUpdateA" layoutX="68.0" layoutY="557.0" mnemonicParsing="false" onAction="#update_activite" prefHeight="30.0" prefWidth="66.0" styleClass="round-buttonMenu2" stylesheets="@style.css" text="Update" />
-            <Button fx:id="btnAddImgA" layoutX="143.0" layoutY="515.0" mnemonicParsing="false" onAction="#btnAddImgA_clicked" prefHeight="30.0" prefWidth="66.0" styleClass="round-buttonMenu2" stylesheets="@style.css" text="browse" />
-            <Button fx:id="btnAddA" layoutX="68.0" layoutY="515.0" minWidth="66.0" mnemonicParsing="false" onAction="#add_activite" prefHeight="30.0" prefWidth="66.0" styleClass="round-buttonMenu2" stylesheets="@style.css" text="add" />
+            <Button fx:id="btnDeleteA" layoutX="143.0" layoutY="587.0" mnemonicParsing="false" onAction="#delete_activite" prefHeight="30.0" prefWidth="66.0" styleClass="round-buttonMenu2" stylesheets="@style.css" text="Delete" />
+            <ImageView fx:id="imageViewA" fitHeight="43.0" fitWidth="55.0" layoutX="117.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnUpdateA" layoutX="68.0" layoutY="587.0" mnemonicParsing="false" onAction="#update_activite" prefHeight="30.0" prefWidth="66.0" styleClass="round-buttonMenu2" stylesheets="@style.css" text="Update" />
+            <Button fx:id="btnAddImgA" layoutX="143.0" layoutY="545.0" mnemonicParsing="false" onAction="#btnAddImgA_clicked" prefHeight="30.0" prefWidth="66.0" styleClass="round-buttonMenu2" stylesheets="@style.css" text="browse" />
+            <Button fx:id="btnAddA" layoutX="68.0" layoutY="545.0" minWidth="66.0" mnemonicParsing="false" onAction="#add_activite" prefHeight="30.0" prefWidth="66.0" styleClass="round-buttonMenu2" stylesheets="@style.css" text="add" />
             <Label layoutX="34.0" layoutY="90.0" prefHeight="17.0" prefWidth="48.0" text="Nom" textFill="#17447a">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="pathimgA" layoutX="39.0" layoutY="467.0" prefHeight="25.0" prefWidth="192.0" promptText="Path Image" />
+            <TextField fx:id="pathimgA" layoutX="38.0" layoutY="462.0" prefHeight="25.0" prefWidth="192.0" promptText="Path Image" />
             <TextField fx:id="DescriA" layoutX="36.0" layoutY="334.0" prefHeight="91.0" prefWidth="192.0" />
             <ComboBox fx:id="CBdispoA" layoutX="35.0" layoutY="262.0" prefHeight="25.0" prefWidth="192.0" />
             <TextField fx:id="typeA" layoutX="34.0" layoutY="192.0" prefHeight="25.0" prefWidth="192.0" />
@@ -97,6 +97,7 @@
                   <TableColumn fx:id="CVImgA" minWidth="2.0" prefWidth="2.0" text="Image" />
               </columns>
             </TableView>
+            <TextField fx:id="searchTF" layoutX="480.0" layoutY="29.0" promptText="search" />
          </children>
          <styleClass>
             <String fx:value="shadow" />

@@ -17,6 +17,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import service.ActiviteService;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 import java.awt.*;
 import java.io.File;
@@ -48,12 +49,25 @@ public class show_activiteController {
     private final ActiviteService as = new ActiviteService();
     List<Activite> activites = as.readAll();
 
+    @FXML
+    private TextField searchByTypeTF;
+
+
     public Activite getSelectedActivite() {
         return selectedActivite;
     }
 
     public void initialize(){
         setActivityGridPaneList();
+        // Ajoutez cet écouteur pour la recherche dynamique
+        searchByTypeTF.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                searchByType(newValue); // Appel de la méthode de recherche avec le nouveau texte
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
     private void setActivityGridPaneList() {
         VBox mainVBox = new VBox(20);  // Espace vertical entre chaque ligne
@@ -81,6 +95,30 @@ public class show_activiteController {
         // Ajouter le VBox principal à votre conteneur parent (ScrollPane)
         ScrollPaneA.setContent(mainVBox);
 
+    }
+    private void searchByType(String searchText) throws IOException {
+        VBox mainVBox = new VBox(20);
+        mainVBox.setPadding(new Insets(10));
+
+        HBox currentHBox = new HBox(20);
+
+        for (Activite activite : activites) {
+            if (activite.getTypeA().toLowerCase().contains(searchText.toLowerCase())) {
+                VBox vbox = createActivityVBox(activite);
+                currentHBox.getChildren().add(vbox);
+
+                if (currentHBox.getChildren().size() == 3) {
+                    mainVBox.getChildren().add(currentHBox);
+                    currentHBox = new HBox(20);
+                }
+            }
+        }
+
+        if (!currentHBox.getChildren().isEmpty()) {
+            mainVBox.getChildren().add(currentHBox);
+        }
+
+        ScrollPaneA.setContent(mainVBox);
     }
     private VBox createActivityVBox(Activite activite) {
         VBox vbox = new VBox();
