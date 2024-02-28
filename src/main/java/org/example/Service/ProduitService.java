@@ -110,12 +110,13 @@ public class ProduitService implements IService <Produit>{
         }
         return p;
     }
-/*public Produit readById(int idP) {
+
+    public Produit readByRef(int ref) {
         Produit p = new Produit();
-        String req = "SELECT * FROM produit WHERE idP = ?";
+        String req = "SELECT * FROM produit WHERE referenceP = ?";
         try {
             PreparedStatement ps = con.prepareStatement(req);
-            ps.setInt(1, idP);
+            ps.setInt(1, ref);
             ResultSet rst = ps.executeQuery();
             while (rst.next()) {
                 p.setIdP(rst.getInt("idP"));
@@ -126,13 +127,12 @@ public class ProduitService implements IService <Produit>{
                 p.setDateAjoutP(rst.getDate("DateAjoutP"));
                 p.setImageP(rst.getString("imageP"));
                 p.setReferenceP(rst.getInt("referenceP"));
-
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return p;
-    }*/
+    }
 
 
     public boolean referenceExists(String reference) {
@@ -216,6 +216,32 @@ public class ProduitService implements IService <Produit>{
             System.out.println(e.getMessage());
         }
         return prix;
+    }
+
+    public List<Produit> RechercheProduit(int ref) {
+        List<Produit> produit = new ArrayList<>();
+        try {
+            String req ="select * from produit WHERE referenceP = '"+ref+"'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next())
+            {
+                Produit p = new Produit();
+                p.setIdP(rs.getInt("idP"));
+                p.setNomP(rs.getString("nomP"));
+                p.setDescriP(rs.getString("descriP"));
+                p.setImageP(rs.getString("imageP"));
+                p.setDateAjoutP(rs.getDate("DateAjoutP"));
+                p.setStockP(rs.getInt("StockP"));
+                p.setPrixP(rs.getFloat("PrixP"));
+
+                produit.add(p);
+                System.out.println("Nom du produit avec la reference : "+ref+" est :"+p.getNomP());
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return produit;
     }
 
 }

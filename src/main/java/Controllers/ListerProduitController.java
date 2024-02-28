@@ -11,10 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -73,6 +70,12 @@ public class ListerProduitController {
     private Label qteproduit;
 
     @FXML
+    private AnchorPane rechpan;
+
+    @FXML
+    private TextField barrerecherche;
+
+    @FXML
     private Button recherchep;
 
     @FXML
@@ -80,6 +83,9 @@ public class ListerProduitController {
 
     @FXML
     private ScrollPane scroll;
+
+    @FXML
+    private Button search;
 
     @FXML
     private ImageView showpanier;
@@ -131,7 +137,6 @@ public class ListerProduitController {
         HBox currentHBox = new HBox(100);  // Espace horizontal entre chaque activité dans une ligne
         for (Produit produit : produits) {
             VBox vbox = createProduitVBox(produit);
-
             currentHBox.getChildren().add(vbox);
 
             // Créer une nouvelle ligne après chaque 3 activités
@@ -313,5 +318,49 @@ public class ListerProduitController {
         stage.show();
     }
 
+    @FXML
+    void rechercheProduit(ActionEvent event) {
+        search.setOnAction(e -> {
+            ProduitService ps = new ProduitService();
+            String refachercher = barrerecherche.getText();  // Utilisez Recherche.getText() pour obtenir le texte du TextField
+            Produit p = new Produit();
+            if(ps.referenceExists(refachercher))
+            {
+                p=ps.readByRef(Integer.parseInt(refachercher));
+                if (ps.RechercheProduit(Integer.parseInt(refachercher))!=null)
+                {
+                    VBox mainVBox = new VBox(60);  // Espace vertical entre chaque ligne
+                    mainVBox.setPadding(new Insets(100));  // Marge autour du VBox principal
+
+                    HBox currentHBox = new HBox(100);  // Espace horizontal entre chaque activité dans une ligne
+
+                        VBox vbox = createProduitVBox(p);
+                        currentHBox.getChildren().add(vbox);
+
+                        // Créer une nouvelle ligne après chaque 3 activités
+                        if (currentHBox.getChildren().size() == 3) {
+                            mainVBox.getChildren().add(currentHBox);
+                            currentHBox = new HBox(100);
+                        }
+                    // Ajouter la dernière ligne si elle n'est pas complète
+                    if (!currentHBox.getChildren().isEmpty()) {
+                        mainVBox.getChildren().add(currentHBox);
+                    }
+                    // Ajouter le VBox principal à votre conteneur parent (ScrollPane)
+                    scroll.setContent(mainVBox);
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Cette réference n'existe pas !");
+                    alert.showAndWait();
+                }
+            }
+        });
     }
+
+}
+
+
 
