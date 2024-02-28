@@ -104,5 +104,10 @@
             <String fx:value="white-bg" />
          </styleClass>
       </AnchorPane>
+      <Button layoutX="38.0" layoutY="306.0" mnemonicParsing="false" onAction="#toStatistique" prefHeight="37.0" prefWidth="168.0" styleClass="transparent" stylesheets="@style.css" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

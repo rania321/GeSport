@@ -6,11 +6,10 @@ import entities.User;
 import utils.DataSource;
 
 import java.sql.*;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -269,6 +268,50 @@ public class ReservationService implements IService<Reservation> {
                 .collect(Collectors.toList());
 
         return availableHours;
+    }
+
+    public Map<String, Integer> getReservationStatisticsByActivity() {
+        Map<String, Integer> statistics = new HashMap<>();
+        String requete = "SELECT nomA, COUNT(*) as count FROM ReservationActivite ra " +
+                "JOIN Activite a ON ra.idA = a.idA " +
+                "GROUP BY ra.idA, nomA";
+
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(requete);
+
+            while (rs.next()) {
+                String activityName = rs.getString("nomA");
+                int reservationCount = rs.getInt("count");
+
+                statistics.put(activityName, reservationCount);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while fetching reservation statistics: " + e.getMessage());
+        }
+
+        return statistics;
+    }
+
+    // Méthode pour récupérer la liste de tous les statuts de réservation
+    public List<String> getAllReservationStatus() {
+        List<String> statuses = new ArrayList<>();
+        String query = "SELECT DISTINCT statutR FROM ReservationActivite";
+
+        try (PreparedStatement pst = conn.prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+                statuses.add(rs.getString("statutR"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while fetching reservation statuses: " + e.getMessage());
+        }
+
+        return statuses;
     }
 
 
