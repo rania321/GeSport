@@ -100,4 +100,11 @@ public class PanierService implements IService <Panier>{
             System.out.println(e.getMessage());
         }
         return pa;    }
+
+   /* public String textFacture()
+    {
+
+        return;
+    }*/
+
 }

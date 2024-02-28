@@ -65,7 +65,7 @@
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
-                        <Button fx:id="confirmerV" layoutX="201.0" layoutY="364.0" mnemonicParsing="false" onAction="#confirmerVente" prefHeight="25.0" prefWidth="100.0" stylesheets="@../java/values/style.css" text="Confirmer" textFill="#17447a">
+                        <Button fx:id="confirmerV" layoutX="188.0" layoutY="364.0" mnemonicParsing="false" onAction="#confirmerVente" prefHeight="25.0" prefWidth="100.0" stylesheets="@../java/values/style.css" text="Confirmer" textFill="#17447a">
                            <styleClass>
                               <String fx:value="shadow2" />
                               <String fx:value="add-btn" />
@@ -80,7 +80,7 @@
                               <Font name="Calibri" size="21.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalPa" layoutX="92.0" layoutY="362.0" prefHeight="26.0" prefWidth="67.0" text="   " textFill="WHITE">
+                        <Label fx:id="totalPa" layoutX="92.0" layoutY="362.0" prefHeight="26.0" prefWidth="66.0" text="   " textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="21.0" />
                            </font>
@@ -90,6 +90,12 @@
                               <Font name="Calibri" size="21.0" />
                            </font>
                         </Label>
+                        <ImageView fitHeight="49.0" fitWidth="32.0" layoutX="295.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../../xampp/htdocs/image/file-download-fill.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="facture" layoutX="295.0" layoutY="358.0" mnemonicParsing="false" onAction="#genererFacture" prefHeight="38.0" prefWidth="32.0" styleClass="transparent" stylesheets="@../java/values/style.css" />
                      </children>
                   </AnchorPane>
                   <ScrollPane fx:id="Scrollpa" layoutX="99.0" layoutY="96.0" prefHeight="389.0" prefWidth="505.0">

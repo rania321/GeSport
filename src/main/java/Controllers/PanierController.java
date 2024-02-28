@@ -39,6 +39,11 @@ import java.util.Date;
 import java.util.List;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileOutputStream;
 
 
 public class PanierController {
@@ -59,6 +64,9 @@ public class PanierController {
     private Label totalPa;
 
     private Panier selectedProduit;
+
+    @FXML
+    private Button facture;
 
     private PanierService pas = new PanierService();
     //List<Panier> paniers = (List<Panier>) pas.readById(8);
@@ -389,4 +397,75 @@ public class PanierController {
         }
     }
 
-}
+    /*private void PDF(MouseEvent event) {
+                            voyage voy = TableVoyage.getSelectionModel().getSelectedItem();
+
+        Pdf pd=new Pdf();
+        try{
+                    pd.GeneratePdf("MesInformations",voy,voy.getID());
+
+            System.out.println("impression done");
+        } catch (Exception ex) {
+            Logger.getLogger(ServiceVoyage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+*/
+
+    @FXML
+    void genererFacture(ActionEvent event) {
+    String fileName = "Facture.pdf";
+    String cn=" ";
+        String cp=" ";
+        String cq=" ";
+
+        int index = 0;
+
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName)) {
+            // Création d'un document
+            Document document = new Document();
+            // Création d'un écrivain PDF associé au document
+            PdfWriter.getInstance(document, fileOutputStream);
+
+            // Ouverture du document pour écrire
+            document.open();
+
+            document.add(new Paragraph("Bienvenue chez GesPort"));
+            document.add(new Paragraph());
+            document.add(new Paragraph("Votre Facture :"));
+            document.add(new Paragraph());
+            document.add(new Paragraph());
+
+            while (index < paniers.size()) {
+                Panier panier = paniers.get(index);
+                String nompp = ps.getNomFromIdProduit(panier.getIdP());
+                float prixpp = ps.getPrixFromIdProduit(panier.getIdP());
+                int quantite = panier.getQuantiteP();
+
+                cn= nompp + " " ;
+                document.add(new Paragraph(cn));
+                document.add(new Paragraph());
+                cp= "Prix :"+ prixpp + " dt" ;
+
+                document.add(new Paragraph(cp));
+                document.add(new Paragraph());
+                cp= "Qté : "+ quantite;
+
+                document.add(new Paragraph(cq));
+                document.add(new Paragraph());
+                index++;
+            }
+
+            document.add(new Paragraph("Au revoir."));
+
+            // Fermeture du document
+            document.close();
+
+            System.out.println("PDF généré avec succès.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    }
+
+
