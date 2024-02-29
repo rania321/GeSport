@@ -6,12 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.Service.ProduitService;
 import org.example.Service.VenteService;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.time.LocalTime;
 
@@ -47,6 +51,9 @@ public class StatBuvetteController {
 
     @FXML
     private ImageView RefPPlusRentable;
+
+    @FXML
+    private LineChart<?, ?> lineChart;
 
     @FXML
     private Label RevenuMois;
@@ -114,6 +121,7 @@ public class StatBuvetteController {
         nbProduitPrevRupture ();
         revenuMois ();
         bestSeller ();
+        iniLineChart();
     }
 
         public void Heure () {
@@ -140,8 +148,8 @@ public class StatBuvetteController {
 
     public void revenuMois () {
         float r =vs.calculerRevenusDuMois();
-        RevenuMois.setText(""+r);
-        System.out.println("Revenus du mois actuelle = " + r);
+        RevenuMois.setText(""+r + " dt ");
+        System.out.println("Revenus du mois actuelle = " + r + " dt ");
     }
     public void bestSeller () {
         int id =vs.getMostSoldProductID();
@@ -150,4 +158,18 @@ public class StatBuvetteController {
         System.out.println("BestSeller : " + nomBestSeller);
     }
 
+    private void iniLineChart()
+    {
+        Map<String, Integer> m =vs.mapNomQte();
+        for (Map.Entry<String, Integer> entry : m.entrySet()) {
+            String key = entry.getKey();
+            int value = entry.getValue();
+            System.out.println("Clé : " + key + ", Valeur : " + value);
+
+            XYChart.Series series = new XYChart.Series();
+            series.getData().add(new XYChart.Data(key,value));
+            lineChart.getData().addAll(series);
+        }
     }
+
+}

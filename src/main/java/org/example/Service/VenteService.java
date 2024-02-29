@@ -7,16 +7,55 @@ import org.example.utile.DataSource;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VenteService implements IService<Vente> {
     private Connection con;
+ ProduitService ps = new ProduitService();
+    Map<String, Integer> ventesMap = new HashMap<>();
+
     //private Statement ste;
 
     public VenteService() {
         con = DataSource.getInstance().getCnx();
+    }
+
+    public  Map<String, Integer> mapNomQte(){
+        try {
+            // Exécuter la requête SQL pour récupérer les données
+            String query = "SELECT idP, QuantitéV FROM vente";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            // Remplir le HashMap avec les données de la base de données
+            while (resultSet.next()) {
+                int idP = resultSet.getInt("idP");
+                //rendre id nom
+                String nomidp = ps.getNomFromIdProduit(idP);
+                int quantite = resultSet.getInt("QuantitéV");
+
+                if (ventesMap.containsKey(nomidp)) {
+                    // Ajouter la quantité à la valeur existante
+                    ventesMap.put(nomidp, ventesMap.get(nomidp) + quantite);
+                } else {
+                    // Ajouter une nouvelle entrée dans la map
+                    ventesMap.put(nomidp, quantite);
+                }
+            }
+
+            // Afficher le HashMap
+            for (Map.Entry<String, Integer> entry : ventesMap.entrySet()) {
+                System.out.println("Nom produit : " + entry.getKey() + ", Quantité de vente : " + entry.getValue());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ventesMap;
     }
 
     public void add(Vente v) {
