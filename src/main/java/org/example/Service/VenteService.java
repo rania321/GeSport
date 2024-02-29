@@ -235,4 +235,28 @@ public class VenteService implements IService<Vente> {
         return mostSoldProductID;
     }
 
+    public int sumQte() {
+        int sum = 0;
+
+        try {
+            // Exécuter la requête SQL pour récupérer la somme des quantités
+            String query = "SELECT SUM(QuantitéV) AS totalQuantite FROM vente";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            // Récupérer la somme des quantités
+            if (resultSet.next()) {
+                sum = resultSet.getInt("totalQuantite");
+            }
+
+            // Afficher la somme
+            System.out.println("Somme des quantités de vente : " + sum);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sum;
+    }
+
 }

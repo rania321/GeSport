@@ -1,5 +1,7 @@
 package Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -57,6 +60,9 @@ public class StatBuvetteController {
 
     @FXML
     private Label RevenuMois;
+
+    @FXML
+    private PieChart piechart;
 
     ProduitService ps = new ProduitService();
     VenteService vs = new VenteService();
@@ -122,6 +128,7 @@ public class StatBuvetteController {
         revenuMois ();
         bestSeller ();
         iniLineChart();
+        iniPieChart();
     }
 
         public void Heure () {
@@ -169,7 +176,23 @@ public class StatBuvetteController {
             XYChart.Series series = new XYChart.Series();
             series.getData().add(new XYChart.Data(key,value));
             lineChart.getData().addAll(series);
+            //lineChart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
         }
     }
+    private void iniPieChart() {
+        Map<String, Integer> m = vs.mapNomQte();
+        int somme = vs.sumQte();
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        for (Map.Entry<String, Integer> entry : m.entrySet()) {
+            String key = entry.getKey();
+            double value = (entry.getValue() / (double) somme) * 100;
+            pieChartData.add(new PieChart.Data(key, value));
+        }
+
+        piechart.setData(pieChartData);
+    }
+
 
 }
