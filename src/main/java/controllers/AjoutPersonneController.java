@@ -5,6 +5,7 @@ import entities.role;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -14,6 +15,8 @@ import javafx.stage.Stage;
 
 //import javax.imageio.IIOException;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -172,15 +175,17 @@ public class AjoutPersonneController {
                 afficherMessageErreur("L'email est déjà utilisé par un autre utilisateur. Veuillez saisir un autre email.");
                 return;
             }
+            String hashedPassword = hashPassword(mdpU.getText());
 
             // Vérifier si le mot de passe est déjà utilisé par un autre utilisateur
-            if (us.isPasswordAlreadyUsed(mdpU.getText())) {
+            if (us.isPasswordAlreadyUsed(hashedPassword)) {
                 afficherMessageErreur("Le mot de passe est déjà utilisé par un autre utilisateur. Veuillez saisir un autre mot de passe.");
                 return;
             }
 
             // Add the new user
-            us.add(new User(nomU.getText(), prenomU.getText(), emailU.getText(), mdpU.getText()));
+
+            us.add(new User(nomU.getText(), prenomU.getText(), emailU.getText(), hashedPassword));
             afficherMessageConfirmation("Utilisateur ajouté avec succès.");
 
             // Load AfficherUserController
@@ -204,13 +209,17 @@ public class AjoutPersonneController {
             // Load Login.fxml in a new window
             FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/Login.fxml"));
             Parent loginRoot = loginLoader.load();
-            Scene loginScene = new Scene(loginRoot);
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            // Définissez la racine de la scène actuelle sur le formulaire de connexion
+            currentScene.setRoot(loginRoot);
+            /*Scene loginScene = new Scene(loginRoot);
 
             // Afficher l'interface de connexion dans une nouvelle fenêtre
             Stage loginStage = new Stage();
             loginStage.setScene(loginScene);
             loginStage.setTitle("Interface de connexion");
-            loginStage.show();
+            loginStage.show();*/
         } catch (Exception ex) {
             afficherMessageErreur("Une erreur s'est produite lors de l'ajout de l'utilisateur.");
             // Handle exceptions
@@ -254,6 +263,28 @@ public class AjoutPersonneController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    private String hashPassword(String password) {
+        try {
+            // Créez un objet MessageDigest pour l'algorithme de hachage SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            // Appliquez le hachage au mot de passe
+            byte[] hashedBytes = digest.digest(password.getBytes());
+
+            // Convertissez les bytes hachés en une représentation hexadécimale
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            // Gérer l'exception si l'algorithme de hachage n'est pas disponible
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
 
 

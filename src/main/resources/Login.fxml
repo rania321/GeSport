@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="588.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginUserControllers">
    <children>
       <ImageView fitHeight="588.0" fitWidth="873.0" pickOnBounds="true">
@@ -18,5 +20,12 @@
       <PasswordField fx:id="PasswordU" layoutX="140.0" layoutY="331.0" prefHeight="26.0" prefWidth="186.0" promptText="Password" style="-fx-background-radius: 50px; -fx-background-color: #2596be;" />
       <Button fx:id="LoginButton" layoutX="134.0" layoutY="395.0" mnemonicParsing="false" onAction="#LoginButton" prefHeight="26.0" prefWidth="186.0" style="-fx-background-radius: 50px; -fx-background-color: #063970;" text="Se connecter" textFill="#f2f1f1" />
       <Button fx:id="goRegister" layoutX="279.0" layoutY="490.0" mnemonicParsing="false" onAction="#goregister" prefHeight="26.0" prefWidth="55.0" styleClass="transparent" stylesheets="@register.css" />
+      <Button layoutX="163.0" layoutY="357.0" mnemonicParsing="false" onAction="#forgotPasswordButtonAction" prefHeight="26.0" prefWidth="186.0" styleClass="transparent" stylesheets="@register.css" />
+      <VBox fx:id="changePasswordVBox" layoutX="287.0" layoutY="14.0" spacing="10" visible="false">
+         <PasswordField fx:id="newPasswordField" promptText="Nouveau mot de passe" style="-fx-background-color: #2596be;" />
+         <PasswordField fx:id="confirmPasswordField" promptText="Confirmer le mot de passe" style="-fx-background-color: #2596be;" />
+         <Button onAction="#changePasswordAction" style="-fx-background-color: #063970;" text="Changer le mot de passe" textFill="#fcf4f4" />
+         <Label fx:id="passwordChangeStatusLabel" />
+      </VBox>
    </children>
 </AnchorPane>

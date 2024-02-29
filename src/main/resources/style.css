@@ -1,0 +1,6 @@
+.refreshCaptcha{
+    -fx-graphic: url(refresh.png);
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
