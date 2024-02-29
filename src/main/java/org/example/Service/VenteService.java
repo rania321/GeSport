@@ -178,4 +178,22 @@ public class VenteService implements IService<Vente> {
         return sommeRevenus;
     }
 
+    public int getMostSoldProductID() {
+        int mostSoldProductID = -1; // Valeur par défaut en cas d'erreur ou de résultat vide
+
+        try {
+            String query = "SELECT idP, COUNT(*) as totalSales FROM vente GROUP BY idP ORDER BY totalSales DESC LIMIT 1";
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (resultSet.next()) {
+                mostSoldProductID = resultSet.getInt("idP");
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erreur lors de la récupération du produit le plus vendu : " + ex.getMessage());
+        }
+
+        return mostSoldProductID;
+    }
+
 }

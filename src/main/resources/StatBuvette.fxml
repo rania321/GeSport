@@ -32,9 +32,9 @@
                <Font name="Calibri" size="44.0" />
             </font>
          </Label>
-         <Label layoutX="936.0" layoutY="524.0" prefHeight="50.0" prefWidth="55.0" text="0" textAlignment="RIGHT" textFill="#f9b13d">
+         <Label fx:id="bestseller" layoutX="845.0" layoutY="506.0" prefHeight="68.0" prefWidth="146.0" text="0" textAlignment="RIGHT" textFill="#f9b13d" wrapText="true">
             <font>
-               <Font name="Calibri" size="44.0" />
+               <Font name="Calibri" size="25.0" />
             </font>
          </Label>
          <Label fx:id="HeureActuelle" layoutX="879.0" layoutY="629.0" onInputMethodTextChanged="#Heure" prefHeight="25.0" prefWidth="92.0" text="Heure" textFill="#17447a">

@@ -40,6 +40,9 @@ public class StatBuvetteController {
     private Label NbPPrevRupture;
 
     @FXML
+    private Label bestseller;
+
+    @FXML
     private Label NbPRupture;
 
     @FXML
@@ -110,6 +113,7 @@ public class StatBuvetteController {
         nbProduitRuptureStock();
         nbProduitPrevRupture ();
         revenuMois ();
+        bestSeller ();
     }
 
         public void Heure () {
@@ -139,4 +143,11 @@ public class StatBuvetteController {
         RevenuMois.setText(""+r);
         System.out.println("Revenus du mois actuelle = " + r);
     }
-}
+    public void bestSeller () {
+        int id =vs.getMostSoldProductID();
+        String nomBestSeller= ps.getNomFromIdProduit(id);
+        bestseller.setText(""+nomBestSeller);
+        System.out.println("BestSeller : " + nomBestSeller);
+    }
+
+    }
