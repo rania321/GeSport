@@ -5,6 +5,7 @@ import entities.Vente;
 import org.example.utile.DataSource;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -153,4 +154,28 @@ public class VenteService implements IService<Vente> {
             return false;
         }
     }
+
+    public float calculerRevenusDuMois() {
+        float sommeRevenus = 0;
+
+        try {
+            // Obtenez la date du 1er jour du mois actuel
+            LocalDate debutMois = LocalDate.now().withDayOfMonth(1);
+
+            String req = "SELECT SUM(MontantV) AS totalRevenus FROM vente WHERE DateV >= ?";
+            PreparedStatement st = con.prepareStatement(req);
+            st.setDate(1, java.sql.Date.valueOf(debutMois));
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                sommeRevenus = rs.getFloat("totalRevenus");
+                System.out.println("Somme des revenus du mois : " + sommeRevenus);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return sommeRevenus;
+    }
+
 }

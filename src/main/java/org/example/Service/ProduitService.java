@@ -243,5 +243,40 @@ public class ProduitService implements IService <Produit>{
         }
         return produit;
     }
+//String req = "SELECT * FROM produit WHERE quantite = 0";
+
+    public int pRupture() {
+        int nb=0;
+        try {
+            String req ="SELECT * FROM produit WHERE StockP = 0";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next())
+            {
+                nb++;
+                System.out.println("Nombre de produit en rupture de stock =  "+ nb);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return nb;
+    }
+    public int pPrevRupture() {
+        int nb=0;
+        try {
+            String req ="SELECT * FROM produit WHERE StockP <= 5";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next())
+            {
+                nb++;
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        System.out.println("Nombre de produit qui sera en rupture de stock =  "+ nb);
+
+        return nb;
+    }
 
 }
