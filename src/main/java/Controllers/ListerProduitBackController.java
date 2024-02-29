@@ -262,4 +262,21 @@ public class ListerProduitBackController {
                 // Afficher la nouvelle fenêtre
                 stage.show();
         }
+
+        @FXML
+        public void showStatP(ActionEvent actionEvent) throws IOException {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/StatBuvette.fxml"));
+                Parent root = loader.load();
+
+                // Créer une nouvelle scène
+                Scene scene = new Scene(root);
+
+                // Configurer la nouvelle scène dans une nouvelle fenêtre
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.setTitle("Dashboard");
+
+                // Afficher la nouvelle fenêtre
+                stage.show();
+        }
 }
