@@ -1,4 +1,5 @@
 package Controllers;
+
 import API.EdamameApi;
 import entities.Produit;
 import javafx.event.ActionEvent;
@@ -7,15 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-public class AccueilProduitController {
+public class CalculateurCaloriesController {
     @FXML
     private Button accueil;
 
@@ -48,10 +48,23 @@ public class AccueilProduitController {
     @FXML
     private Button accesPageAPI;
 
+    @FXML
+    private Label  cal;
+
+    @FXML
+    private Button calculerC;
+
+    @FXML
+    private TextField nomAliment;
+
+    @FXML
+    private TextField qteAliment;
+
+
     /*private final ProduitService ps = new ProduitService();
    ist<Produit> produits = ps.readAll();
 */
-/*___________________________________________entete___________________________________________________*/
+    /*___________________________________________entete___________________________________________________*/
     @FXML
     void accueil(ActionEvent event) {
 
@@ -111,27 +124,10 @@ public class AccueilProduitController {
         stage.show();
     }
 
-    @FXML
-    void PageAPI(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CalculateurCalories.fxml"));
-        Parent root = loader.load();
-
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
-
-        // Configurer la nouvelle scène dans une nouvelle fenêtre
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Restaurant");
-
-        // Afficher la nouvelle fenêtre
-        stage.show();
+    public void api (){
+        int c=0;
+        c=EdamameApi.apii(nomAliment.getText(),Double.parseDouble(qteAliment.getText())); //qte en gramme
+        cal.setText("Calories : " + c);
     }
-
-/*___________________________________________entete___________________________________________________*/
-
-
-
-
 
 }

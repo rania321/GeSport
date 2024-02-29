@@ -39,7 +39,6 @@
                 <Font name="Walkway Bold" size="17.0" />
             </font>
         </Button>
-        <Button layoutX="978.0" layoutY="37.0" maxWidth="206.0" mnemonicParsing="false" onAction="#recherchep" prefHeight="30.0" prefWidth="206.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="    " />
       <Button layoutX="376.0" layoutY="24.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="   " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
@@ -54,5 +53,14 @@
             <String fx:value="shopping-online-card" />
          </styleClass>
       </Button>
+      <AnchorPane layoutX="973.0" layoutY="13.0" prefHeight="57.0" prefWidth="223.0" styleClass="white-bg" stylesheets="@../java/values/style.css">
+         <children>
+              <Button fx:id="accesPageAPI" layoutX="74.0" layoutY="15.0" maxWidth="206.0" mnemonicParsing="false" onAction="#PageAPI" prefHeight="38.0" prefWidth="143.0" styleClass="buttongold" stylesheets="@../java/values/style.css" text="CALORIES" textFill="#4f200d">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

@@ -45,6 +45,12 @@
     -fx-background-radius: 5;
 }
 
+
+  .buttongold{
+      -fx-background-color: #FFF323;
+      -fx-background-radius: 30;
+  }
+
 .generation-panier3{
     -fx-background-color: #5d62e8;
     -fx-background-radius: 5;
