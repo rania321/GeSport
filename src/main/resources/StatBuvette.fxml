@@ -58,7 +58,7 @@
                </LineChart>
             </children>
          </AnchorPane>
-         <PieChart fx:id="piechart" labelsVisible="false" layoutX="600.0" layoutY="137.0" legendSide="LEFT" prefHeight="221.0" prefWidth="371.0" />
+         <PieChart fx:id="piechart" clockwise="false" labelLineLength="5.0" labelsVisible="false" layoutX="588.0" layoutY="128.0" legendSide="RIGHT" prefHeight="245.0" prefWidth="397.0" titleSide="LEFT" />
       </children></AnchorPane>
     <AnchorPane prefHeight="712.0" prefWidth="258.0" styleClass="side_ankerpane" stylesheets="@../java/values/style2.css">
         <children>
@@ -134,4 +134,5 @@
             </image></ImageView>
         </children>
     </AnchorPane>
+
 </AnchorPane>

@@ -1,5 +1,9 @@
 package Controllers;
 import entities.Produit;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,12 +17,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.example.Service.ProduitService;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.IOException;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 public class ListerProduitBackController {
 
 
@@ -170,11 +180,10 @@ public class ListerProduitBackController {
                         }
                 });
         }
-
         public void ShowProduit() throws IOException {
 
                 PList = ps.readAll();
-                List<Produit> filtredPList= new ArrayList<>();
+                List<Produit> filtredPList = new ArrayList<>();
 
                 RP.setCellValueFactory(new PropertyValueFactory<>("referenceP"));
                 NP.setCellValueFactory(new PropertyValueFactory<>("nomP"));
@@ -183,12 +192,20 @@ public class ListerProduitBackController {
                 SP.setCellValueFactory(new PropertyValueFactory<>("StockP"));
                 DP.setCellValueFactory(new PropertyValueFactory<>("descriP"));
                 IP.setCellValueFactory(new PropertyValueFactory<>("imageP"));
-
                 if (TableProduit != null && TableProduit instanceof TableView) {
                         // Cast ticket_tableview to TableView<Ticket> and set its items
                         ((TableView<Produit>) TableProduit).setItems(FXCollections.observableArrayList(PList));
                 }
         }
+
+        private String getFileNameFromPath(String filePath) {
+                // Split the path based on the '/' character
+                String[] pathParts = filePath.split("/");
+
+                // Get the last part of the path (file name)
+                return pathParts[pathParts.length - 1];
+        }
+
         @FXML
         public void listP(ActionEvent actionEvent)  throws IOException {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduitBack.fxml"));

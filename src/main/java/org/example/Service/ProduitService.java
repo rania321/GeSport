@@ -101,9 +101,13 @@ public class ProduitService implements IService <Produit>{
             ResultSet rst = ps.executeQuery();
             while (rst.next()) {
                 p.setIdP(rst.getInt("idP"));
+                p.setStockP(rst.getInt("StockP"));
                 p.setNomP(rst.getString("NomP"));
+                p.setDescriP(rst.getString("descriP"));
+                p.setReferenceP(rst.getInt("referenceP"));
                 p.setPrixP(rst.getFloat("PrixP"));
                 p.setImageP(rst.getString("imageP"));
+                p.setDateAjoutP(rst.getDate("DateAjoutP"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -218,6 +222,23 @@ public class ProduitService implements IService <Produit>{
         return prix;
     }
 
+    public int getQteFromIdProduit(int id) {
+        int qte = 0;
+
+        String req = "SELECT * FROM produit WHERE idP = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rst = ps.executeQuery();
+            while (rst.next()) {
+                qte = rst.getInt("StockP");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return qte;
+    }
+
     public List<Produit> RechercheProduit(int ref) {
         List<Produit> produit = new ArrayList<>();
         try {
@@ -277,6 +298,33 @@ public class ProduitService implements IService <Produit>{
         System.out.println("Nombre de produit qui sera en rupture de stock =  "+ nb);
 
         return nb;
+    }
+
+    public Produit getProduitFromId(int idP) {
+        List<Produit> list = new ArrayList<>();
+        for (Produit produit : list) {
+            if (produit.getIdP() == idP) {
+                return produit;
+            }
+        }
+        return null;
+    }
+
+    public void updateQuantite(Produit p, int qte)
+    {
+        String req = "UPDATE `produit` SET StockP=? WHERE idP = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(req);
+
+            ps.setInt(   1,   qte);
+            ps.setInt(   2,   p.getIdP());
+
+            ps.executeUpdate();
+            System.out.println("Stock diminué");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Modification non effectuée : ERREUR !");
+        }
     }
 
 }

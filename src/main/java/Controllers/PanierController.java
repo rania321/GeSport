@@ -283,14 +283,28 @@ public class PanierController {
 
         if (result == ButtonType.OK) {
             int index = 0;
+
             while (index < paniers.size()) {
                 Panier panier = paniers.get(index);
                 Vente vi = new Vente(2, panier.getIdP(), panier.getQuantiteP(), sqlDate, Float.parseFloat(totalPa.getText()));
-                vs.add(vi);
-                pas.delete(panier);
+                Produit pr= ps.readById(panier.getIdP());
+                int nouvelleQuantiteEnStock = pr.getStockP() - panier.getQuantiteP();
+
+                if (nouvelleQuantiteEnStock >= 0) {
+                    vs.add(vi);
+                    ps.updateQuantite(pr, nouvelleQuantiteEnStock);
+                    pas.delete(panier);
+                }
+                else {
+                    System.out.println(pr.getNomP() + "n'est disponible que "+ pr.getStockP() + "unité.");
+                    Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmationAlert.setTitle("Manque de stock ! ");
+                    confirmationAlert.setHeaderText(pr.getNomP() + "n'est disponible que "+ pr.getStockP() + "unité.");
+                    confirmationAlert.setContentText("Veuillez changer votre commande");
+                    confirmationAlert.showAndWait();
+                }
                 index++;
             }
-
             System.out.println("Vente confirmée");
 
             try {
