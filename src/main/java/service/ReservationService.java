@@ -313,6 +313,67 @@ public class ReservationService implements IService<Reservation> {
 
         return statuses;
     }
+    // Méthode pour obtenir le nom du client avec le plus grand nombre de réservations
+    public String getClientAvecPlusReservations() {
+        String requete = "SELECT u.nomU, u.prenomU, COUNT(*) as totalReservations " +
+                "FROM ReservationActivite ra " +
+                "JOIN user u ON ra.idU = u.idU " +
+                "GROUP BY ra.idU " +
+                "ORDER BY totalReservations DESC " +
+                "LIMIT 1";
 
+        try {
+            Statement ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(requete);
+
+            if (rs.next()) {
+                String nom = rs.getString("nomU");
+                String prenom = rs.getString("prenomU");
+                int totalReservations = rs.getInt("totalReservations");
+              //  return nom + " " + prenom + " (" + totalReservations + " réservations)";
+                return nom + " " + prenom;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erreur lors de la récupération du client avec le plus grand nombre de réservations: " + e.getMessage());
+        }
+
+        return ""; // Retourne une chaîne vide en cas d'erreur ou si aucun utilisateur n'a effectué de réservation
+    }
+
+    private List<Reservation> reservations = new ArrayList<>();
+    public void supprimerReservationsPerimees() {
+        java.util.Date aujourdHui = new java.util.Date(); // Utilisez la classe Date ou d'autres classes de date appropriées en fonction de votre modèle de données.
+
+        Iterator<Reservation> iterator = reservations.iterator();
+        while (iterator.hasNext()) {
+            Reservation reservation = iterator.next();
+            if (reservation.getDateDebutR().before(aujourdHui)) {
+                // La date de la réservation est antérieure à la date d'aujourd'hui, donc supprimez-la.
+                iterator.remove();
+            }
+        }
+    }
+
+    public void triParNomA(List<Reservation> reservations, boolean ascendant) {
+        reservations.sort(Comparator.comparing(Reservation::getActiviteNom));
+        if (!ascendant) {
+            reservations.sort(Comparator.comparing(Reservation::getActiviteNom).reversed());
+        }
+    }
+
+    public void triParDateR(List<Reservation> reservations, boolean ascendant) {
+        reservations.sort(Comparator.comparing(Reservation::getDateDebutR));
+        if (!ascendant) {
+            reservations.sort(Comparator.comparing(Reservation::getDateDebutR).reversed());
+        }
+    }
+
+    public void triParNomU(List<Reservation> reservations, boolean ascendant) {
+        reservations.sort(Comparator.comparing(Reservation::getUserNom));
+        if (!ascendant) {
+            reservations.sort(Comparator.comparing(Reservation::getUserNom).reversed());
+        }
+    }
 
 }

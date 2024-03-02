@@ -10,24 +10,23 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import service.ActiviteService;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import service.UserService;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class show_activiteController {
+public class showfavlistController {
 
     @FXML
     private GridPane ActivityListContainer;
@@ -50,7 +49,10 @@ public class show_activiteController {
     private Activite selectedActivite;
 
     private final ActiviteService as = new ActiviteService();
-    List<Activite> activites = as.readAll();
+    User user = new User(); // Récupérer l'utilisateur connecté à partir de votre système d'authentification
+    UserService us = new UserService();
+    User u = us.readById(2);
+    List<Activite> activites = as.getActiviteFavList(u.getIdU());
 
     @FXML
     private TextField searchByTypeTF;
@@ -127,9 +129,6 @@ public class show_activiteController {
         ScrollPaneA.setContent(mainVBox);
     }
     private VBox createActivityVBox(Activite activite) {
-        User user = new User(); // Récupérer l'utilisateur connecté à partir de votre système d'authentification
-        UserService us = new UserService();
-        User u = us.readById(2);
         VBox vbox = new VBox();
 
         Label nomLabel = new Label(activite.getNomA());
@@ -200,71 +199,8 @@ public class show_activiteController {
         }
         vbox.setAlignment(Pos.CENTER);
 
-        // Ajouter un bouton représentant le cœur vide
-        Button addToFavoritesButton = new Button();
-        ImageView heartImage ;
-        if (isActiviteInFavList(activite.getIdA(), u.getIdU())) {
-            // Si l'activité est dans la liste des favoris, utiliser le cœur rouge
-            heartImage = new ImageView(new Image("/img/favori (1).png"));
-        } else {
-            // Sinon, utiliser le cœur vide
-            heartImage = new ImageView(new Image("/img/favori.png"));
-        }
-        heartImage.setFitWidth(40);  // Ajustez la largeur de l'image selon vos besoins
-        heartImage.setFitHeight(40);
-        addToFavoritesButton.setGraphic(heartImage);
-        addToFavoritesButton.setStyle("-fx-background-color: transparent;");
-        addToFavoritesButton.setOnAction(event -> {
-            selectedActivite = activite;
-            ActiviteService activiteService = new ActiviteService();
+        return vbox;
 
-
-            try {
-                found = activiteService.activiteInFavList(activite.getIdA(), u.getIdU());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-            if (found == 0) {
-            //if (isActiviteInFavList(activite.getIdA(), user.getIdU()))
-                // Ajouter l'activité aux favoris
-                activiteService.addActiviteToFavoriteList(selectedActivite.getIdA(), u.getIdU());
-                updateFavoritesButton(addToFavoritesButton,"/img/favori (1).png" );
-                // Afficher un message ou effectuer d'autres actions si nécessaire
-                System.out.println("Activité ajoutée aux favoris avec succès!");
-            }
-            else{
-                try {
-                    activiteService.removeActiviteFromFavoriteList(selectedActivite.getIdA(), u.getIdU());
-                    updateFavoritesButton(addToFavoritesButton,"/img/favori.png" );
-                    System.out.println("Activité supprimée aux favoris avec succès!");
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
-        vbox.getChildren().add(addToFavoritesButton);
-
-        vbox.setAlignment(Pos.CENTER);
-            return vbox;
-
-    }
-
-    private void updateFavoritesButton(Button button, String imagePath) {
-        ImageView heartImage = new ImageView(new Image(imagePath));
-        heartImage.setFitWidth(40);
-        heartImage.setFitHeight(40);
-        button.setGraphic(heartImage);
-        button.setStyle("-fx-background-color: transparent;");
-    }
-
-    private boolean isActiviteInFavList(int activiteID, int userId) {
-        try {
-            return as.activiteInFavList(activiteID, userId) == 1;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @FXML
@@ -285,23 +221,6 @@ public class show_activiteController {
     }
 
     @FXML
-    void mesfavoris(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/showfavlist.fxml"));
-        Parent root = loader.load();
-
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
-
-        // Configurer la nouvelle scène dans une nouvelle fenêtre
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Mes Activités Favoris");
-
-        // Afficher la nouvelle fenêtre
-        stage.show();
-    }
-
-    @FXML
     void accueil(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
         Parent root = loader.load();
@@ -316,11 +235,6 @@ public class show_activiteController {
 
         // Afficher la nouvelle fenêtre
         stage.show();
-    }
-
-    @FXML
-    void compte(ActionEvent event) {
-
     }
 
     @FXML

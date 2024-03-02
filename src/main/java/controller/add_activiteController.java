@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class add_activiteController {
 
@@ -125,15 +126,24 @@ public class add_activiteController {
 
     }
     private void searchActivite(String searchText) throws IOException {
-        List<Activite> searchResult = new ArrayList<>();
+        /*List<Activite> searchResult = new ArrayList<>();
         for (Activite activite : ActiviteList) {
             if (activite.getTypeA().toLowerCase().contains(searchText.toLowerCase())) {
                 searchResult.add(activite);
             }
         }
         // Mettre à jour la TableView avec les résultats de la recherche
+        TableViewA.setItems(FXCollections.observableArrayList(searchResult));*/
+        List<Activite> searchResult = ActiviteList.stream()
+                .filter(activite ->
+                        activite.getTypeA().toLowerCase().contains(searchText.toLowerCase())
+                )
+                .collect(Collectors.toList());
+
+        // Mettre à jour la TableView avec les résultats de la recherche
         TableViewA.setItems(FXCollections.observableArrayList(searchResult));
     }
+
 
     private void displayActiviteInfo(Activite a) {
         nomA.setText(a.getNomA());

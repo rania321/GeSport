@@ -1,5 +1,6 @@
 package controller;
 
+
         import entities.Activite;
         import entities.Data;
         import entities.Reservation;
@@ -19,9 +20,11 @@ package controller;
         import service.ReservationService;
         import service.UserService;
 
+        import java.io.FileOutputStream;
         import java.io.IOException;
         import java.sql.Date;
         import java.sql.SQLException;
+        import java.text.SimpleDateFormat;
         import java.time.LocalDate;
         import java.time.ZoneId;
         import java.util.ArrayList;
@@ -78,6 +81,7 @@ public class add_reservationController {
 
     private ObservableList<String> heuresReservees = FXCollections.observableArrayList();
 
+
     public void setActivite(Activite activite) {
         this.activite = activite;
         System.out.println("Activite in setActivite: " + activite);
@@ -130,6 +134,7 @@ public class add_reservationController {
         }*/
 
         //combobox();
+        rs.supprimerReservationsPerimees();
         ShowReservation();
     }
 
@@ -268,6 +273,7 @@ public class add_reservationController {
         }
 
     }
+
 
     @FXML
     void accueil(ActionEvent event) throws IOException {

@@ -125,6 +125,7 @@
                   <Image url="@img/photoModifier.jpg" />
                </image>
             </ImageView>
+            <Button fx:id="pdf" layoutX="967.0" layoutY="148.0" mnemonicParsing="false" onAction="#pdf" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Télécharger" />
          </children>
       </AnchorPane>
    </children>

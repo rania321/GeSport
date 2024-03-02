@@ -30,6 +30,23 @@ public class dashboardFrontController {
     }
 
     @FXML
+    void weather(ActionEvent event) throws IOException {
+// Charger le fichier FXML de l'interface météo
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Weather.fxml"));
+        Parent weatherRoot = loader.load();
+
+        // Créer une nouvelle scène avec l'interface météo
+        Scene weatherScene = new Scene(weatherRoot);
+
+        // Créer une nouvelle fenêtre pour l'interface météo
+        Stage weatherStage = new Stage();
+        weatherStage.setScene(weatherScene);
+        weatherStage.setTitle("Votre Titre pour l'Interface Météo");
+
+        // Afficher la nouvelle fenêtre
+        weatherStage.show();
+    }
+    @FXML
     void activite(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_activite.fxml"));
         Parent root = loader.load();

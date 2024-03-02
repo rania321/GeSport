@@ -1,5 +1,6 @@
 package controller;
 
+import entities.Activite;
 import entities.Reservation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,28 +11,47 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import service.ActiviteService;
 import service.ReservationService;
+import javafx.scene.control.*;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class statistiquesARController {
+
     @FXML
     private PieChart piechart1;
     @FXML
     private PieChart piechart;
+    @FXML
+    private Label label1;
+
+    @FXML
+    private Label label2;
+
+    @FXML
+    private Label label3;
+
+    @FXML
+    private Label label4;
+
+
+
     // Injecter le service de réservation
     private ReservationService reservationService;
+    private ActiviteService activiteService;
 
     // Méthode d'initialisation appelée après chargement du fichier FXML
     @FXML
     public void initialize() {
         // Initialiser le service de réservation
         reservationService = new ReservationService();
+        activiteService = new ActiviteService();
 
         // Mettre à jour le PieChart avec les statistiques actuelles
         updatePieChart();
@@ -58,6 +78,9 @@ public class statistiquesARController {
 
         // Afficher les données dans le PieChart
         piechart1.setData(pieChartData);
+
+        label1.setText(reservationService.getClientAvecPlusReservations());
+        label2.setText(String.valueOf(activiteService.getNombreTotalActivites()));
     }
 
     // Méthode pour mettre à jour le PieChart avec les statistiques

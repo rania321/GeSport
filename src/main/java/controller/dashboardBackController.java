@@ -43,7 +43,6 @@ public class dashboardBackController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Activités");
-
         // Afficher la nouvelle fenêtre
         stage.show();
     }

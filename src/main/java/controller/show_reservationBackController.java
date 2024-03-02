@@ -1,7 +1,11 @@
 package controller;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 
-import entities.Reservation;
-import entities.User;
+import entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +26,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class show_reservationBackController {
 
@@ -58,9 +63,13 @@ public class show_reservationBackController {
     @FXML
     private Button updateR;
 
+    @FXML
+    private ComboBox<String> trie;
+
     ReservationService rs = new ReservationService();
 
     List<Reservation> resList;
+    private List<Reservation> resInitiales;
 
     public void initialize() throws IOException {
         // Initialiser le ComboBox avec des données
@@ -69,16 +78,21 @@ public class show_reservationBackController {
         );
         CBStatutR.setItems(options);
 
-        /*TableViewR.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) { // Vérifie si c'est un simple clic
-                Reservation selectedReservation = (Reservation) TableViewR.getSelectionModel().getSelectedItem();
-                if (selectedReservation != null) {
-                    // Afficher les informations de la séance sélectionnée dans le formulaire
-                    displayReservationInfo(selectedReservation);
-                }
-            }
-        });*/
         ShowReservation();
+
+        // Ajoutez une option vide au début du ComboBox
+        trie.getItems().add("");
+
+        // Ajoutez les options de tri au ComboBox
+        trie.getItems().addAll("Nom Activité ascendant", "Nom Activité descendant", "Date ascendante", "Date descendante", "Client ascendant", "Client descendant");
+
+        // Faites une copie de la liste initiale des œuvres
+        resInitiales = FXCollections.observableArrayList(TableViewR.getItems());
+
+        // Ajoutez un écouteur pour détecter quand l'utilisateur change l'option de tri
+        trie.getSelectionModel().selectedItemProperty().addListener((options1, oldValue, newValue) -> {
+            trierOeuvres(newValue);
+        });
     }
     public void ShowReservation() throws IOException {
 
@@ -153,6 +167,15 @@ public class show_reservationBackController {
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     // Mettre à jour la séance dans la base de données
                     rs.update(selectedReservation);
+                    User user = new User(); // Récupérer l'utilisateur connecté à partir de votre système d'authentification
+                    UserService us = new UserService();
+                    User u = us.readById(2);
+                    // Générer le PDF
+                    byte[] pdfData = PDFGenerator.generatePDF(selectedReservation, u);
+
+                    // Envoyer l'e-mail avec le PDF en pièce jointe et les détails de la réservation
+                    SendEmail.send(u.getEmailU(), pdfData, selectedReservation, u);
+                    sendSMS.sendSMS(selectedReservation);
                     // Rafraîchir l'affichage des séances dans la TableView
                     ShowReservation();
                 }
@@ -166,6 +189,43 @@ public class show_reservationBackController {
                 alert.showAndWait();
             }
         }
+
+    private void trierOeuvres(String option) {
+        List<Reservation> reservations;
+
+        if (option.equals("")) {
+            // Si l'option est vide, réinitialisez la TableView à son état initial
+            reservations = resInitiales;
+        } else {
+            // Sinon, faites une copie de la liste initiale et triez-la
+            reservations = resInitiales.stream().collect(Collectors.toList());
+            switch (option) {
+                case "Nom Activité ascendant":
+                    rs.triParNomA(reservations, true);
+                    break;
+                case "Nom Activité descendant":
+                    rs.triParNomA(reservations, false);
+                    break;
+                case "Date ascendante":
+                    rs.triParDateR(reservations, true);
+                    break;
+                case "Date descendante":
+                    rs.triParDateR(reservations, false);
+                    break;
+                case "Client ascendant":
+                    rs.triParNomU(reservations, true);
+                    break;
+                case "Client descendant":
+                    rs.triParNomU(reservations, false);
+                    break;
+                default:
+                    // Option non reconnue, vous pouvez gérer cette situation comme vous le souhaitez
+                    break;
+            }
+        }
+
+        TableViewR.setItems(FXCollections.observableArrayList(reservations));
+    }
 
     @FXML
     void toActivite(ActionEvent event) throws IOException {
@@ -216,6 +276,7 @@ public class show_reservationBackController {
         // Afficher la nouvelle fenêtre
         stage.show();
     }
+
 }
 
 
