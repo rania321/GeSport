@@ -3,24 +3,34 @@ package controllers;
 import Services.UserService;
 import entities.User;
 import entities.role;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import javafx.scene.control.Button;
-import mailing.SendEmail;
 
+import javafx.util.Duration;
+import mailing.SendEmail;
+import org.controlsfx.control.Notifications;
+
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -31,6 +41,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class LoginUserControllers {
     public javafx.scene.control.TextField EmailU;
@@ -39,12 +52,15 @@ public class LoginUserControllers {
     public PasswordField newPasswordField;
     public PasswordField confirmPasswordField;
     public Label passwordChangeStatusLabel;
+    public Button showPasswordButton;
+    public TextField passw;
+    private boolean isPasswordVisible = false;
 
     @FXML
     private Button LoginButton;
-    private  String url="jdbc:mysql://localhost:3306/3a21";
-    private  String login="root";
-    private  String pwd="";
+    private String url = "jdbc:mysql://localhost:3306/3a21";
+    private String login = "root";
+    private String pwd = "";
 
 
     @FXML
@@ -63,7 +79,7 @@ public class LoginUserControllers {
 
 
     @FXML
-    public void goregister(ActionEvent event){
+    public void goregister(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPersonne.fxml"));
             Parent root = loader.load();
@@ -152,35 +168,45 @@ public class LoginUserControllers {
         openCaptchaInterface(event);
         String email = EmailU.getText();
         String password = PasswordU.getText();
-        String hashedPassword=hashPassword(password);
+        String hashedPassword = hashPassword(password);
 
         // Vérifier les informations de connexion
         User loggedInUser = userService.login(email, hashedPassword);
         if (loggedInUser != null) {
+            showNotification();
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirmation");
+            confirmAlert.setHeaderText("Votre compte est ouvert");
+            confirmAlert.setContentText("Est-ce bien vous ?");
 
-            // Connexion réussie
-            role role1 = loggedInUser.getRoleU();
-            switch (role1) {
-                case Admin:
-                    // Rediriger vers l'interface d'administration
-                    loadAdminInterface(event);
-                    break;
-                case utulisateur:
+            Optional<ButtonType> result = confirmAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
 
-                    // Rediriger vers l'interface utilisateur
-                    loadUserInterface(event);
-                    break;
-                default:
-                    // Gérer les autres rôles si nécessaire
-                    break;
+                // Connexion réussie
+                role role1 = loggedInUser.getRoleU();
+                switch (role1) {
+                    case Admin:
+                        // Rediriger vers l'interface d'administration
+                        loadAdminInterface(event);
+                        break;
+                    case utulisateur:
+
+                        // Rediriger vers l'interface utilisateur
+                        loadUserInterface(event);
+                        break;
+                    default:
+                        // Gérer les autres rôles si nécessaire
+                        break;
+                }
+                setLoggedInUser(loggedInUser);
+
+            } else {
+                // Afficher un message d'erreur en cas d'échec de la connexion
+                alertError("Identifiants invalides. Veuillez réessayer.");
             }
-            setLoggedInUser(loggedInUser);
-
-        } else {
-            // Afficher un message d'erreur en cas d'échec de la connexion
-            alertError("Identifiants invalides. Veuillez réessayer.");
         }
     }
+
     private String hashPassword(String password) {
         try {
             // Créez un objet MessageDigest pour l'algorithme de hachage SHA-256
@@ -202,7 +228,8 @@ public class LoginUserControllers {
             return null;
         }
     }
-    public  String generateCode() {
+
+    public String generateCode() {
         // Define characters to be used in the code
         String characters = "0123456789";
 
@@ -260,8 +287,6 @@ public class LoginUserControllers {
     }
 
 
-
-
     public void forgotPasswordButtonAction(ActionEvent event) {
         // Generate a random code
         if (EmailU.getText().isEmpty()) {
@@ -309,6 +334,7 @@ public class LoginUserControllers {
             }
         }
     }
+
     @FXML
     void changePasswordAction(ActionEvent event) {
         String newPassword = newPasswordField.getText();
@@ -336,6 +362,7 @@ public class LoginUserControllers {
 
         changePasswordVBox.setVisible(false);
     }
+
     private boolean isPasswordStrong(String password) {
         // Check if password contains at least one uppercase letter and one digit
         boolean containsUppercase = false;
@@ -351,6 +378,7 @@ public class LoginUserControllers {
 
         return containsUppercase && containsDigit;
     }
+
     private void showAlert(Alert.AlertType alertType, String title, String headerText, String contentText) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -358,6 +386,7 @@ public class LoginUserControllers {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
+
     private void openCaptchaInterface(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Captcha.fxml"));
@@ -393,4 +422,40 @@ public class LoginUserControllers {
         }
     }
 
+    private void showNotification() {
+        try {
+            Image image = new Image("/notification.png");
+
+            Notifications notifications = Notifications.create();
+            notifications.graphic(new ImageView(image));
+            notifications.text("Donation added successfully");
+            notifications.title("Success Message");
+            notifications.hideAfter(Duration.seconds(4));
+            notifications.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void showpasswd(ActionEvent event) {
+        // Récupérer le mot de passe du champ PasswordU
+        String password = PasswordU.getText();
+
+        // Afficher le mot de passe dans le champ passw
+        passw.setText(password);
+
+        // Rendre le champ de texte passw visible
+        passw.setVisible(true);
+
+        // Créer une Timeline pour masquer le mot de passe après 2 secondes
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
+            passw.setVisible(false); // Masquer le champ de texte passw après 2 secondes
+            passw.clear(); // Effacer le contenu du champ de texte passw
+        }));
+        timeline.play();
+    }
 }
+
+
+

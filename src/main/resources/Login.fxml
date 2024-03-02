@@ -27,5 +27,15 @@
          <Button onAction="#changePasswordAction" style="-fx-background-color: #063970;" text="Changer le mot de passe" textFill="#fcf4f4" />
          <Label fx:id="passwordChangeStatusLabel" />
       </VBox>
+      <Button fx:id="showPasswordButton" layoutX="288.0" layoutY="329.0" mnemonicParsing="false" onAction="#showpasswd" prefHeight="18.0" prefWidth="14.0" styleClass="transparent" stylesheets="@register.css">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@eye.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="passw" layoutX="140.0" layoutY="330.0" prefHeight="26.0" prefWidth="186.0" style="-fx-background-radius: 50px; -fx-background-color: #2596be;" visible="false" />
    </children>
 </AnchorPane>

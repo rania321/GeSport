@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -26,20 +27,17 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="PoidsDM" layoutX="63.0" layoutY="254.0" promptText="Poids" style="-fx-background-color: #2596be; -fx-background-radius: 50;" />
-      <TextField fx:id="tailleDM" layoutX="63.0" layoutY="331.0" promptText="taille" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TextField fx:id="ageDM" layoutX="63.0" layoutY="421.0" promptText="age" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <ListView fx:id="listDm" layoutY="488.0" prefHeight="162.0" prefWidth="831.0" />
-      <Button fx:id="ModifierDm" layoutX="266.0" layoutY="665.0" mnemonicParsing="false" onAction="#ModifierDm" styleClass="transparent" stylesheets="@register.css">
+      <ListView fx:id="listDm" layoutX="5.0" layoutY="552.0" prefHeight="99.0" prefWidth="842.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-width: 1px;" />
+      <Button fx:id="ModifierDm" layoutX="748.0" layoutY="301.0" mnemonicParsing="false" onAction="#ModifierDm" styleClass="transparent" stylesheets="@register.css">
          <graphic>
             <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@mod.jpg" />
+                  <Image url="@updated.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="AjoutDm" layoutX="161.0" layoutY="666.0" mnemonicParsing="false" onAction="#AjoutDm" prefHeight="53.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css">
+      <Button fx:id="AjoutDm" layoutX="739.0" layoutY="391.0" mnemonicParsing="false" onAction="#AjoutDm" prefHeight="53.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css">
          <graphic>
             <ImageView fitHeight="45.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -48,12 +46,30 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="SupprimerDm" layoutX="343.0" layoutY="660.0" mnemonicParsing="false" onAction="#SupprimerDm" prefHeight="65.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css" />
-      <ImageView fitHeight="47.0" fitWidth="134.0" layoutX="355.0" layoutY="669.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="SupprimerDm" layoutX="739.0" layoutY="196.0" mnemonicParsing="false" onAction="#SupprimerDm" prefHeight="65.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css">
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@delete.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="161.0" layoutY="48.0" mnemonicParsing="false" onAction="#ACCueil" prefHeight="26.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
+      <BorderPane layoutX="503.0" layoutY="236.0" prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <TextField fx:id="PoidsDM" promptText="Poids" style="-fx-background-color: #2596be; -fx-background-radius: 50;" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <TextField fx:id="tailleDM" promptText="taille" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
+         </center>
+         <bottom>
+            <TextField fx:id="ageDM" promptText="age" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+      <ImageView fitHeight="247.0" fitWidth="306.0" layoutX="26.0" layoutY="189.0" pickOnBounds="true">
          <image>
-            <Image url="@supp.png" />
+            <Image url="@Dossier.png" />
          </image>
       </ImageView>
-      <Button layoutX="161.0" layoutY="48.0" mnemonicParsing="false" onAction="#ACCueil" prefHeight="26.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
    </children>
 </AnchorPane>

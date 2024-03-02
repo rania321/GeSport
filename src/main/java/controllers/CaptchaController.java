@@ -60,7 +60,7 @@ public class CaptchaController implements Initializable {
             captchaLabel.setText(Captcha);
             captchaCode.setText("");
         }*/
-        if (captchaCode.getText().equals(String.valueOf(Captcha))) {
+        if (captchaCode.getText().equalsIgnoreCase(Captcha)) {
             msg.setText("You have entered correct code!");
             msg.setTextFill(Color.GREEN);
 

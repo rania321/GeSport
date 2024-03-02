@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
 <AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
    <children>
@@ -14,31 +15,22 @@
             <Image url="@Compte2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="132.0" fitWidth="134.0" layoutX="78.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@imageprof.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="PrenomU" layoutX="610.0" layoutY="319.0" promptText="prenom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TextField fx:id="EmailU" layoutX="282.0" layoutY="458.0" promptText="Email" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TextField fx:id="mdpU" layoutX="610.0" layoutY="458.0" promptText="Mot de passe" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <TextField fx:id="NomU" layoutX="303.0" layoutY="319.0" promptText="Nom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" />
-      <ListView fx:id="listU" layoutY="536.0" prefHeight="91.0" prefWidth="944.0" />
-      <Button layoutX="670.0" layoutY="234.0" mnemonicParsing="false" onAction="#gotoAjouterDm" prefHeight="26.0" prefWidth="158.0" style="-fx-background-color: #2596be;" text="Ajouter dossier medicale" />
-      <Button layoutX="670.0" layoutY="663.0" mnemonicParsing="false" onAction="#SupprCuser" prefHeight="26.0" prefWidth="60.0" styleClass="transparent" stylesheets="@register.css">
+      <ListView fx:id="listU" layoutX="-4.0" layoutY="538.0" prefHeight="91.0" prefWidth="950.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-width: 1px;" />
+      <Button layoutX="393.0" layoutY="195.0" mnemonicParsing="false" onAction="#gotoAjouterDm" prefHeight="26.0" prefWidth="158.0" style="-fx-background-color: #2596be;" text="Ajouter dossier medicale" />
+      <Button layoutX="845.0" layoutY="392.0" mnemonicParsing="false" onAction="#SupprCuser" prefHeight="26.0" prefWidth="60.0" styleClass="transparent" stylesheets="@register.css">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@supp.png" />
+                  <Image url="@delete.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="530.0" layoutY="661.0" mnemonicParsing="false" onAction="#modifieCuser" prefHeight="53.0" prefWidth="67.0" styleClass="transparent" stylesheets="@register.css">
+      <Button layoutX="841.0" layoutY="268.0" mnemonicParsing="false" onAction="#modifieCuser" prefHeight="53.0" prefWidth="67.0" styleClass="transparent" stylesheets="@register.css">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@mod.jpg" />
+                  <Image url="@updated.png" />
                </image>
             </ImageView>
          </graphic>
@@ -49,5 +41,26 @@
          </image>
       </ImageView>
       <Button layoutX="172.0" layoutY="61.0" mnemonicParsing="false" onAction="#Accueil" prefHeight="26.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@programmer.png" />
+         </image>
+      </ImageView>
+      <BorderPane layoutX="223.0" layoutY="300.0" prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <TextField fx:id="NomU" promptText="Nom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
+         </top>
+         <bottom>
+            <TextField fx:id="EmailU" promptText="Email" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+      <BorderPane layoutX="546.0" layoutY="300.0" prefHeight="200.0" prefWidth="208.0">
+         <top>
+            <TextField fx:id="PrenomU" promptText="prenom" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
+         </top>
+         <bottom>
+            <TextField fx:id="mdpU" promptText="Mot de passe" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>
