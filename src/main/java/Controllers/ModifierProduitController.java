@@ -68,11 +68,11 @@ public class ModifierProduitController {
             return;
         }
 
-        if (nom.isEmpty() || image.isEmpty()) {
+        if (nom.isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur!");
+            alert.setTitle("Information manquante!");
             alert.setHeaderText(null);
-            alert.setContentText("Information manquante !");
+            alert.setContentText("Saisissez un nom !");
             alert.showAndWait();
             return;
         }

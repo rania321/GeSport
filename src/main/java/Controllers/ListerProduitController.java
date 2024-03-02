@@ -203,6 +203,12 @@ public class ListerProduitController {
                     Panier pa = new Panier(1, selectedProduit.getIdP(), quantite, total);
                     pas.add(pa);
                     System.out.println("Ajout au panier effectuer avec succes ");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Notification");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Ajout au panier effectué avec succès");
+                    alert.showAndWait();
+
 
                 } catch (NumberFormatException e) {
                     e.printStackTrace();

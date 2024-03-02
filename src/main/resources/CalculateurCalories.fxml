@@ -51,8 +51,16 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField fx:id="nomAliment" layoutX="566.0" layoutY="281.0" prefHeight="25.0" prefWidth="177.0" promptText="Saisissez un aliment.." styleClass="transparent" stylesheets="@../java/values/style.css" />
-      <TextField fx:id="qteAliment" layoutX="566.0" layoutY="333.0" prefHeight="25.0" prefWidth="177.0" promptText="Quantité en gr.." styleClass="transparent" stylesheets="@../java/values/style.css" />
+      <TextField fx:id="nomAliment" layoutX="566.0" layoutY="281.0" prefHeight="25.0" prefWidth="177.0" promptText="Saisissez un aliment.." styleClass="transparent" stylesheets="@../java/values/style.css" text="Saisissez un aliment..">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="qteAliment" layoutX="566.0" layoutY="333.0" prefHeight="25.0" prefWidth="177.0" promptText="Quantité en gr.." styleClass="transparent" stylesheets="@../java/values/style.css" text="Quantité en gr..">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
       <Label fx:id="cal" layoutX="573.0" layoutY="382.0" text="Calories : .." textFill="#17447a">
          <font>
             <Font name="System Bold Italic" size="20.0" />

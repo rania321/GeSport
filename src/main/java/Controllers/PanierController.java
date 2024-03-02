@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -44,7 +45,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
-
+import java.util.Optional;
 
 public class PanierController {
 
@@ -67,6 +68,9 @@ public class PanierController {
 
     @FXML
     private Button facture;
+
+    @FXML
+    private Button buttonBackMenu;
 
     private PanierService pas = new PanierService();
     //List<Panier> paniers = (List<Panier>) pas.readById(8);
@@ -106,81 +110,12 @@ public class PanierController {
         }
     }
 
-   /* private void setPanierGridPaneList() {
-        VBox mainVBox = new VBox(20);  // Espace vertical entre chaque ligne
-        mainVBox.setPadding(new Insets(10));  // Marge autour du VBox principal
-
-        for (Panier panier : paniers) {
-            HBox panierHBox = createPanierHBox(panier);
-            mainVBox.getChildren().add(panierHBox);
-        }
-
-        // Ajouter le VBox principal à votre conteneur parent (ScrollPane)
-        Scrollpa.setContent(mainVBox);
-    }*/
-
-    /*private HBox createPanierHBox(Panier panier) {
-        HBox hbox = new HBox(20);  // Espace horizontal entre chaque activité dans une ligne
-        hbox.setPrefSize(609, 124);  // Dimensions spécifiques
-
-        VBox vbox = new VBox();  // VBox pour chaque Panier
-        Label nomLabel = new Label(Integer.toString(panier.getIdP()));
-        Label prixLabel = new Label(Integer.toString(panier.getIdV()));
-
-        float total= panier.getTotalPa()*panier.getQuantiteP();
-        totalPa.setText(Float.toString(total));
-
-        // Ajoutez d'autres éléments en fonction de votre besoin
-        vbox.getChildren().addAll(nomLabel, prixLabel);
-
-        if (paniers.size() != 0) {
-            Button affichageButton = new Button("Supprimer");
-            affichageButton.setOnAction(event -> {
-                selectedProduit = panier;
-                pas.delete(selectedProduit);
-                System.out.println(selectedProduit + " supprimé du panier  " );
-
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
-                    Parent root = loader.load();
-                   // Obtenir le contrôleur de la nouvelle interface
-                    PanierController PanierController = loader.getController();
-
-
-                    // Créer une nouvelle scène
-                    Scene scene = new Scene(root);
-
-                    // Configurer la nouvelle scène dans une nouvelle fenêtre
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setScene(scene);
-
-                    // Afficher la nouvelle fenêtre
-                    stage.show();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            });
-            affichageButton.getStyleClass().add("round-buttonMenu1");
-
-            vbox.getChildren().add(affichageButton);
-        }
-            vbox.setAlignment(Pos.CENTER);
-
-            hbox.getChildren().add(vbox);
-            return hbox;
-    }*/
-
-
     private HBox createPanierHBox(Panier panier) {
         HBox hbox = new HBox(50);  // Espace horizontal entre chaque activité dans une ligne
         hbox.setPrefSize(609, 124);  // Dimensions spécifiques
 
         // VBox pour chaque Panier
         VBox vbox = new VBox();
-
-
         String imageUrl = ps.getImageFromIdProduit(panier.getIdP());
 
 // Convertissez l'URL en une URL absolue
@@ -257,11 +192,8 @@ public class PanierController {
             // Si la liste de paniers est vide, ajoutez simplement la VBox contenant l'ImageView et les Labels à la HBox
             hbox.getChildren().add(vbox);
         }
-
         return hbox;
     }
-
-
 
     @FXML
     void accueil(javafx.event.ActionEvent actionEvent) throws IOException{
@@ -317,22 +249,6 @@ public class PanierController {
 
     }
 
-    /*public void panier(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
-        Parent root = loader.load();
-
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
-
-        // Configurer la nouvelle scène dans une nouvelle fenêtre
-        Image actionEvent = null;
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Buvette");
-
-        // Afficher la nouvelle fenêtre
-        stage.show();
-    }*/
     public void panier(MouseEvent mouseEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
         Parent root = loader.load();
@@ -352,120 +268,122 @@ public class PanierController {
         stage.show();
     }
 
-
     /*---------------------controller quantité----------------------------------------------------------------*/
-
 
     @FXML
     void confirmerVente(ActionEvent event) {
-        int index = 0;
-        while (index < paniers.size()) {
-            Panier panier = paniers.get(index);
-            Vente vi = new Vente(2, panier.getIdP() , panier.getQuantiteP(), sqlDate, Float.parseFloat(totalPa.getText()));
-            vs.add(vi);
-            pas.delete(panier);
+        // Create a confirmation alert
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Confirmer la vente");
+        alert.setContentText("Voulez-vous vraiment confirmer vos achats?");
 
-            /*if (index == paniers.size())
-            {paniers.clear();}*/
-            index++;
-        }
-       /* while (index < paniers.size()) {
-            Panier panier = paniers.get(index);
-            pas.delete(panier);
-            index++;
-        }*/
+        // Show the confirmation dialog and wait for the user's choice
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
-        System.out.println("Panier clean");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
-            Parent root = loader.load();
-            // Obtenir le contrôleur de la nouvelle interface
-            PanierController panierController = loader.getController();
-
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Configurer la nouvelle scène dans une nouvelle fenêtre
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-
-            // Afficher la nouvelle fenêtre
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /*private void PDF(MouseEvent event) {
-                            voyage voy = TableVoyage.getSelectionModel().getSelectedItem();
-
-        Pdf pd=new Pdf();
-        try{
-                    pd.GeneratePdf("MesInformations",voy,voy.getID());
-
-            System.out.println("impression done");
-        } catch (Exception ex) {
-            Logger.getLogger(ServiceVoyage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
-*/
-
-    @FXML
-    void genererFacture(ActionEvent event) {
-    String fileName = "Facture.pdf";
-    String cn=" ";
-        String cp=" ";
-        String cq=" ";
-
-        int index = 0;
-
-
-        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName)) {
-            // Création d'un document
-            Document document = new Document();
-            // Création d'un écrivain PDF associé au document
-            PdfWriter.getInstance(document, fileOutputStream);
-
-            // Ouverture du document pour écrire
-            document.open();
-
-            document.add(new Paragraph("Bienvenue chez GesPort"));
-            document.add(new Paragraph());
-            document.add(new Paragraph("Votre Facture :"));
-            document.add(new Paragraph());
-            document.add(new Paragraph());
-
+        if (result == ButtonType.OK) {
+            int index = 0;
             while (index < paniers.size()) {
                 Panier panier = paniers.get(index);
-                String nompp = ps.getNomFromIdProduit(panier.getIdP());
-                float prixpp = ps.getPrixFromIdProduit(panier.getIdP());
-                int quantite = panier.getQuantiteP();
-
-                cn= nompp + " " ;
-                document.add(new Paragraph(cn));
-                document.add(new Paragraph());
-                cp= "Prix :"+ prixpp + " dt" ;
-
-                document.add(new Paragraph(cp));
-                document.add(new Paragraph());
-                cp= "Qté : "+ quantite;
-
-                document.add(new Paragraph(cq));
-                document.add(new Paragraph());
+                Vente vi = new Vente(2, panier.getIdP(), panier.getQuantiteP(), sqlDate, Float.parseFloat(totalPa.getText()));
+                vs.add(vi);
+                pas.delete(panier);
                 index++;
             }
 
-            document.add(new Paragraph("Au revoir."));
+            System.out.println("Vente confirmée");
 
-            // Fermeture du document
-            document.close();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
+                Parent root = loader.load();
+                // Obtenir le contrôleur de la nouvelle interface
+                PanierController panierController = loader.getController();
 
-            System.out.println("PDF généré avec succès.");
-        } catch (Exception e) {
-            e.printStackTrace();
+                // Créer une nouvelle scène
+                Scene scene = new Scene(root);
+
+                // Configurer la nouvelle scène dans une nouvelle fenêtre
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+
+                // Afficher la nouvelle fenêtre
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Vente annulée");
+            // Optionally, you can handle the case where the user cancels the confirmation
         }
     }
+    @FXML
+    void genererFacture(ActionEvent event) {
+        // Create a confirmation alert
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText("Voulez-vous générer la facture ?");
+        confirmationAlert.setContentText("Appuyez sur OK pour générer la facture.");
+
+        // Show the confirmation alert and wait for the user's response
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        // Check if the user clicked OK
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // User wants to generate the bill
+            String fileName = "Facture.pdf";
+            String cn = " ";
+            String cp = " ";
+            String cq = " ";
+
+            int index = 0;
+
+            try (FileOutputStream fileOutputStream = new FileOutputStream(fileName)) {
+                    // Création d'un document
+                    Document document = new Document();
+                    // Création d'un écrivain PDF associé au document
+                    PdfWriter.getInstance(document, fileOutputStream);
+
+                    // Ouverture du document pour écrire
+                    document.open();
+
+                    document.add(new Paragraph("Bienvenue chez GesPort"));
+                    document.add(new Paragraph());
+                    document.add(new Paragraph("Votre Facture :"));
+                    document.add(new Paragraph());
+                    document.add(new Paragraph());
+
+                    while (index < paniers.size()) {
+                        Panier panier = paniers.get(index);
+                        String nompp = ps.getNomFromIdProduit(panier.getIdP());
+                        float prixpp = ps.getPrixFromIdProduit(panier.getIdP());
+                        int quantite = panier.getQuantiteP();
+
+                        cn= nompp + " " ;
+                        document.add(new Paragraph(cn));
+                        document.add(new Paragraph());
+                        cp= "Prix :"+ prixpp + " dt" ;
+
+                        document.add(new Paragraph(cp));
+                        document.add(new Paragraph());
+                        cq= "Qté : "+ quantite;
+
+                        document.add(new Paragraph(cq));
+                        document.add(new Paragraph());
+                        index++;
+                    }
+
+                    document.add(new Paragraph("Au revoir."));
+                    document.close();
+                System.out.println("PDF généré avec succès.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            // User canceled the operation
+            System.out.println("Génération de la facture annulée par l'utilisateur.");
+        }
     }
+
+}
 
 

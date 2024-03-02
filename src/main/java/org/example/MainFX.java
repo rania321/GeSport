@@ -19,11 +19,9 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml") );
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml") );
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-
         primaryStage.setScene(scene);
         primaryStage.setTitle("Ajouter produit");
         primaryStage.show();

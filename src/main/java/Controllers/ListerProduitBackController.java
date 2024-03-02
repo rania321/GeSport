@@ -106,9 +106,7 @@ public class ListerProduitBackController {
                                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierProduit.fxml"));
 
                                         try {
-                                                // Charger la racine de la nouvelle scène
                                                 Parent root = loader.load();
-
                                                 // Obtenir le contrôleur de la nouvelle scène
                                                 ModifierProduitController modifierProduitController = loader.getController();
 
@@ -117,14 +115,10 @@ public class ListerProduitBackController {
 
                                                 Scene nouvelleScene = new Scene(root);
                                                 nouvelleFenetre.setScene(nouvelleScene);
-
-                                                // Afficher la nouvelle fenêtre
                                                 nouvelleFenetre.show();
-
                                         } catch (IOException e) {
                                                 e.printStackTrace();
                                         }
-
                                         // Rafraîchir la TableView si nécessaire
                                         TableProduit.refresh();
                                 });
@@ -140,7 +134,6 @@ public class ListerProduitBackController {
         private void configureSuppressionColumn() {
                 SuppressionP.setCellFactory(param -> new TableCell<>() {
                         private final Button boutonSupprimer = new Button("Supprimer");
-
                         {
                                 boutonSupprimer.setOnAction(event -> {
                                         Produit produit = getTableView().getItems().get(getIndex());
@@ -168,7 +161,6 @@ public class ListerProduitBackController {
                                         } catch (IOException e) {
                                                 e.printStackTrace();
                                         }
-
                                 });
                         }
                         @Override
