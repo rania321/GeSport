@@ -5,11 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-<<<<<<< HEAD
-    <artifactId>buvette</artifactId>
-=======
     <artifactId>gesport</artifactId>
->>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -26,27 +22,16 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-<<<<<<< HEAD
-            <version>21.0.2</version>
-=======
             <version>20.0.2</version>
->>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-<<<<<<< HEAD
-            <version>21.0.2</version>
-=======
             <version>20.0.2</version>
->>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
-<<<<<<< HEAD
-            <version>5.5.13.2</version> <!-- Utilisez la version la plus récente -->
-=======
             <version>5.5.13</version>
         </dependency>
         <dependency>
@@ -73,24 +58,15 @@
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
->>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
-<<<<<<< HEAD
-            <!-- Changez la portée à compile ou runtime -->
-            <scope>compile</scope>
-=======
->>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-<<<<<<< HEAD
-            <version>2.8.9</version> <!-- Assurez-vous de vérifier la dernière version sur Maven Central -->
-=======
             <version>2.8.9</version>
         </dependency>
         <dependency>
@@ -113,7 +89,6 @@
             <groupId>com.sun.activation</groupId>
             <artifactId>javax.activation</artifactId>
             <version>1.2.0</version>
->>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>org.controlsfx</groupId>
@@ -121,15 +96,24 @@
             <version>11.2.0</version>
         </dependency>
         <dependency>
-<<<<<<< HEAD
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.12.4</version> <!-- Assurez-vous d'utiliser la version la plus récente -->
-=======
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version> <!-- Assurez-vous de spécifier la dernière version disponible -->
->>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.9</version> <!-- Assurez-vous de vérifier la dernière version sur Maven Central -->
+        </dependency>
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.12.4</version> <!-- Assurez-vous d'utiliser la version la plus récente -->
         </dependency>
     </dependencies>
     <build>
