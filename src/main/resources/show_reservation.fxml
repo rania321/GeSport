@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.show_reservationController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1300.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/réservation.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="5.0" layoutY="28.0" prefHeight="775.0" prefWidth="1300.0">
+         <children>
+            <ImageView fx:id="imageviewR" fitHeight="464.0" fitWidth="691.0" layoutX="45.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/photoreserv.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="796.0" layoutY="205.0" prefHeight="413.0" prefWidth="462.0" stylesheets="@style.css">
+               <children>
+                  <TableView fx:id="TableViewR" layoutX="40.0" layoutY="41.0" prefHeight="330.0" prefWidth="407.0" styleClass="transparent" stylesheets="@style.css">
+                     <columns>
+                        <TableColumn fx:id="CVActiviteR" prefWidth="108.0" text="Activité" />
+                        <TableColumn fx:id="CVDateR" minWidth="3.0" prefWidth="94.0" text="Date" />
+                        <TableColumn fx:id="CVHeureR" minWidth="0.0" prefWidth="87.0" text="Heure" />
+                        <TableColumn fx:id="CVStatutR" maxWidth="212.0" prefWidth="114.0" text="Statut" />
+                     </columns>
+                  </TableView>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+               </styleClass>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorpanemodifier" layoutX="72.0" layoutY="203.0" prefHeight="418.0" prefWidth="267.0" stylesheets="@style.css">
+               <styleClass>
+                  <String fx:value="white-bg" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <DatePicker fx:id="dateR" layoutX="31.0" layoutY="176.0" onAction="#checkDate" prefHeight="27.0" prefWidth="196.0" />
+                  <Label layoutX="31.0" layoutY="132.0" text="Choisissez la date">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="choisirHeure" layoutX="32.0" layoutY="226.0" prefHeight="17.0" prefWidth="130.0" text="Choisissez l'heure" visible="false">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="heureR" layoutX="31.0" layoutY="261.0" prefHeight="27.0" prefWidth="196.0" stylesheets="@style.css" visible="false" />
+                  <Label layoutX="28.0" layoutY="48.0" prefHeight="17.0" prefWidth="130.0" text="L'activité choisie :">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="annulerR" layoutX="76.0" layoutY="319.0" mnemonicParsing="false" onAction="#delete_reservation" styleClass="white-bg" stylesheets="@style.css">
+                     <graphic>
+                        <ImageView fx:id="IVBtnDelete" fitHeight="39.0" fitWidth="37.0">
+                           <image>
+                              <Image url="@img/btn-delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="updateR" layoutX="133.0" layoutY="313.0" mnemonicParsing="false" onAction="#update_reservation" prefHeight="60.0" prefWidth="59.0" styleClass="white-bg" stylesheets="@style.css">
+                     <graphic>
+                        <ImageView fx:id="IVBtnUpdate" fitHeight="39.0" fitWidth="37.0">
+                           <image>
+                              <Image url="@img/btn-update.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="activiteR1" layoutX="36.0" layoutY="76.0" prefHeight="34.0" prefWidth="217.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Button layoutX="276.0" layoutY="13.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+               <font>
+                  <Font name="Walkway Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="379.0" layoutY="13.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+               <font>
+                  <Font name="Walkway Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="504.0" layoutY="13.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+               <font>
+                  <Font name="Walkway Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="609.0" layoutY="12.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+               <font>
+                  <Font name="Walkway Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="730.0" layoutY="13.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+               <font>
+                  <Font name="Walkway Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="854.0" layoutY="13.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="108.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+               <font>
+                  <Font name="Walkway Bold" size="17.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="imageviewUpdate" fitHeight="413.0" fitWidth="407.0" layoutX="357.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/photoModifier.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="pdf" layoutX="967.0" layoutY="148.0" mnemonicParsing="false" onAction="#pdf" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Télécharger" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

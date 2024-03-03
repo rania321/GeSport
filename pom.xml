@@ -5,7 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
+<<<<<<< HEAD
     <artifactId>buvette</artifactId>
+=======
+    <artifactId>gesport</artifactId>
+>>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -22,29 +26,94 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
+<<<<<<< HEAD
             <version>21.0.2</version>
+=======
+            <version>20.0.2</version>
+>>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
+<<<<<<< HEAD
             <version>21.0.2</version>
+=======
+            <version>20.0.2</version>
+>>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
+<<<<<<< HEAD
             <version>5.5.13.2</version> <!-- Utilisez la version la plus récente -->
+=======
+            <version>5.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>fontbox</artifactId>
+            <version>2.0.24</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox-tools</artifactId>
+            <version>2.0.24</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+>>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
+<<<<<<< HEAD
             <!-- Changez la portée à compile ou runtime -->
             <scope>compile</scope>
+=======
+>>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
+<<<<<<< HEAD
             <version>2.8.9</version> <!-- Assurez-vous de vérifier la dernière version sur Maven Central -->
+=======
+            <version>2.8.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version> <!-- Utilisez la version la plus récente -->
+        </dependency>
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>10.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version> <!-- Utilisez la dernière version disponible -->
+        </dependency>
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>javax.activation</artifactId>
+            <version>1.2.0</version>
+>>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
         <dependency>
             <groupId>org.controlsfx</groupId>
@@ -52,9 +121,15 @@
             <version>11.2.0</version>
         </dependency>
         <dependency>
+<<<<<<< HEAD
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.4</version> <!-- Assurez-vous d'utiliser la version la plus récente -->
+=======
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version> <!-- Assurez-vous de spécifier la dernière version disponible -->
+>>>>>>> d00f6ec6c15ca2bf20a601554f1e8802e27a67df
         </dependency>
     </dependencies>
     <build>
