@@ -58,7 +58,7 @@ public class LoginUserControllers {
 
     @FXML
     private Button LoginButton;
-    private String url = "jdbc:mysql://localhost:3306/3a21";
+    private String url = "jdbc:mysql://localhost:3306/gesport";
     private String login = "root";
     private String pwd = "";
 
@@ -124,7 +124,7 @@ public class LoginUserControllers {
 
     private void loadAdminInterface(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashbordBack.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardBack.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage(); // Créez une nouvelle instance de Stage
             stage.setScene(new Scene(root));
@@ -141,7 +141,7 @@ public class LoginUserControllers {
     @FXML
     private void loadUserInterface(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage(); // Créez une nouvelle instance de Stage
             stage.setScene(new Scene(root));

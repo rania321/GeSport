@@ -316,7 +316,7 @@ public class AjoutDmController {
 
     public void ACCueil(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage(); // Créez une nouvelle instance de Stage
             stage.setScene(new Scene(root));

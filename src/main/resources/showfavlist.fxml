@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.showfavlistController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1300.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/activitétaswira.png" />
+         </image>
+      </ImageView>
+      <ScrollPane fx:id="ScrollPaneA" layoutX="158.0" layoutY="249.0" prefHeight="445.0" prefWidth="984.0" styleClass="white-bg" stylesheets="@style.css">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <GridPane fx:id="ActivityListContainer" layoutY="7.0" prefHeight="414.0" prefWidth="964.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Button layoutX="382.0" layoutY="41.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="279.0" layoutY="41.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="604.0" layoutY="41.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="730.0" layoutY="41.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="851.0" layoutY="41.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="108.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="1022.0" layoutY="182.0" maxWidth="139.0" mnemonicParsing="false" onAction="#mesreservations" prefHeight="30.0" prefWidth="139.0" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Mes Réservations" />
+      <TextField fx:id="searchByTypeTF" layoutX="158.0" layoutY="185.0" prefHeight="25.0" prefWidth="180.0" promptText="search" />
+   </children>
+</AnchorPane>

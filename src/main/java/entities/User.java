@@ -1,7 +1,6 @@
 package entities;
-
 import entities.role;
-
+import java.util.Objects;
 
 public class User {
     private int idU;
@@ -9,12 +8,15 @@ public class User {
     private String PrenomU;
     private String EmailU;
     private String mdpU;
+
     private role roleU; // Utilisation de l'ENUM Role
+
 
     public User() {
     }
 
     public User(int idU, String nomU, String prenomU, String emailU, String mdpU, role roleU) {
+
         this.idU = idU;
         NomU = nomU;
         PrenomU = prenomU;
@@ -30,6 +32,7 @@ public class User {
         this.mdpU = mdpU;
         this.roleU = roleU;
     }
+
     public User(String nomU, String prenomU, String emailU, String mdpU) {
         NomU = nomU;
         PrenomU = prenomU;
@@ -84,6 +87,8 @@ public class User {
 
     public void setRoleU(role roleU) {
         this.roleU = roleU;
+
+
     }
 
     @Override
@@ -96,5 +101,18 @@ public class User {
                 ", mdpU='" + mdpU + '\'' +
                 ", roleU=" + roleU +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return idU == user.idU && Objects.equals(NomU, user.NomU) && Objects.equals(PrenomU, user.PrenomU) && Objects.equals(EmailU, user.EmailU) && Objects.equals(mdpU, user.mdpU) && roleU == user.roleU;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idU, NomU, PrenomU, EmailU, mdpU, roleU);
     }
 }

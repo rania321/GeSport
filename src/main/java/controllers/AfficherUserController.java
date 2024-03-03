@@ -271,7 +271,7 @@ public class AfficherUserController implements Initializable {
 
     public void Ruser(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashbordBack.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardBack.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage(); // Créez une nouvelle instance de Stage
             stage.setScene(new Scene(root));
