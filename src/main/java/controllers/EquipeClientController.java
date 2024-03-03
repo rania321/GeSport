@@ -16,7 +16,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import service.EquipeService;
 import service.JoueurService;
 import service.TournoiService;
@@ -125,6 +129,8 @@ public class EquipeClientController {
 
         // Initialisation de la TableView des joueurs
         nomJoueurColumn.setCellValueFactory(new PropertyValueFactory<>("joueur"));
+
+
     }
 
     @FXML
@@ -179,6 +185,7 @@ public class EquipeClientController {
 
         // Ajouter un joueur à la dernière équipe ajoutée
         ajouterJ(null);
+        showNotification();
     }
 
 
@@ -325,6 +332,25 @@ public class EquipeClientController {
 
         // Afficher la nouvelle fenêtre
         newStage.show();
+    }
+    private void showNotification() {
+        try {
+            Image image = new Image("img/notification.png");
+
+            ImageView imageView = new ImageView(image);
+            // Définir la largeur et la hauteur souhaitées de l'image
+            imageView.setFitWidth(50); // Largeur de l'image
+            imageView.setFitHeight(50); // Hauteur de l'image
+
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utiliser l'ImageView modifié
+            notifications.text("Equipe ajoutée avec succès");
+            notifications.title("Message de succès");
+            notifications.hideAfter(Duration.seconds(4));
+            notifications.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     }
 
