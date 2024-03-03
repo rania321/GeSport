@@ -177,7 +177,7 @@ public class show_reservationBackController {
                     byte[] pdfData = PDFGenerator.generatePDF(selectedReservation, selectedReservation.getUser());
 
                     // Envoyer l'e-mail avec le PDF en pièce jointe et les détails de la réservation
-                    SendEmail.send(u.getEmailU(), pdfData, selectedReservation, selectedReservation.getUser());
+                    SendEmail.send(selectedReservation.getUser().getEmailU(), pdfData, selectedReservation, selectedReservation.getUser());
                     sendSMS.sendSMS(selectedReservation);
                     // Rafraîchir l'affichage des séances dans la TableView
                     ShowReservation();

@@ -55,7 +55,7 @@ public class showfavlistController {
     private final ActiviteService as = new ActiviteService();
     User user = new User(); // Récupérer l'utilisateur connecté à partir de votre système d'authentification
     UserService us = new UserService();
-    User u = us.readById(4);
+    User u = us.readById(LoginUserControllers.getLoggedInUser().getIdU());
 
 
 
@@ -72,6 +72,7 @@ public class showfavlistController {
 
     public void initialize() throws SQLException {
         loggedInUser = LoginUserControllers.getLoggedInUser();
+        System.out.println("user : "+ loggedInUser);
         setActivityGridPaneList();
         // Ajoutez cet écouteur pour la recherche dynamique
         searchByTypeTF.textProperty().addListener((observable, oldValue, newValue) -> {

@@ -39,7 +39,7 @@ public class SendEmail {
 
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
             message.setSubject("Forgot your password ");
-            message.setText("This is the email body" + code );
+            message.setText("This is the email body " + code );
 
             Transport.send(message);
             System.out.println("Email sent successfully to " + toEmail);

@@ -14,7 +14,7 @@ import javax.mail.util.ByteArrayDataSource;
 public class SendEmail {
 
     public static void send(String toEmail ,byte[] attachmentData, Reservation reservation, User user ) {
-        String from = "oussama.sfaxi@esprit.tn"; // Change this to your sender email address
+        String from = "oussama.sfaxi@esprit.tn";
         String host = "smtp.gmail.com";
 
         Properties properties = System.getProperties();
@@ -25,7 +25,7 @@ public class SendEmail {
 
         Session session = Session.getInstance(properties, new javax.mail.Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("oussama.sfaxi@esprit.tn", "211JMT6879"); // Change this to your sender email password
+                return new PasswordAuthentication("oussama.sfaxi@esprit.tn", "211JMT6879");
             }
         });
 
