@@ -26,7 +26,7 @@ public class MainFX extends Application {
         stage.show();
     }*/
 
-/*@Override
+@Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterTournoi.fxml"));
         Parent root = loader.load();
@@ -34,9 +34,9 @@ public class MainFX extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("dashboard");
         primaryStage.show();
-    }*/
+    }
 
-    @Override
+  /*  @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dachboardFront.fxml"));
         Parent root = loader.load();
@@ -46,7 +46,7 @@ public class MainFX extends Application {
         stage.setTitle("Accueil");
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
 
 

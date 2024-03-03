@@ -106,7 +106,6 @@
                </image>
             </ImageView>
             <ComboBox fx:id="comboBoxTri" layoutX="527.0" layoutY="18.0" onAction="#onTriComboBoxChanged" prefHeight="26.0" prefWidth="90.0" promptText="tri par " />
-            <Button layoutX="422.0" layoutY="395.0" mnemonicParsing="false" onAction="#genererPDF" text="Button" />
          </children>
       </AnchorPane>
       <Button layoutX="31.0" layoutY="40.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="44.0" prefWidth="200.0" styleClass="transparent" stylesheets="@style.css">

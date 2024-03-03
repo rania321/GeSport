@@ -82,7 +82,7 @@ public class CalendarController implements Initializable {
         double spacingV = calendar.getVgap();
 
         Map<Integer, List<Tournoi>> calendarActivityMapD = getCalendarTournoiDD(dateFocus);
-        Map<Integer, List<Tournoi>> calendarActivityMapF = getCalendarTournoiDF(dateFocus);
+       // Map<Integer, List<Tournoi>> calendarActivityMapF = getCalendarTournoiDF(dateFocus);
 
         // Récupérer le nombre de jours dans le mois
         Calendar tempCal = Calendar.getInstance();
@@ -117,14 +117,14 @@ public class CalendarController implements Initializable {
                         stackPane.getChildren().add(date);
 
                         List<Tournoi> tournoisDebut = calendarActivityMapD.get(currentDate);
-                        List<Tournoi> tournoisFin = calendarActivityMapF.get(currentDate);
+                      //  List<Tournoi> tournoisFin = calendarActivityMapF.get(currentDate);
 
                         if (tournoisDebut != null) {
                             createCalendarActivity(tournoisDebut, rectangleHeight, rectangleWidth, stackPane);
                         }
-                        if (tournoisFin != null) {
+                       /* if (tournoisFin != null) {
                             createCalendarActivity(tournoisFin, rectangleHeight, rectangleWidth, stackPane);
-                        }
+                        }*/
                     }
                     tempCal.set(Calendar.DAY_OF_MONTH, currentDate);
                     if (tempCal.getTime().equals(today)) {
@@ -173,7 +173,7 @@ public class CalendarController implements Initializable {
         return calendarActivityMap;
     }
 
-    private Map<Integer, List<Tournoi>> getCalendarTournoiDF(Date dateFocus) {
+    /*private Map<Integer, List<Tournoi>> getCalendarTournoiDF(Date dateFocus) {
         List<Tournoi> allTournois = tournoiService.readAll();
         Map<Integer, List<Tournoi>> calendarActivityMap = new HashMap<>();
 
@@ -208,7 +208,7 @@ public class CalendarController implements Initializable {
         }
 
         return calendarActivityMap;
-    }
+    }*/
 
     private void createCalendarActivity(List<Tournoi> tournois, double rectangleHeight, double rectangleWidth, StackPane stackPane) {
         VBox calendarActivityBox = new VBox();
@@ -229,11 +229,17 @@ public class CalendarController implements Initializable {
             nomTournoi.setText(tournoi.getNomT());
             nomTournoi.setFont(Font.font("Arial", FontWeight.BOLD, 9)); // Exemple : police Arial, gras, taille 14
 
-            // Vérifier si la date de focus est entre la date de début et de fin du tournoi
-            if (dateFocus.compareTo(tournoi.getDateDebutT()) >= 0 && dateFocus.compareTo(tournoi.getDateFinT()) <= 0) {
-                nomTournoi.setText("Fin: " + tournoi.getNomT());
+            // Vérifier si la date de focus est égale à la date de fin du tournoi
+            if (dateFocus.equals(tournoi.getDateFinT())) {
+                // Si c'est le cas, ajouter "Fin" avant le nom du tournoi
+                 nomTournoi.setText("Fin: " + tournoi.getNomT());
             } else {
-                nomTournoi.setText(tournoi.getNomT());
+                // Sinon, vérifier si la date de focus est entre la date de début et la date de fin du tournoi
+                if (dateFocus.compareTo(tournoi.getDateDebutT()) >= 0 && dateFocus.compareTo(tournoi.getDateFinT()) <= 0) {
+                    nomTournoi.setText( tournoi.getNomT());
+                } else {
+                    nomTournoi.setText(tournoi.getNomT());
+                }
             }
 
             calendarActivityBox.getChildren().add(nomTournoi);
