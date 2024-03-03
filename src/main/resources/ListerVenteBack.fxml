@@ -33,7 +33,7 @@
         </Button>
         <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="43.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../../../../xampp/htdocs/image/home-4-fill%20(1).png" />
+                <Image url="@../../../../../../../../../../xampp/htdocs/image/home-4-fill (1).png" />
             </image>
         </ImageView>
         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="43.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
@@ -51,7 +51,7 @@
                 <Image url="@../../../../../../../../../../xampp/htdocs/image/add-circle-fill.png" />
             </image>
         </ImageView>
-        <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="301.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
+        <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="301.0" mnemonicParsing="false" onAction="#ajP" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
             <styleClass>
                 <String fx:value="transparent" />
                 <String fx:value="shadow2" />
@@ -69,7 +69,7 @@
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="ButtonListeV" layoutX="68.0" layoutY="350.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Lister les ventes" textFill="WHITE">
+        <Button fx:id="ButtonListeV" layoutX="68.0" layoutY="350.0" mnemonicParsing="false" onAction="#listV" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Lister les ventes" textFill="WHITE">
             <styleClass>
                 <String fx:value="transparent" />
                 <String fx:value="shadow2" />

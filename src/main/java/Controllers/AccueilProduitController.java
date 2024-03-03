@@ -1,5 +1,4 @@
 package Controllers;
-import API.EdamameApi;
 import entities.Produit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,10 +13,15 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
+import static API.SpoonacularApi.generateMealPlan;
+
 
 public class AccueilProduitController {
     @FXML
     private Button accueil;
+
+    @FXML
+    private Button openApiMenu;
 
     @FXML
     private Button activite;
@@ -48,9 +52,7 @@ public class AccueilProduitController {
     @FXML
     private Button accesPageAPI;
 
-    /*private final ProduitService ps = new ProduitService();
-   ist<Produit> produits = ps.readAll();
-*/
+
 /*___________________________________________entete___________________________________________________*/
     @FXML
     void accueil(ActionEvent event) {
@@ -130,8 +132,21 @@ public class AccueilProduitController {
 
 /*___________________________________________entete___________________________________________________*/
 
+    @FXML
+    void showApiMenu(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/menuGenerator.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
 
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
 
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
 
 }

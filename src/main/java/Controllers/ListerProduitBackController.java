@@ -1,5 +1,8 @@
 package Controllers;
 import entities.Produit;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,17 +12,25 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import org.example.Service.ProduitService;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +104,7 @@ public class ListerProduitBackController {
                 ShowProduit();
                 configureSuppressionColumn();
                 configureModificationColumn();
+                showNotification();
         }
 
         private void configureModificationColumn() {
@@ -206,6 +218,21 @@ public class ListerProduitBackController {
                 return pathParts[pathParts.length - 1];
         }
 
+        private void showNotification() {
+                try {
+                        Image image = new Image(getClass().getResource("/notif.png").toExternalForm());
+
+                        Notifications notifications = Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("Donation added successfully");
+                        notifications.title("Success Message");
+                        notifications.hideAfter(Duration.seconds(4));
+                        notifications.show();
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+        }
+
         @FXML
         public void listP(ActionEvent actionEvent)  throws IOException {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduitBack.fxml"));
@@ -255,6 +282,7 @@ public class ListerProduitBackController {
                 // Afficher la nouvelle fenêtre
                 stage.show();
         }
+
         @FXML
         public void ajP(ActionEvent actionEvent) throws IOException {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterProduit.fxml"));

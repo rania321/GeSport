@@ -13,13 +13,13 @@ import java.io.IOException;
 public class MainFX extends Application {
 
     public static final String CURRENCY ="$";
-    public static void main(String[] args) {
+    public static void main  (String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml") );
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml") );
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

@@ -102,26 +102,7 @@ public class CalculateurCaloriesController {
 
     }
 
-    public void recherchep(ActionEvent actionEvent) {
-    }
-
     public void activité(ActionEvent actionEvent) {
-    }
-    @FXML
-    public void ListeP(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduit.fxml"));
-        Parent root = loader.load();
-
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
-
-        // Configurer la nouvelle scène dans une nouvelle fenêtre
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Buvette");
-
-        // Afficher la nouvelle fenêtre
-        stage.show();
     }
 
     public void api (){
