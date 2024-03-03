@@ -4,10 +4,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TournoiClientController">
     <children>
@@ -22,30 +24,45 @@
             <String fx:value="radius" />
          </styleClass>
       </AnchorPane>
-      <AnchorPane layoutX="283.0" layoutY="166.0" prefHeight="561.0" prefWidth="742.0" stylesheets="@style.css">
+      <AnchorPane layoutX="198.0" layoutY="166.0" prefHeight="631.0" prefWidth="966.0" stylesheets="@style.css">
          <styleClass>
             <String fx:value="white-bg" />
             <String fx:value="radius" />
             <String fx:value="shadow" />
          </styleClass>
          <children>
-            <TableView fx:id="tournoiTable" layoutX="59.0" layoutY="45.0" prefHeight="336.0" prefWidth="627.0">
+            <TableView fx:id="tournoiTable" layoutX="230.0" layoutY="67.0" onMouseClicked="#selection" prefHeight="336.0" prefWidth="631.0">
                <columns>
-                  <TableColumn fx:id="nomColumn" text="Nom" />
-                  <TableColumn fx:id="dateDebutColumn" prefWidth="133.06674194335938" text="Date Début" />
-                  <TableColumn fx:id="dateFinColumn" prefWidth="107.73321533203125" text="Date Fin" />
-                  <TableColumn fx:id="descriptionColumn" prefWidth="146.40008544921875" text="Description" />
-                  <TableColumn fx:id="statutColumn" prefWidth="159.46661376953125" text="Statut" />
+                  <TableColumn fx:id="nomColumn" prefWidth="167.99996948242188" text="Nom" />
+                  <TableColumn fx:id="dateDebutColumn" prefWidth="80.00003051757812" text="Date Début" />
+                  <TableColumn fx:id="dateFinColumn" prefWidth="77.5999755859375" text="Date Fin" />
+                  <TableColumn fx:id="descriptionColumn" prefWidth="247.199951171875" text="Description" />
+                  <TableColumn fx:id="statutColumn" prefWidth="50.4000244140625" text="Statut" />
                </columns>
             </TableView>
-            <Button layoutX="585.0" layoutY="459.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="58.0" prefWidth="104.0" styleClass="but" stylesheets="@style.css" text="S'inscrire" textFill="#202563">
+            <Button layoutX="115.0" layoutY="395.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="58.0" prefWidth="104.0" styleClass="but" stylesheets="@style.css" text="S'inscrire" textFill="#202563">
                <font>
                   <Font name="Yu Gothic Regular" size="16.0" />
                </font>
             </Button>
+              <WebView fx:id="mapWebView" layoutX="328.0" layoutY="413.0" prefHeight="206.0" prefWidth="514.0" />
+            <Button layoutX="125.0" layoutY="304.0" mnemonicParsing="false" onAction="#calender" prefHeight="66.0" prefWidth="75.0" styleClass="transparent" stylesheets="@style.css">
+               <graphic>
+                  <ImageView fitHeight="64.0" fitWidth="71.0">
+                     <image>
+                        <Image url="@img/calendericon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="34.0" layoutX="277.0" layoutY="23.0">
+               <image>
+                  <Image url="@img/search.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="215.0" fitWidth="351.0" layoutX="143.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="215.0" fitWidth="351.0" layoutX="143.0" layoutY="614.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/tournoiC.jpg" />
          </image>
@@ -55,5 +72,6 @@
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
+      <TextField fx:id="rechercheTextField" layoutX="513.0" layoutY="192.0" prefHeight="26.0" prefWidth="195.0" />
     </children>
 </AnchorPane>

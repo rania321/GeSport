@@ -4,6 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
+
     <groupId>org.example</groupId>
     <artifactId>GeS</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -13,6 +15,12 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <repositories>
+        <repository>
+            <id>controlsfx-repo</id>
+            <url>https://nexus.controlsfx.io/content/repositories/releases</url>
+        </repository>
+    </repositories>
     <dependencies>
 
         <dependency>
@@ -30,10 +38,19 @@
             <artifactId>javafx-controls</artifactId>
             <version>20.0.2</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>21.0.2</version>
+        </dependency>
 
     </dependencies>
+
 
     <build>
         <plugins>

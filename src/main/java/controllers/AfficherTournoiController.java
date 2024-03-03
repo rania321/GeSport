@@ -6,6 +6,7 @@ import entities.Joueur;
 import entities.Tournoi;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import netscape.javascript.JSObject;
 import service.EquipeService;
 import service.InscriTournoiService;
 import service.JoueurService;
@@ -25,16 +29,18 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.EventObject;
 import java.util.List;
 
 public class AfficherTournoiController {
     @FXML
     private DatePicker DdebutT;
+    @FXML
+    private WebView mapWebView;
 
     @FXML
-    private TextField DescriT;
+    private  TextField DescriT;
 
     @FXML
     private DatePicker DfinT;
@@ -53,7 +59,7 @@ public class AfficherTournoiController {
 
     private List<Tournoi> Tlist;
 
-    private List<InscriTournoi>Ilist;
+    private List<InscriTournoi> Ilist;
 
     private final TournoiService ts = new TournoiService();
     private final Tournoi tournoi = new Tournoi();
@@ -61,8 +67,8 @@ public class AfficherTournoiController {
     private final Equipe equipe = new Equipe();
     private final JoueurService joueurService = new JoueurService();
     private final Joueur joueur = new Joueur();
-    private final InscriTournoi it =new InscriTournoi();
-    private final InscriTournoiService its =new InscriTournoiService();
+    private final InscriTournoi it = new InscriTournoi();
+    private final InscriTournoiService its = new InscriTournoiService();
 
 
     @FXML
@@ -85,17 +91,23 @@ public class AfficherTournoiController {
     private TableColumn<Tournoi, String> statutColumn;
 
 
-
     @FXML
     private TableView<InscriTournoi> inscriTable;
     @FXML
-    private TableColumn<InscriTournoi,String> equipeColumn;
+    private TableColumn<InscriTournoi, String> equipeColumn;
+    @FXML
+    private Button supprimerIns;
+    @FXML
+    private Label lesinscriptions;
 
-
+    @FXML
+    private TextField rechercheTextField;
 
 
     public void showTournoi() throws IOException {
         Tlist = ts.readAll();
+
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, String>("nomT"));
         dateDebutColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, Date>("DateDebutT"));
         dateFinColumn.setCellValueFactory(new PropertyValueFactory<Tournoi, Date>("DateFinT"));
@@ -106,14 +118,17 @@ public class AfficherTournoiController {
             ((TableView<Tournoi>) tournoiTable).setItems(FXCollections.observableArrayList(Tlist));
         }
 
-        //  sélection à la table tournoiTable
+      /*  //  sélection à la table tournoiTable
         tournoiTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 // Afficher les inscriptions du tournoi sélectionné
                 showInscriptions(newSelection.getIdT());
             }
-        });
+        });*/
+
+
     }
+
 
     private void showInscriptions(int tournoiId) {
         // Récupération des inscriptions pour le tournoi spécifié
@@ -129,6 +144,37 @@ public class AfficherTournoiController {
 
         // Ajout des données à la table inscriTable
         inscriTable.setItems(FXCollections.observableArrayList(Ilist));
+    }
+
+    public void initialize() {
+
+
+        try {
+            showTournoi();
+            rechercheTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                try {
+                    recherchetournoi(newValue); // Appel de la méthode de recherche avec le nouveau texte
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        inscriTable.setVisible(false);
+        equipeColumn.setVisible(false);
+        supprimerIns.setVisible(false);
+        lesinscriptions.setVisible(false);
+
+
+        WebEngine webEngine = mapWebView.getEngine();
+        webEngine.load(getClass().getResource("/Maps.html").toExternalForm());
+        // loadMap(tournoi.getDescriT());
+
+
+
     }
 
 
@@ -149,7 +195,12 @@ public class AfficherTournoiController {
         // Convertir les valeurs des DatePicker en java.util.Date
         Date dateDebut = java.sql.Date.valueOf(DdebutT.getValue());
         Date dateFin = java.sql.Date.valueOf(DfinT.getValue());
+
         String Description = DescriT.getText();
+        loadMap(Description);
+
+
+
 
         String Statut;
 
@@ -165,7 +216,7 @@ public class AfficherTournoiController {
             Statut = "À venir";
         }
 
-        Tournoi t = new Tournoi(nom,dateDebut,dateFin,Description,Statut);
+        Tournoi t = new Tournoi(nom, dateDebut, dateFin, Description, Statut);
         TournoiService ts = new TournoiService();
         ts.add(t);
         // maj  liste des tournois depuis  service
@@ -244,6 +295,11 @@ public class AfficherTournoiController {
             // Remplir les champs
             nomT.setText(selectedTournoi.getNomT());
             DescriT.setText(selectedTournoi.getDescriT());
+
+            String Description = selectedTournoi.getDescriT();
+            loadMap(Description);
+
+
             clearRadioButtons();
             //  bouton radio
             switch (selectedTournoi.getStatutT()) {
@@ -275,20 +331,46 @@ public class AfficherTournoiController {
             DdebutT.setValue(localDateDebut);
             DfinT.setValue(localDateFin);
 
+            List<InscriTournoi> Ilist = its.getInscriptionsByTournoi(selectedTournoi.getIdT());
+            if (!Ilist.isEmpty()) {
+                inscriTable.setVisible(true);
+                equipeColumn.setVisible(true);
+                supprimerIns.setVisible(true);
+                lesinscriptions.setVisible(true);
+
+                showInscriptions(selectedTournoi.getIdT());
+            } else {
+
+                inscriTable.setVisible(false);
+                equipeColumn.setVisible(false);
+                supprimerIns.setVisible(false);
+                lesinscriptions.setVisible(false);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText(null);
+                alert.setContentText("Aucune inscription n'a encore été enregistrée pour ce tournoi");
+                alert.showAndWait();
+
+            }
+        } else {
+            inscriTable.setVisible(false);
+            equipeColumn.setVisible(false);
+            supprimerIns.setVisible(false);
+            lesinscriptions.setVisible(false);
 
         }
-
     }
-
 
     @FXML
     void modifier(ActionEvent event) {
+
         // Vérifier si un élément est sélectionné dans la TableView
         Tournoi tournoiSelectionne = tournoiTable.getSelectionModel().getSelectedItem();
         if (tournoiSelectionne != null) {
             // Récupérer les valeurs
             String nom = nomT.getText();
-            String description = DescriT.getText();
+            String Description = DescriT.getText();
+            loadMap(Description);
             // Récupérer le statut boutons radio
             String statut;
             if (enCoursRadio.isSelected()) {
@@ -311,7 +393,7 @@ public class AfficherTournoiController {
             tournoiSelectionne.setNomT(nom);
             tournoiSelectionne.setDateDebutT(dateDebut);
             tournoiSelectionne.setDateFinT(dateFin);
-            tournoiSelectionne.setDescriT(description);
+            tournoiSelectionne.setDescriT(Description);
             tournoiSelectionne.setStatutT(statut);
 
             // maj TableView
@@ -406,11 +488,93 @@ public class AfficherTournoiController {
             errorAlert.showAndWait();
         }
     }
+
+
+    public void recherchetournoi(String searchText) throws IOException {
+        List<Tournoi> searchResult = new ArrayList<>();
+        for (Tournoi tournoi : Tlist) {
+            if (tournoi.getNomT().toLowerCase().contains(searchText.toLowerCase())) {
+                searchResult.add(tournoi);
+            }
+        }
+        // Mettre à jour la TableView avec les résultats de la recherche
+        tournoiTable.setItems(FXCollections.observableArrayList(searchResult));
+    }
+
+    public void calender(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendar.fxml"));
+        Parent root = loader.load();
+
+        CalendarController controller = loader.getController();
+
+
+        // Créer une nouvelle scène avec la vue chargée
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Calendrier des Tournoi");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
 
+    private void loadMap(String DescriT) {
+        WebEngine webEngine = mapWebView.getEngine();
+
+        // Générer le contenu HTML avec l'URL de la carte correcte
+        String htmlContent = generateMapHtml(DescriT);
+
+        // Charger le contenu HTML dans la WebView
+        webEngine.loadContent(htmlContent);
+    }
+
+    private String generateMapHtml(String DescriT) {
+        // Construct the map URL based on the club name, governorate, and city
+        String mapUrl = "https://maps.google.com/maps?q=" +
+
+                DescriT.replace(" ", "%20") + "&t=k&z=16&output=embed";
+
+        // Generate HTML content with the correct map URL
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "    <title>Google Maps Example</title>\n" +
+                "    <style>\n" +
+                "        /* Adjust the size and position of the map */\n" +
+                "        #mapouter {\n" +
+                "            position: relative;\n" +
+                "            text-align: right;\n" +
+                "            height: 500px; /* Adjust the height as needed */\n" +
+                "            width: 500px; /* Adjust the width as needed */\n" +
+                "        }\n" +
+                "\n" +
+                "        #gmap_canvas2 {\n" +
+                "            overflow: hidden;\n" +
+                "            background: none !important;\n" +
+                "            height: 500px; /* Adjust the height as needed */\n" +
+                "            width: 500px; /* Adjust the width as needed */\n" +
+                "        }\n" +
+                "\n" +
+                "        #gmap_canvas {\n" +
+                "            width: 100%;\n" +
+                "            height: 100%;\n" +
+                "            border: 0;\n" +
+                "            margin: 0;\n" +
+                "            padding: 0;\n" +
+                "        }\n" +
+                "    </style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<div id=\"mapouter\">\n" +
+                "    <div id=\"gmap_canvas2\">\n" +
+                "        <iframe id=\"gmap_canvas\"\n" +
+                "                src=\"" + mapUrl + "\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>\n" +
+                "    </div>\n" +
+                "</div>\n" +
+                "</body>\n" +
+                "</html>";
+    }
 
 
-
-
-
+}

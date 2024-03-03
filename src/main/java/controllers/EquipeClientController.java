@@ -306,5 +306,26 @@ public class EquipeClientController {
         // Afficher la nouvelle fenêtre
         stage.show();
     }
-}
+
+    public void calender(ActionEvent actionEvent) throws IOException {
+        // Charger le fichier FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CalendarFront.fxml"));
+        Parent root = loader.load();
+
+        // Obtenir le contrôleur du fichier FXML chargé
+        CalendarController controller = loader.getController();
+
+        // Créer une nouvelle scène avec la vue chargée
+        Scene scene = new Scene(root);
+
+        // Créer une nouvelle fenêtre avec la nouvelle scène
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.setTitle("Calendrier des Tournoi");
+
+        // Afficher la nouvelle fenêtre
+        newStage.show();
+    }
+    }
+
 

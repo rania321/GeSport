@@ -17,9 +17,16 @@ public class MainFX extends Application {
         launch(args);
     }
 
+ /*   @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/CalendarFront.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }*/
 
-
-/*@Override
+@Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterTournoi.fxml"));
         Parent root = loader.load();
@@ -27,20 +34,19 @@ public class MainFX extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("dashboard");
         primaryStage.show();
-    }*/
+    }
 
-
-    @Override
+    /*@Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dachboardFront.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         // Charger le fichier CSS
         scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-        stage.setTitle("Ajout Tournoi");
+        stage.setTitle("Accueil");
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
 
 

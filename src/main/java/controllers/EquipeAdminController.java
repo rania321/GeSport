@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -57,6 +58,17 @@ public class EquipeAdminController {
     private TableColumn<Joueur, String> nomJoueurColumn;
 
 
+    @FXML
+    private TextField joueur;
+    @FXML
+    private Button ajouterj;
+    @FXML
+    private Button supprimerj;
+    @FXML
+    private Label lesjoueurtxt;
+
+
+
 
 
     @FXML
@@ -74,6 +86,8 @@ public class EquipeAdminController {
     @FXML
     private ComboBox<String> nomT;
 
+    @FXML
+    private TextField rechercheTextField;
 
     public void showEquipe() throws IOException {
         Elist = es.readAll();
@@ -94,13 +108,13 @@ public class EquipeAdminController {
             ((TableView<Equipe>) equipeTable).setItems(FXCollections.observableArrayList(Elist));
         }
 
-        // écouteur de sélection
+       /* // écouteur de sélection
         equipeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 // Afficher les nom des joueurs
                 showJoueurs(newSelection.getIdE());
             }
-        });
+        });*/
 
     }
 
@@ -117,12 +131,33 @@ public class EquipeAdminController {
     }
 
     public void initialize() {
+
+        try {
+            showEquipe();
+            rechercheTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                try {
+                    rechercheEquipe(newValue); // Appel de la méthode de recherche avec le nouveau texte
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //combobox
         List<String> tournoiNames = tournoiService.readAllNames();
         ObservableList<String> observableNames = FXCollections.observableArrayList(tournoiNames);
         nomT.setItems(observableNames);
         //tab J
         nomJoueurColumn.setCellValueFactory(new PropertyValueFactory<>("joueur"));
+
+        // Rendre invisibles les éléments de la table des joueurs, le bouton "Ajouter Joueur" et le champ texte du joueur
+        joueurTable.setVisible(false);
+        ajouterj.setVisible(false);
+        supprimerj.setVisible(false);
+        joueur.setVisible(false);
+        lesjoueurtxt.setVisible(false);
 
         }
 
@@ -212,9 +247,39 @@ public class EquipeAdminController {
                 default:
                     break;
             }
+            List<Joueur> Jlist = js.getJoueurbyEquipe(selectedEquipe.getIdE());
+            if (!Jlist.isEmpty()) {
+                joueurTable.setVisible(true);
+                ajouterj.setVisible(true);
+                joueur.setVisible(true);
+                supprimerj.setVisible(true);
+                lesjoueurtxt.setVisible(true);
 
-        }
+                showJoueurs(selectedEquipe.getIdE());
+            } else {
+                // Si la liste des joueurs associée à cette équipe est vide, afficher une alerte
+                joueurTable.setVisible(true);
+                ajouterj.setVisible(true);
+                joueur.setVisible(true);
+                supprimerj.setVisible(true);
+                lesjoueurtxt.setVisible(true);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText(null);
+                alert.setContentText("La liste des joueurs pour cette équipe est vide.");
+                alert.showAndWait();
+            }
+        }else {
+        // Si aucune équipe n'est sélectionnée, masquer la table des joueurs, le bouton et le champ de texte
+        joueurTable.setVisible(false);
+        ajouterj.setVisible(false);
+        joueur.setVisible(false);
+        supprimerj.setVisible(false);
+        lesjoueurtxt.setVisible(false);
     }
+    }
+
     @FXML
     void supprimer(ActionEvent event)  {
         // Récupérer la ligne sélectionnée
@@ -246,7 +311,6 @@ public class EquipeAdminController {
     }
     @FXML
     void modifier(ActionEvent event) {
-        // Vérifier élément sélectionné
         Equipe equipeSelectionne = equipeTable.getSelectionModel().getSelectedItem();
         if (equipeSelectionne != null) {
             // Récupérer les valeurs
@@ -391,6 +455,70 @@ public class EquipeAdminController {
             alert.setContentText("Veuillez sélectionner un joueur à supprimer.");
             alert.showAndWait();
         }
+    }
+    @FXML
+    public void ajouterj(ActionEvent actionEvent) {
+
+        // Récupérer l'équipe sélectionnée dans la table des équipes
+        Equipe equipeSelectionnee = equipeTable.getSelectionModel().getSelectedItem();
+
+        // Vérifier si une équipe est sélectionnée
+        if (equipeSelectionnee != null) {
+            // Récupérer le nom du joueur à partir du champ de texte nomJoueurTextField
+            String nomJoueur = joueur.getText();
+
+            // Vérifier si le nom du joueur n'est pas vide
+            if (!nomJoueur.isEmpty()) {
+                // Créer une instance de la classe Joueur avec le nom du joueur et l'ID de l'équipe sélectionnée
+                Joueur nouveauJoueur = new Joueur();
+                nouveauJoueur.setJoueur(nomJoueur);
+                nouveauJoueur.setEquipe(equipeSelectionnee);
+
+                // Utiliser le service JoueurService pour ajouter le joueur à la base de données
+                JoueurService joueurService = new JoueurService();
+                joueurService.add(nouveauJoueur);
+
+                // Mettre à jour la TableView des joueurs pour afficher le nouveau joueur
+                List<Joueur> joueurs = joueurService.getJoueurbyEquipe(equipeSelectionnee.getIdE());
+                ObservableList<Joueur> observableJoueurs = FXCollections.observableArrayList(joueurs);
+                joueurTable.setItems(observableJoueurs);
+
+                // Effacer le champ de texte nomJoueurTextField après l'ajout du joueur
+                joueur.clear();
+
+                // Afficher un message de succès
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Succès");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Le joueur a été ajouté avec succès à l'équipe !");
+                successAlert.showAndWait();
+            } else {
+                // Si le champ de texte est vide, afficher un message d'erreur
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez entrer le nom du joueur.");
+                alert.showAndWait();
+            }
+        } else {
+            // Si aucune équipe n'est sélectionnée, afficher un message d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une équipe.");
+            alert.showAndWait();
+        }
+    }
+
+    public void rechercheEquipe(String searchText) throws IOException  {
+        List<Equipe> searchResult = new ArrayList<>();
+        for (Equipe equipe : Elist) {
+            if (equipe.getNomE().toLowerCase().contains(searchText.toLowerCase())) {
+                searchResult.add(equipe);
+            }
+        }
+        // Mettre à jour la TableView avec les résultats de la recherche
+        equipeTable.setItems(FXCollections.observableArrayList(searchResult));
     }
 }
 

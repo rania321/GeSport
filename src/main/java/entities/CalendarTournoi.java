@@ -1,48 +1,59 @@
 package entities;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
 
-public class CalendarActivity {
-    private ZonedDateTime date;
-    private String clientName;
-    private Integer serviceNo;
+public class CalendarTournoi {
+    private Date startDate;
+    private Date endDate;
+    private String nomT; // Utilisez le nom du tournoi à la place de clientName
+    private Integer idT; // Utilisez l'ID du tournoi à la place de serviceNo
 
-    public CalendarActivity(ZonedDateTime date, String clientName, Integer serviceNo) {
-        this.date = date;
-        this.clientName = clientName;
-        this.serviceNo = serviceNo;
+    public CalendarTournoi(Date startDate, Date endDate, String nomT, Integer idT) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.nomT = nomT;
+        this.idT = idT;
     }
 
-    public ZonedDateTime getDate() {
-        return date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setDate(ZonedDateTime date) {
-        this.date = date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public String getClientName() {
-        return clientName;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public Integer getServiceNo() {
-        return serviceNo;
+    public String getNomT() {
+        return nomT;
     }
 
-    public void setServiceNo(Integer serviceNo) {
-        this.serviceNo = serviceNo;
+    public void setNomT(String nomT) {
+        this.nomT = nomT;
+    }
+
+    public Integer getIdT() {
+        return idT;
+    }
+
+    public void setIdT(Integer idT) {
+        this.idT = idT;
     }
 
     @Override
     public String toString() {
-        return "CalenderActivity{" +
-                "date=" + date +
-                ", clientName='" + clientName + '\'' +
-                ", serviceNo=" + serviceNo +
+        return "CalendarTournoi{" +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", nomT='" + nomT + '\'' +
+                ", idT=" + idT +
                 '}';
     }
 }

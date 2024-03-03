@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Google Maps Example</title>
+    <style>
+        /* Adjust the size and position of the map */
+        #mapouter {
+            position: relative;
+            text-align: right;
+            height: 500px; /* Adjust the height as needed */
+            width: 500px; /* Adjust the width as needed */
+        }
+
+        #gmap_canvas2 {
+            overflow: hidden;
+            background: none !important;
+            height: 500px; /* Adjust the height as needed */
+            width: 500px; /* Adjust the width as needed */
+        }
+
+        #gmap_canvas {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div id="mapouter">
+    <div id="gmap_canvas2">
+        <iframe id="gmap_canvas"
+                src="https://maps.google.com/maps?q=Esprit%20Ghazela&t=k&z=16&output=embed"                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    </div>
+</div>
+
+<script>
+    // Fonction appelée lorsqu'un clic est effectué sur la carte
+    function handleClick(latitude, longitude, locationName) {
+        // Envoyer les données à l'application JavaFX
+        javafx.printLocation(latitude, longitude, locationName);
+    }
+</script>
 </body>
 </html>
