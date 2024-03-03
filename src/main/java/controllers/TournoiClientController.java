@@ -3,16 +3,14 @@ package controllers;
 import entities.InscriTournoi;
 import entities.Tournoi;
 import javafx.collections.FXCollections;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
@@ -25,6 +23,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +33,8 @@ public class TournoiClientController {
     private List<Tournoi> Tlist;
     private final TournoiService ts = new TournoiService();
     private final Tournoi tournoi = new Tournoi();
+    private SortedList<Tournoi> sortedTournois;
+
     @FXML
     private WebView mapWebView;
     @FXML
@@ -57,7 +58,8 @@ public class TournoiClientController {
     @FXML
     private TableColumn<Tournoi, String> statutColumn;
 
-
+    @FXML
+    private ComboBox<String> comboBoxTri;
     public void initialize() {
 
 
@@ -81,6 +83,7 @@ public class TournoiClientController {
         webEngine.load(getClass().getResource("/Maps.html").toExternalForm());
         // loadMap(tournoi.getDescriT());
 
+        comboBoxTri.setItems(FXCollections.observableArrayList("Nom", "Date de début", "Date de fin"));
 
     }
 
@@ -243,5 +246,30 @@ public class TournoiClientController {
 
         // Afficher la nouvelle fenêtre
         newStage.show();
+    }
+    public void onTriComboBoxChanged(ActionEvent actionEvent) {
+        String colonneSelectionnee = comboBoxTri.getValue();
+        if (colonneSelectionnee != null) {
+            switch (colonneSelectionnee) {
+                case "Nom":
+                    // Tri par nomT
+                    sortedTournois = new SortedList<>(FXCollections.observableArrayList(Tlist),
+                            Comparator.comparing(Tournoi::getNomT));
+                    break;
+                case "Date de début":
+                    // Tri par DateDebutT
+                    sortedTournois = new SortedList<>(FXCollections.observableArrayList(Tlist),
+                            Comparator.comparing(Tournoi::getDateDebutT));
+                    break;
+                case "Date de fin":
+                    // Tri par DateFinT
+                    sortedTournois = new SortedList<>(FXCollections.observableArrayList(Tlist),
+                            Comparator.comparing(Tournoi::getDateFinT));
+                    break;
+
+            }
+            // Mettre à jour la TableView avec la liste triée
+            tournoiTable.setItems(sortedTournois);
+        }
     }
 }

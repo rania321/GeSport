@@ -6,6 +6,8 @@ import entities.Joueur;
 import entities.Tournoi;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +32,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +43,7 @@ public class AfficherTournoiController {
     private WebView mapWebView;
 
     @FXML
-    private  TextField DescriT;
+    private TextField DescriT;
 
     @FXML
     private DatePicker DfinT;
@@ -69,6 +72,7 @@ public class AfficherTournoiController {
     private final Joueur joueur = new Joueur();
     private final InscriTournoi it = new InscriTournoi();
     private final InscriTournoiService its = new InscriTournoiService();
+    private SortedList<Tournoi> sortedTournois;
 
 
     @FXML
@@ -102,7 +106,8 @@ public class AfficherTournoiController {
 
     @FXML
     private TextField rechercheTextField;
-
+    @FXML
+    private ComboBox<String> comboBoxTri;
 
     public void showTournoi() throws IOException {
         Tlist = ts.readAll();
@@ -175,8 +180,9 @@ public class AfficherTournoiController {
 
 
 
-    }
+        comboBoxTri.setItems(FXCollections.observableArrayList("Nom", "Date de début", "Date de fin"));
 
+    }
 
 
     @FXML
@@ -198,8 +204,6 @@ public class AfficherTournoiController {
 
         String Description = DescriT.getText();
         loadMap(Description);
-
-
 
 
         String Statut;
@@ -577,4 +581,30 @@ public class AfficherTournoiController {
     }
 
 
+    public void onTriComboBoxChanged(ActionEvent actionEvent) {
+        String colonneSelectionnee = comboBoxTri.getValue();
+        if (colonneSelectionnee != null) {
+            switch (colonneSelectionnee) {
+                case "Nom":
+                    // Tri par nomT
+                    sortedTournois = new SortedList<>(FXCollections.observableArrayList(Tlist),
+                            Comparator.comparing(Tournoi::getNomT));
+                    break;
+                case "Date de début":
+                    // Tri par DateDebutT
+                    sortedTournois = new SortedList<>(FXCollections.observableArrayList(Tlist),
+                            Comparator.comparing(Tournoi::getDateDebutT));
+                    break;
+                case "Date de fin":
+                    // Tri par DateFinT
+                    sortedTournois = new SortedList<>(FXCollections.observableArrayList(Tlist),
+                            Comparator.comparing(Tournoi::getDateFinT));
+                    break;
+
+            }
+            // Mettre à jour la TableView avec la liste triée
+            tournoiTable.setItems(sortedTournois);
+        }
+    }
 }
+
