@@ -72,6 +72,10 @@ public class EquipeClientController {
     private ComboBox<String> nomT;
     @FXML
     private TextField joueur;
+    @FXML
+    private TextField rechercheTextField;
+    @FXML
+    private ComboBox<String> comboBoxTri;
 
     public void showEquipe() throws IOException {
       // Récupérer toutes les équipes depuis le service
@@ -130,7 +134,21 @@ public class EquipeClientController {
         // Initialisation de la TableView des joueurs
         nomJoueurColumn.setCellValueFactory(new PropertyValueFactory<>("joueur"));
 
+        comboBoxTri.setItems(FXCollections.observableArrayList("Nom", "Tournoi", "Capitaine","statut"));
 
+        // Appeler la méthode showEquipe() pour afficher les équipes
+        try {
+            showEquipe();
+            rechercheTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                try {
+                    rechercheEquipe(newValue); // Appel de la méthode de recherche avec le nouveau texte
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -352,6 +370,50 @@ public class EquipeClientController {
             e.printStackTrace();
         }
     }
+
+    public void rechercheEquipe(String searchText) throws IOException  {
+        List<Equipe> searchResult = new ArrayList<>();
+        for (Equipe equipe : Elist) {
+            if (equipe.getNomE().toLowerCase().contains(searchText.toLowerCase())) {
+                searchResult.add(equipe);
+            }
+        }
+        // Mettre à jour la TableView avec les résultats de la recherche
+        equipeTable.setItems(FXCollections.observableArrayList(searchResult));
     }
+
+    public void onTriComboBoxChanged(ActionEvent actionEvent) {
+        // Obtenir la valeur sélectionnée dans la ComboBox de tri
+        String triSelectionne = comboBoxTri.getValue();
+
+        // Vérifier si une option de tri est sélectionnée
+        if (triSelectionne != null) {
+            // Trier la TableView en fonction de l'option sélectionnée
+            switch (triSelectionne) {
+                case "Nom":
+                    equipeTable.getSortOrder().clear(); // Effacer les précédents ordres de tri
+                    equipeTable.getSortOrder().add(nomColumn); // Ajouter l'ordre de tri par nom
+                    break;
+                case "Tournoi":
+                    equipeTable.getSortOrder().clear();
+                    equipeTable.getSortOrder().add(TColumn);
+                    break;
+                case "Capitaine":
+                    equipeTable.getSortOrder().clear();
+                    equipeTable.getSortOrder().add(nomUColumn);
+                    break;
+                case "Statut":
+                    equipeTable.getSortOrder().clear();
+                    equipeTable.getSortOrder().add(statutColumn);
+                    break;
+                default:
+                    // Ne rien faire si aucune option valide n'est sélectionnée
+                    break;
+            }
+        }
+    }
+
+    }
+
 
 

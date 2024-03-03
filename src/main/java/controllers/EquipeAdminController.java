@@ -12,13 +12,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import service.EquipeService;
 import service.JoueurService;
 import service.TournoiService;
 import service.UserService;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -88,6 +94,8 @@ public class EquipeAdminController {
 
     @FXML
     private TextField rechercheTextField;
+    @FXML
+    private ComboBox<String> comboBoxTri;
 
     public void showEquipe() throws IOException {
         Elist = es.readAll();
@@ -158,6 +166,8 @@ public class EquipeAdminController {
         supprimerj.setVisible(false);
         joueur.setVisible(false);
         lesjoueurtxt.setVisible(false);
+        
+        comboBoxTri.setItems(FXCollections.observableArrayList("Nom", "Tournoi", "Capitaine","statut"));
 
         }
 
@@ -222,6 +232,7 @@ public class EquipeAdminController {
         alert.setHeaderText(null);
         alert.setContentText("L'equipe a été ajoutée avec succès !");
         alert.showAndWait();
+        showNotification();
     }
 
     @FXML
@@ -298,7 +309,7 @@ public class EquipeAdminController {
             alert.setContentText("Veuillez sélectionner une ligne à supprimer.");
             alert.showAndWait();
         }
-
+              showNotificationsupp();
     }
 
     private void supprimerLigne(Equipe equipe) {
@@ -455,6 +466,7 @@ public class EquipeAdminController {
             alert.setContentText("Veuillez sélectionner un joueur à supprimer.");
             alert.showAndWait();
         }
+        showNotificationsuppJ();
     }
     @FXML
     public void ajouterj(ActionEvent actionEvent) {
@@ -487,11 +499,11 @@ public class EquipeAdminController {
                 joueur.clear();
 
                 // Afficher un message de succès
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+              /*  Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Succès");
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("Le joueur a été ajouté avec succès à l'équipe !");
-                successAlert.showAndWait();
+                successAlert.showAndWait();*/
             } else {
                 // Si le champ de texte est vide, afficher un message d'erreur
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -508,6 +520,8 @@ public class EquipeAdminController {
             alert.setContentText("Veuillez sélectionner une équipe.");
             alert.showAndWait();
         }
+
+        showNotificationJ();
     }
 
     public void rechercheEquipe(String searchText) throws IOException  {
@@ -520,6 +534,116 @@ public class EquipeAdminController {
         // Mettre à jour la TableView avec les résultats de la recherche
         equipeTable.setItems(FXCollections.observableArrayList(searchResult));
     }
+
+    private void showNotification() {
+        try {
+            Image image = new Image("img/notification.png");
+
+            ImageView imageView = new ImageView(image);
+            // Définir la largeur et la hauteur souhaitées de l'image
+            imageView.setFitWidth(50); // Largeur de l'image
+            imageView.setFitHeight(50); // Hauteur de l'image
+
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utiliser l'ImageView modifié
+            notifications.text("Equipe ajoutée avec succès");
+            notifications.title("Message de succès");
+            notifications.hideAfter(Duration.seconds(4));
+            notifications.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void showNotificationsupp() {
+        try {
+            Image image = new Image("img/notification.png");
+
+            ImageView imageView = new ImageView(image);
+            // Définir la largeur et la hauteur souhaitées de l'image
+            imageView.setFitWidth(50); // Largeur de l'image
+            imageView.setFitHeight(50); // Hauteur de l'image
+
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utiliser l'ImageView modifié
+            notifications.text("une equipe a été supprimer");
+            notifications.title("Message de succès");
+            notifications.hideAfter(Duration.seconds(4));
+            notifications.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void showNotificationJ() {
+        try {
+            Image image = new Image("img/notification.png");
+
+            ImageView imageView = new ImageView(image);
+            // Définir la largeur et la hauteur souhaitées de l'image
+            imageView.setFitWidth(50); // Largeur de l'image
+            imageView.setFitHeight(50); // Hauteur de l'image
+
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utiliser l'ImageView modifié
+            notifications.text("un joueur a ete ajouter");
+            notifications.title("Message de succès");
+            notifications.hideAfter(Duration.seconds(4));
+            notifications.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void showNotificationsuppJ() {
+        try {
+            Image image = new Image("img/notification.png");
+
+            ImageView imageView = new ImageView(image);
+            // Définir la largeur et la hauteur souhaitées de l'image
+            imageView.setFitWidth(50); // Largeur de l'image
+            imageView.setFitHeight(50); // Hauteur de l'image
+
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utiliser l'ImageView modifié
+            notifications.text("un joueur a ete supprimé");
+            notifications.title("Message de succès");
+            notifications.hideAfter(Duration.seconds(4));
+            notifications.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onTriComboBoxChanged(ActionEvent actionEvent) {
+        // Obtenir la valeur sélectionnée dans la ComboBox de tri
+        String triSelectionne = comboBoxTri.getValue();
+
+        // Vérifier si une option de tri est sélectionnée
+        if (triSelectionne != null) {
+            // Trier la TableView en fonction de l'option sélectionnée
+            switch (triSelectionne) {
+                case "Nom":
+                    equipeTable.getSortOrder().clear(); // Effacer les précédents ordres de tri
+                    equipeTable.getSortOrder().add(nomColumn); // Ajouter l'ordre de tri par nom
+                    break;
+                case "Tournoi":
+                    equipeTable.getSortOrder().clear();
+                    equipeTable.getSortOrder().add(TColumn);
+                    break;
+                case "Capitaine":
+                    equipeTable.getSortOrder().clear();
+                    equipeTable.getSortOrder().add(nomUColumn);
+                    break;
+                case "Statut":
+                    equipeTable.getSortOrder().clear();
+                    equipeTable.getSortOrder().add(statutColumn);
+                    break;
+                default:
+                    // Ne rien faire si aucune option valide n'est sélectionnée
+                    break;
+            }
+        }
+    }
+
+
 }
 
 

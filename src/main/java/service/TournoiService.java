@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import utils.DataSource;
 
 public class TournoiService implements iService<Tournoi> {
@@ -90,7 +92,7 @@ public class TournoiService implements iService<Tournoi> {
             this.ste = this.conn.createStatement();
             ResultSet rs = this.ste.executeQuery(requete);
 
-            while(rs.next()) {
+            while (rs.next()) {
                 list.add(new Tournoi(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getDate(4), rs.getString(5), rs.getString(6)));
             }
 
@@ -122,7 +124,7 @@ public class TournoiService implements iService<Tournoi> {
             this.ste = this.conn.createStatement();
             ResultSet rs = this.ste.executeQuery(requete);
 
-            while(rs.next()) {
+            while (rs.next()) {
                 namesList.add(rs.getString(1));
             }
 
@@ -189,4 +191,7 @@ public class TournoiService implements iService<Tournoi> {
             return false;
         }
     }
+
 }
+
+

@@ -17,11 +17,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import netscape.javascript.JSObject;
+import org.controlsfx.control.Notifications;
 import service.EquipeService;
 import service.InscriTournoiService;
 import service.JoueurService;
@@ -241,6 +245,9 @@ public class AfficherTournoiController {
         alert.setHeaderText(null);
         alert.setContentText("Le tournoi a été ajouté avec succès !");
         alert.showAndWait();
+
+        showNotification();
+
     }
 
 
@@ -260,7 +267,7 @@ public class AfficherTournoiController {
             alert.setContentText("Veuillez sélectionner une ligne à supprimer.");
             alert.showAndWait();
         }
-
+        showNotificationsupp();
     }
 
     private void supprimerLigne(Tournoi tournoi) {
@@ -588,7 +595,9 @@ public class AfficherTournoiController {
                 case "Nom":
                     // Tri par nomT
                     sortedTournois = new SortedList<>(FXCollections.observableArrayList(Tlist),
-                            Comparator.comparing(Tournoi::getNomT));
+                           Comparator.comparing(Tournoi::getNomT));
+
+
                     break;
                 case "Date de début":
                     // Tri par DateDebutT
@@ -604,6 +613,44 @@ public class AfficherTournoiController {
             }
             // Mettre à jour la TableView avec la liste triée
             tournoiTable.setItems(sortedTournois);
+        }
+    }
+    private void showNotification() {
+        try {
+            Image image = new Image("img/notification.png");
+
+            ImageView imageView = new ImageView(image);
+            // Définir la largeur et la hauteur souhaitées de l'image
+            imageView.setFitWidth(50); // Largeur de l'image
+            imageView.setFitHeight(50); // Hauteur de l'image
+
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utiliser l'ImageView modifié
+            notifications.text("Tournoi ajouté avec succès");
+            notifications.title("Message de succès");
+            notifications.hideAfter(Duration.seconds(4));
+            notifications.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void showNotificationsupp() {
+        try {
+            Image image = new Image("img/notification.png");
+
+            ImageView imageView = new ImageView(image);
+            // Définir la largeur et la hauteur souhaitées de l'image
+            imageView.setFitWidth(50); // Largeur de l'image
+            imageView.setFitHeight(50); // Hauteur de l'image
+
+            Notifications notifications = Notifications.create();
+            notifications.graphic(imageView); // Utiliser l'ImageView modifié
+            notifications.text("un tournoi a été supprimer");
+            notifications.title("Message de succès");
+            notifications.hideAfter(Duration.seconds(4));
+            notifications.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
