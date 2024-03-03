@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListerProduitController">
+   <children>
+      <ImageView fitHeight="242.0" fitWidth="1372.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../xampp/htdocs/image/entetefront.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="rechpan" layoutX="1028.0" layoutY="26.0" prefHeight="54.0" prefWidth="241.0" styleClass="white-bg" stylesheets="@../java/values/style.css">
+         <children>
+            <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="148.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../xampp/htdocs/image/search-line.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="showpanier" fitHeight="25.0" fitWidth="25.0" layoutX="189.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../xampp/htdocs/image/shopping-basket-fill.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="recherchep" layoutX="183.0" layoutY="12.0" maxWidth="179.0" minWidth="37.0" mnemonicParsing="false" onAction="#recherchep" prefHeight="30.0" prefWidth="37.0" styleClass="transparent" stylesheets="@../java/values/style.css" />
+            <Button fx:id="search" layoutX="143.0" layoutY="15.0" mnemonicParsing="false" onAction="#rechercheProduit" prefHeight="25.0" prefWidth="36.0" styleClass="transparent" stylesheets="@../java/values/style.css" />
+            <TextField fx:id="barrerecherche" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="129.0" />
+         </children></AnchorPane>
+      <Button fx:id="activité" layoutX="516.0" layoutY="35.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+<!--_____________________________________________entete___________________________________________________-->
+
+      <Button fx:id="accueil" layoutX="289.0" layoutY="35.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="buvette" layoutX="629.0" layoutY="35.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#f9b13d">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="tournois" layoutX="753.0" layoutY="35.0" mnemonicParsing="false" onAction="#tournois" prefHeight="38.0" prefWidth="120.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="   " textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="reclamation" layoutX="864.0" layoutY="35.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="38.0" prefWidth="143.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="   " textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="compte" layoutX="397.0" layoutY="35.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="-5.0" layoutY="93.0" prefHeight="708.0" prefWidth="328.0" styleClass="right-bar" stylesheets="@../java/values/style.css">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" prefHeight="54.0" prefWidth="166.0" text="Vous avez un petit creux ? " textFill="#f9b13d">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="nompAf" layoutX="54.0" layoutY="86.0" prefHeight="35.0" prefWidth="213.0" text="Choisissez un produit" textAlignment="CENTER" textFill="#f9b13d">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="prixpAf" layoutX="105.0" layoutY="141.0" prefHeight="36.0" prefWidth="179.0" text="    " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageaffp" fitHeight="150.0" fitWidth="150.0" layoutX="86.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="qtelb" layoutX="31.0" layoutY="379.0" prefHeight="17.0" prefWidth="88.0" text=" Quantité :" textFill="#f9b13d">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="plusqte" layoutX="206.0" layoutY="369.0" mnemonicParsing="false" onAction="#plusqte" prefHeight="24.0" prefWidth="36.0" styleClass="search-button" text="+" textFill="#f8f8f8">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="moinsqte" layoutX="251.0" layoutY="368.0" mnemonicParsing="false" onAction="#moinsqte" prefHeight="28.0" prefWidth="37.0" styleClass="search-button" text="-" textFill="#f8f8f8">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="ajoutpanier" layoutX="86.0" layoutY="586.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" styleClass="search-button" text="Ajouter au panier" textFill="#f8f8f8">
+               <opaqueInsets>
+                  <Insets bottom="30.0" />
+               </opaqueInsets>
+            </Button>
+            <Label fx:id="qteproduit" layoutX="121.0" layoutY="381.0" prefHeight="17.0" prefWidth="60.0" text="1" textFill="WHITE" />
+            <Label fx:id="descrpAf1" layoutX="32.0" layoutY="454.0" prefHeight="88.0" prefWidth="256.0" text="    " textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="refpAf" layoutX="116.0" layoutY="548.0" prefHeight="20.0" prefWidth="60.0" text="   " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="548.0" prefHeight="20.0" prefWidth="81.0" text="Réference :" textFill="#f9b13d">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="descrpAf11" layoutX="33.0" layoutY="434.0" prefHeight="20.0" prefWidth="256.0" text="Description :" textFill="#f9b13d" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalclabel" layoutX="224.0" layoutY="550.0" prefHeight="25.0" prefWidth="81.0" text="  " textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ScrollPane fx:id="scroll" layoutX="370.0" layoutY="93.0" prefHeight="602.0" prefWidth="867.0" styleClass="shadow2" stylesheets="@../java/values/style.css">
+        <content>
+          <AnchorPane fx:id="menu" minHeight="0.0" minWidth="0.0" prefHeight="642.0" prefWidth="850.0">
+             <children>
+                  <GridPane fx:id="produitlistcontainer" layoutX="40.0" layoutY="38.0" prefHeight="204.0" prefWidth="223.0">
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

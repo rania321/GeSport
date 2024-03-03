@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1300.0" stylesheets="@../java/values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuGeneratorController">
+        <children>
+            <ImageView fitHeight="800.0" fitWidth="1300.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../../../../../../../../xampp/htdocs/image/menu.png" />
+                </image>
+            </ImageView>
+            <Button layoutX="492.0" layoutY="24.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
+                <font>
+                    <Font name="Walkway Bold" size="17.0" />
+                </font>
+            </Button>
+            <Button layoutX="274.0" layoutY="24.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#f9b13d">
+                <font>
+                    <Font name="System Bold" size="17.0" />
+                </font>
+            </Button>
+            <Button layoutX="601.0" layoutY="24.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="   ">
+                <font>
+                    <Font size="17.0" />
+                </font>
+            </Button>
+            <Button layoutX="710.0" layoutY="24.0" mnemonicParsing="false" onAction="#tournois" prefHeight="38.0" prefWidth="120.0" styleClass="transparent" stylesheets="@../java/values/style.css" text=" " textFill="#3c3c3c">
+                <font>
+                    <Font name="Walkway Bold" size="17.0" />
+                </font>
+            </Button>
+            <Button layoutX="830.0" layoutY="24.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="38.0" prefWidth="143.0" styleClass="transparent" stylesheets="@../java/values/style.css" text=" " textFill="#3c3c3c">
+                <font>
+                    <Font name="Walkway Bold" size="17.0" />
+                </font>
+            </Button>
+            <Button layoutX="376.0" layoutY="24.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="   " textFill="#3c3c3c">
+                <font>
+                    <Font name="Walkway Bold" size="17.0" />
+                </font>
+            </Button>
+            <AnchorPane layoutX="973.0" layoutY="13.0" prefHeight="57.0" prefWidth="223.0" styleClass="white-bg" stylesheets="@../java/values/style.css" />
+            <Button fx:id="generer" layoutX="176.0" layoutY="545.0" mnemonicParsing="false" onAction="#api" prefHeight="38.0" prefWidth="197.0" styleClass="search-button2" stylesheets="@../java/values/style.css" text="Calculer" textFill="#eeeeee">
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Button>
+            <TextField fx:id="calorie" layoutX="169.0" layoutY="312.0" prefHeight="25.0" prefWidth="177.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Calories par jour..">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </TextField>
+      <TextField fx:id="regime" layoutX="169.0" layoutY="376.0" prefHeight="25.0" prefWidth="177.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Régime : Vegan..">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="allergie" layoutX="169.0" layoutY="443.0" prefHeight="25.0" prefWidth="177.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="Allergie..">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="157.0" layoutY="237.0" prefHeight="28.0" prefWidth="265.0" text="votre menu du jour !" textFill="#17447a" wrapText="true">
+         <font>
+            <Font name="Roboto Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="155.0" layoutY="183.0" prefHeight="28.0" prefWidth="265.0" text="GENEREZ" textFill="#f9b13d" wrapText="true">
+         <font>
+            <Font name="Roboto Bold" size="52.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="32.0" fitWidth="41.0" layoutX="1073.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../xampp/htdocs/image/seo-fill.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="41.0" layoutX="1072.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../xampp/htdocs/image/seo-fill.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="41.0" layoutX="1074.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../xampp/htdocs/image/seo-fill.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="link1" layoutX="492.0" layoutY="219.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="644.0" styleClass="transparent" stylesheets="@../java/values/style.css" />
+      <Button fx:id="link2" layoutX="501.0" layoutY="337.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="644.0" styleClass="transparent" stylesheets="@../java/values/style.css" />
+      <Button fx:id="link3" layoutX="465.0" layoutY="462.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="644.0" styleClass="transparent" stylesheets="@../java/values/style.css" />
+      <Label fx:id="menu" layoutX="503.0" layoutY="148.0" prefHeight="496.0" prefWidth="538.0" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold" size="18.0" />
+         </font>
+      </Label>
+        </children>
+    </AnchorPane>
