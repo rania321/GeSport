@@ -2,7 +2,10 @@ package controllers;
 
 import Services.UserService;
 import entities.User;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,8 +14,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.apache.commons.codec.digest.DigestUtils;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -22,8 +29,11 @@ public class ProfileController {
     public TextField mdpU;
     public TextField NomU;
     public ListView<String> listU;
+    @FXML
+    public ImageView avatarImageView;
     private UserService userService = new UserService();
     private User loggedInUser;
+    
 
     public void initialize() {
         // Récupérer l'utilisateur connecté depuis le contrôleur LoginUserControllers
@@ -31,10 +41,11 @@ public class ProfileController {
 
         // Afficher les données de l'utilisateur connecté dans les champs texte
         if (loggedInUser != null) {
+            loadAvatarAsync(loggedInUser.getNomU());
             NomU.setText(loggedInUser.getNomU());
             PrenomU.setText(loggedInUser.getPrenomU());
             EmailU.setText(loggedInUser.getEmailU());
-            mdpU.setText(loggedInUser.getMdpU());
+            //mdpU.setText(loggedInUser.getMdpU());
 
             // Ajouter d'autres informations à la liste
 
@@ -42,7 +53,7 @@ public class ProfileController {
             listU.getItems().add("Email: " + loggedInUser.getEmailU());
             listU.getItems().add("Nom: " + loggedInUser.getNomU());
             listU.getItems().add("Prenom: " + loggedInUser.getPrenomU());
-            listU.getItems().add("Motdepasse: " + loggedInUser.getMdpU());
+            //listU.getItems().add("Motdepasse: " + loggedInUser.getMdpU());
         }
     }
 
@@ -163,6 +174,38 @@ public class ProfileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void loadAvatarAsync(String username) {
+        Task<Image> task = new Task<>() {
+            @Override
+            protected Image call() {
+                try {
+                    // Générer l'URL de l'avatar à partir de l'adresse e-mail de l'utilisateur
+                    String avatarUrl = "https://robohash.org/" + username + ".png";
+                    return new Image(avatarUrl);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+        };
+
+        task.setOnSucceeded(event -> {
+            Image avatarImage = task.getValue();
+            if (avatarImage != null) {
+                // Assurez-vous que la mise à jour de l'interface utilisateur est effectuée sur le thread de l'interface utilisateur
+                Platform.runLater(() -> avatarImageView.setImage(avatarImage));
+            }
+        });
+
+        task.setOnFailed(event -> {
+            Throwable exception = task.getException();
+            if (exception != null) {
+                exception.printStackTrace();
+            }
+        });
+
+        new Thread(task).start();
     }
 }
 

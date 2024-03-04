@@ -164,14 +164,24 @@ public class LoginUserControllers {
         alert.showAndWait();
     }
 
+    // Déclarer une variable booléenne pour suivre l'état du captcha
+
+    boolean captchaClosed = false;
     public void LoginButton(javafx.event.ActionEvent event) {
-        openCaptchaInterface(event);
         String email = EmailU.getText();
         String password = PasswordU.getText();
         String hashedPassword = hashPassword(password);
 
+        // Vérifier si le captcha est fermé avant de vérifier les identifiants
+        if (captchaClosed) {
+            // Afficher un message d'erreur et empêcher la connexion
+            alertError("Veuillez valider le captcha avant de vous connecter.");
+            return;
+        }
+
         // Vérifier les informations de connexion
         User loggedInUser = userService.login(email, hashedPassword);
+        openCaptchaInterface(event);
         if (loggedInUser != null) {
             showNotification();
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -181,7 +191,6 @@ public class LoginUserControllers {
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-
                 // Connexion réussie
                 role role1 = loggedInUser.getRoleU();
                 switch (role1) {
@@ -190,7 +199,6 @@ public class LoginUserControllers {
                         loadAdminInterface(event);
                         break;
                     case utulisateur:
-
                         // Rediriger vers l'interface utilisateur
                         loadUserInterface(event);
                         break;
@@ -199,14 +207,15 @@ public class LoginUserControllers {
                         break;
                 }
                 setLoggedInUser(loggedInUser);
-
             } else {
                 // Afficher un message d'erreur en cas d'échec de la connexion
                 alertError("Identifiants invalides. Veuillez réessayer.");
             }
+        } else {
+            // Afficher un message d'erreur si aucun utilisateur n'est trouvé
+            alertError("Identifiants invalides. Veuillez réessayer.");
         }
     }
-
     private String hashPassword(String password) {
         try {
             // Créez un objet MessageDigest pour l'algorithme de hachage SHA-256
@@ -455,6 +464,10 @@ public class LoginUserControllers {
         }));
         timeline.play();
     }
+    public void closeCaptcha() {
+        captchaClosed = true;
+    }
+
 }
 
 

@@ -23,11 +23,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class AfficherUserController implements Initializable {
     private final UserService us = new UserService();
+    public TextField searchField;
 
     @FXML
     private TextField emailU;
@@ -100,6 +102,11 @@ public class AfficherUserController implements Initializable {
 
         // Configure TableView selection listener
         configureTableSelectionListener();
+        // Configure sorting
+        configureSorting();
+
+        // Configure filtering
+        configureFiltering();
     }
 
     private void loadDataIntoTableView() {
@@ -283,6 +290,41 @@ public class AfficherUserController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void configureSorting() {
+        // Configure sorting for each column
+        nomU1.setSortable(true);
+        prenomU1.setSortable(true);
+        EmailU1.setSortable(true);
+        mdpU1.setSortable(true);
+        roleU1.setSortable(true);
+
+        // Add columns to the sort order
+        tableAdd.getSortOrder().addAll(nomU1, prenomU1, EmailU1, mdpU1, roleU1);
+    }
+
+    private void configureFiltering() {
+        // Add listener to search field
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            tableAdd.getItems().clear();
+            List<User> filteredList = filterUserList(newValue);
+            tableAdd.getItems().addAll(filteredList);
+        });
+    }
+
+    private List<User> filterUserList(String searchTerm) {
+        // Implement filtering logic here
+        // For example, filter based on user's name or email
+        List<User> userList = us.readall();
+        List<User> filteredList = new ArrayList<>();
+        for (User user : userList) {
+            if (user.getNomU().toLowerCase().contains(searchTerm.toLowerCase()) ||
+                    user.getPrenomU().toLowerCase().contains(searchTerm.toLowerCase()) ||
+                    user.getEmailU().toLowerCase().contains(searchTerm.toLowerCase())) {
+                filteredList.add(user);
+            }
+        }
+        return filteredList;
     }
 }
 

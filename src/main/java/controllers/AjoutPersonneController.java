@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.validator.routines.EmailValidator;
 
 //import javax.imageio.IIOException;
 import java.io.IOException;
@@ -39,7 +40,6 @@ public class AjoutPersonneController {
     private TextField roleU;
 
     @FXML
-
     void ajouter(ActionEvent event) {
         try {
             if (!isValidInput()) {
@@ -47,10 +47,17 @@ public class AjoutPersonneController {
                 afficherMessageErreur("Saisie invalide. Veuillez remplir tous les champs correctement.");
                 return;
             }
-            openCaptchaInterface(event);
+
 
             // Vérifiez le format de l'adresse e-mail
-            if (!isValidEmail(emailU.getText())) {
+           /* if (!isValidEmail(emailU.getText())) {
+                // Affichez un message d'erreur si l'adresse e-mail n'est pas valide
+                afficherMessageErreur("Format de l'adresse e-mail invalide. Veuillez saisir une adresse e-mail valide.");
+                return;
+            }*/
+            // Vérifiez le format de l'adresse e-mail en utilisant EmailValidator
+            EmailValidator emailValidator = EmailValidator.getInstance();
+            if (!emailValidator.isValid(emailU.getText())) {
                 // Affichez un message d'erreur si l'adresse e-mail n'est pas valide
                 afficherMessageErreur("Format de l'adresse e-mail invalide. Veuillez saisir une adresse e-mail valide.");
                 return;
@@ -73,6 +80,7 @@ public class AjoutPersonneController {
                 afficherMessageErreur("Le mot de passe est déjà utilisé par un autre utilisateur. Veuillez saisir un autre mot de passe.");
                 return;
             }
+            openCaptchaInterface(event);
 
             // Add the new user
 
@@ -210,9 +218,11 @@ public class AjoutPersonneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
+
+
+
 
 
 

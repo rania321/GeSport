@@ -10,23 +10,32 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
    <children>
-      <ImageView fitHeight="604.0" fitWidth="936.0" layoutY="195.0" pickOnBounds="true">
+      <ImageView fitHeight="604.0" fitWidth="936.0" layoutY="187.0" pickOnBounds="true">
          <image>
             <Image url="@Compte2.png" />
          </image>
       </ImageView>
       <ListView fx:id="listU" layoutX="-4.0" layoutY="538.0" prefHeight="91.0" prefWidth="950.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-width: 1px;" />
-      <Button layoutX="393.0" layoutY="195.0" mnemonicParsing="false" onAction="#gotoAjouterDm" prefHeight="26.0" prefWidth="158.0" style="-fx-background-color: #2596be;" text="Ajouter dossier medicale" />
-      <Button layoutX="845.0" layoutY="392.0" mnemonicParsing="false" onAction="#SupprCuser" prefHeight="26.0" prefWidth="60.0" styleClass="transparent" stylesheets="@register.css">
+      <Button layoutX="823.0" layoutY="187.0" mnemonicParsing="false" onAction="#gotoAjouterDm" prefHeight="83.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css">
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Dossier.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="833.0" layoutY="446.0" mnemonicParsing="false" onAction="#SupprCuser" prefHeight="26.0" prefWidth="60.0" styleClass="transparent" stylesheets="@register.css">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@delete.png" />
                </image>
             </ImageView>
+
+
          </graphic>
       </Button>
-      <Button layoutX="841.0" layoutY="268.0" mnemonicParsing="false" onAction="#modifieCuser" prefHeight="53.0" prefWidth="67.0" styleClass="transparent" stylesheets="@register.css">
+      <Button layoutX="831.0" layoutY="311.0" mnemonicParsing="false" onAction="#modifieCuser" prefHeight="53.0" prefWidth="67.0" styleClass="transparent" stylesheets="@register.css">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -35,13 +44,13 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="318.0" fitWidth="944.0" layoutY="-123.0" pickOnBounds="true">
+      <ImageView fitHeight="318.0" fitWidth="950.0" layoutY="-123.0" pickOnBounds="true">
          <image>
             <Image url="@NAV.png" />
          </image>
       </ImageView>
       <Button layoutX="172.0" layoutY="61.0" mnemonicParsing="false" onAction="#Accueil" prefHeight="26.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="150.0" layoutX="453.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@programmer.png" />
          </image>
@@ -62,5 +71,6 @@
             <TextField fx:id="mdpU" promptText="Mot de passe" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
+      <ImageView fx:id="avatarImageView" fitHeight="150.0" fitWidth="171.0" layoutX="1.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

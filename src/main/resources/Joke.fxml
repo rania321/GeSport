@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="506.0" prefWidth="689.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controllers.JokeController">
+    <children>
+        <Label layoutX="126" layoutY="14" text="Bienvenue dans l'application de blagues !" />
+        <Button layoutX="126" layoutY="71" onAction="#getNewJoke" text="Nouvelle Blague" />
+        <Label fx:id="jokeLabel" layoutX="126" layoutY="120" text="" />
+    </children>
+</AnchorPane>
