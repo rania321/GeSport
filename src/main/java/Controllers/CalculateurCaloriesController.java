@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import API.EdamameApi;
 import entities.Produit;

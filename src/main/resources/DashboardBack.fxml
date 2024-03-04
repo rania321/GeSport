@@ -6,48 +6,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" styleClass="root" stylesheets="@../java/values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardBackController">
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.dashboardBackController"
+            prefHeight="400.0" prefWidth="600.0">
     <children>
         <ImageView fitHeight="800.0" fitWidth="1300.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../../../../../../../../xampp/htdocs/image/dashback.png" />
-         </image></ImageView>
-        <Button fx:id="reclamation" layoutX="898.0" layoutY="412.0" maxWidth="330.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="320.0" prefWidth="330.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="WHITE">
+            <image>
+                <Image url="@img/3.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="reclamation" layoutX="898.0" layoutY="412.0" maxWidth="330.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="320.0" prefWidth="330.0" styleClass="transparent" stylesheets="@style.css" textFill="WHITE">
             <font>
                 <Font name="Arial Black" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="buvette" layoutX="898.0" layoutY="68.0" maxWidth="330.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="320.0" prefWidth="330.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="WHITE">
+        <Button fx:id="buvette" layoutX="898.0" layoutY="68.0" maxWidth="330.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="320.0" prefWidth="330.0" styleClass="transparent" stylesheets="@style.css" textFill="WHITE">
             <font>
                 <Font name="Arial Black" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="tournoi" layoutX="519.0" layoutY="411.0" maxWidth="330.0" mnemonicParsing="false" onAction="#tournoi" prefHeight="320.0" prefWidth="330.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="WHITE">
+        <Button fx:id="tournoi" layoutX="519.0" layoutY="411.0" maxWidth="330.0" mnemonicParsing="false" onAction="#tournoi" prefHeight="320.0" prefWidth="330.0" styleClass="transparent" stylesheets="@style.css" textFill="WHITE">
             <font>
                 <Font name="Arial Black" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="activite" layoutX="516.0" layoutY="68.0" maxWidth="336.0" mnemonicParsing="false" onAction="#activite" prefHeight="320.0" prefWidth="336.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="WHITE">
+        <Button fx:id="activite" layoutX="516.0" layoutY="68.0" maxWidth="336.0" mnemonicParsing="false" onAction="#activite" prefHeight="320.0" prefWidth="336.0" styleClass="transparent" stylesheets="@style.css" textFill="WHITE">
             <font>
                 <Font name="Arial Black" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="compte" layoutX="143.0" layoutY="260.0" maxWidth="330.0" mnemonicParsing="false" onAction="#compte" prefHeight="471.0" prefWidth="330.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="WHITE">
+        <Button fx:id="compte" layoutX="143.0" layoutY="260.0" maxWidth="330.0" mnemonicParsing="false" onAction="#compte" prefHeight="471.0" prefWidth="330.0" styleClass="transparent" stylesheets="@style.css" textFill="WHITE">
             <font>
                 <Font name="Arial Black" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="logout" layoutX="14.0" layoutY="14.0" maxWidth="230.0" minHeight="30.0" minWidth="72.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="72.0" styleClass="transparent" stylesheets="@../java/values/style.css" textFill="WHITE">
+        <Button fx:id="logout" layoutX="14.0" layoutY="14.0" maxWidth="230.0" minHeight="30.0" minWidth="72.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="72.0" styleClass="transparent" stylesheets="@style.css" textFill="WHITE">
             <font>
                 <Font name="Arial Black" size="14.0" />
             </font>
             <graphic>
-                <!--<ImageView fitHeight="74.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                   <Image url="@img/se-deconnecter.png" />
-                </image>
-             </ImageView>-->
+                <ImageView fitHeight="74.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@img/se-deconnecter.png" />
+                    </image>
+                </ImageView>
             </graphic>
         </Button>
     </children>
+
 </AnchorPane>

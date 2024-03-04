@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -107,7 +107,7 @@ public class StatBuvetteController {
     }
     @FXML
     public void Home(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardBack.fxml"));
         Parent root = loader.load();
 
         // Créer une nouvelle scène

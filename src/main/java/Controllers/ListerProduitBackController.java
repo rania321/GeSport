@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 import entities.Produit;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -203,7 +203,7 @@ public class ListerProduitBackController {
                 DateP.setCellValueFactory(new PropertyValueFactory<>("DateAjoutP"));
                 SP.setCellValueFactory(new PropertyValueFactory<>("StockP"));
                 DP.setCellValueFactory(new PropertyValueFactory<>("descriP"));
-                IP.setCellValueFactory(new PropertyValueFactory<>("imageP"));
+                //IP.setCellValueFactory(new PropertyValueFactory<>("imageP"));
                 if (TableProduit != null && TableProduit instanceof TableView) {
                         // Cast ticket_tableview to TableView<Ticket> and set its items
                         ((TableView<Produit>) TableProduit).setItems(FXCollections.observableArrayList(PList));
@@ -224,7 +224,6 @@ public class ListerProduitBackController {
 
                         Notifications notifications = Notifications.create();
                         notifications.graphic(new ImageView(image));
-                        notifications.text("Donation added successfully");
                         notifications.title("Success Message");
                         notifications.hideAfter(Duration.seconds(4));
                         notifications.show();
@@ -268,7 +267,7 @@ public class ListerProduitBackController {
         }
         @FXML
         public void Home(ActionEvent actionEvent) throws IOException {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardBack.fxml"));
                 Parent root = loader.load();
 
                 // Créer une nouvelle scène

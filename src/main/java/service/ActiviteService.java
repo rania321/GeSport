@@ -1,7 +1,7 @@
 package service;
 
 import entities.Activite;
-import Utils.DataSource;
+import util.DataSource;
 
 import java.sql.*;
 import java.util.ArrayList;

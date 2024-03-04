@@ -75,13 +75,25 @@ public class dashboardFrontController {
     }
 
     @FXML
-    void reclamation(ActionEvent event) {
-
+    void reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/GestionReclamation.fxml"));
+        Parent root=loader.load();
+        Scene scene=new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Profile.fxml");
+        stage.show();
     }
 
     @FXML
-    void restaurant(ActionEvent event) {
-
+    void restaurant(ActionEvent event) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
+        Parent root=loader.load();
+        Scene scene=new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Profile.fxml");
+        stage.show();
     }
 
     @FXML

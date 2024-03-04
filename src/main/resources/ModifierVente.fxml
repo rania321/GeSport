@@ -13,12 +13,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierVenteController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierVenteController">
     <children>
         <ImageView fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../../../../../../Downloads/home-4-fill.png" />
-            </image>
+
             <VBox.margin>
                 <Insets left="15.0" top="15.0" />
             </VBox.margin>

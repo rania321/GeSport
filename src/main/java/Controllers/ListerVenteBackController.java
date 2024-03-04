@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 import entities.Vente;
 import entities.Produit;
 import javafx.collections.FXCollections;
@@ -60,7 +60,7 @@ public class ListerVenteBackController {
 
     @FXML
     public void Home(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardBack.fxml"));
         Parent root = loader.load();
 
         // Créer une nouvelle scène

@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 import entities.Produit;
 import entities.Vente;
 import javafx.event.ActionEvent;

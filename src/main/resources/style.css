@@ -1,11 +1,8 @@
-<<<<<<< HEAD
+
 .refreshCaptcha{
     -fx-graphic: url(refresh.png);
 }
-.transparent{
-    -fx-background-color: rgba(0,0,0,0);
-}
-=======
+
 .search-box{
     -fx-background-color:#FFFFFF;
     -fx-background-radius: 100;
@@ -189,8 +186,3 @@
     -fx-pie-color: #1b75bb;
 }
 
-
-
-
-
->>>>>>> origin/activite

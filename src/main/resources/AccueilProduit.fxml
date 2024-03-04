@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1300.0" stylesheets="@../java/values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AccueilProduitController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1300.0" stylesheets="@../java/values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccueilProduitController">
     <children>
         <ImageView fitHeight="800.0" fitWidth="1300.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../xampp/htdocs/image/fondbuvette.png" />
+            <Image url="@../../../../../../../xampp/htdocs/image/fondbuvette.png" />
          </image>
         </ImageView>
         <Button layoutX="492.0" layoutY="24.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
@@ -46,7 +46,7 @@
             <Font name="Walkway Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="menu" layoutX="509.0" layoutY="531.0" mnemonicParsing="false" onAction="#ListeP" prefHeight="50.0" prefWidth="192.0" stylesheets="@../java/values/style.css" text="M  E  N  U" textFill="#fcfcfc">
+      <Button fx:id="menu" layoutX="509.0" layoutY="531.0" mnemonicParsing="false" onAction="#ListeP" prefHeight="50.0" prefWidth="192.0" text="M  E  N  U" textFill="#fcfcfc">
          <font>
             <Font name="Calibri Bold" size="28.0" />
          </font>
@@ -54,6 +54,10 @@
             <String fx:value="transparent" />
             <String fx:value="shopping-online-card" />
          </styleClass>
+         <stylesheets>
+            <URL value="@../java/values/style.css" />
+            <URL value="@../java/values/style.css" />
+         </stylesheets>
       </Button>
       <AnchorPane layoutX="973.0" layoutY="15.0" prefHeight="57.0" prefWidth="225.0" styleClass="white-bg" stylesheets="@../java/values/style.css">
          <children>

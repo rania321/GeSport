@@ -74,13 +74,37 @@ public class dashboardBackController {
     }
 
     @FXML
-    void reclamation(ActionEvent event) {
+    void reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionReclamationAdmin.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Buvette");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
     @FXML
-    void restaurant(ActionEvent event) {
+    void restaurant(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListerProduitBack.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Buvette");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
     @FXML

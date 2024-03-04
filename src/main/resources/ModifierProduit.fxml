@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierProduitController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierProduitController">
     <children>
         <ImageView fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../../../../xampp/htdocs/image/home-4-fill (1).png"  />
+                <Image url="@../../../../../../../xampp/htdocs/image/home-4-fill (1).png"  />
             </image>
             <VBox.margin>
                 <Insets left="15.0" top="15.0" />

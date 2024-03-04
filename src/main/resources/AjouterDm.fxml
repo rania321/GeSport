@@ -6,70 +6,21 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutDmController">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutDmController">
    <children>
-      <ImageView fitHeight="263.0" fitWidth="831.0" layoutY="-125.0" pickOnBounds="true">
+      <ImageView fitHeight="800.0" fitWidth="1300.0" pickOnBounds="true">
          <image>
-            <Image url="@Comtebar.png" />
+            <Image url="@img/dossier.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="662.0" fitWidth="831.0" layoutX="11.0" layoutY="125.0" pickOnBounds="true">
-         <image>
-            <Image url="@Compte2.png" />
-         </image>
-      </ImageView>
-      <Text layoutX="150.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Dossier Medicale" textAlignment="CENTER" wrappingWidth="552.5366516113281">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
-      <ListView fx:id="listDm" layoutX="5.0" layoutY="552.0" prefHeight="99.0" prefWidth="842.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-width: 1px;" />
-      <Button fx:id="ModifierDm" layoutX="748.0" layoutY="301.0" mnemonicParsing="false" onAction="#ModifierDm" styleClass="transparent" stylesheets="@register.css">
-         <graphic>
-            <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@updated.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="AjoutDm" layoutX="739.0" layoutY="391.0" mnemonicParsing="false" onAction="#AjoutDm" prefHeight="53.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css">
-         <graphic>
-            <ImageView fitHeight="45.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@ajout.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="SupprimerDm" layoutX="739.0" layoutY="196.0" mnemonicParsing="false" onAction="#SupprimerDm" prefHeight="65.0" prefWidth="72.0" styleClass="transparent" stylesheets="@register.css">
-         <graphic>
-            <ImageView fitHeight="47.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@delete.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button layoutX="161.0" layoutY="48.0" mnemonicParsing="false" onAction="#ACCueil" prefHeight="26.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
-      <BorderPane layoutX="503.0" layoutY="236.0" prefHeight="200.0" prefWidth="200.0">
-         <top>
-            <TextField fx:id="PoidsDM" promptText="Poids" style="-fx-background-color: #2596be; -fx-background-radius: 50;" BorderPane.alignment="CENTER" />
-         </top>
-         <center>
-            <TextField fx:id="tailleDM" promptText="taille" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
-         </center>
-         <bottom>
-            <TextField fx:id="ageDM" promptText="age" style="-fx-background-radius: 50; -fx-background-color: #2596be;" BorderPane.alignment="CENTER" />
-         </bottom>
-      </BorderPane>
-      <ImageView fitHeight="247.0" fitWidth="306.0" layoutX="26.0" layoutY="189.0" pickOnBounds="true">
-         <image>
-            <Image url="@Dossier.png" />
-         </image>
-      </ImageView>
+      <ListView fx:id="listDm" layoutX="459.0" layoutY="420.0" prefHeight="37.0" prefWidth="382.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-width: 1px;" />
+      <Button fx:id="ModifierDm" layoutX="159.0" layoutY="587.0" mnemonicParsing="false" onAction="#ModifierDm" prefHeight="53.0" prefWidth="56.0" styleClass="transparent" stylesheets="@register.css" />
+      <Button fx:id="AjoutDm" layoutX="227.0" layoutY="586.0" mnemonicParsing="false" onAction="#AjoutDm" prefHeight="53.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
+      <Button fx:id="SupprimerDm" layoutX="81.0" layoutY="582.0" mnemonicParsing="false" onAction="#SupprimerDm" prefHeight="63.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
+      <Button layoutX="289.0" layoutY="37.0" mnemonicParsing="false" onAction="#ACCueil" prefHeight="26.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
+      <TextField fx:id="ageDM" layoutX="179.0" layoutY="347.0" promptText="age" style="-fx-background-radius: 50; -fx-background-color: ffffff;" />
+      <TextField fx:id="tailleDM" layoutX="176.0" layoutY="498.0" promptText="taille" style="-fx-background-radius: 50; -fx-background-color: ffffff;" />
+      <TextField fx:id="PoidsDM" layoutX="176.0" layoutY="426.0" promptText="Poids" style="-fx-background-color: ffffff; -fx-background-radius: 50;" />
    </children>
 </AnchorPane>

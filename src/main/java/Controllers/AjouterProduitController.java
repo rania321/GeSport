@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 import entities.Produit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class AjouterProduitController {
 
     @FXML
     public void Home(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DashboardBack.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardBack.fxml"));
         Parent root = loader.load();
 
         // Créer une nouvelle scène
