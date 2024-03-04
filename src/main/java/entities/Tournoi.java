@@ -88,4 +88,5 @@ public class Tournoi {
         int var10000 = this.idT;
         return "Tournoi{idT=" + var10000 + ", nomT='" + this.nomT + "', DateDebutT=" + String.valueOf(this.DateDebutT) + ", DateFinT=" + String.valueOf(this.DateFinT) + ", DescriT='" + this.DescriT + "', statutT='" + this.statutT + "'}";
     }
+
 }

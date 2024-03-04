@@ -1,8 +1,5 @@
 package org.example;
 
-import controllers.EquipeAdminController;
-import controllers.EquipeClientController;
-import controllers.TournoiClientController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,8 +13,36 @@ public class MainFX extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+   /* @Override
+    public void start(Stage primaryStage) throws Exception {
+        // Charger le fichier FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StatEquipe.fxml"));
+        Parent root = loader.load();
 
- /*   @Override
+        // Obtenir une référence au contrôleur
+        StatEquipeController controller = loader.getController();
+
+        // Charger les données des équipes
+        EquipeService equipeService = new EquipeService();
+        List<Equipe> equipes = equipeService.readAll();
+
+        // Passer les données au contrôleur
+        controller.setData(equipes);
+
+        // Configurer la scène
+        Scene scene = new Scene(root, 800, 600);
+
+        // Configurer le stage principal
+        primaryStage.setTitle("Statistiques des équipes");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }*/
+
+
+
+
+
+    /*   @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/CalendarFront.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

@@ -113,5 +113,14 @@
             <Font name="Arial Black" size="13.0" />
          </font>
       </Button>
+      <Button layoutX="79.0" layoutY="328.0" mnemonicParsing="false" onAction="#statEquipe" prefHeight="59.0" prefWidth="96.0" styleClass="transparent" stylesheets="@style.css">
+         <graphic>
+            <ImageView fitHeight="71.0" fitWidth="74.0">
+               <image>
+                  <Image url="@img/stat.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>

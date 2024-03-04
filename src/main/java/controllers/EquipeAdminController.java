@@ -1,6 +1,9 @@
 package controllers;
 
-import entities.*;
+import entities.Equipe;
+import entities.Joueur;
+import entities.Tournoi;
+import entities.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -24,13 +27,8 @@ import service.JoueurService;
 import service.TournoiService;
 import service.UserService;
 
-import java.io.File;
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -644,6 +642,34 @@ public class EquipeAdminController {
     }
 
 
+    public void statEquipe(ActionEvent actionEvent) throws IOException {
+
+        // Créer une nouvelle instance de StatEquipeController
+        StatEquipeController controller = new StatEquipeController();
+
+        // Charger les données d'équipes
+        EquipeService equipeService = new EquipeService();
+        List<Equipe> equipes = equipeService.readAll();
+
+        // Créer un AnchorPane pour afficher le graphique
+        AnchorPane anchorPane = new AnchorPane();
+
+        // Passer les données au contrôleur avec l'AnchorPane
+        controller.setData(equipes, anchorPane);
+
+        // Créer une nouvelle scène avec l'AnchorPane
+        Scene scene = new Scene(anchorPane);
+
+        // Créer un nouveau stage
+        Stage stage = new Stage();
+        stage.setTitle("Statistiques des équipes");
+        stage.setScene(scene);
+
+        // Afficher le stage
+        stage.show();
+
+
+    }
 }
 
 
