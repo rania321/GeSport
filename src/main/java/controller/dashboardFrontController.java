@@ -97,8 +97,20 @@ public class dashboardFrontController {
     }
 
     @FXML
-    void tournois(ActionEvent event) {
+    void tournois(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TournoiClient.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Activités");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
 }

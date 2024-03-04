@@ -1,3 +1,47 @@
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.but
+{
+    -fx-background-radius: 30;
+    -fx-min-width: 100px;
+    -fx-min-height: 30px;
+    -fx-max-width: 100px;
+    -fx-max-height: 30px;
+    -fx-background-color: #dbaf0f; /* Jaune */
+    -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
+}
+
+.but:hover {
+    -fx-background-color: #1b75bb; /* Bleu au survol */
+}
+
+.but:pressed {
+    -fx-background-color: #80d3f7; /* Bleu clair enfoncé */
+}
+
+.a-s
+{
+    -fx-background-radius: 30;
+    -fx-min-width: 60px;
+    -fx-min-height: 18px;
+    -fx-max-width: 60px;
+    -fx-max-height: 18px;
+    -fx-background-color: #dbaf0f; /* Jaune */
+    -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
+}
+.plus
+{
+    -fx-background-radius: 30;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+    -fx-background-color: #dbaf0f; /* Jaune */
+    -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
+}
 
 .refreshCaptcha{
     -fx-graphic: url(refresh.png);
@@ -140,13 +184,13 @@
 }
 
 .round-buttonMenu {
-        -fx-background-radius: 30;
-        -fx-min-width: 100px;
-        -fx-min-height: 30px;
-        -fx-max-width: 100px;
-        -fx-max-height: 30px;
-        -fx-background-color: #17447a; /* Jaune */
-        -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
+    -fx-background-radius: 30;
+    -fx-min-width: 100px;
+    -fx-min-height: 30px;
+    -fx-max-width: 100px;
+    -fx-max-height: 30px;
+    -fx-background-color: #17447a; /* Jaune */
+    -fx-text-fill: #ffffff; /* Bleu roi pour le texte */
 }
 .round-buttonMenu1 {
     -fx-background-radius: 30;
@@ -182,7 +226,6 @@
 }
 
 .chart-pie {
-   /* -fx-pie-color-1: #17447a;*/
+    /* -fx-pie-color-1: #17447a;*/
     -fx-pie-color: #1b75bb;
 }
-

@@ -108,8 +108,20 @@ public class dashboardBackController {
     }
 
     @FXML
-    void tournoi(ActionEvent event) {
+    void tournoi(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherTournoi.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Tournoi");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
 }

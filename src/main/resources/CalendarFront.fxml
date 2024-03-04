@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="590.0" prefWidth="973.0" style="-fx-background-color: #0f90b0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CalendarController">
+    <ImageView fitHeight="600.0" fitWidth="1000.0" layoutX="1.0">
+        <image>
+            <Image url="@img/calendarFront.png" />
+        </image>
+    </ImageView>
+
+    <FlowPane fx:id="calendar" hgap="10.0" layoutX="178.0" layoutY="271.0" prefHeight="275.0" prefWidth="683.0" vgap="5.0">
+        <effect>
+            <ColorAdjust brightness="-0.04" contrast="0.09" hue="0.13" saturation="0.19" />
+        </effect></FlowPane>
+    <HBox alignment="CENTER" layoutX="320.0" layoutY="176.0" prefHeight="40.0" prefWidth="366.0" spacing="5.0">
+        <children>
+            <Button mnemonicParsing="false" onAction="#backOneMonth" prefHeight="51.0" prefWidth="64.0" styleClass="plus" stylesheets="@style.css" text="&lt;">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font></Button>
+            <Text fx:id="year" fill="#1c00a9" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+                <font>
+                    <Font size="22.0" />
+                </font>
+            </Text>
+            <Text fill="DARKORANGE" strokeType="OUTSIDE" strokeWidth="0.0" text="/" translateX="-2.0" translateY="-2.0" wrappingWidth="6.27581787109375">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Text>
+            <Text fx:id="month" fill="#1c00a9" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+                <font>
+                    <Font size="22.0" />
+                </font>
+            </Text>
+            <Button mnemonicParsing="false" onAction="#forwardOneMonth" styleClass="plus" stylesheets="@style.css" text="&gt;">
+                <font>
+                    <Font name="System Bold" size="14.0" />
+                </font></Button>
+        </children>
+    </HBox>
+    <HBox alignment="CENTER" layoutX="173.0" layoutY="232.0" prefHeight="32.0" prefWidth="694.0" spacing="60.0">
+        <children>
+            <Text fill="#0b0363" strokeType="OUTSIDE" strokeWidth="0.0" text="Dimanche " textAlignment="CENTER" wrappingWidth="70.04922580718994">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font></Text>
+            <Text fill="#0b0363" layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lundi" textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font></Text>
+            <Text fill="#0b0363" layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mardi" textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font></Text>
+            <Text fill="#0b0363" layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mercredi" textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font></Text>
+            <Text fill="#0b0363" layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeudi" textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font></Text>
+            <Text fill="#0b0363" layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vendredi " textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font></Text>
+            <Text fill="#0b0363" layoutX="266.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Samedi" textAlignment="CENTER" wrappingWidth="49.4644775390625">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font></Text>
+        </children>
+        <padding>
+            <Insets right="9.0" />
+        </padding>
+    </HBox>
+
+
+</AnchorPane>

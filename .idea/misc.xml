@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 =======
 >>>>>>> origin/activite
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+>>>>>>> origin/tournoi
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -11,11 +15,17 @@
       </list>
     </option>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="workspaceImportForciblyTurnedOn" value="true" />
 =======
 >>>>>>> origin/activite
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+=======
+    <option name="workspaceImportForciblyTurnedOn" value="true" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+>>>>>>> origin/tournoi
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

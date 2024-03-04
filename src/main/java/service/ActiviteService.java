@@ -1,6 +1,7 @@
 package service;
 
 import entities.Activite;
+import org.example.Service.IService;
 import util.DataSource;
 
 import java.sql.*;

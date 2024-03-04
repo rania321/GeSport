@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EquipeAdminController">
+    <children>
+        <ImageView fitHeight="849.0" fitWidth="1300.0" layoutY="-1.0">
+            <image>
+                <Image url="@img/Equipeback.png" />
+            </image>
+        </ImageView>
+        <Line endX="-11.0" endY="587.0" layoutX="609.0" layoutY="254.0" startX="-11.0" startY="-144.39999389648438" />
+        <Button layoutX="24.0" layoutY="192.0" mnemonicParsing="false" onAction="#toTournoi" prefHeight="44.0" prefWidth="200.0" styleClass="transparent" stylesheets="@style.css">
+            <font>
+                <Font name="Arial Black" size="13.0" />
+            </font>
+        </Button>
+        <AnchorPane layoutX="267.0" layoutY="123.0" prefHeight="682.0" prefWidth="314.0" stylesheets="@style.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="radius" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <Label layoutX="54.0" layoutY="28.0" prefHeight="37.0" prefWidth="200.0" text="Ajouter une Equipe" textFill="#2c9bef">
+                    <font>
+                        <Font name="Arial Black" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="35.0" layoutY="141.0" prefHeight="17.0" prefWidth="48.0" text="Nom" textFill="#17447a">
+                    <font>
+                        <Font name="Arial Black" size="12.0" />
+                    </font>
+                </Label>
+                <Label layoutX="35.0" layoutY="221.0" prefHeight="18.0" prefWidth="90.0" text="Tournoi" textFill="#17447a">
+                    <font>
+                        <Font name="Arial Black" size="12.0" />
+                    </font>
+                </Label>
+                <Label layoutX="35.0" layoutY="319.0" prefHeight="17.0" prefWidth="83.0" text="Statut" textFill="#17447a">
+                    <font>
+                        <Font name="Arial Black" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="nomE" layoutX="31.0" layoutY="164.0" prefHeight="26.0" prefWidth="238.0" />
+                <ComboBox fx:id="nomT" layoutX="30.0" layoutY="242.0" prefHeight="26.0" prefWidth="238.0" />
+                <HBox />
+                <Button layoutX="44.0" layoutY="463.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="38.0" prefWidth="76.0" text="Ajouter" />
+                <Button layoutX="138.0" layoutY="464.0" mnemonicParsing="false" onAction="#modifier" prefHeight="38.0" prefWidth="76.0" text="modifier" />
+                <RadioButton fx:id="inscriteRadio" layoutX="76.0" layoutY="356.0" text="Inscrite" />
+                <RadioButton fx:id="qualifieeRadio" layoutX="76.0" layoutY="386.0" text="Qualifiée" />
+                <RadioButton fx:id="elimineeRadio" layoutX="76.0" layoutY="418.0" text="Éliminée" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="615.0" layoutY="123.0" prefHeight="682.0" prefWidth="666.0" stylesheets="@style.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="radius" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <Label layoutX="38.0" layoutY="9.0" prefHeight="27.0" prefWidth="340.0" text="les Equipes " textFill="#2c9bef">
+                    <font>
+                        <Font name="Arial Black" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lesjoueurtxt" layoutX="38.0" layoutY="359.0" prefHeight="27.0" prefWidth="120.0" text="les Joueurs" textFill="#2c9bef">
+                    <font>
+                        <Font name="Arial Black" size="18.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="equipeTable" layoutX="26.0" layoutY="54.0" onMouseClicked="#selection" prefHeight="300.0" prefWidth="595.0" stylesheets="@style.css">
+                    <columns>
+                        <TableColumn fx:id="nomColumn" minWidth="0.0" prefWidth="134.39996337890625" text="Nom" />
+                        <TableColumn fx:id="TColumn" prefWidth="150.40008544921875" text="Tournoi" />
+                        <TableColumn fx:id="nomUColumn" prefWidth="138.39996337890625" text="capitaine" />
+                        <TableColumn fx:id="statutColumn" prefWidth="170.6666259765625" text="Statut" />
+                    </columns>
+                </TableView>
+                <TableView fx:id="joueurTable" layoutX="27.0" layoutY="391.0" prefHeight="200.0" prefWidth="213.0">
+                    <columns>
+                        <TableColumn fx:id="nomJoueurColumn" prefWidth="212.799951171875" text="joueurs" />
+                    </columns>
+                </TableView>
+                <Button layoutX="539.0" layoutY="388.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="39.0" prefWidth="76.0" text="supprimer" />
+                <Button fx:id="supprimerj" layoutX="254.0" layoutY="563.0" mnemonicParsing="false" onAction="#supprimerJ" prefHeight="28.0" prefWidth="78.0" text="supprimer" />
+                <TextField fx:id="joueur" layoutX="31.0" layoutY="609.0" prefHeight="26.0" prefWidth="170.0" />
+                <Button fx:id="ajouterj" layoutX="224.0" layoutY="609.0" mnemonicParsing="false" onAction="#ajouterj" text="+" />
+                <TextField fx:id="rechercheTextField" layoutX="228.0" layoutY="14.0" prefHeight="26.0" prefWidth="191.0" />
+                <ImageView fitHeight="28.0" fitWidth="39.0" layoutX="402.0" layoutY="17.0">
+                    <image>
+                        <Image url="@img/loupe.png" />
+                    </image>
+                </ImageView>
+                <ComboBox fx:id="comboBoxTri" layoutX="527.0" layoutY="18.0" onAction="#onTriComboBoxChanged" prefHeight="26.0" prefWidth="90.0" promptText="tri par " />
+            </children>
+        </AnchorPane>
+        <Button layoutX="31.0" layoutY="40.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="44.0" prefWidth="200.0" styleClass="transparent" stylesheets="@style.css">
+            <font>
+                <Font name="Arial Black" size="13.0" />
+            </font>
+        </Button>
+        <Button layoutX="79.0" layoutY="328.0" mnemonicParsing="false" onAction="#statEquipe" prefHeight="59.0" prefWidth="96.0" styleClass="transparent" stylesheets="@style.css">
+            <graphic>
+                <ImageView fitHeight="71.0" fitWidth="74.0">
+                    <image>
+                        <Image url="@img/stat.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+</AnchorPane>
