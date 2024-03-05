@@ -150,6 +150,8 @@ public class ActiviteService implements IService<Activite> {
         return 0; // Retourne 0 en cas d'erreur
     }
 
+
+
     public void addActiviteToFavoriteList(int activiteId, int userId) {
         try {
             String req = "INSERT INTO `activitefavoris`(`idA`, `idU` ) VALUES (?,?)";
@@ -225,5 +227,43 @@ public class ActiviteService implements IService<Activite> {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public String getMostFavoritedActivityName() {
+        try {
+            String query = "SELECT a.NomA, COUNT(f.idA) AS favoritedCount " +
+                    "FROM activite a " +
+                    "JOIN activitefavoris f ON a.idA = f.idA " +
+                    "GROUP BY a.idA " +
+                    "ORDER BY favoritedCount DESC " +
+                    "LIMIT 1";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getString("NomA");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public int getLikeCountForActivite(int activiteId) {
+        String requete = "SELECT COUNT(*) FROM activitefavoris WHERE idA = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(requete);
+            ps.setInt(1, activiteId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0; // Retourne 0 en cas d'erreur
     }
 }

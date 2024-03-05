@@ -115,7 +115,7 @@ public class ServiceReclamation implements IService<Reclamation> {
     }
 
     public void delete(Reclamation reclamation) {
-        String requete="DELETE FROM response WHERE idRep=?";
+        String requete="DELETE FROM reclamation WHERE idReC=?";
         try {
             PreparedStatement pst= connection.prepareStatement(requete);
             pst.setInt(1,reclamation.getIdRec());
@@ -129,5 +129,22 @@ public class ServiceReclamation implements IService<Reclamation> {
     @Override
     public Reclamation readById(int idDM) {
         return null;
+    }
+
+    public String getRecFromIdRec(int id){
+        String rec = null;
+
+        String req = "SELECT * FROM reclamation WHERE idRec = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rst = ps.executeQuery();
+            while (rst.next()) {
+                rec = rst.getString("descriRec");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return rec;
     }
 }

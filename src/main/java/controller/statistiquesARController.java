@@ -81,6 +81,8 @@ public class statistiquesARController {
 
         label1.setText(reservationService.getClientAvecPlusReservations());
         label2.setText(String.valueOf(activiteService.getNombreTotalActivites()));
+        label3.setText(String.valueOf(reservationService.getNombreTotalReservation()));
+        label4.setText(activiteService.getMostFavoritedActivityName());
     }
 
     // Méthode pour mettre à jour le PieChart avec les statistiques

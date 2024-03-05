@@ -240,31 +240,6 @@ public class EquipeClientController {
 
     }
 
-
-
-
-
-    @FXML
-    void tournois(ActionEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TournoiClient.fxml"));
-        Parent root = loader.load();
-        // Appel de showTournoi()
-        TournoiClientController controller = loader.getController();
-        controller.showTournoi();
-
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root, 1300, 800);
-
-        // Configurer la nouvelle scène dans une nouvelle fenêtre
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Tournois");
-
-        // Afficher la nouvelle fenêtre
-        stage.show();
-    }
-
     public void supprimerJ(ActionEvent actionEvent) {
         // Récupérer le joueur sélectionné dans la TableView joueurTable
         Joueur joueur = joueurTable.getSelectionModel().getSelectedItem();
@@ -315,23 +290,6 @@ public class EquipeClientController {
             alert.setContentText("Veuillez sélectionner un joueur à supprimer.");
             alert.showAndWait();
         }
-    }
-
-    public void accueil(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
-        Parent root = loader.load();
-
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
-
-        // Configurer la nouvelle scène dans une nouvelle fenêtre
-
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("accueil");
-
-        // Afficher la nouvelle fenêtre
-        stage.show();
     }
 
     public void calender(ActionEvent actionEvent) throws IOException {
@@ -413,6 +371,108 @@ public class EquipeClientController {
                     break;
             }
         }
+    }
+
+    @FXML
+    void accueil(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage(); // Créez une nouvelle instance de Stage
+            stage.setScene(new Scene(root));
+            stage.setTitle("GeSport"); // Titre de la fenêtre
+            stage.show();
+
+            // Fermez la fenêtre actuelle si nécessaire
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void compte(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Compte");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionReclamation.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("reclamation");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void tournois(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TournoiClient.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("tournois");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+
+    @FXML
+    void activite(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_activite.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("activite");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+    @FXML
+    void restaurant(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
 }

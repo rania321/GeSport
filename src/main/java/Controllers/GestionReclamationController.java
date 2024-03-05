@@ -1,6 +1,13 @@
 package controllers;
 
+import Services.ServiceResponse;
+import entities.Response;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,6 +30,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 // Inside your controller class
 
@@ -86,7 +95,20 @@ public class GestionReclamationController {
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     int id = 0;
 
+    @FXML
+    private TableView<Map.Entry<String, String>>TableViewR;
+
+    @FXML
+    private TableColumn<Map.Entry<String, String>, String> contenuRes;
+
+    @FXML
+    private TableColumn<Map.Entry<String, String>, String> contenuRec;
+
     ServiceReclamation sr = new ServiceReclamation();
+
+    ServiceResponse ss = new ServiceResponse();
+
+    HashMap<String, String> RecRes = new HashMap<>();
     @FXML
     public void initialize() {
        //tf_stat.setValue("non traitee");
@@ -96,8 +118,25 @@ public class GestionReclamationController {
         });
         showReclamation();
 
-    }
+        showResponse();
 
+    }
+    @FXML
+    void chatbot(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/chatBot.fxml"));
+        Parent weatherRoot = loader.load();
+
+        // Créer une nouvelle scène avec l'interface météo
+        Scene weatherScene = new Scene(weatherRoot);
+
+        // Créer une nouvelle fenêtre pour l'interface météo
+        Stage weatherStage = new Stage();
+        weatherStage.setScene(weatherScene);
+        weatherStage.setTitle("Chatbot");
+
+        // Afficher la nouvelle fenêtre
+        weatherStage.show();
+    }
     public void showReclamation() {
         ArrayList<Reclamation> reclamations = sr.readAll();
         TableViewA.setItems(FXCollections.observableArrayList(reclamations));
@@ -192,12 +231,13 @@ public class GestionReclamationController {
             int reclamationId = selectedReclamation.getIdRec();
             // Navigate to the response page and pass the reclamation ID
             // Implement this method according to your navigation logic
-            navigateToResponsePage(reclamationId);
+            navigateToResponsePage(reclamationId,event);
         }
+
     }
 
 
-    private void navigateToResponsePage(int reclamationId) {
+    private void navigateToResponsePage(int reclamationId, ActionEvent event) {
         try {
             // Load the FXML file for the response page
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GestionResponse.fxml"));
@@ -210,8 +250,9 @@ public class GestionReclamationController {
             responseController.setReclamationId(reclamationId);
 
             // Show the response page
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setTitle("Réservations");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -221,9 +262,20 @@ public class GestionReclamationController {
 
 
     @FXML
-    void backMenu(ActionEvent event) {
-        // Implement your logic for handling the back menu action here
-    }
+    void backMenu(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardBack.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Réservations");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();    }
     @FXML
     void btnAddImgA_clicked(ActionEvent event) {
         // Implement your logic for handling the button click event here
@@ -291,4 +343,112 @@ public class GestionReclamationController {
             System.out.println(ex.getMessage());
         }
     }
+    @FXML
+    public void Accueil(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Compte");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void activite(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_activite.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Activités");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void compte(ActionEvent event) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Profile.fxml"));
+        Parent root=loader.load();
+        Scene scene=new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Profile.fxml");
+        stage.show();
+    }
+
+    @FXML
+    void reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/GestionReclamation.fxml"));
+        Parent root=loader.load();
+        Scene scene=new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Profile.fxml");
+        stage.show();
+    }
+
+    @FXML
+    void restaurant(ActionEvent event) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
+        Parent root=loader.load();
+        Scene scene=new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Profile.fxml");
+        stage.show();
+    }
+
+    @FXML
+    void tournois(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TournoiClient.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Activités");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    public void showResponse() {
+        // Récupérer toutes les réponses
+        ArrayList<Response> responses = ss.readAll();
+
+        // Remplir la map RecRes avec les clés et les valeurs
+        for (Response response : responses) {
+            int id = response.getIdRec();
+            String rec = sr.getRecFromIdRec(id);
+            if (rec != null) {
+                RecRes.put(rec, response.getContenuRep());
+            }
+        }
+        // Convertir la map RecRes en une liste d'entrées (clé, valeur)
+        ObservableList<Map.Entry<String, String>> entryList = FXCollections.observableArrayList(RecRes.entrySet());
+
+        // Lier les colonnes du TableView aux propriétés de Map.Entry
+       // contenuRec.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getKey()));
+      //  contenuRes.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue()));
+
+        // Mettre à jour les données du TableView avec la liste d'entrées
+        //TableViewR.setItems(entryList);
+    }
+
+
 }

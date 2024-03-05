@@ -41,7 +41,7 @@ public class dashboardFrontController {
         // Créer une nouvelle fenêtre pour l'interface météo
         Stage weatherStage = new Stage();
         weatherStage.setScene(weatherScene);
-        weatherStage.setTitle("Votre Titre pour l'Interface Météo");
+        weatherStage.setTitle("Météo");
 
         // Afficher la nouvelle fenêtre
         weatherStage.show();
@@ -109,6 +109,22 @@ public class dashboardFrontController {
         stage.setScene(scene);
         stage.setTitle("Activités");
 
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Activités");
         // Afficher la nouvelle fenêtre
         stage.show();
     }

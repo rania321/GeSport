@@ -15,73 +15,70 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CaptchaController implements Initializable {
-    public Label captchaLabel;
-    public TextField captchaCode;
-    public Label msg;
-    public Button refreshCaptcha;
-    public Button submit;
-    public String Captcha;
-    public String GenerateCaptcha() {
+    @FXML
+    private Label captchaLabel;
 
+    @FXML
+    private TextField captchaCode;
+
+    @FXML
+    private Label msg;
+
+    @FXML
+    private Button refreshCaptcha;
+
+    private String captcha;
+
+    @FXML
+    void onRefreshCaptcha(ActionEvent event) {
+        captcha = generateCaptcha();
+        captchaLabel.setText(captcha);
+        captchaCode.setText("");
+    }
+
+    @FXML
+    void onSubmit(ActionEvent event) {
+        if (captchaCode.getText().equalsIgnoreCase(captcha)) {
+            msg.setText("You have entered the correct code!");
+            msg.setTextFill(Color.GREEN);
+
+            // Fermer la fenêtre modale du captcha
+            Stage stage = (Stage) captchaCode.getScene().getWindow();
+            stage.close();
+        } else {
+            msg.setText("You have entered the wrong code");
+            msg.setTextFill(Color.RED);
+            captcha = generateCaptcha();
+            captchaLabel.setText(captcha);
+            captchaCode.setText("");
+        }
+    }
+
+    private String generateCaptcha() {
         char[] data = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
                 'm', 'n', 'o', 'p', 'q', 'r', 's','t', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B',
                 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
                 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-        int max = 36;
-        String captcha="";
+        int max = data.length - 1;
         int min = 0;
-        for(int i =0;i<6;i++) {
-            int rand = (int)Math.floor(Math.random()*(max-min+1)+min);
-            captcha+=data[rand];
+        StringBuilder captcha = new StringBuilder();
+
+        for (int i = 0; i < 6; i++) {
+            int rand = (int) Math.floor(Math.random() * (max - min + 1) + min);
+            captcha.append(data[rand]);
         }
-        System.out.println(captcha);
-        return captcha;
 
-    }
-
-    @FXML
-    void onRefreshCaptcha(ActionEvent e) {
-        Captcha = GenerateCaptcha();
-        captchaLabel.setText(Captcha);
-        System.out.println(Captcha);
-        captchaCode.setText("");
-    }
-
-    @FXML
-    void onSubmit(ActionEvent event) {/*
-        if(captchaCode.getText().equals(String.valueOf(Captcha))){
-            msg.setText("You have entered correct code!");
-            msg.setTextFill(Color.GREEN);
-        }else{
-            msg.setText("You have entered wrong");
-            msg.setTextFill(Color.RED);
-            Captcha = GenerateCaptcha();
-            captchaLabel.setText(Captcha);
-            captchaCode.setText("");
-        }*/
-        if (captchaCode.getText().equalsIgnoreCase(Captcha)) {
-            msg.setText("You have entered correct code!");
-            msg.setTextFill(Color.GREEN);
-
-            // Fermer la fenêtre modale du captcha
-            Stage stage = (Stage) captchaCode.getScene().getWindow(); // Récupérer la fenêtre modale actuelle
-            stage.close(); // Fermer la fenêtre modale
-        } else {
-            msg.setText("You have entered wrong");
-            msg.setTextFill(Color.RED);
-            Captcha = GenerateCaptcha();
-            captchaLabel.setText(Captcha);
-            captchaCode.setText("");
-        }
+        System.out.println(captcha.toString());
+        return captcha.toString();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/refresh.png")).toExternalForm());
         refreshCaptcha.setGraphic(imageView);
-        String Captcha = GenerateCaptcha();
-        captchaLabel.setText(Captcha);
-    }
 
+        captcha = generateCaptcha();
+        captchaLabel.setText(captcha);
+    }
 }

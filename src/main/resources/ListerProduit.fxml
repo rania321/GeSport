@@ -35,7 +35,7 @@
             <Button fx:id="search" layoutX="143.0" layoutY="15.0" mnemonicParsing="false" onAction="#rechercheProduit" prefHeight="25.0" prefWidth="36.0" styleClass="transparent" stylesheets="@../java/values/style.css" />
             <TextField fx:id="barrerecherche" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="129.0" />
          </children></AnchorPane>
-      <Button fx:id="activité" layoutX="516.0" layoutY="35.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
+      <Button fx:id="activite" layoutX="516.0" layoutY="35.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>

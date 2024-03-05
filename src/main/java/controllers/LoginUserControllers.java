@@ -144,6 +144,7 @@ public class LoginUserControllers {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage(); // Créez une nouvelle instance de Stage
+            //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Interface utilisateur"); // Titre de la fenêtre
             stage.show();
@@ -424,12 +425,21 @@ public class LoginUserControllers {
 
     private void showNotification() {
         try {
-            Image image = new Image("/notification.png");
+            Image originalImage = new Image("/notification.png");
 
+            // Redimensionner l'image à la taille souhaitée (par exemple, 50x50)
+            double targetWidth = 50;
+            double targetHeight = 50;
+
+            ImageView resizedImageView = new ImageView(originalImage);
+            resizedImageView.setFitWidth(targetWidth);
+            resizedImageView.setFitHeight(targetHeight);
+
+            // Utiliser l'image redimensionnée dans la notification
             Notifications notifications = Notifications.create();
-            notifications.graphic(new ImageView(image));
-            notifications.text("Donation added successfully");
-            notifications.title("Success Message");
+            notifications.graphic(resizedImageView);
+            notifications.text("Bienvenue");
+            notifications.title("Salut");
             notifications.hideAfter(Duration.seconds(4));
             notifications.show();
         } catch (Exception e) {

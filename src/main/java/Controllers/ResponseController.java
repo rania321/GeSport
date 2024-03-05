@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -147,8 +148,21 @@ public class ResponseController {
         alert.showAndWait();
     }
 
-    public void backMenu(ActionEvent actionEvent) {
-    }
+    @FXML
+    void backMenu(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardBack.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Réservations");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();    }
 
     public void toReservation(ActionEvent actionEvent) {
     }
@@ -167,20 +181,21 @@ public class ResponseController {
         }
     }
 
-    public void reclamation(ActionEvent event) {
-        try {
-            // Load the FXML file for the response page
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GestionReclamationAdmin.fxml"));
+    public void reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionReclamationAdmin.fxml"));
+        Parent root = loader.load();
 
-            Parent root = fxmlLoader.load();
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
 
-            // Get the controller of the response page// Show the response page
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle the exception if loading the FXML file fails
-        }
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Réservations");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
+
+
 }

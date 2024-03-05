@@ -11,18 +11,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterProduitController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterProduitController">
    <children>
-      <ImageView fitHeight="175.0" fitWidth="1047.0" layoutX="258.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="730.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../xampp/htdocs/image/gesbuv.png" />
+            <Image url="@img/listepro.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="257.0" layoutY="109.0" prefHeight="691.0" prefWidth="1047.0" styleClass="white-bg" stylesheets="@../java/values/style.css" />
-      <AnchorPane prefHeight="800.0" prefWidth="258.0" styleClass="side_ankerpane" stylesheets="@../java/values/style2.css" />
       <!--____________________________________________DASHBOARD__________________________________________________-->
 
-      <Button fx:id="ButtonAccueil" layoutX="71.0" layoutY="241.0" mnemonicParsing="false" onAction="#Home" prefHeight="34.0" prefWidth="83.0" stylesheets="@../java/values/style.css" text="Accueil" textFill="WHITE">
+      <Button fx:id="ButtonAccueil" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#Home" prefHeight="74.0" prefWidth="83.0" stylesheets="@../java/values/style.css" textFill="WHITE">
          <styleClass>
             <String fx:value="transparent" />
             <String fx:value="shadow2" />
@@ -31,27 +29,7 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Button>
-      <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="43.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../xampp/htdocs/image/home-4-fill (1).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="43.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../xampp/htdocs/image/stack-line.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="44.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../xampp/htdocs/image/stack-line.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="25.0" layoutX="43.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../xampp/htdocs/image/add-circle-fill.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="ButtonAjouterP" layoutX="68.0" layoutY="336.0" mnemonicParsing="false" onAction="#ajP" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Ajouter Produit" textFill="WHITE">
+      <Button fx:id="ButtonAjouterP" layoutX="20.0" layoutY="295.0" mnemonicParsing="false" onAction="#ajP" prefHeight="46.0" prefWidth="72.0" stylesheets="@../java/values/style.css" textFill="WHITE">
          <styleClass>
             <String fx:value="transparent" />
             <String fx:value="shadow2" />
@@ -60,7 +38,7 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonListeP" layoutX="70.0" layoutY="288.0" mnemonicParsing="false" onAction="#listP" prefHeight="34.0" prefWidth="124.0" stylesheets="@../java/values/style.css" text="Liste produit" textFill="WHITE">
+      <Button fx:id="ButtonListeP" layoutX="24.0" layoutY="202.0" mnemonicParsing="false" onAction="#listP" prefHeight="46.0" prefWidth="64.0" stylesheets="@../java/values/style.css" textFill="WHITE">
          <styleClass>
             <String fx:value="transparent" />
             <String fx:value="shadow2" />
@@ -69,7 +47,7 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonListeV" layoutX="68.0" layoutY="385.0" mnemonicParsing="false" onAction="#listV" prefHeight="34.0" prefWidth="153.0" stylesheets="@../java/values/style.css" text="Lister les ventes" textFill="WHITE">
+      <Button fx:id="ButtonListeV" layoutX="21.0" layoutY="386.0" mnemonicParsing="false" onAction="#listV" prefHeight="55.0" prefWidth="72.0" stylesheets="@../java/values/style.css" textFill="WHITE">
          <styleClass>
             <String fx:value="transparent" />
             <String fx:value="shadow2" />
@@ -78,7 +56,7 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonstatistiqueP" layoutX="68.0" layoutY="431.0" mnemonicParsing="false" onAction="#showStatP" prefHeight="34.0" prefWidth="124.0" stylesheets="@../java/values/style.css" text="Statistiques" textFill="WHITE">
+      <Button fx:id="buttonstatistiqueP" layoutX="18.0" layoutY="480.0" mnemonicParsing="false" onAction="#showStatP" prefHeight="55.0" prefWidth="72.0" stylesheets="@../java/values/style.css" textFill="WHITE">
          <styleClass>
             <String fx:value="transparent" />
             <String fx:value="shadow2" />
@@ -87,81 +65,69 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Button>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="44.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../xampp/htdocs/image/bar-chart-fill.png" />
-         </image></ImageView>
-      <AnchorPane layoutX="380.0" layoutY="137.0" prefHeight="497.0" prefWidth="738.0" stylesheets="@../java/values/style.css">
-         <children>
-            <Label layoutX="224.0" layoutY="14.0" prefHeight="65.0" prefWidth="303.0" text="AJOUTER UN PRODUIT" textFill="#f9b13d">
-               <font>
-                  <Font name="Calibri Bold" size="32.0" />
-               </font>
-               <padding>
-                  <Insets top="30.0" />
-               </padding>
-            </Label>
-            <Label alignment="CENTER" layoutX="177.0" layoutY="122.0" prefHeight="13.0" prefWidth="52.0" text="Nom :" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nomtf" layoutX="300.0" layoutY="120.0" prefHeight="25.0" prefWidth="303.0" promptText="Nom.." stylesheets="@../java/values/style.css">
-               <styleClass>
-                  <String fx:value="white-bg" />
-                  <String fx:value="shadow2" />
-               </styleClass>
-            </TextField>
-            <Label layoutX="183.0" layoutY="170.0" prefHeight="27.0" prefWidth="158.0" text="Prix : " textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="prixtf" layoutX="300.0" layoutY="171.0" prefHeight="25.0" prefWidth="303.0" promptText="En dinar" stylesheets="@../java/values/style.css">
-               <styleClass>
-                  <String fx:value="white-bg" />
-                  <String fx:value="shadow2" />
-               </styleClass>
-            </TextField>
-            <Label layoutX="182.0" layoutY="222.0" prefHeight="27.0" prefWidth="114.0" text="Quantité :   " textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="qtf" alignment="BOTTOM_LEFT" layoutX="300.0" layoutY="223.0" prefHeight="25.0" prefWidth="303.0" promptText="Stock.." styleClass="white-bg" stylesheets="@../java/values/style.css" />
-            <Label layoutX="182.0" layoutY="276.0" prefHeight="21.0" prefWidth="99.0" text="Description :" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="desctf" layoutX="300.0" layoutY="274.0" prefHeight="25.0" prefWidth="303.0" promptText="Description.." styleClass="white-bg" stylesheets="@../java/values/style.css" />
-            <Label layoutX="182.0" layoutY="326.0" prefHeight="21.0" prefWidth="83.0" text="Image :" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="imagetf" layoutX="300.0" layoutY="324.0" prefHeight="25.0" prefWidth="303.0" promptText="URL de l'image.." styleClass="white-bg" stylesheets="@../java/values/style.css" />
-            <Label layoutX="183.0" layoutY="376.0" prefHeight="21.0" prefWidth="181.0" text="Réference :" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="referencetf" layoutX="300.0" layoutY="374.0" prefHeight="25.0" prefWidth="303.0" promptText="Réference" styleClass="white-bg" stylesheets="@../java/values/style.css" />
-            <Button fx:id="boutonajp" layoutX="599.0" layoutY="437.0" mnemonicParsing="false" onAction="#ajouterp" prefHeight="25.0" prefWidth="101.0" text="Ajouter" textFill="#fcfcfc">
-               <stylesheets>
-                  <URL value="@values/style2.css" />
-                  <URL value="@../java/values/style.css" />
-               </stylesheets>
-               <styleClass>
-                  <String fx:value="shadow" />
-                  <String fx:value="search-button2" />
-               </styleClass>
-            </Button>
-         </children>
+      <Label layoutX="549.0" layoutY="145.0" prefHeight="65.0" prefWidth="303.0" text="AJOUTER UN PRODUIT" textFill="#f9b13d">
+         <font>
+            <Font name="Calibri Bold" size="32.0" />
+         </font>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER" layoutX="450.0" layoutY="256.0" prefHeight="13.0" prefWidth="52.0" text="Nom :" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nomtf" layoutX="572.0" layoutY="254.0" prefHeight="25.0" prefWidth="303.0" promptText="Nom.." stylesheets="@../java/values/style.css">
          <styleClass>
-            <String fx:value="table-view" />
+            <String fx:value="white-bg" />
             <String fx:value="shadow2" />
          </styleClass>
-      </AnchorPane>
+      </TextField>
+      <TextField fx:id="prixtf" layoutX="572.0" layoutY="305.0" prefHeight="25.0" prefWidth="303.0" promptText="En dinar" stylesheets="@../java/values/style.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="shadow2" />
+         </styleClass>
+      </TextField>
+      <TextField fx:id="qtf" alignment="BOTTOM_LEFT" layoutX="572.0" layoutY="366.0" prefHeight="25.0" prefWidth="303.0" promptText="Stock.." styleClass="white-bg" stylesheets="@../java/values/style.css" />
+      <TextField fx:id="desctf" layoutX="572.0" layoutY="418.0" prefHeight="25.0" prefWidth="303.0" promptText="Description.." styleClass="white-bg" stylesheets="@../java/values/style.css" />
+      <TextField fx:id="imagetf" layoutX="572.0" layoutY="473.0" prefHeight="25.0" prefWidth="303.0" promptText="URL de l'image.." styleClass="white-bg" stylesheets="@../java/values/style.css" />
+      <TextField fx:id="referencetf" layoutX="572.0" layoutY="523.0" prefHeight="25.0" prefWidth="303.0" promptText="Réference" styleClass="white-bg" stylesheets="@../java/values/style.css" />
+      <Button fx:id="boutonajp" layoutX="959.0" layoutY="593.0" mnemonicParsing="false" onAction="#ajouterp" prefHeight="25.0" prefWidth="101.0" text="Ajouter" textFill="#fcfcfc">
+         <stylesheets>
+            <URL value="@values/style2.css" />
+            <URL value="@../java/values/style.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="search-button2" />
+         </styleClass>
+      </Button>
+      <Label layoutX="456.0" layoutY="304.0" prefHeight="27.0" prefWidth="83.0" text="Prix : " textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="456.0" layoutY="365.0" prefHeight="27.0" prefWidth="83.0" text="Quantité :   " textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="457.0" layoutY="420.0" prefHeight="21.0" prefWidth="99.0" text="Description :" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="456.0" layoutY="475.0" prefHeight="21.0" prefWidth="83.0" text="Image :" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="457.0" layoutY="525.0" prefHeight="21.0" prefWidth="91.0" text="Réference :" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

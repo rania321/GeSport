@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutDmController">
    <children>
@@ -14,13 +15,45 @@
             <Image url="@img/dossier.png" />
          </image>
       </ImageView>
+      <AnchorPane layoutX="452.0" layoutY="298.0" prefHeight="297.0" prefWidth="399.0" style="-fx-background-color: ffffff;" />
       <ListView fx:id="listDm" layoutX="459.0" layoutY="420.0" prefHeight="37.0" prefWidth="382.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-width: 1px;" />
       <Button fx:id="ModifierDm" layoutX="159.0" layoutY="587.0" mnemonicParsing="false" onAction="#ModifierDm" prefHeight="53.0" prefWidth="56.0" styleClass="transparent" stylesheets="@register.css" />
       <Button fx:id="AjoutDm" layoutX="227.0" layoutY="586.0" mnemonicParsing="false" onAction="#AjoutDm" prefHeight="53.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
       <Button fx:id="SupprimerDm" layoutX="81.0" layoutY="582.0" mnemonicParsing="false" onAction="#SupprimerDm" prefHeight="63.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
-      <Button layoutX="289.0" layoutY="37.0" mnemonicParsing="false" onAction="#ACCueil" prefHeight="26.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
+      <Button layoutX="289.0" layoutY="37.0" mnemonicParsing="false" onAction="#accueil" prefHeight="26.0" prefWidth="62.0" styleClass="transparent" stylesheets="@register.css" />
       <TextField fx:id="ageDM" layoutX="179.0" layoutY="347.0" promptText="age" style="-fx-background-radius: 50; -fx-background-color: ffffff;" />
       <TextField fx:id="tailleDM" layoutX="176.0" layoutY="498.0" promptText="taille" style="-fx-background-radius: 50; -fx-background-color: ffffff;" />
       <TextField fx:id="PoidsDM" layoutX="176.0" layoutY="426.0" promptText="Poids" style="-fx-background-color: ffffff; -fx-background-radius: 50;" />
+      <AnchorPane layoutX="972.0" layoutY="28.0" prefHeight="63.0" prefWidth="239.0" style="-fx-background-color: ffffff;" />
+      <Button layoutX="276.0" layoutY="42.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="380.0" layoutY="42.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="603.0" layoutY="42.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="729.0" layoutY="42.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="851.0" layoutY="42.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="108.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="499.0" layoutY="42.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

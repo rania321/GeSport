@@ -1,9 +1,9 @@
 package controllers;
 
-import entities.Equipe;
-import entities.Joueur;
-import entities.Tournoi;
-import entities.User;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import entities.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +27,7 @@ import service.JoueurService;
 import service.TournoiService;
 import service.UserService;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -280,6 +281,7 @@ public class EquipeAdminController {
                 alert.setHeaderText(null);
                 alert.setContentText("La liste des joueurs pour cette équipe est vide.");
                 alert.showAndWait();
+                showJoueurs(selectedEquipe.getIdE());
             }
         }else {
             // Si aucune équipe n'est sélectionnée, masquer la table des joueurs, le bouton et le champ de texte
@@ -408,6 +410,7 @@ public class EquipeAdminController {
 
         stage.show();
     }
+
 
     @FXML
     void clearRadioButtons() {
@@ -672,6 +675,101 @@ public class EquipeAdminController {
 
 
     }
+
+    public void calender(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendar.fxml"));
+        Parent root = loader.load();
+
+        CalendarController controller = loader.getController();
+
+
+        // Créer une nouvelle scène avec la vue chargée
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Calendrier des Tournoi");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void genererEquipe(ActionEvent event) {
+// Create a confirmation alert
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText("Voulez-vous générer les equipes ?");
+        confirmationAlert.setContentText("Appuyez sur OK pour générer les equipes.");
+
+        // Show the confirmation alert and wait for the user's response
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        // Check if the user clicked OK
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // User wants to generate the bill
+            String fileName = "Equipes.pdf";
+            String cn = " ";
+            String cp = " ";
+            String cq = " ";
+            List<Joueur> cl = new ArrayList<>();
+
+            int index = 0;
+
+            try (FileOutputStream fileOutputStream = new FileOutputStream(fileName)) {
+                // Création d'un document
+                Document document = new Document();
+                // Création d'un écrivain PDF associé au document
+                PdfWriter.getInstance(document, fileOutputStream);
+
+                // Ouverture du document pour écrire
+                document.open();
+
+                document.add(new Paragraph("Bienvenue chez GesPort"));
+                document.add(new Paragraph());
+                document.add(new Paragraph("Votre PDF :"));
+                document.add(new Paragraph());
+                document.add(new Paragraph());
+                List<Equipe> equipes =  es.readAll();
+                while (index < equipes.size()) {
+                    Equipe equipe = equipes.get(index);
+                    String nomE = equipe.getNomE();
+                    String nomT = equipe.getTournoi().getNomT();
+                    String stat = equipe.getStatutE();
+
+
+                    cn= "Equipe n"+ index + ": "+ nomE + " \n" ;
+                    document.add(new Paragraph(cn));
+                    document.add(new Paragraph());
+                    cp= "Tournoi : "+ nomT + " \n" ;
+
+                    document.add(new Paragraph(cp));
+                    document.add(new Paragraph());
+
+
+                    cq= "statut : "+ stat + " \n" ;
+
+                    document.add(new Paragraph(cq));
+                    document.add(new Paragraph());
+
+                    String cm = "-----------------------------";
+                    document.add(new Paragraph(cm));
+                    document.add(new Paragraph());
+                    index++;
+                }
+
+                document.add(new Paragraph(""));
+                document.close();
+                System.out.println("PDF généré avec succès.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            // User canceled the operation
+            System.out.println("Génération de l'equipe annulée par l'admin.");
+        }
+    }
+
+
 }
 
 

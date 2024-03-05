@@ -22,7 +22,7 @@ public class ServiceResponse implements IService<Response> {
 
     @Override
     public void add(Response response) {
-        String query = "INSERT INTO response (idRec, dateRep, contenuRep) VALUES (?, ?, ?)";
+        String query = "INSERT INTO response (idRec, DateRep, contenuRep) VALUES (?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, response.getIdRec());

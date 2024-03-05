@@ -2,10 +2,7 @@ package controller;
 
 
         import controllers.LoginUserControllers;
-        import entities.Activite;
-        import entities.Data;
-        import entities.Reservation;
-        import entities.User;
+        import entities.*;
         import javafx.collections.FXCollections;
         import javafx.collections.ObservableList;
         import javafx.event.ActionEvent;
@@ -223,6 +220,7 @@ public class add_reservationController {
         }
 
        // idA = Artwork_Services.find_idroom(nameRoom) ;
+        TextToSpeech.main(new String[]{});
         rs.add(new Reservation(loggedInUser,activite,date,heure,"En cours"));
 
         // Ajouter l'heure réservée à la liste d'heures réservées spécifique à l'utilisateur
@@ -285,10 +283,26 @@ public class add_reservationController {
 
     }
 
+    @FXML
+    void accueil(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage(); // Créez une nouvelle instance de Stage
+            stage.setScene(new Scene(root));
+            stage.setTitle("Interface utilisateur"); // Titre de la fenêtre
+            stage.show();
+
+            // Fermez la fenêtre actuelle si nécessaire
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
-    void accueil(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+    void compte(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
         Parent root = loader.load();
 
         // Créer une nouvelle scène
@@ -297,11 +311,46 @@ public class add_reservationController {
         // Configurer la nouvelle scène dans une nouvelle fenêtre
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setTitle("Accueil");
+        stage.setTitle("Compte");
 
         // Afficher la nouvelle fenêtre
         stage.show();
     }
+
+    @FXML
+    void reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionReclamation.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
+    @FXML
+    void tournois(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TournoiClient.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
+    }
+
 
     @FXML
     void activite(ActionEvent event) throws IOException {
@@ -314,30 +363,26 @@ public class add_reservationController {
         // Configurer la nouvelle scène dans une nouvelle fenêtre
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setTitle("Activités");
+        stage.setTitle("Restaurant");
 
         // Afficher la nouvelle fenêtre
         stage.show();
     }
-
     @FXML
-    void compte(ActionEvent event) {
+    void restaurant(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
+        Parent root = loader.load();
 
-    }
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
 
-    @FXML
-    void reclamation(ActionEvent event) {
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
 
-    }
-
-    @FXML
-    void restaurant(ActionEvent event) {
-
-    }
-
-    @FXML
-    void tournois(ActionEvent event) {
-
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
 }

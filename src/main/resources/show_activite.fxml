@@ -58,5 +58,6 @@
       <Button layoutX="1022.0" layoutY="182.0" maxWidth="139.0" mnemonicParsing="false" onAction="#mesreservations" prefHeight="30.0" prefWidth="139.0" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Mes Réservations" />
       <TextField fx:id="searchByTypeTF" layoutX="158.0" layoutY="185.0" prefHeight="25.0" prefWidth="180.0" promptText="search" />
       <Button layoutX="899.0" layoutY="183.0" maxWidth="139.0" mnemonicParsing="false" onAction="#mesfavoris" prefHeight="30.0" prefWidth="139.0" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Favoris" />
+      <AnchorPane layoutX="972.0" layoutY="25.0" prefHeight="62.0" prefWidth="221.0" style="-fx-background-color: ffffff;" />
    </children>
 </AnchorPane>

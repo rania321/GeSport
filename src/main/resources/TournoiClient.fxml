@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,64 +16,71 @@
     <children>
         <ImageView fitHeight="800.0" fitWidth="1300.0">
             <image>
-                <Image url="@img/front.jpg" />
+                <Image url="@img/tournoisfrontListeTournois.png" />
             </image>
         </ImageView>
-        <AnchorPane layoutX="283.0" layoutY="106.0" prefHeight="695.0" prefWidth="742.0" stylesheets="@style.css">
-            <styleClass>
-                <String fx:value="white-bg" />
-                <String fx:value="radius" />
-            </styleClass>
-        </AnchorPane>
-        <AnchorPane layoutX="198.0" layoutY="166.0" prefHeight="631.0" prefWidth="966.0" stylesheets="@style.css">
-            <styleClass>
-                <String fx:value="white-bg" />
-                <String fx:value="radius" />
-                <String fx:value="shadow" />
-            </styleClass>
-            <children>
-                <TableView fx:id="tournoiTable" layoutX="230.0" layoutY="67.0" onMouseClicked="#selection" prefHeight="336.0" prefWidth="631.0">
-                    <columns>
-                        <TableColumn fx:id="nomColumn" prefWidth="167.99996948242188" text="Nom" />
-                        <TableColumn fx:id="dateDebutColumn" prefWidth="80.00003051757812" text="Date Début" />
-                        <TableColumn fx:id="dateFinColumn" prefWidth="77.5999755859375" text="Date Fin" />
-                        <TableColumn fx:id="descriptionColumn" prefWidth="247.199951171875" text="Description" />
-                        <TableColumn fx:id="statutColumn" prefWidth="50.4000244140625" text="Statut" />
-                    </columns>
-                </TableView>
-                <Button layoutX="115.0" layoutY="395.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="58.0" prefWidth="104.0" styleClass="but" stylesheets="@style.css" text="S'inscrire" textFill="#202563">
-                    <font>
-                        <Font name="Yu Gothic Regular" size="16.0" />
-                    </font>
-                </Button>
-                <WebView fx:id="mapWebView" layoutX="328.0" layoutY="413.0" prefHeight="206.0" prefWidth="514.0" />
-                <Button layoutX="125.0" layoutY="304.0" mnemonicParsing="false" onAction="#calender" prefHeight="66.0" prefWidth="75.0" styleClass="transparent" stylesheets="@style.css">
-                    <graphic>
-                        <ImageView fitHeight="64.0" fitWidth="71.0">
-                            <image>
-                                <Image url="@img/calendericon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <ImageView fitHeight="28.0" fitWidth="34.0" layoutX="277.0" layoutY="23.0">
-                    <image>
-                        <Image url="@img/search.png" />
-                    </image>
-                </ImageView>
-                <ComboBox fx:id="comboBoxTri" layoutX="747.0" layoutY="23.0" onAction="#onTriComboBoxChanged" prefHeight="26.0" prefWidth="110.0" promptText="tri par" />
-            </children>
-        </AnchorPane>
-        <ImageView fitHeight="215.0" fitWidth="351.0" layoutX="143.0" layoutY="614.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@img/tournoiC.jpg" />
-            </image>
-        </ImageView>
-        <Button layoutX="269.0" layoutY="39.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+        <TextField fx:id="rechercheTextField" layoutX="119.0" layoutY="448.0" prefHeight="20.0" prefWidth="186.0" />
+        <Button layoutX="83.0" layoutY="320.0" maxHeight="79.0" maxWidth="277.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="79.0" prefWidth="277.0" styleClass="transparent" stylesheets="@style.css" textFill="#202563">
             <font>
-                <Font name="Walkway Bold" size="17.0" />
+                <Font name="Yu Gothic Regular" size="16.0" />
             </font>
         </Button>
-        <TextField fx:id="rechercheTextField" layoutX="513.0" layoutY="192.0" prefHeight="26.0" prefWidth="195.0" />
+        <WebView fx:id="mapWebView" layoutX="773.0" layoutY="222.0" prefHeight="426.0" prefWidth="419.0" />
+        <ComboBox fx:id="comboBoxTri" layoutX="562.0" layoutY="449.0" onAction="#onTriComboBoxChanged" prefHeight="26.0" prefWidth="110.0" promptText="tri par" />
+        <TableView fx:id="tournoiTable" layoutX="118.0" layoutY="481.0" onMouseClicked="#selection" prefHeight="199.0" prefWidth="558.0" styleClass="transparent" stylesheets="@style.css">
+            <columns>
+                <TableColumn fx:id="nomColumn" prefWidth="116.79998779296875" text="Nom" />
+                <TableColumn fx:id="dateDebutColumn" prefWidth="108.0" text="Date Début" />
+                <TableColumn fx:id="dateFinColumn" prefWidth="102.39996337890625" text="Date Fin" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="119.2000732421875" text="Localisation" />
+                <TableColumn fx:id="statutColumn" prefWidth="104.0" text="Statut" />
+            </columns>
+        </TableView>
+        <AnchorPane layoutX="973.0" layoutY="10.0" prefHeight="100.0" prefWidth="223.0" style="-fx-background-color: ffffff;">
+            <children>
+              <Button layoutX="79.0" layoutY="24.0" mnemonicParsing="false" onAction="#calender" prefHeight="50.0" prefWidth="69.0" styleClass="transparent" stylesheets="@style.css">
+               <graphic>
+                      <ImageView fitHeight="56.0" fitWidth="62.0">
+                          <image>
+                              <Image url="@img/calendrier.png" />
+                          </image>
+                      </ImageView>
+               </graphic>
+            </Button>
+            </children>
+            <effect>
+                <ColorAdjust />
+            </effect>
+        </AnchorPane>
+      <Button layoutX="276.0" layoutY="39.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="380.0" layoutY="39.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="603.0" layoutY="39.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="729.0" layoutY="39.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="851.0" layoutY="39.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="108.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="499.0" layoutY="39.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

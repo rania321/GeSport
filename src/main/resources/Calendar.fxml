@@ -11,18 +11,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #0f90b0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CalendarController">
-    <ImageView fitHeight="800.0" fitWidth="1308.0" layoutX="-4.0">
+<AnchorPane prefHeight="730.0" prefWidth="1300.0" style="-fx-background-color: #0f90b0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CalendarController">
+    <ImageView fitHeight="800.0" fitWidth="1308.0" layoutX="-4.0" preserveRatio="true">
         <image>
-            <Image url="@img/calendarBack.png" />
+            <Image url="@img/cal.png" />
         </image>
     </ImageView>
 
-    <FlowPane fx:id="calendar" hgap="10.0" layoutX="366.0" layoutY="349.0" prefHeight="378.0" prefWidth="859.0" vgap="5.0">
+    <FlowPane fx:id="calendar" hgap="10.0" layoutX="282.0" layoutY="262.0" prefHeight="378.0" prefWidth="859.0" vgap="5.0">
         <effect>
             <ColorAdjust brightness="-0.04" contrast="0.09" hue="0.13" saturation="0.19" />
         </effect></FlowPane>
-    <HBox alignment="CENTER" layoutX="512.0" layoutY="235.0" prefHeight="51.0" prefWidth="491.0" spacing="5.0">
+    <HBox alignment="CENTER" layoutX="466.0" layoutY="144.0" prefHeight="51.0" prefWidth="491.0" spacing="5.0">
         <children>
             <Button mnemonicParsing="false" onAction="#backOneMonth" prefHeight="51.0" prefWidth="64.0" styleClass="plus" stylesheets="@style.css" text="&lt;">
                 <font>
@@ -49,7 +49,7 @@
                 </font></Button>
         </children>
     </HBox>
-    <HBox alignment="CENTER" layoutX="379.0" layoutY="298.0" prefHeight="32.0" prefWidth="791.0" spacing="85.0">
+    <HBox alignment="CENTER" layoutX="290.0" layoutY="208.0" prefHeight="32.0" prefWidth="791.0" spacing="85.0">
         <children>
             <Text fill="#0b0363" strokeType="OUTSIDE" strokeWidth="0.0" text="Dimanche " textAlignment="CENTER" wrappingWidth="70.04922580718994">
                 <font>
@@ -84,17 +84,17 @@
             <Insets right="9.0" />
         </padding>
     </HBox>
-    <Button layoutX="20.0" layoutY="235.0" mnemonicParsing="false" onAction="#toEquipe" prefHeight="53.0" prefWidth="211.0" styleClass="transparent" stylesheets="@style.css">
+    <Button layoutX="15.0" layoutY="290.0" mnemonicParsing="false" onAction="#toEquipe" prefHeight="53.0" prefWidth="70.0" styleClass="transparent" stylesheets="@style.css">
         <font>
             <Font name="Arial Black" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="20.0" layoutY="33.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="53.0" prefWidth="211.0" styleClass="transparent" stylesheets="@style.css">
+    <Button layoutX="9.0" layoutY="33.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="71.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css">
         <font>
             <Font name="Arial Black" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="28.0" layoutY="186.0" mnemonicParsing="false" onAction="#toTournoi" prefHeight="44.0" prefWidth="200.0" styleClass="transparent" stylesheets="@style.css">
+    <Button layoutX="19.0" layoutY="189.0" mnemonicParsing="false" onAction="#toTournoi" prefHeight="71.0" prefWidth="63.0" styleClass="transparent" stylesheets="@style.css">
         <font>
             <Font name="Arial Black" size="13.0" />
         </font>

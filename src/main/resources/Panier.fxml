@@ -159,7 +159,7 @@
             <Image url="@../../../../../../../xampp/htdocs/image/shopping-basket-fill.png" />
          </image>
       </ImageView>
-      <Button fx:id="activite" layoutX="497.0" layoutY="21.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
+      <Button fx:id="activite" layoutX="497.0" layoutY="21.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
          <font>
             <Font name="Walkway Bold" size="17.0" />
          </font>

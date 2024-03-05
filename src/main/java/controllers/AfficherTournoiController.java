@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -446,6 +447,7 @@ public class AfficherTournoiController {
         stage.show();
     }
 
+
     public void toEquipe(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/EquipeAdmin.fxml"));
         Parent root = loader.load();
@@ -528,6 +530,35 @@ public class AfficherTournoiController {
 
         // Afficher la nouvelle fenêtre
         stage.show();
+    }
+
+    public void statEquipe(ActionEvent actionEvent) throws IOException {
+
+        // Créer une nouvelle instance de StatEquipeController
+        StatEquipeController controller = new StatEquipeController();
+
+        // Charger les données d'équipes
+        EquipeService equipeService = new EquipeService();
+        List<Equipe> equipes = equipeService.readAll();
+
+        // Créer un AnchorPane pour afficher le graphique
+        AnchorPane anchorPane = new AnchorPane();
+
+        // Passer les données au contrôleur avec l'AnchorPane
+        controller.setData(equipes, anchorPane);
+
+        // Créer une nouvelle scène avec l'AnchorPane
+        Scene scene = new Scene(anchorPane);
+
+        // Créer un nouveau stage
+        Stage stage = new Stage();
+        stage.setTitle("Statistiques des équipes");
+        stage.setScene(scene);
+
+        // Afficher le stage
+        stage.show();
+
+
     }
 
 

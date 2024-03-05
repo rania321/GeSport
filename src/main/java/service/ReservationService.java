@@ -377,4 +377,19 @@ public class ReservationService implements IService<Reservation> {
         }
     }
 
+    public int getNombreTotalReservation() {
+        String requete = "SELECT COUNT(*) FROM reservationactivite";
+        try {
+            Statement ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(requete);
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0; // Retourne 0 en cas d'erreur
+    }
+
 }

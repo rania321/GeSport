@@ -217,6 +217,11 @@ public class show_activiteController {
         heartImage.setFitHeight(40);
         addToFavoritesButton.setGraphic(heartImage);
         addToFavoritesButton.setStyle("-fx-background-color: transparent;");
+
+        // Ajouter un label pour afficher le nombre de likes
+        Label likeCountLabel = new Label(getLikeCountText(activite.getIdA()));
+        likeCountLabel.setStyle("-fx-font-size: 14px;");
+
         addToFavoritesButton.setOnAction(event -> {
             selectedActivite = activite;
             ActiviteService activiteService = new ActiviteService();
@@ -245,13 +250,20 @@ public class show_activiteController {
                     throw new RuntimeException(e);
                 }
             }
+
+            // Mettre à jour le texte du label de comptage des likes
+            likeCountLabel.setText(getLikeCountText(activite.getIdA()));
         });
 
-        vbox.getChildren().add(addToFavoritesButton);
-
+        //vbox.getChildren().add(addToFavoritesButton);
+        vbox.getChildren().addAll(addToFavoritesButton, likeCountLabel);
         vbox.setAlignment(Pos.CENTER);
             return vbox;
 
+    }
+    private String getLikeCountText(int activiteId) {
+        int likeCount = as.getLikeCountForActivite(activiteId);
+        return "Likes: " + likeCount;
     }
 
     private void updateFavoritesButton(Button button, String imagePath) {
@@ -305,8 +317,25 @@ public class show_activiteController {
     }
 
     @FXML
-    void accueil(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+    void accueil(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage(); // Créez une nouvelle instance de Stage
+            stage.setScene(new Scene(root));
+            stage.setTitle("Interface utilisateur"); // Titre de la fenêtre
+            stage.show();
+
+            // Fermez la fenêtre actuelle si nécessaire
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void compte(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
         Parent root = loader.load();
 
         // Créer une nouvelle scène
@@ -315,30 +344,78 @@ public class show_activiteController {
         // Configurer la nouvelle scène dans une nouvelle fenêtre
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.setTitle("Réservations");
+        stage.setTitle("Compte");
 
         // Afficher la nouvelle fenêtre
         stage.show();
     }
 
     @FXML
-    void compte(ActionEvent event) {
+    void reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionReclamation.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
     @FXML
-    void reclamation(ActionEvent event) {
+    void tournois(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TournoiClient.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
-    @FXML
-    void restaurant(ActionEvent event) {
 
+    @FXML
+    void activite(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/show_activite.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
-
     @FXML
-    void tournois(ActionEvent event) {
+    void restaurant(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccueilProduit.fxml"));
+        Parent root = loader.load();
 
+        // Créer une nouvelle scène
+        Scene scene = new Scene(root);
+
+        // Configurer la nouvelle scène dans une nouvelle fenêtre
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Restaurant");
+
+        // Afficher la nouvelle fenêtre
+        stage.show();
     }
 
 }

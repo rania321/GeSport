@@ -30,32 +30,38 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button layoutX="382.0" layoutY="41.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
-         <font>
-            <Font name="Walkway Bold" size="17.0" />
-         </font>
-      </Button>
-      <Button layoutX="279.0" layoutY="41.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
-         <font>
-            <Font name="Walkway Bold" size="17.0" />
-         </font>
-      </Button>
-      <Button layoutX="604.0" layoutY="41.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
-         <font>
-            <Font name="Walkway Bold" size="17.0" />
-         </font>
-      </Button>
-      <Button layoutX="730.0" layoutY="41.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
-         <font>
-            <Font name="Walkway Bold" size="17.0" />
-         </font>
-      </Button>
-      <Button layoutX="851.0" layoutY="41.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="108.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
-         <font>
-            <Font name="Walkway Bold" size="17.0" />
-         </font>
-      </Button>
       <Button layoutX="1022.0" layoutY="182.0" maxWidth="139.0" mnemonicParsing="false" onAction="#mesreservations" prefHeight="30.0" prefWidth="139.0" styleClass="round-buttonMenu1" stylesheets="@style.css" text="Mes Réservations" />
       <TextField fx:id="searchByTypeTF" layoutX="158.0" layoutY="185.0" prefHeight="25.0" prefWidth="180.0" promptText="search" />
+      <Button layoutX="270.0" layoutY="41.0" mnemonicParsing="false" onAction="#accueil" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="374.0" layoutY="41.0" mnemonicParsing="false" onAction="#compte" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="597.0" layoutY="41.0" mnemonicParsing="false" onAction="#restaurant" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="723.0" layoutY="41.0" mnemonicParsing="false" onAction="#tournois" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="845.0" layoutY="41.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="30.0" prefWidth="108.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="493.0" layoutY="41.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="81.0" styleClass="transparent" stylesheets="@style.css" textFill="#3c3c3c">
+         <font>
+            <Font name="Walkway Bold" size="17.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="967.0" layoutY="31.0" prefHeight="51.0" prefWidth="230.0" style="-fx-background-color: ffffff;" />
    </children>
 </AnchorPane>

@@ -16,7 +16,7 @@
             <Image url="@../../../../../../../xampp/htdocs/image/fondbuvette.png" />
          </image>
         </ImageView>
-        <Button layoutX="492.0" layoutY="24.0" mnemonicParsing="false" onAction="#activité" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
+        <Button layoutX="492.0" layoutY="24.0" mnemonicParsing="false" onAction="#activite" prefHeight="30.0" prefWidth="92.0" styleClass="transparent" stylesheets="@../java/values/style.css" text="  " textFill="#3c3c3c">
             <font>
                 <Font name="Walkway Bold" size="17.0" />
             </font>
