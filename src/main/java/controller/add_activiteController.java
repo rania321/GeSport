@@ -189,7 +189,7 @@ public class add_activiteController {
             alert.showAndWait();
             return;
         }
-        as.add(new Activite(nom,type,dispo,descri,selectedFile.getPath()));
+        as.add(new Activite(nom,type,dispo,descri,selectedFile.getName()));
         // Afficher un message de succès
         Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
         successAlert.setTitle("Message d'information");
@@ -201,25 +201,6 @@ public class add_activiteController {
     }
     @FXML
     void btnAddImgA_clicked(ActionEvent event) {
-       /* Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select an image");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-        );
-
-        selectedFile = fileChooser.showOpenDialog(primaryStage);
-        if(selectedFile!=null) {
-            // Enregistrez l'URL de l'image dans le champ de texte pathimageid
-            pathimgA.setText(selectedFile.getPath());
-
-            // Chargez l'image depuis le fichier sélectionné
-            Image image = new Image(selectedFile.toURI().toString());
-
-
-            // Affichez l'image dans l'ImageView
-            imageViewA.setImage(image);
-        }*/
         FileChooser fileChooser = new FileChooser();
 
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg");
@@ -230,7 +211,19 @@ public class add_activiteController {
 
         if (selectedFile != null) {
             try {
-                String uniqueFileName = UUID.randomUUID().toString()+ selectedFile.getName();
+
+                // Enregistrez l'URL de l'image dans le champ de texte pathimageid
+                pathimgA.setText(selectedFile.getName());
+
+                // Chargez l'image depuis le fichier sélectionné
+                Image image = new Image(selectedFile.toURI().toString());
+                // Display additional information for debugging
+                System.out.println("Selected file path: " + selectedFile.getAbsolutePath());
+
+                // Affichez l'image dans l'ImageView
+                imageViewA.setImage(image);
+
+                String uniqueFileName = selectedFile.getName();
 
                 File destDir = new File("C:\\xampp\\htdocs\\images");
 
@@ -239,16 +232,6 @@ public class add_activiteController {
                 Files.copy(selectedFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
                 this.imageUrl = uniqueFileName;
-                // Enregistrez l'URL de l'image dans le champ de texte pathimageid
-                pathimgA.setText(selectedFile.getPath());
-
-                // Chargez l'image depuis le fichier sélectionné
-                Image image = new Image(selectedFile.toURI().toString());
-
-
-                // Affichez l'image dans l'ImageView
-                imageViewA.setImage(image);
-
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Upload Successful");

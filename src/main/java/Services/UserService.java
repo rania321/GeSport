@@ -144,6 +144,7 @@ import entities.role;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
 
     public class UserService implements Iservice<User> {
         private Connection conn;
@@ -287,7 +288,7 @@ import java.util.List;
             }
             return user;
         }
-        public User login(String email, String password) {
+       /* public User login(String email, String password) {
             String query = "SELECT * FROM user WHERE EmailU = ? AND mdpU = ?";
             try {
                 PreparedStatement pst = conn.prepareStatement(query);
@@ -301,7 +302,27 @@ import java.util.List;
                 e.printStackTrace();
             }
             return null; // Si l'utilisateur n'est pas trouvé ou si les informations de connexion sont incorrectes
-        }
+        }*/
+       public User login(String email, String password) {
+           String query = "SELECT * FROM user WHERE EmailU = ?";
+           try {
+               PreparedStatement pst = conn.prepareStatement(query);
+               pst.setString(1, email);
+               ResultSet rs = pst.executeQuery();
+               if (rs.next()) {
+                   String hashedPassword = rs.getString("mdpU");
+                   // Vérifier si le mot de passe correspond au hachage stocké dans la base de données
+                   if (BCrypt.checkpw(password, hashedPassword)) {
+                       // Le mot de passe est correct, retourner l'utilisateur
+                       return new User(rs.getInt("idU"), rs.getString("NomU"), rs.getString("PrenomU"), rs.getString("EmailU"), rs.getString("mdpU"), role.valueOf(rs.getString("RoleU")));
+                   }
+               }
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+           return null; // Si l'utilisateur n'est pas trouvé ou si les informations de connexion sont incorrectes
+       }
+
 
         // Méthode pour obtenir le rôle de l'utilisateur
         public role getRole(int userId) {

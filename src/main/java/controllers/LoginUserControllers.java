@@ -169,10 +169,10 @@ public class LoginUserControllers {
         openCaptchaInterface(event);
         String email = EmailU.getText();
         String password = PasswordU.getText();
-        String hashedPassword = hashPassword(password);
+        //String hasheddPassword = hashPassword(password);
 
         // Vérifier les informations de connexion
-        User loggedInUser = userService.login(email, hashedPassword);
+        User loggedInUser = userService.login(email, password);
         if (loggedInUser != null) {
             showNotification();
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -208,7 +208,7 @@ public class LoginUserControllers {
         }
     }
 
-    private String hashPassword(String password) {
+   /* private String hashPassword(String password) {
         try {
             // Créez un objet MessageDigest pour l'algorithme de hachage SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -228,7 +228,12 @@ public class LoginUserControllers {
             e.printStackTrace();
             return null;
         }
-    }
+    }*/
+   private String hashPassword(String password) {
+       // Générez le hachage bcrypt du mot de passe
+       String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+       return hashedPassword;
+   }
 
     public String generateCode() {
         // Define characters to be used in the code
@@ -255,6 +260,7 @@ public class LoginUserControllers {
 
 
     public void modifierPassword(String email, String newPassword) {
+        String hashedPassword = hashPassword(newPassword);
         String req = "UPDATE user SET mdpU = ? WHERE EmailU = ?";
         Connection conn = null;
         try {
@@ -265,7 +271,7 @@ public class LoginUserControllers {
             conn = DriverManager.getConnection(url, login, pwd);
 
             PreparedStatement pst = conn.prepareStatement(req);
-            pst.setString(1, newPassword);
+            pst.setString(1,  hashedPassword);
             pst.setString(2, email);
             int rowsAffected = pst.executeUpdate();
             if (rowsAffected > 0) {
@@ -350,13 +356,13 @@ public class LoginUserControllers {
             showAlert(Alert.AlertType.ERROR, "Error", null, "Password must contain at least one uppercase letter and one digit.");
             return;
         }
-        String hashedPassword = hashPassword(newPassword);
+        //String hashedPassword = hashPassword(newPassword);
 
 
         // Update the password in the database
 
         String email = EmailU.getText(); // Assuming you have an emailField for the user's email
-        modifierPassword(email, hashedPassword);
+        modifierPassword(email, newPassword);
 
         // Show success message
         passwordChangeStatusLabel.setText("Password changed successfully.");

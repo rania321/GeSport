@@ -18,6 +18,6 @@ public class TextToSpeech {
         voice.allocate();
 
         // Faire parler la voix
-        voice.speak("Reservation added successfully");
+        voice.speak("Thank you !");
     }
 }

@@ -28,7 +28,7 @@
          </font>
       </Button>
       <Button fx:id="menu" alignment="CENTER" layoutX="17.0" layoutY="29.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="71.0" prefWidth="86.0" styleClass="transparent" stylesheets="@style.css" />
-      <Label fx:id="label1" layoutX="228.0" layoutY="260.0" prefHeight="27.0" prefWidth="138.0" text="Rania Guelmami" textAlignment="RIGHT" textFill="#f9b13d">
+      <Label fx:id="label1" layoutX="237.0" layoutY="263.0" text="Rania Guelmami" textAlignment="RIGHT" textFill="#f9b13d">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
@@ -43,7 +43,7 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="label4" layoutX="1089.0" layoutY="616.0" prefHeight="27.0" prefWidth="104.0" text="2" textAlignment="RIGHT" textFill="#f9b13d">
+      <Label fx:id="label4" layoutX="1179.0" layoutY="619.0" text="2" textAlignment="RIGHT" textFill="#f9b13d">
          <font>
             <Font name="Arial" size="18.0" />
          </font>

@@ -2,6 +2,7 @@ package controllers;
 
 import entities.Panier;
 import entities.Produit;
+import entities.User;
 import entities.Vente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -83,10 +84,22 @@ public class PanierController {
 
     // Pour avoir la date actuelle
     Date utilDate = new Date();
+
+    private static User loggedInUser;
+    public static void setLoggedInUser(User user) {
+        loggedInUser = user;
+    }
+
+    // Méthode pour obtenir l'utilisateur connecté
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
     java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
     public void initialize() {
         setPanierGridPaneList();
+        loggedInUser = LoginUserControllers.getLoggedInUser();
+
     }
 
     private void setPanierGridPaneList() {
@@ -106,91 +119,6 @@ public class PanierController {
             }
         }
     }
-
-    /*private HBox createPanierHBox(Panier panier) {
-        HBox hbox = new HBox(50);  // Espace horizontal entre chaque activité dans une ligne
-        hbox.setPrefSize(609, 124);  // Dimensions spécifiques
-
-        // VBox pour chaque Panier
-        VBox vbox = new VBox();
-        String imageUrl = ps.getImageFromIdProduit(panier.getIdP());
-
-// Convertissez l'URL en une URL absolue
-        File file = new File(imageUrl);
-        String absolutePath = file.toURI().toString();
-
-// Créez l'ImageView à partir de l'URL absolue
-        ImageView imageView = new ImageView(new Image(absolutePath));
-        imageView.setFitWidth(100);  // Ajustez la largeur de l'image selon vos besoins
-        imageView.setPreserveRatio(true);
-        String nompp = ps.getNomFromIdProduit(panier.getIdP());
-        // Label pour afficher le nom du panier
-        Label nomLabel = new Label(nompp);
-        float prixpp = ps.getPrixFromIdProduit(panier.getIdP());
-        // Label pour afficher le prix du panier
-        Label prixLabel = new Label(Float.toString(prixpp)+"dt");
-        Label quantiteLabel = new Label("Quantité : "+Integer.toString(panier.getQuantiteP()));
-
-        int index = 0;
-        float total=0.0f;
-        while (index < paniers.size()) {
-             Panier p = paniers.get(index);
-             total = total + (p.getTotalPa() * p.getQuantiteP());
-             index++;
-        }
-
-        totalPa.setText(Float.toString(total));
-
-        vbox.getChildren().add(imageView);
-
-        // Ajoutez l'ImageView et les Labels à la VBox
-        vbox.getChildren().addAll( nomLabel, prixLabel,quantiteLabel);
-
-        // Si la liste de paniers n'est pas vide, ajoutez un bouton de suppression
-        if (!paniers.isEmpty()) {
-            Button affichageButton = new Button("Supprimer");
-            affichageButton.setOnAction(event -> {
-                selectedProduit = panier;
-                pas.delete(selectedProduit);
-                System.out.println(selectedProduit + " supprimé du panier  ");
-
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
-                    Parent root = loader.load();
-                    // Obtenir le contrôleur de la nouvelle interface
-                    PanierController panierController = loader.getController();
-
-                    // Créer une nouvelle scène
-                    Scene scene = new Scene(root);
-
-                    // Configurer la nouvelle scène dans une nouvelle fenêtre
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setScene(scene);
-
-                    // Afficher la nouvelle fenêtre
-                    stage.show();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            affichageButton.getStyleClass().add("round-buttonMenu1");
-            affichageButton.getStyleClass().add("button-vbox");
-
-            // Créer une nouvelle VBox pour le bouton de suppression
-            VBox buttonVBox = new VBox(affichageButton);
-            //VBox.setMargin(buttonVBox, new Insets(0, 400, 0, -400)); // Ajustez les valeurs selon vos besoins
-
-            buttonVBox.setAlignment(Pos.CENTER_RIGHT);
-
-            // Ajouter la VBox du bouton de suppression à la HBox
-            hbox.getChildren().addAll(vbox,buttonVBox);
-        } else {
-            // Si la liste de paniers est vide, ajoutez simplement la VBox contenant l'ImageView et les Labels à la HBox
-            hbox.getChildren().add(vbox);
-        }
-        return hbox;
-    }*/
 
     private HBox createPanierHBox(Panier panier) {
         HBox hbox = new HBox(50);  // Espace horizontal entre chaque activité dans une ligne
@@ -418,7 +346,7 @@ public class PanierController {
 
             while (index < paniers.size()) {
                 Panier panier = paniers.get(index);
-                Vente vi = new Vente(2, panier.getIdP(), panier.getQuantiteP(), sqlDate, Float.parseFloat(totalPa.getText()));
+                Vente vi = new Vente(loggedInUser.getIdU(), panier.getIdP(), panier.getQuantiteP(), sqlDate, Float.parseFloat(totalPa.getText()));
                 Produit pr= ps.readById(panier.getIdP());
                 int nouvelleQuantiteEnStock = pr.getStockP() - panier.getQuantiteP();
 

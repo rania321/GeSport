@@ -21,6 +21,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class AjoutPersonneController {
     private final UserService us = new UserService();
@@ -163,7 +165,7 @@ public class AjoutPersonneController {
         alert.showAndWait();
     }
 
-    private String hashPassword(String password) {
+    /*private String hashPassword(String password) {
         try {
             // Créez un objet MessageDigest pour l'algorithme de hachage SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -183,6 +185,11 @@ public class AjoutPersonneController {
             e.printStackTrace();
             return null;
         }
+    }*/
+    private String hashPassword(String password) {
+        // Générez le hachage bcrypt du mot de passe
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        return hashedPassword;
     }
 
     private void openCaptchaInterface(ActionEvent event) {

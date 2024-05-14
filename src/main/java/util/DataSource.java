@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class DataSource {
     private Connection cnx ;
-    private  String url="jdbc:mysql://localhost:3306/gesport";
+    private  String url="jdbc:mysql://localhost:3306/gesportweb";
     private  String login="root";
     private  String pwd="";
     private static DataSource instance;
