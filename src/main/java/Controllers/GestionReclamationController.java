@@ -448,6 +448,8 @@ public class GestionReclamationController {
 
         // Mettre à jour les données du TableView avec la liste d'entrées
         //TableViewR.setItems(entryList);
+
+
     }
 
 

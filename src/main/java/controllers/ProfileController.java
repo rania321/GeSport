@@ -100,14 +100,14 @@ public class ProfileController {
         loggedInUser.setNomU(NomU.getText());
         loggedInUser.setPrenomU(PrenomU.getText());
         loggedInUser.setEmailU(EmailU.getText());
-        loggedInUser.setMdpU(mdpU.getText());
+        //loggedInUser.setMdpU(mdpU.getText());
 
         // Mettre à jour l'utilisateur dans la base de données
         userService.update(loggedInUser);
         NomU.setText(loggedInUser.getNomU());
         PrenomU.setText(loggedInUser.getPrenomU());
         EmailU.setText(loggedInUser.getEmailU());
-        mdpU.setText(loggedInUser.getMdpU());
+        //mdpU.setText(loggedInUser.getMdpU());
 
         // Mettre à jour la ListView avec les nouvelles informations de l'utilisateur
         listU.getItems().clear(); // Effacer toutes les informations actuelles dans la ListView
@@ -115,7 +115,7 @@ public class ProfileController {
         listU.getItems().add("Email: " + loggedInUser.getEmailU());
         listU.getItems().add("Nom: " + loggedInUser.getNomU());
         listU.getItems().add("Prenom: " + loggedInUser.getPrenomU());
-        listU.getItems().add("Motdepasse: " + loggedInUser.getMdpU());
+        //listU.getItems().add("Motdepasse: " + loggedInUser.getMdpU());
     }
 
     public void gotoAjouterDm(ActionEvent event) {

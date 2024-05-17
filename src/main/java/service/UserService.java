@@ -138,6 +138,7 @@ System.out.println(e.getMessage());
 package service;
 
 import org.example.Service.IService;
+import org.mindrot.jbcrypt.BCrypt;
 import util.DataSource;
 import entities.User;
 import entities.role;
@@ -285,19 +286,30 @@ public class UserService implements IService<User> {
         return user;
     }
     public User login(String email, String password) {
-        String query = "SELECT * FROM user WHERE EmailU = ? AND mdpU = ?";
+        String query = "SELECT * FROM user WHERE EmailU = ?";
         try {
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, email);
-            pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new User(rs.getInt("idU"), rs.getString("NomU"), rs.getString("PrenomU"), rs.getString("EmailU"), rs.getString("mdpU"), role.valueOf(rs.getString("RoleU")));
+                String hashedPassword = rs.getString("mdpU");
+                // Vérifier si le mot de passe correspond au hachage stocké dans la base de données
+                String convertedHashedPassword = convertHashedPassword(hashedPassword);
+                if (BCrypt.checkpw(password, convertedHashedPassword)) {
+                    // Le mot de passe est correct, retourner l'utilisateur
+                    return new User(rs.getInt("idU"), rs.getString("NomU"), rs.getString("PrenomU"), rs.getString("EmailU"), rs.getString("mdpU"), role.valueOf(rs.getString("RoleU")));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null; // Si l'utilisateur n'est pas trouvé ou si les informations de connexion sont incorrectes
+    }
+    public String convertHashedPassword(String hashedPassword) {
+        if (hashedPassword.startsWith("$2y")) {
+            hashedPassword = "$2a" + hashedPassword.substring(3);
+        }
+        return hashedPassword;
     }
 
     // Méthode pour obtenir le rôle de l'utilisateur

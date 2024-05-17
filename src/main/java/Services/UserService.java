@@ -312,7 +312,8 @@ import org.mindrot.jbcrypt.BCrypt;
                if (rs.next()) {
                    String hashedPassword = rs.getString("mdpU");
                    // Vérifier si le mot de passe correspond au hachage stocké dans la base de données
-                   if (BCrypt.checkpw(password, hashedPassword)) {
+                   String convertedHashedPassword = convertHashedPassword(hashedPassword);
+                   if (BCrypt.checkpw(password, convertedHashedPassword)) {
                        // Le mot de passe est correct, retourner l'utilisateur
                        return new User(rs.getInt("idU"), rs.getString("NomU"), rs.getString("PrenomU"), rs.getString("EmailU"), rs.getString("mdpU"), role.valueOf(rs.getString("RoleU")));
                    }
@@ -322,6 +323,12 @@ import org.mindrot.jbcrypt.BCrypt;
            }
            return null; // Si l'utilisateur n'est pas trouvé ou si les informations de connexion sont incorrectes
        }
+        public String convertHashedPassword(String hashedPassword) {
+            if (hashedPassword.startsWith("$2y")) {
+                hashedPassword = "$2a" + hashedPassword.substring(3);
+            }
+            return hashedPassword;
+        }
 
 
         // Méthode pour obtenir le rôle de l'utilisateur

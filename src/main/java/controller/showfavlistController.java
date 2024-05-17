@@ -146,8 +146,11 @@ public class showfavlistController {
         ImageView imageView = new ImageView();
 
         try {
-            Image image = new Image(new File(activite.getImageA()).toURI().toString());
+            String imagePath = "file:C:\\xampp\\htdocs\\images\\" + activite.getImageA();
+            //Image image = new Image(new File(o.getImage()).toURI().toString());
+            Image image = new Image(imagePath);
             imageView.setImage(image);
+
             imageView.setFitWidth(300);  // Définir la largeur selon vos besoins
             imageView.setFitHeight(200); // Définir la hauteur selon vos besoins
         } catch (Exception e) {

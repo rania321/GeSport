@@ -132,8 +132,13 @@ public class PanierController {
         File file = new File(imageUrl);
         String absolutePath = file.toURI().toString();
 
+        String imagePath = "file:C:\\xampp\\htdocs\\image\\" + imageUrl;
+        //Image image = new Image(new File(o.getImage()).toURI().toString());
+        Image image = new Image(imagePath);
+
 // Créez l'ImageView à partir de l'URL absolue
-        ImageView imageView = new ImageView(new Image(absolutePath));
+        ImageView imageView = new ImageView(new Image(imagePath));
+
         imageView.setFitWidth(100);  // Ajustez la largeur de l'image selon vos besoins
         imageView.setPreserveRatio(true);
         String nompp = ps.getNomFromIdProduit(panier.getIdP());

@@ -43,7 +43,7 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="label4" layoutX="1179.0" layoutY="619.0" text="2" textAlignment="RIGHT" textFill="#f9b13d">
+      <Label fx:id="label4" layoutX="1052.0" layoutY="619.0" text="2" textAlignment="RIGHT" textFill="#f9b13d">
          <font>
             <Font name="Arial" size="18.0" />
          </font>

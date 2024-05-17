@@ -163,7 +163,9 @@ public class ListerProduitController {
         ImageView imageView = new ImageView();
 
         try {
-            Image image = new Image(new File(produit.getImageP()).toURI().toString());
+            String imagePath = "file:C:\\xampp\\htdocs\\image\\" + produit.getImageP();
+            //Image image = new Image(new File(o.getImage()).toURI().toString());
+            Image image = new Image(imagePath);
             imageView.setImage(image);
             imageView.setFitWidth(200);  // largeur
             imageView.setFitHeight(200); // hauteur
@@ -186,7 +188,9 @@ public class ListerProduitController {
                 prixpAf.setText(selectedProduit.getPrixP()+"   dt");
                 descrpAf1.setText("" + selectedProduit.getDescriP());
                 refpAf.setText("" + selectedProduit.getReferenceP());
-                Image image = new Image(new File(selectedProduit.getImageP()).toURI().toString());
+                String imagePath = "file:C:\\xampp\\htdocs\\image\\" + selectedProduit.getImageP();
+                //Image image = new Image(new File(selectedProduit.getImageP()).toURI().toString());
+                Image image = new Image(imagePath);
                 imageaffp.setImage(image);
             });
             affichageButton.getStyleClass().add("round-buttonMenu1");
